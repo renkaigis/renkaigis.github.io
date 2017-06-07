@@ -1,347 +1,47 @@
-<!doctype html>
-
-
-
-
-
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Kai-Blog</title>
+  <subtitle>要有最朴素的生活，与最遥远的梦想。即使明日天寒地冻，路远马亡。</subtitle>
+  <link href="/atom.xml" rel="self"/>
   
-
-
-<html class="theme-next mist use-motion" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
-<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
-<style>
-    .pace .pace-progress {
-        background: #1E92FB; /*进度条颜色*/
-        height: 3px;
-    }
-    .pace .pace-progress-inner {
-         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
-    }
-    .pace .pace-activity {
-        border-top-color: #1E92FB;    /*上边框颜色*/
-        border-left-color: #1E92FB;    /*左边框颜色*/
-    }
-</style>
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <link href="http://yoursite.com/"/>
+  <updated>2017-06-05T10:42:55.987Z</updated>
+  <id>http://yoursite.com/</id>
   
+  <author>
+    <name>RenKai</name>
+    
+  </author>
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
+  <generator uri="http://hexo.io/">Hexo</generator>
   
-  
-  
-  
-
-  
+  <entry>
+    <title>测试：《雨巷》</title>
+    <link href="http://yoursite.com/2017/06/05/%E6%B5%8B%E8%AF%95%EF%BC%9A%E3%80%8A%E9%9B%A8%E5%B7%B7%E3%80%8B/"/>
+    <id>http://yoursite.com/2017/06/05/测试：《雨巷》/</id>
+    <published>2017-06-05T09:42:35.000Z</published>
+    <updated>2017-06-05T10:42:55.987Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="雨巷"><a href="#雨巷" class="headerlink" title="雨巷"></a>雨巷</h2><h4 id="戴望舒"><a href="#戴望舒" class="headerlink" title="戴望舒"></a>戴望舒</h4><p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1496668641643&amp;di=e29c6f03c2b2979eacb3fd64fb896d4c&amp;imgtype=0&amp;src=http%3A%2F%2Fs4.sinaimg.cn%2Fmiddle%2F62302a9dgb669507fe5e3%26690" alt="雨巷"><br>撑着油纸伞，独自<br>彷徨在悠长，悠长<br>又寂寥的雨巷，<br>我希望逢着<br>一个丁香一样的<br>结着愁怨的姑娘。<br>她是有<br>丁香一样的颜色，<br>丁香一样的芬芳，<br>丁香一样的忧愁，<br>在雨中哀怨，<br>哀怨又彷徨；<br>她彷徨在这寂寥的雨巷，<br>撑着油纸伞<br>像我一样，<br>像我一样地<br>默默彳亍着，<br>冷漠，凄清，又惆怅。<br>她静默地走近<br>走近，又投出<br>太息一般的眼光，<br>她飘过<br>像梦一般的，<br>像梦一般的凄婉迷茫。<br>像梦中飘过<br>一枝丁香的，<br>我身旁飘过这女郎；<br>她静默地远了，远了，<br>到了颓圮的篱墙，<br>走尽这雨巷。<br>在雨的哀曲里，<br>消了她的颜色，<br>散了她的芬芳<br>消散了，甚至她的<br>太息般的眼光，<br>丁香般的惆怅。<br>撑着油纸伞，独自<br>彷徨在悠长，悠长<br>又寂寥的雨巷，<br>我希望飘过<br>一个丁香一样的<br>结着愁怨的姑娘。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;雨巷&quot;&gt;&lt;a href=&quot;#雨巷&quot; class=&quot;headerlink&quot; title=&quot;雨巷&quot;&gt;&lt;/a&gt;雨巷&lt;/h2&gt;&lt;h4 id=&quot;戴望舒&quot;&gt;&lt;a href=&quot;#戴望舒&quot; class=&quot;headerlink&quot; title=&quot;戴望舒&quot;&gt;&lt;/a&gt;戴望舒&lt;/h4&gt;&lt;p
+    
+    </summary>
     
     
+  </entry>
   
-
-  
-
-  
-
-  
-
-  
-
-  
+  <entry>
+    <title>ArcGIS Engine 地图操作基础</title>
+    <link href="http://yoursite.com/2017/06/05/ArcGIS-Engine-%E5%9C%B0%E5%9B%BE%E6%93%8D%E4%BD%9C%E5%9F%BA%E7%A1%80/"/>
+    <id>http://yoursite.com/2017/06/05/ArcGIS-Engine-地图操作基础/</id>
+    <published>2017-06-05T04:47:44.000Z</published>
+    <updated>2017-06-06T14:52:49.637Z</updated>
     
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Kai-Blog" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png?v=5.1.1" />
-
-
-
-
-
-
-<meta name="description" content="一、数据加载1. 加载地图文档地图文档可以是一个ArcMap文档（*.mxd）或者ArcMap模版（*.mxt）或ArcReader文件（*.pmf）。 加载地图文档的方式有三种：  (1) 使用 IMapControl 接口的 LoadMxFile 方法加载； (2) 通过 IMapDocument 接口加载; (3) 使用 ArcGIS Engine 中封装好的类库资源 ControlsOpe">
-<meta property="og:type" content="article">
-<meta property="og:title" content="ArcGIS Engine 地图操作基础">
-<meta property="og:url" content="http://yoursite.com/2017/06/05/ArcGIS-Engine-地图操作基础/index.html">
-<meta property="og:site_name" content="Kai-Blog">
-<meta property="og:description" content="一、数据加载1. 加载地图文档地图文档可以是一个ArcMap文档（*.mxd）或者ArcMap模版（*.mxt）或ArcReader文件（*.pmf）。 加载地图文档的方式有三种：  (1) 使用 IMapControl 接口的 LoadMxFile 方法加载； (2) 通过 IMapDocument 接口加载; (3) 使用 ArcGIS Engine 中封装好的类库资源 ControlsOpe">
-<meta property="og:updated_time" content="2017-06-06T14:52:49.637Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ArcGIS Engine 地图操作基础">
-<meta name="twitter:description" content="一、数据加载1. 加载地图文档地图文档可以是一个ArcMap文档（*.mxd）或者ArcMap模版（*.mxt）或ArcReader文件（*.pmf）。 加载地图文档的方式有三种：  (1) 使用 IMapControl 接口的 LoadMxFile 方法加载； (2) 通过 IMapDocument 接口加载; (3) 使用 ArcGIS Engine 中封装好的类库资源 ControlsOpe">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://yoursite.com/2017/06/05/ArcGIS-Engine-地图操作基础/"/>
-
-
-
-
-
-  <title>ArcGIS Engine 地图操作基础 | Kai-Blog</title>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <a href="https://github.com/renkaigis"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/567c3a48d796e2fc06ea80409cc9dd82bf714434/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_darkblue_121621.png"></a>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Kai-Blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle">要有最朴素的生活，与最遥远的梦想。即使明日天寒地冻，路远马亡。</p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            Tags
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/05/ArcGIS-Engine-地图操作基础/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="RenKai">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kai-Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">ArcGIS Engine 地图操作基础</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-05T12:47:44+08:00">
-                2017-06-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h2 id="一、数据加载"><a href="#一、数据加载" class="headerlink" title="一、数据加载"></a>一、数据加载</h2><h3 id="1-加载地图文档"><a href="#1-加载地图文档" class="headerlink" title="1. 加载地图文档"></a>1. 加载地图文档</h3><p>地图文档可以是一个ArcMap文档（*.mxd）或者ArcMap模版（*.mxt）或ArcReader文件（*.pmf）。</p>
+    <content type="html"><![CDATA[<h2 id="一、数据加载"><a href="#一、数据加载" class="headerlink" title="一、数据加载"></a>一、数据加载</h2><h3 id="1-加载地图文档"><a href="#1-加载地图文档" class="headerlink" title="1. 加载地图文档"></a>1. 加载地图文档</h3><p>地图文档可以是一个ArcMap文档（*.mxd）或者ArcMap模版（*.mxt）或ArcReader文件（*.pmf）。</p>
 <p><strong>加载地图文档的方式有三种：</strong></p>
 <ul>
 <li>(1) 使用 IMapControl 接口的 LoadMxFile 方法加载；</li>
@@ -411,464 +111,42 @@
 <li>自定义函数 AddAllDataset 核心代码如下:</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line">/// &lt;summary&gt;</div><div class="line">/// 加载工作空间里面的要素和栅格数据</div><div class="line">/// &lt;/summary&gt;</div><div class="line">/// &lt;param name=&quot;pWorkspace&quot;&gt;&lt;/param&gt;</div><div class="line">private void AddAllDataset(IWorkspace pWorkspace, AxMapControl mapControl)</div><div class="line">&#123;</div><div class="line">    IEnumDataset pEnumDataset = pWorkspace.get_Datasets(ESRI.ArcGIS.Geodatabase.esriDatasetType.esriDTAny);</div><div class="line">    pEnumDataset.Reset();</div><div class="line">    //将Enum数据集中的数据一个个读到DataSet中</div><div class="line">    IDataset pDataset = pEnumDataset.Next();</div><div class="line">    //判断数据集是否有数据</div><div class="line">    while (pDataset != null)</div><div class="line">    &#123;</div><div class="line">        if (pDataset is IFeatureDataset)  //要素数据集</div><div class="line">        &#123;</div><div class="line">            IFeatureWorkspace pFeatureWorkspace = (IFeatureWorkspace)pWorkspace;</div><div class="line">            IFeatureDataset pFeatureDataset = pFeatureWorkspace.OpenFeatureDataset(pDataset.Name);</div><div class="line">            IEnumDataset pEnumDataset1 = pFeatureDataset.Subsets;</div><div class="line">            pEnumDataset1.Reset();</div><div class="line">            IGroupLayer pGroupLayer = new GroupLayerClass();</div><div class="line">            pGroupLayer.Name = pFeatureDataset.Name;</div><div class="line">            IDataset pDataset1 = pEnumDataset1.Next();</div><div class="line">            while (pDataset1 != null)</div><div class="line">            &#123;</div><div class="line">                if (pDataset1 is IFeatureClass)  //要素类</div><div class="line">                &#123;</div><div class="line">                    IFeatureLayer pFeatureLayer = new FeatureLayerClass();</div><div class="line">                    pFeatureLayer.FeatureClass = pFeatureWorkspace.OpenFeatureClass(pDataset1.Name);</div><div class="line">                    if (pFeatureLayer.FeatureClass != null)</div><div class="line">                    &#123;</div><div class="line">                        pFeatureLayer.Name = pFeatureLayer.FeatureClass.AliasName;</div><div class="line">                        pGroupLayer.Add(pFeatureLayer);</div><div class="line">                        mapControl.Map.AddLayer(pFeatureLayer);</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                pDataset1 = pEnumDataset1.Next();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        else if (pDataset is IFeatureClass) //要素类</div><div class="line">        &#123;</div><div class="line">            IFeatureWorkspace pFeatureWorkspace = (IFeatureWorkspace)pWorkspace;</div><div class="line">            IFeatureLayer pFeatureLayer = new FeatureLayerClass();</div><div class="line">            pFeatureLayer.FeatureClass = pFeatureWorkspace.OpenFeatureClass(pDataset.Name);</div><div class="line"></div><div class="line">            pFeatureLayer.Name = pFeatureLayer.FeatureClass.AliasName;</div><div class="line">            mapControl.Map.AddLayer(pFeatureLayer);</div><div class="line">        &#125;</div><div class="line">        else if (pDataset is IRasterDataset) //栅格数据集</div><div class="line">        &#123;</div><div class="line">            IRasterWorkspaceEx pRasterWorkspace = (IRasterWorkspaceEx)pWorkspace;</div><div class="line">            IRasterDataset pRasterDataset = pRasterWorkspace.OpenRasterDataset(pDataset.Name);</div><div class="line">            //影像金字塔判断与创建</div><div class="line">            IRasterPyramid3 pRasPyrmid;</div><div class="line">            pRasPyrmid = pRasterDataset as IRasterPyramid3;</div><div class="line">            if (pRasPyrmid != null)</div><div class="line">            &#123;</div><div class="line">                if (!(pRasPyrmid.Present))</div><div class="line">                &#123;</div><div class="line">                    pRasPyrmid.Create(); //创建金字塔</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            IRasterLayer pRasterLayer = new RasterLayerClass();</div><div class="line">            pRasterLayer.CreateFromDataset(pRasterDataset);</div><div class="line">            ILayer pLayer = pRasterLayer as ILayer;</div><div class="line">            mapControl.AddLayer(pLayer, 0);</div><div class="line">        &#125;</div><div class="line">        pDataset = pEnumDataset.Next();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    mapControl.ActiveView.Refresh();</div><div class="line">    //同步鹰眼</div><div class="line">    SynchronizeEagleEye();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-      
-    </div>
-
-<div>
+]]></content>
     
-        <div style="text-align:center;color: #ccc;font-size:14px;">------------- 本文结束 <i class="fa fa-paw"></i> 感谢您的阅读 -------------</div>
+    <summary type="html">
     
-</div>
-
-
-    <div>
-      
-        
-<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="RenKai wechat" style="width: 200px; max-width: 100%;"/>
-    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
-</div>
-
-
-      
-    </div>
-
-    <div>
-      
-        
-<div class="my_post_copyright">
-  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
-  
-  <!-- JS库 sweetalert 可修改路径 -->
-  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
-  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
-  <p><span>本文标题:</span><a href="/2017/06/05/ArcGIS-Engine-地图操作基础/">ArcGIS Engine 地图操作基础</a></p>
-  <p><span>文章作者:</span><a href="/" title="访问 RenKai 的个人博客">RenKai</a></p>
-  <p><span>发布时间:</span>2017年06月05日 - 12:06</p>
-  <p><span>最后更新:</span>2017年06月06日 - 22:06</p>
-  <p><span>原始链接:</span><a href="/2017/06/05/ArcGIS-Engine-地图操作基础/" title="ArcGIS Engine 地图操作基础">http://yoursite.com/2017/06/05/ArcGIS-Engine-地图操作基础/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2017/06/05/ArcGIS-Engine-地图操作基础/"  aria-label="复制成功！"></i></span>
-  </p>
-  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
-</div>
-<script> 
-    var clipboard = new Clipboard('.fa-clipboard');
-    clipboard.on('success', $(function(){
-      $(".fa-clipboard").click(function(){
-        swal({   
-          title: "",   
-          text: '复制成功',   
-          html: false,
-          timer: 500,   
-          showConfirmButton: false
-        });
-      });
-    }));  
-</script>
-
-      
-</div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-
-
-    <footer class="post-footer">
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/06/05/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/06/05/测试：《雨巷》/" rel="prev" title="测试：《雨巷》">
-                测试：《雨巷》 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
+      &lt;h2 id=&quot;一、数据加载&quot;&gt;&lt;a href=&quot;#一、数据加载&quot; class=&quot;headerlink&quot; title=&quot;一、数据加载&quot;&gt;&lt;/a&gt;一、数据加载&lt;/h2&gt;&lt;h3 id=&quot;1-加载地图文档&quot;&gt;&lt;a href=&quot;#1-加载地图文档&quot; class=&quot;headerlink&quot; 
     
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.jpg"
-               alt="RenKai" />
-          <p class="site-author-name" itemprop="name">RenKai</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">posts</span>
-              </a>
-            </div>
-          
-
-          
-
-          
-
-        </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/renkaigis" target="_blank" title="Github">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  Github
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/renkai123" target="_blank" title="Weibo">
-                  
-                    <i class="fa fa-fw fa-weibo"></i>
-                  
-                  Weibo
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://blog.csdn.net/renkaigis" target="_blank" title="CSDN">
-                  
-                    <i class="fa fa-fw fa-crosshairs"></i>
-                  
-                  CSDN
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://www.jianshu.com/users/f44c72ff4b81/timeline" target="_blank" title="简书">
-                  
-                    <i class="fa fa-fw fa-heartbeat"></i>
-                  
-                  简书
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:renkaigis@163.com" target="_blank" title="Email">
-                  
-                    <i class="fa fa-fw fa-envelope"></i>
-                  
-                  Email
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、数据加载"><span class="nav-number">1.</span> <span class="nav-text">一、数据加载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-加载地图文档"><span class="nav-number">1.1.</span> <span class="nav-text">1. 加载地图文档</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-LoadMxFile-方法加载地图文档文件"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 LoadMxFile 方法加载地图文档文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-IMapDocument-方法加载-Mxd-文档文件"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 IMapDocument 方法加载 Mxd 文档文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-ControlsOpenDocCommandClass-加载地图"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 ControlsOpenDocCommandClass 加载地图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-加载-Shapefile-数据"><span class="nav-number">1.2.</span> <span class="nav-text">2. 加载 Shapefile 数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-通过工作空间加载"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 通过工作空间加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-通过-MapControl-空间的-AddShapefile-方法加载"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 通过 MapControl 空间的 AddShapefile 方法加载</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-加载栅格数据"><span class="nav-number">1.3.</span> <span class="nav-text">2. 加载栅格数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-加载-CAD-数据"><span class="nav-number">1.4.</span> <span class="nav-text">3. 加载 CAD 数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-CAD-文件作为矢量图层加载"><span class="nav-number">1.4.1.</span> <span class="nav-text">3.1 CAD 文件作为矢量图层加载</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-1-分图层加载"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">3.1.1 分图层加载</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-2-整幅图加载"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">3.1.2 整幅图加载</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-CAD-文件作为栅格图层加载"><span class="nav-number">1.4.2.</span> <span class="nav-text">3.2 CAD 文件作为栅格图层加载</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-加载个人地理数据库"><span class="nav-number">1.5.</span> <span class="nav-text">4. 加载个人地理数据库</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2017</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">RenKai</span>
-</div>
-
-<div class="powered-by">
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  本站访客数:<span id="busuanzi_value_site_uv"></span>
-</span>
-</div>
-
-<div class="theme-info">
-  <div class="powered-by"></div>
-  <span class="post-count">博客全站共3.3k字</span>
-</div>
-
-
-<!--
-<div class="theme-info">
-  Theme -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
--->
-
-        
-
-        
-      </div>
-    </footer>
-
+    </summary>
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
-
-  </div>
-
+  </entry>
   
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
+  <entry>
+    <title>Hello World</title>
+    <link href="http://yoursite.com/2017/06/05/hello-world/"/>
+    <id>http://yoursite.com/2017/06/05/hello-world/</id>
+    <published>2017-06-05T02:42:14.878Z</published>
+    <updated>2017-06-05T02:42:14.878Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+    
+    </summary>
+    
+    
+  </entry>
   
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-</body>
-</html>
-
-<!-- 页面点击小红心 -->
-<script type="text/javascript" src="/js/src/love.js"></script>
+</feed>

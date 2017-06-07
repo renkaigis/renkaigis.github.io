@@ -66,22 +66,35 @@
   
 
   
+
+  
     
+
     
-  
-
-  
-
-  
-
-  
-
   
 
   
     
+
     
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+  
+    
+
+    
+  
+
+  
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Comic Sans MS:300,300italic,400,400italic,700,700italicPingFang SC:300,300italic,400,400italic,700,700italicComic Sans MS:300,300italic,400,400italic,700,700italicConsolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -94,7 +107,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="凱" />
+  <meta name="keywords" content="ArcGIS,AE," />
 
 
 
@@ -113,12 +126,13 @@
 
 
 <meta name="description" content="一、数据加载1. 加载地图文档地图文档可以是一个ArcMap文档（*.mxd）或者ArcMap模版（*.mxt）或ArcReader文件（*.pmf）。 加载地图文档的方式有三种：  (1) 使用 IMapControl 接口的 LoadMxFile 方法加载； (2) 通过 IMapDocument 接口加载; (3) 使用 ArcGIS Engine 中封装好的类库资源 ControlsOpe">
+<meta name="keywords" content="ArcGIS,AE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ArcGIS Engine 地图操作基础">
 <meta property="og:url" content="http://yoursite.com/2017/06/05/ArcGIS-Engine-地图操作基础/index.html">
 <meta property="og:site_name" content="Kai&#39;s Blog">
 <meta property="og:description" content="一、数据加载1. 加载地图文档地图文档可以是一个ArcMap文档（*.mxd）或者ArcMap模版（*.mxt）或ArcReader文件（*.pmf）。 加载地图文档的方式有三种：  (1) 使用 IMapControl 接口的 LoadMxFile 方法加载； (2) 通过 IMapDocument 接口加载; (3) 使用 ArcGIS Engine 中封装好的类库资源 ControlsOpe">
-<meta property="og:updated_time" content="2017-06-07T05:03:42.229Z">
+<meta property="og:updated_time" content="2017-06-07T13:07:25.390Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ArcGIS Engine 地图操作基础">
 <meta name="twitter:description" content="一、数据加载1. 加载地图文档地图文档可以是一个ArcMap文档（*.mxd）或者ArcMap模版（*.mxt）或ArcReader文件（*.pmf）。 加载地图文档的方式有三种：  (1) 使用 IMapControl 接口的 LoadMxFile 方法加载； (2) 通过 IMapDocument 接口加载; (3) 使用 ArcGIS Engine 中封装好的类库资源 ControlsOpe">
@@ -375,6 +389,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ArcGIS/" itemprop="url" rel="index">
+                    <span itemprop="name">ArcGIS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
       <span id="busuanzi_container_page_pv">
       &nbsp; | &nbsp; 热度&nbsp; <span id="busuanzi_value_page_pv"></span>°C
@@ -540,7 +576,7 @@
   <p><span>本文标题:</span><a href="/2017/06/05/ArcGIS-Engine-地图操作基础/">ArcGIS Engine 地图操作基础</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 RenKai 的个人博客">RenKai</a></p>
   <p><span>发布时间:</span>2017年06月05日 - 12:06</p>
-  <p><span>最后更新:</span>2017年06月07日 - 13:06</p>
+  <p><span>最后更新:</span>2017年06月07日 - 21:06</p>
   <p><span>原始链接:</span><a href="/2017/06/05/ArcGIS-Engine-地图操作基础/" title="ArcGIS Engine 地图操作基础">http://yoursite.com/2017/06/05/ArcGIS-Engine-地图操作基础/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2017/06/05/ArcGIS-Engine-地图操作基础/"  aria-label="复制成功！"></i></span>
   </p>
@@ -567,6 +603,27 @@
     <div>
       
         
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="RenKai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.png" alt="RenKai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
 
       
     </div>
@@ -581,6 +638,14 @@
 
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ArcGIS/" rel="tag"><i class="fa fa-tag"></i> ArcGIS</a>
+          
+            <a href="/tags/AE/" rel="tag"><i class="fa fa-tag"></i> AE</a>
+          
+        </div>
       
 
       
@@ -705,7 +770,25 @@
           
 
           
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
           
 
         </nav>

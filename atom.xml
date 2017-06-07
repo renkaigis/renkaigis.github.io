@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-06-05T10:42:55.987Z</updated>
+  <updated>2017-06-07T12:59:01.569Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/06/05/%E6%B5%8B%E8%AF%95%EF%BC%9A%E3%80%8A%E9%9B%A8%E5%B7%B7%E3%80%8B/"/>
     <id>http://yoursite.com/2017/06/05/测试：《雨巷》/</id>
     <published>2017-06-05T09:42:35.000Z</published>
-    <updated>2017-06-05T10:42:55.987Z</updated>
+    <updated>2017-06-07T12:59:01.569Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="雨巷"><a href="#雨巷" class="headerlink" title="雨巷"></a>雨巷</h2><h4 id="戴望舒"><a href="#戴望舒" class="headerlink" title="戴望舒"></a>戴望舒</h4><p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1496668641643&amp;di=e29c6f03c2b2979eacb3fd64fb896d4c&amp;imgtype=0&amp;src=http%3A%2F%2Fs4.sinaimg.cn%2Fmiddle%2F62302a9dgb669507fe5e3%26690" alt="雨巷"><br>撑着油纸伞，独自<br>彷徨在悠长，悠长<br>又寂寥的雨巷，<br>我希望逢着<br>一个丁香一样的<br>结着愁怨的姑娘。<br>她是有<br>丁香一样的颜色，<br>丁香一样的芬芳，<br>丁香一样的忧愁，<br>在雨中哀怨，<br>哀怨又彷徨；<br>她彷徨在这寂寥的雨巷，<br>撑着油纸伞<br>像我一样，<br>像我一样地<br>默默彳亍着，<br>冷漠，凄清，又惆怅。<br>她静默地走近<br>走近，又投出<br>太息一般的眼光，<br>她飘过<br>像梦一般的，<br>像梦一般的凄婉迷茫。<br>像梦中飘过<br>一枝丁香的，<br>我身旁飘过这女郎；<br>她静默地远了，远了，<br>到了颓圮的篱墙，<br>走尽这雨巷。<br>在雨的哀曲里，<br>消了她的颜色，<br>散了她的芬芳<br>消散了，甚至她的<br>太息般的眼光，<br>丁香般的惆怅。<br>撑着油纸伞，独自<br>彷徨在悠长，悠长<br>又寂寥的雨巷，<br>我希望飘过<br>一个丁香一样的<br>结着愁怨的姑娘。</p>
 ]]></content>
@@ -31,6 +31,10 @@
     
     </summary>
     
+      <category term="随笔" scheme="http://yoursite.com/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随笔" scheme="http://yoursite.com/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
@@ -39,7 +43,7 @@
     <link href="http://yoursite.com/2017/06/05/ArcGIS-Engine-%E5%9C%B0%E5%9B%BE%E6%93%8D%E4%BD%9C%E5%9F%BA%E7%A1%80/"/>
     <id>http://yoursite.com/2017/06/05/ArcGIS-Engine-地图操作基础/</id>
     <published>2017-06-05T04:47:44.000Z</published>
-    <updated>2017-06-07T05:03:42.229Z</updated>
+    <updated>2017-06-07T13:07:25.390Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="一、数据加载"><a href="#一、数据加载" class="headerlink" title="一、数据加载"></a>一、数据加载</h2><h3 id="1-加载地图文档"><a href="#1-加载地图文档" class="headerlink" title="1. 加载地图文档"></a>1. 加载地图文档</h3><p>地图文档可以是一个ArcMap文档（*.mxd）或者ArcMap模版（*.mxt）或ArcReader文件（*.pmf）。</p>
 <p><strong>加载地图文档的方式有三种：</strong></p>
@@ -119,6 +123,12 @@
     
     </summary>
     
+      <category term="ArcGIS" scheme="http://yoursite.com/categories/ArcGIS/"/>
+    
+    
+      <category term="ArcGIS" scheme="http://yoursite.com/tags/ArcGIS/"/>
+    
+      <category term="AE" scheme="http://yoursite.com/tags/AE/"/>
     
   </entry>
   
@@ -127,7 +137,7 @@
     <link href="http://yoursite.com/2017/06/05/hello-world/"/>
     <id>http://yoursite.com/2017/06/05/hello-world/</id>
     <published>2017-06-05T02:42:14.878Z</published>
-    <updated>2017-06-05T02:42:14.878Z</updated>
+    <updated>2017-06-07T12:58:43.488Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
@@ -146,6 +156,10 @@
     
     </summary>
     
+      <category term="hexo+github" scheme="http://yoursite.com/categories/hexo-github/"/>
+    
+    
+      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
     
   </entry>
   

@@ -1946,7 +1946,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #fffaff;
+  background: #1b6aa7;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3171,10 +3171,87 @@ hr {
     text-align: center;
   }
 }
+.site-subtitle {
+  font-size: 15px;
+  color: #fff;
+}
+.site-title {
+  font-size: 80px;
+  font-weight: bold;
+  color: #000;
+}
+.brand {
+  background: transparent;
+}
+.logo-line-before {
+  color: #fff;
+}
+.logo-line-after {
+  color: #fff;
+}
+.menu {
+  margin-top: 30px;
+  padding-left: 0;
+  text-align: center;
+  background: rgba(240,240,240,0.5);
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
+  border-radius: initial;
+  -webkit-box-shadow: 0 0 15px #73c7f1;
+}
+a {
+  color: rgba(0,0,0,0.8);
+}
+a:hover {
+  color: #ff106c;
+  border-bottom-color: #ff106c;
+}
+.menu .menu-item a {
+  font-size: 14px;
+}
+.menu .menu-item a:hover {
+  border-bottom-color: #ff106c;
+}
 .post {
-  margin-top: 60px;
-  margin-bottom: 60px;
-  padding: 50px;
-  -webkit-box-shadow: 0 0 10px #cacbcb;
-  -moz-box-shadow: 0 0 10px #cacbcc;
+  margin-top: 10px;
+  margin-bottom: 40px;
+  padding: 30px;
+  -webkit-box-shadow: 0 0 7px #73c7f1;
+}
+.site-description {
+  font-size: 16px;
+}
+.header-inner {
+  padding: 45px 0 25px;
+  width: 700px;
+}
+.site-author-name {
+  font-family: 'Comic Sans MS', sans-serif;
+  font-size: 30px;
+}
+.posts-expand .post-eof {
+  margin: 40px auto 40px;
+  background: #fff;
+}
+.btn {
+  margin-top: 20px;
+}
+code {
+  color: #e6006b;
+  background: #fff;
+  border-radius: 3px;
+}
+strong {
+  color: #750c0c;
+}
+blockquote {
+  border-left: 5px solid #657b83;
+}
+.footer {
+  color: #555;
+}
+body {
+  color: #444;
+  font-size: 16px;
 }

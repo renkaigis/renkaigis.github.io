@@ -43,7 +43,7 @@
     <link href="http://yoursite.com/2017/06/05/ArcGIS-Engine-%E5%9C%B0%E5%9B%BE%E6%93%8D%E4%BD%9C%E5%9F%BA%E7%A1%80/"/>
     <id>http://yoursite.com/2017/06/05/ArcGIS-Engine-地图操作基础/</id>
     <published>2017-06-05T04:47:44.000Z</published>
-    <updated>2017-06-07T13:07:25.390Z</updated>
+    <updated>2017-06-07T14:27:00.946Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="一、数据加载"><a href="#一、数据加载" class="headerlink" title="一、数据加载"></a>一、数据加载</h2><h3 id="1-加载地图文档"><a href="#1-加载地图文档" class="headerlink" title="1. 加载地图文档"></a>1. 加载地图文档</h3><p>地图文档可以是一个ArcMap文档（*.mxd）或者ArcMap模版（*.mxt）或ArcReader文件（*.pmf）。</p>
 <p><strong>加载地图文档的方式有三种：</strong></p>

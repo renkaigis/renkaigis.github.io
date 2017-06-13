@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-06-13T13:11:42.974Z</updated>
+  <updated>2017-06-13T14:21:10.851Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,60 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ArcGIS-Engine-地图操作基础——地图文档保存</title>
+    <link href="http://yoursite.com/2017/06/13/ArcGIS-Engine-%E5%9C%B0%E5%9B%BE%E6%93%8D%E4%BD%9C%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94%E5%9C%B0%E5%9B%BE%E6%96%87%E6%A1%A3%E4%BF%9D%E5%AD%98/"/>
+    <id>http://yoursite.com/2017/06/13/ArcGIS-Engine-地图操作基础——地图文档保存/</id>
+    <published>2017-06-13T13:15:30.000Z</published>
+    <updated>2017-06-13T14:21:10.851Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="地图文档保存"><a href="#地图文档保存" class="headerlink" title="地图文档保存"></a>地图文档保存</h1><p><strong>实例程序实现思路</strong></p>
+<ul>
+<li>(1) 地图文档的保存主要使用 IMapDocument 接口。首先使用 IMxdContents 接口读取已打开地图文档的内容，并使之替换 IMapDocument 接口的实例对象。</li>
+<li>(2) 保存时使用 IMapDocument 接口的 Save 方法，函数原型为 public void Save(bool bUseRelativePaths, bool bCreateThumnbail)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bUseRelativePaths</td>
+<td>是否保存为相对路径（区别于绝对路径）</td>
+</tr>
+<tr>
+<td>bCreateThumnbail</td>
+<td>表示保存的地图在 ArcCatalog 中查看时是否显示缩略图</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//保存地图</span></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">SaveMap_Click</span><span class="params">(object sender, EventArgs e)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">try</span></div><div class="line">    &#123;</div><div class="line">        string sMxdFileName = mainMapControl.DocumentFilename;</div><div class="line">        IMapDocument pMapDocument = <span class="keyword">new</span> MapDocumentClass();</div><div class="line">        <span class="keyword">if</span> (sMxdFileName!=<span class="keyword">null</span> &amp;&amp; mainMapControl.CheckMxFile(sMxdFileName))</div><div class="line">        &#123;     </div><div class="line">            <span class="keyword">if</span> (pMapDocument.get_IsReadOnly(sMxdFileName))</div><div class="line">            &#123;</div><div class="line">                MessageBox.Show(<span class="string">"本地图文档是只读的，不能保存!"</span>);</div><div class="line">                pMapDocument.Close();</div><div class="line">                <span class="keyword">return</span>;</div><div class="line">            &#125;  </div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span></div><div class="line">        &#123;</div><div class="line">            SaveFileDialog pSaveFileDialog = <span class="keyword">new</span> SaveFileDialog();</div><div class="line">            pSaveFileDialog.Title = <span class="string">"请选择保存路径"</span>;</div><div class="line">            pSaveFileDialog.OverwritePrompt = <span class="keyword">true</span>;</div><div class="line">            pSaveFileDialog.Filter = <span class="string">"ArcMap文档（*.mxd）|*.mxd|ArcMap模板（*.mxt）|*.mxt"</span>;</div><div class="line">            pSaveFileDialog.RestoreDirectory = <span class="keyword">true</span>;</div><div class="line">            <span class="keyword">if</span> (pSaveFileDialog.ShowDialog() == DialogResult.OK)</div><div class="line">            &#123;</div><div class="line">                sMxdFileName = pSaveFileDialog.FileName;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span></div><div class="line">            &#123;</div><div class="line">                <span class="keyword">return</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        pMapDocument.New(sMxdFileName);</div><div class="line">        pMapDocument.ReplaceContents(mainMapControl.Map as IMxdContents);</div><div class="line">        pMapDocument.Save(pMapDocument.UsesRelativePaths, <span class="keyword">true</span>);</div><div class="line">        pMapDocument.Close();</div><div class="line">        MessageBox.Show(<span class="string">"保存地图文档成功!"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">catch</span> (Exception ex)</div><div class="line">    &#123;</div><div class="line">        MessageBox.Show(ex.Message);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="地图文档另存为"><a href="#地图文档另存为" class="headerlink" title="地图文档另存为"></a>地图文档另存为</h1><p><strong>实例程序实现思路</strong></p>
+<ul>
+<li>(1) 地图文档的另存为与保存的方法类似，保存前需判断保存的路径里是否存在相同的文件；</li>
+<li>(2) 另存为需要用 IMapDocument 接口的 New 方法创建新的路径。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//地图另存为</span></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">btnSaveAsMap_Click</span><span class="params">(object sender, EventArgs e)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">try</span></div><div class="line">    &#123;</div><div class="line">        SaveFileDialog pSaveFileDialog = <span class="keyword">new</span> SaveFileDialog();</div><div class="line">        pSaveFileDialog.Title = <span class="string">"另存为"</span>;</div><div class="line">        pSaveFileDialog.OverwritePrompt = <span class="keyword">true</span>;</div><div class="line">        pSaveFileDialog.Filter = <span class="string">"ArcMap文档（*.mxd）|*.mxd|ArcMap模板（*.mxt）|*.mxt"</span>;</div><div class="line">        pSaveFileDialog.RestoreDirectory = <span class="keyword">true</span>;</div><div class="line">        <span class="keyword">if</span> (pSaveFileDialog.ShowDialog() == DialogResult.OK)</div><div class="line">        &#123;</div><div class="line">            string sFilePath = pSaveFileDialog.FileName;</div><div class="line"></div><div class="line">            IMapDocument pMapDocument = <span class="keyword">new</span> MapDocumentClass();</div><div class="line">            pMapDocument.New(sFilePath);</div><div class="line">            pMapDocument.ReplaceContents(mainMapControl.Map as IMxdContents);</div><div class="line">            pMapDocument.Save(<span class="keyword">true</span>, <span class="keyword">true</span>);</div><div class="line">            pMapDocument.Close();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">catch</span> (Exception ex)</div><div class="line">    &#123;</div><div class="line">        MessageBox.Show(ex.Message);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//也可以使用 ArcGIS Engine 中封装好的类库资源 ControlsSaveAsDocCommandClass 实现地图文档的另存为：</span></div><div class="line">    <span class="comment">//ICommand command = new ControlsSaveAsDocCommandClass();</span></div><div class="line">    <span class="comment">//command.OnCreate(mainMapControl.Object);</span></div><div class="line">    <span class="comment">//command.OnClick();</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css&quot;&gt;&lt;h1 id=&quot;地图文档保存&quot;&gt;&lt;a href=&quot;#地图文档保存&quot; class=&quot;
+    
+    </summary>
+    
+      <category term="ArcGIS" scheme="http://yoursite.com/categories/ArcGIS/"/>
+    
+    
+      <category term="ArcGIS" scheme="http://yoursite.com/tags/ArcGIS/"/>
+    
+      <category term="AE" scheme="http://yoursite.com/tags/AE/"/>
+    
+  </entry>
   
   <entry>
     <title>Hexo+Github搭建个人博客（小白版图文教程）</title>

@@ -346,6 +346,213 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/13/ArcGIS-Engine-地图操作基础——地图文档保存/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RenKai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kai's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/13/ArcGIS-Engine-地图操作基础——地图文档保存/" itemprop="url">ArcGIS-Engine-地图操作基础——地图文档保存</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-13T21:15:30+08:00">
+                2017-06-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ArcGIS/" itemprop="url" rel="index">
+                    <span itemprop="name">ArcGIS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/06/13/ArcGIS-Engine-地图操作基础——地图文档保存/" class="leancloud_visitors" data-flag-title="ArcGIS-Engine-地图操作基础——地图文档保存">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                                <span class="post-meta-divider">|</span>
+             </span>
+          
+
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">WordsCount</span>
+                
+                <span title="WordsCount">
+                  438
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          地图文档保存实例程序实现思路
+
+(1) 地图文档的保存主要使用 IMapDocument 接口。首先使用 IMxdContents 接口读取已打开地图文档的内容，并使之替换 IMapDocument 接口的实例对象。
+(2) 保存时使用 IMapDocument 接口的 Save 方法，函数原型为 public void Save(bool bUseRelativePaths, bool bCreateThumnbail)
+
+
+
+
+参数
+描述
+
+
+
+
+bUseRelativePaths
+是否保存为相对路径（区别于绝对路径）
+
+
+bCreateThumnbail
+表示保存的地图在 ArcCatalog 中查看时是否显示缩略图
+
+
+
+1234567891011121314151617181920212223242526272829303132333435363738394041424344//
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/13/ArcGIS-Engine-地图操作基础——地图文档保存/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+<div>
+    
+</div>
+
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+</div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/06/09/Hexo-Github搭建个人博客（小白版图文教程）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -932,7 +1139,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1088,7 +1295,7 @@
 
 <div class="theme-info">
 
-  <span class="post-count">博客全站共7.0k字</span>
+  <span class="post-count">博客全站共7.4k字</span>
 </div>
 
 <center>

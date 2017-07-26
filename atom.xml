@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-26T14:33:13.463Z</updated>
+  <updated>2017-07-26T14:43:27.596Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,20 +19,21 @@
     <title>Chrome 浏览器设置 XX-Net 的方法（Windows）</title>
     <link href="http://yoursite.com/2017/07/26/Chrome-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AE%BE%E7%BD%AE-XX-Net-%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%88Windows%EF%BC%89/"/>
     <id>http://yoursite.com/2017/07/26/Chrome-浏览器设置-XX-Net-的方法（Windows）/</id>
-    <published>2017-07-26T09:41:42.000Z</published>
-    <updated>2017-07-26T14:33:13.463Z</updated>
+    <published>2017-07-26T14:41:55.000Z</published>
+    <updated>2017-07-26T14:43:27.596Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p></p><p id="div-border-left-yellow">本文详细介绍如何在一台 Windows 电脑上架设起 Chrome + XX-Net 的上网渠道。XX-Net 对于需要翻墙的用户来说非常方便。尤其是配置了自己的私有 appid 后，浏览外网毫无压力。</p><p></p>
 <p><center><img src="连接" alt=""><center><br><a id="more"></a></center></center></p>
-<h1 id="下载安装-Chrome-浏览器"><a href="#下载安装-Chrome-浏览器" class="headerlink" title="下载安装 Chrome 浏览器"></a>下载安装 Chrome 浏览器</h1><p>Chrome 下载地址：<a href="https://www.google.cn/intl/zh-CN/chrome/browser/desktop/index.html" target="_blank" rel="external">https://www.google.cn/intl/zh-CN/chrome/browser/desktop/index.html</a></p>
-<p>这一步很简单，直接跳过。</p>
+<h1 id="下载安装-Chrome-浏览器"><a href="#下载安装-Chrome-浏览器" class="headerlink" title="下载安装 Chrome 浏览器"></a>下载安装 Chrome 浏览器</h1><p>Chrome 下载地址：<br><a href="https://www.google.cn/intl/zh-CN/chrome/browser/desktop/index.html" target="_blank" rel="external">https://www.google.cn/intl/zh-CN/chrome/browser/desktop/index.html</a><br>这一步很简单，直接跳过。</p>
 <h1 id="获取和运行-XX-Net"><a href="#获取和运行-XX-Net" class="headerlink" title="获取和运行 XX-Net"></a>获取和运行 XX-Net</h1><ul>
-<li><p>打开 <a href="https://github.com/XX-net/XX-Net/blob/master/code/default/download.md，选择稳定版下载。" target="_blank" rel="external">https://github.com/XX-net/XX-Net/blob/master/code/default/download.md，选择稳定版下载。</a></p>
+<li><p>打开链接，选择稳定版下载。<br><a href="https://github.com/XX-net/XX-Net/blob/master/code/default/download.md" target="_blank" rel="external">https://github.com/XX-net/XX-Net/blob/master/code/default/download.md</a> </p>
 </li>
 <li><p>下载完毕后解压缩文件夹，运行文件夹中 start.vbs 文件。</p>
 </li>
-<li>如果弹出管理员权限请求（用户账户控制），请允许。</li>
-<li>首次运行可能会弹出防火墙警告，请允许访问。</li>
+<li><p>如果弹出管理员权限请求（用户账户控制），请允许。</p>
+</li>
+<li><p>首次运行可能会弹出防火墙警告，请允许访问。</p>
+</li>
 </ul>
 <h1 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h1><h2 id="方法一：简单方法"><a href="#方法一：简单方法" class="headerlink" title="方法一：简单方法"></a>方法一：简单方法</h2><ul>
 <li>启动 XX-Net 后，右下角会出现托盘图标。<code>右键单击托盘图标</code>，点击“全局 PAC 智能代理”即可。 </li>
@@ -62,60 +63,38 @@
 <li><a href="https://www.google.com/ncr" target="_blank" rel="external">https://www.google.com/ncr</a> (若无帐户，需注册)</li>
 </ul>
 <h2 id="创建-APPID"><a href="#创建-APPID" class="headerlink" title="创建 APPID"></a>创建 APPID</h2><ul>
-<li><ol>
-<li>打开<a href="https://console.cloud.google.com/start" target="_blank" rel="external">https://console.cloud.google.com/start</a> ，点击<code>选择项目</code>，然后点击<code>创建项目</code>：</li>
-</ol>
+<li><p>打开 <a href="https://console.cloud.google.com/start" target="_blank" rel="external">https://console.cloud.google.com/start</a> ，点击<code>选择项目</code>，然后点击<code>创建项目</code>：</p>
 </li>
-<li><ol>
-<li>输入项目名称后，会自动帮你匹配可用ID，然后左击创建(请细读此教程底部说明)</li>
-</ol>
+<li><p>输入项目名称后，会自动帮你匹配可用ID，然后左击创建(请细读此教程底部说明)</p>
 </li>
 </ul>
 <h2 id="设置-APPID-的-App-引擎"><a href="#设置-APPID-的-App-引擎" class="headerlink" title="设置 APPID 的 App 引擎"></a>设置 APPID 的 App 引擎</h2><ul>
-<li><ol>
-<li>点击激活 <code>Google云端Shell</code>，点击<code>启动云端SHELL</code>进入Shell；</li>
-</ol>
+<li><p>点击激活 <code>Google云端Shell</code>，点击<code>启动云端SHELL</code>进入Shell；</p>
 </li>
-<li><ol>
-<li>在页面底部输入 <code>gcloud config set project</code> 项目ID,按下键盘的enter键，然后输入 <code>gcloud beta app create --region us-central</code> ，再按一次enter；</li>
-</ol>
+<li><p>在页面底部输入 <code>gcloud config set project</code> 项目ID,按下键盘的enter键，然后输入 <code>gcloud beta app create --region us-central</code> ，再按一次enter；</p>
 </li>
-<li><ol>
-<li>当底部出现 <code>Success! The app is now created. Please use &#39;gcloud app deploy&#39; to deploy your first app.</code> 时，创建 appid 成功。此时可以重复前面两步，创建更多的 appid；</li>
-</ol>
+<li><p>当底部出现 <code>Success! The app is now created. Please use &#39;gcloud app deploy&#39; to deploy your first app.</code> 时，创建 appid 成功。此时可以重复前面两步，创建更多的 appid；</p>
 </li>
 </ul>
 <h2 id="部署服务器端"><a href="#部署服务器端" class="headerlink" title="部署服务器端"></a>部署服务器端</h2><ul>
-<li><ol>
-<li>打开 XX-Net 的设置页：<a href="http://127.0.0.1:8085" target="_blank" rel="external">http://127.0.0.1:8085</a> ，切换到<code>部署服务端</code>；</li>
-</ol>
+<li><p>打开 XX-Net 的设置页：<a href="http://127.0.0.1:8085" target="_blank" rel="external">http://127.0.0.1:8085</a> ，切换到<code>部署服务端</code>；</p>
 </li>
-<li><ol>
-<li>输入AppID（多个APPID中间使用 | 隔开），“Show Debug Log”选择为 <code>On</code> ，点击 <code>开始部署</code> ；</li>
-</ol>
+<li><p>输入AppID（多个APPID中间使用 | 隔开），“Show Debug Log”选择为 <code>On</code> ，点击 <code>开始部署</code> ；</p>
 </li>
-<li><ol>
-<li>弹出授权窗口，点击 Allow，然后就会进行服务端的部署；</li>
-</ol>
+<li><p>弹出授权窗口，点击 <code>Allow</code>，然后就会进行服务端的部署；</p>
 </li>
-<li><ol>
-<li><code>Debug Log</code> 里面显示如下信息，则说明部署完成；</li>
-</ol>
+<li><p><code>Debug Log</code> 里面显示如下信息，则说明部署完成；</p>
 </li>
-<li><ol>
-<li>部署完成后，切换到 <code>配置</code> ，输入部署好的 APPID 后点击 <code>保存</code>。</li>
-</ol>
+<li><p>部署完成后，切换到 <code>配置</code> ，输入部署好的 APPID 后点击 <code>保存</code>。</p>
 </li>
-<li><ol>
-<li>切换到 <code>状态</code> 来确认部署的状态，如果一切正常，那么恭喜你，现在可以流畅的翻墙喽~~~</li>
-</ol>
+<li><p>切换到 <code>状态</code> 来确认部署的状态，如果一切正常，那么恭喜你，现在可以流畅的翻墙喽~~~</p>
 </li>
 </ul>
 <h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ol>
 <li>每个 AppID 每天1G流量，一般每个 Google 帐户最多12个 AppID；</li>
 <li>AppID 的数量只影响流量，不影响速度；</li>
 <li>若部署过程中始终无法弹出窗口 , 建议使用ss部署服务端；</li>
-<li>若部署一直失败，可以安装 Google Cloud SDK，gcloud init设置代理，gcloud app deploy 上传 gae 文件夹，在 app.yaml 中不要指定 application 和 version。</li>
+<li>若部署一直失败，可以安装 Google Cloud SDK，gcloud init 设置代理，gcloud app deploy 上传 gae 文件夹，在 app.yaml 中不要指定 application 和 version。</li>
 </ol>
 ]]></content>
     

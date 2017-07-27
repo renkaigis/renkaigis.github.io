@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-07-26T14:43:27.596Z</updated>
+  <updated>2017-07-27T01:56:17.331Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,88 +20,13 @@
     <link href="http://yoursite.com/2017/07/26/Chrome-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AE%BE%E7%BD%AE-XX-Net-%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%88Windows%EF%BC%89/"/>
     <id>http://yoursite.com/2017/07/26/Chrome-浏览器设置-XX-Net-的方法（Windows）/</id>
     <published>2017-07-26T14:41:55.000Z</published>
-    <updated>2017-07-26T14:43:27.596Z</updated>
+    <updated>2017-07-27T01:56:17.331Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p></p><p id="div-border-left-yellow">本文详细介绍如何在一台 Windows 电脑上架设起 Chrome + XX-Net 的上网渠道。XX-Net 对于需要翻墙的用户来说非常方便。尤其是配置了自己的私有 appid 后，浏览外网毫无压力。</p><p></p>
-<p><center><img src="连接" alt=""><center><br><a id="more"></a></center></center></p>
-<h1 id="下载安装-Chrome-浏览器"><a href="#下载安装-Chrome-浏览器" class="headerlink" title="下载安装 Chrome 浏览器"></a>下载安装 Chrome 浏览器</h1><p>Chrome 下载地址：<br><a href="https://www.google.cn/intl/zh-CN/chrome/browser/desktop/index.html" target="_blank" rel="external">https://www.google.cn/intl/zh-CN/chrome/browser/desktop/index.html</a><br>这一步很简单，直接跳过。</p>
-<h1 id="获取和运行-XX-Net"><a href="#获取和运行-XX-Net" class="headerlink" title="获取和运行 XX-Net"></a>获取和运行 XX-Net</h1><ul>
-<li><p>打开链接，选择稳定版下载。<br><a href="https://github.com/XX-net/XX-Net/blob/master/code/default/download.md" target="_blank" rel="external">https://github.com/XX-net/XX-Net/blob/master/code/default/download.md</a> </p>
-</li>
-<li><p>下载完毕后解压缩文件夹，运行文件夹中 start.vbs 文件。</p>
-</li>
-<li><p>如果弹出管理员权限请求（用户账户控制），请允许。</p>
-</li>
-<li><p>首次运行可能会弹出防火墙警告，请允许访问。</p>
-</li>
-</ul>
-<h1 id="设置代理"><a href="#设置代理" class="headerlink" title="设置代理"></a>设置代理</h1><h2 id="方法一：简单方法"><a href="#方法一：简单方法" class="headerlink" title="方法一：简单方法"></a>方法一：简单方法</h2><ul>
-<li>启动 XX-Net 后，右下角会出现托盘图标。<code>右键单击托盘图标</code>，点击“全局 PAC 智能代理”即可。 </li>
-</ul>
-<h2 id="方法二：安装和使用代理切换插件"><a href="#方法二：安装和使用代理切换插件" class="headerlink" title="方法二：安装和使用代理切换插件"></a>方法二：安装和使用代理切换插件</h2><ul>
-<li><p>打开 XX-Net/SwitchyOmega 文件夹；打开 Chrome 浏览器的扩展程序页面 chrome://extensions 。把 SwitchyOmega.crx 文件拖放到浏览器扩展程序页面安装。如图:</p>
-</li>
-<li><p>此时。浏览器上方会出现对话框，点击<code>添加扩展程序</code>。</p>
-</li>
-<li>进入 SwitchOmega 页面，第一次进来，选择<code>跳过教程</code>；</li>
-<li><p>点击界面左侧栏的<code>导入/导出</code>，选择<code>从备份文件恢复</code>：</p>
-</li>
-<li><p>点击从备份文件中恢复后，找到 XX-Net/SwitchyOmega/OmegaOptions.bak 文件，点击打开：</p>
-</li>
-<li><p>点击左侧栏“情景模式”下的 <code>XX-Net自动切换</code>；</p>
-</li>
-<li><p>下拉点击<code>立即更新情景模式</code></p>
-</li>
-<li><p>点击 Chrome 右上角的 SwitchOmega，切换成 “<code>XX-Net自动切换</code>”；</p>
-</li>
-<li><p>到此，浏览器端设置代理也就完成了，还需最后一步，把 XX-Net 切换为“取消全局代理”，就可以畅游网络了。</p>
-</li>
-<li><p>但是此时用的是<strong>公共 APPID，因为资源有限，使用上存在限制，建议部署私有 APPID</strong>。</p>
-</li>
-</ul>
-<h1 id="配置个人-APPID"><a href="#配置个人-APPID" class="headerlink" title="配置个人 APPID"></a>配置个人 APPID</h1><h2 id="登录-Google-账户"><a href="#登录-Google-账户" class="headerlink" title="登录 Google 账户"></a>登录 Google 账户</h2><ul>
-<li><a href="https://www.google.com/ncr" target="_blank" rel="external">https://www.google.com/ncr</a> (若无帐户，需注册)</li>
-</ul>
-<h2 id="创建-APPID"><a href="#创建-APPID" class="headerlink" title="创建 APPID"></a>创建 APPID</h2><ul>
-<li><p>打开 <a href="https://console.cloud.google.com/start" target="_blank" rel="external">https://console.cloud.google.com/start</a> ，点击<code>选择项目</code>，然后点击<code>创建项目</code>：</p>
-</li>
-<li><p>输入项目名称后，会自动帮你匹配可用ID，然后左击创建(请细读此教程底部说明)</p>
-</li>
-</ul>
-<h2 id="设置-APPID-的-App-引擎"><a href="#设置-APPID-的-App-引擎" class="headerlink" title="设置 APPID 的 App 引擎"></a>设置 APPID 的 App 引擎</h2><ul>
-<li><p>点击激活 <code>Google云端Shell</code>，点击<code>启动云端SHELL</code>进入Shell；</p>
-</li>
-<li><p>在页面底部输入 <code>gcloud config set project</code> 项目ID,按下键盘的enter键，然后输入 <code>gcloud beta app create --region us-central</code> ，再按一次enter；</p>
-</li>
-<li><p>当底部出现 <code>Success! The app is now created. Please use &#39;gcloud app deploy&#39; to deploy your first app.</code> 时，创建 appid 成功。此时可以重复前面两步，创建更多的 appid；</p>
-</li>
-</ul>
-<h2 id="部署服务器端"><a href="#部署服务器端" class="headerlink" title="部署服务器端"></a>部署服务器端</h2><ul>
-<li><p>打开 XX-Net 的设置页：<a href="http://127.0.0.1:8085" target="_blank" rel="external">http://127.0.0.1:8085</a> ，切换到<code>部署服务端</code>；</p>
-</li>
-<li><p>输入AppID（多个APPID中间使用 | 隔开），“Show Debug Log”选择为 <code>On</code> ，点击 <code>开始部署</code> ；</p>
-</li>
-<li><p>弹出授权窗口，点击 <code>Allow</code>，然后就会进行服务端的部署；</p>
-</li>
-<li><p><code>Debug Log</code> 里面显示如下信息，则说明部署完成；</p>
-</li>
-<li><p>部署完成后，切换到 <code>配置</code> ，输入部署好的 APPID 后点击 <code>保存</code>。</p>
-</li>
-<li><p>切换到 <code>状态</code> 来确认部署的状态，如果一切正常，那么恭喜你，现在可以流畅的翻墙喽~~~</p>
-</li>
-</ul>
-<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><ol>
-<li>每个 AppID 每天1G流量，一般每个 Google 帐户最多12个 AppID；</li>
-<li>AppID 的数量只影响流量，不影响速度；</li>
-<li>若部署过程中始终无法弹出窗口 , 建议使用ss部署服务端；</li>
-<li>若部署一直失败，可以安装 Google Cloud SDK，gcloud init 设置代理，gcloud app deploy 上传 gae 文件夹，在 app.yaml 中不要指定 application 和 version。</li>
-</ol>
-]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p id="div-border-left-yellow">本文详细介绍如何在一台 Windows 电脑上架设起 Chrome + XX-Net 的上网渠道。XX-Net 对于需要翻墙的用户来说非常方便。尤其是配置了自己的私有 appid 后，浏览外网毫无压力。</p><br><center><img src="http://img.blog.csdn.net/20170727091437967" alt="图1"></center><br><a id="more"></a><br><br># 下载安装 Chrome 浏览器<br><br>- Chrome 下载地址：<br><a href="https://www.google.cn/intl/zh-CN/chrome/browser/desktop/index.html" target="_blank" rel="external">https://www.google.cn/intl/zh-CN/chrome/browser/desktop/index.html</a><br>这一步很简单，直接跳过。<br><br># 获取和运行 XX-Net<br>- 打开链接，选择稳定版下载。<br><a href="https://github.com/XX-net/XX-Net/blob/master/code/default/download.md" target="_blank" rel="external">https://github.com/XX-net/XX-Net/blob/master/code/default/download.md</a><br><br><center><img src="http://img.blog.csdn.net/20170727091835863" alt="图2"></center><br><br>- 下载完毕后解压缩文件夹，运行文件夹中 start.vbs 文件。<br><br>- 如果弹出管理员权限请求（用户账户控制），请允许。<br><br>- 首次运行可能会弹出防火墙警告，请允许访问。<br><br># 设置代理<br>## 方法一：简单方法<br>- 启动 XX-Net 后，右下角会出现托盘图标。<code>右键单击托盘图标</code>，点击“<code>全局 PAC 智能代理</code>”即可。<br><br><center><img src="http://img.blog.csdn.net/20170727091927371" alt="图3"></center><br><br>## 方法二：安装和使用代理切换插件<br>- 打开 XX-Net/SwitchyOmega 文件夹；打开 Chrome 浏览器的扩展程序页面 chrome://extensions 。把 <strong>SwitchyOmega.crx</strong> 文件拖放到浏览器扩展程序页面安装。如图:<br><br><center><img src="http://img.blog.csdn.net/20170727092042617" alt="图4"></center><br><br>- 此时。浏览器上方会出现对话框，点击<code>添加扩展程序</code>。<br><br>- 进入 SwitchOmega 页面，第一次进来，选择<code>跳过教程</code>；<br><br>- 点击界面左侧栏的<code>导入/导出</code>，选择<code>从备份文件恢复</code>：<br><br><center><img src="http://img.blog.csdn.net/20170727092222780" alt="图5"></center><br><br>- 点击从备份文件中恢复后，找到 XX-Net/SwitchyOmega/OmegaOptions.bak 文件，点击打开：<br><br><center><img src="http://img.blog.csdn.net/20170727092258006" alt="图6"></center><br><br>- 点击左侧栏“情景模式”下的 <code>XX-Net自动切换</code>；<br><br><center><img src="http://img.blog.csdn.net/20170727092323294" alt="图7"></center><br><br>- 下拉点击<code>立即更新情景模式</code><br><br><center><img src="http://img.blog.csdn.net/20170727092351829" alt="图8"></center><br><br>- 点击 Chrome 右上角的 SwitchOmega，切换成 “<code>XX-Net自动切换</code>”；<br><br><center><img src="http://img.blog.csdn.net/20170727092555640" alt="图9"></center><br><br>- 到此，浏览器端设置代理也就完成了，还需最后一步，把 XX-Net 切换为“<code>取消全局代理</code>”，就可以畅游网络了。<br><br><center><img src="http://img.blog.csdn.net/20170727091927371" alt="图3"></center><br><br>- 但是此时用的是 <strong>公共 APPID，因为资源有限，使用上存在限制，建议部署私有 APPID</strong>。<br><br># 配置个人 APPID<br>## 登录 Google 账户<br>- <a href="https://www.google.com/ncr" target="_blank" rel="external">https://www.google.com/ncr</a> (若无帐户，需注册)<br><br>## 创建 APPID<br>- 打开 <a href="https://console.cloud.google.com/start" target="_blank" rel="external">https://console.cloud.google.com/start</a> ，点击<code>选择项目</code>，然后点击<code>创建项目</code>：<br><br><center><img src="http://img.blog.csdn.net/20170727092829551" alt="图10"></center><br><center><img src="http://img.blog.csdn.net/20170727092900802" alt="图11"></center><br><br>- 输入项目名称后，会自动帮你匹配可用ID，然后左击创建(请细读此教程底部说明)<br><br><center><img src="http://img.blog.csdn.net/20170727092925410" alt="图12"></center><br><br><br>## 设置 APPID 的 App 引擎<br>- 点击激活 <code>Google云端Shell</code>，点击<code>启动云端SHELL</code>进入Shell；<br><br><center><img src="http://img.blog.csdn.net/20170727093012076" alt="图13"></center><br><center><img src="http://img.blog.csdn.net/20170727093426418" alt="图14"></center><br><br><br>- 在页面底部输入 <code>gcloud config set project</code> 项目ID,按下键盘的enter键；<br><br><center><img src="http://img.blog.csdn.net/20170727093040535" alt="图15"></center><br><center><img src="http://img.blog.csdn.net/20170727093116207" alt="图16"></center><br><br>- 然后输入 <code>gcloud beta app create --region us-central</code> ，再按一次enter；<br><br><center><img src="http://img.blog.csdn.net/20170727093526565" alt="图17"></center><br><br>- 当底部出现 <code>Success! The app is now created. Please use &#39;gcloud app deploy&#39; to deploy your first app.</code> 时，创建 appid 成功。此时可以重复前面两步，创建更多的 appid；<br><br><center><img src="http://img.blog.csdn.net/20170727093553434" alt="图18"></center><br><br>## 部署服务器端<br>- 打开 XX-Net 的设置页：<a href="http://127.0.0.1:8085" target="_blank" rel="external">http://127.0.0.1:8085</a> ，切换到<code>部署服务端</code>；<br><br>- 输入AppID（多个APPID中间使用 <strong>|</strong> 隔开），“Show Debug Log”选择为 <code>On</code> ，点击 <code>开始部署</code> ；<br><br><center><img src="http://img.blog.csdn.net/20170727093633625" alt="图19"></center><br><br>- 弹出授权窗口，点击 <code>Allow</code>（<code>允许</code>），然后就会进行服务端的部署；<br><br><center><img src="http://img.blog.csdn.net/20170727093813917" alt="图20"></center><br><br>- <code>日志</code> 里面显示如下信息，则说明部署完成；<br><br><center><img src="http://img.blog.csdn.net/20170727093921549" alt="图21"></center><br><br>- 部署完成后，切换到 <code>配置</code> ，输入部署好的 APPID 后点击 <code>保存</code>。<br><br><center><img src="http://img.blog.csdn.net/20170727093951803" alt="图22"></center><br><br>- 切换到 <code>状态</code> 来确认部署的状态，如果一切正常，那么恭喜你，现在可以流畅的翻墙喽~~~<br><br><center><img src="http://img.blog.csdn.net/20170727094020029" alt="图23"></center><br><br>## 说明<br><p id="div-border-top-blue"><br>1. 每个 AppID 每天1G流量，一般每个 Google 帐户最多12个 AppID；<br>2. AppID 的数量只影响流量，不影响速度；<br>3. 若部署过程中始终无法弹出窗口 , 建议使用ss部署服务端；<br>4. 若部署一直失败，可以安装 Google Cloud SDK，gcloud init 设置代理，gcloud app deploy 上传 gae 文件夹，在 app.yaml 中不要指定 application 和 version。<br></p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;/p&gt;&lt;p id=&quot;div-border-left-yellow&quot;&gt;本文详细介绍如何在一台 Windows 电脑上架设起 Chrome + XX-Net 的上网渠道。XX-Net 对于需要翻墙的用户来说非常方便。尤其是配置了自己的私有 appid 后，浏览外网毫无压力。&lt;/p&gt;&lt;p&gt;&lt;/p&gt;
-&lt;p&gt;&lt;center&gt;&lt;img src=&quot;连接&quot; alt=&quot;&quot;&gt;&lt;center&gt;&lt;br&gt;
+      &lt;p id=&quot;div-border-left-yellow&quot;&gt;本文详细介绍如何在一台 Windows 电脑上架设起 Chrome + XX-Net 的上网渠道。XX-Net 对于需要翻墙的用户来说非常方便。尤其是配置了自己的私有 appid 后，浏览外网毫无压力。&lt;/p&gt;&lt;br&gt;&lt;center&gt;&lt;img src=&quot;http://img.blog.csdn.net/20170727091437967&quot; alt=&quot;图1&quot;&gt;&lt;/center&gt;&lt;br&gt;
     
     </summary>
     

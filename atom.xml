@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-21T09:00:36.739Z</updated>
+  <updated>2017-08-21T16:19:16.813Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,10 +20,10 @@
     <link href="http://yoursite.com/posts/html-css-js/2017-08-21-HTML%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html"/>
     <id>http://yoursite.com/posts/html-css-js/2017-08-21-HTML基础学习笔记.html</id>
     <published>2017-08-21T06:17:00.000Z</published>
-    <updated>2017-08-21T09:00:36.739Z</updated>
+    <updated>2017-08-21T16:19:16.813Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><div align="center"><img src="http://img.blog.csdn.net/20170821153435182" alt="html"></div></p>
-<p><div><p id="div-border-left-blue">自学 html 基础笔记</p></div><br><a id="more"></a></p>
+<p><div><p id="div-border-left-blue">自学 html 基础笔记。</p></div><br><a id="more"></a></p>
 <h1 id="Web-前端简单介绍"><a href="#Web-前端简单介绍" class="headerlink" title="Web 前端简单介绍"></a>Web 前端简单介绍</h1><p>web 前端包含：</p>
 <ul>
 <li>pc 端页面</li>
@@ -710,7 +710,7 @@
     <summary type="html">
     
       &lt;p&gt;&lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://img.blog.csdn.net/20170821153435182&quot; alt=&quot;html&quot;&gt;&lt;/div&gt;&lt;/p&gt;
-&lt;p&gt;&lt;div&gt;&lt;p id=&quot;div-border-left-blue&quot;&gt;自学 html 基础笔记&lt;/p&gt;&lt;/div&gt;&lt;br&gt;
+&lt;p&gt;&lt;div&gt;&lt;p id=&quot;div-border-left-blue&quot;&gt;自学 html 基础笔记。&lt;/p&gt;&lt;/div&gt;&lt;br&gt;
     
     </summary>
     

@@ -17,8 +17,8 @@
   
   <entry>
     <title>HTML基础学习笔记</title>
-    <link href="http://yoursite.com/2017/08/21/HTML%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>http://yoursite.com/2017/08/21/HTML基础学习笔记/</id>
+    <link href="http://yoursite.com/posts/html-css-js/2017-08-21-HTML%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html"/>
+    <id>http://yoursite.com/posts/html-css-js/2017-08-21-HTML基础学习笔记.html</id>
     <published>2017-08-21T06:17:00.000Z</published>
     <updated>2017-08-21T09:00:36.739Z</updated>
     
@@ -723,8 +723,8 @@
   
   <entry>
     <title>观建军90周年阅兵之感悟</title>
-    <link href="http://yoursite.com/2017/07/30/%E8%A7%82%E5%BB%BA%E5%86%9B90%E5%91%A8%E5%B9%B4%E9%98%85%E5%85%B5%E4%B9%8B%E6%84%9F%E6%82%9F/"/>
-    <id>http://yoursite.com/2017/07/30/观建军90周年阅兵之感悟/</id>
+    <link href="http://yoursite.com/posts/%E6%84%9F%E6%82%9F/2017-07-30-%E8%A7%82%E5%BB%BA%E5%86%9B90%E5%91%A8%E5%B9%B4%E9%98%85%E5%85%B5%E4%B9%8B%E6%84%9F%E6%82%9F.html"/>
+    <id>http://yoursite.com/posts/感悟/2017-07-30-观建军90周年阅兵之感悟.html</id>
     <published>2017-07-30T05:45:20.000Z</published>
     <updated>2017-07-31T01:06:21.842Z</updated>
     
@@ -769,8 +769,8 @@
   
   <entry>
     <title>Chrome 浏览器设置 XX-Net 的方法（Windows）</title>
-    <link href="http://yoursite.com/2017/07/27/Chrome-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AE%BE%E7%BD%AE-XX-Net-%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%88Windows%EF%BC%89/"/>
-    <id>http://yoursite.com/2017/07/27/Chrome-浏览器设置-XX-Net-的方法（Windows）/</id>
+    <link href="http://yoursite.com/posts/Chrome/2017-07-27-Chrome-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AE%BE%E7%BD%AE-XX-Net-%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%88Windows%EF%BC%89.html"/>
+    <id>http://yoursite.com/posts/Chrome/2017-07-27-Chrome-浏览器设置-XX-Net-的方法（Windows）.html</id>
     <published>2017-07-27T02:11:01.000Z</published>
     <updated>2017-07-29T03:24:40.513Z</updated>
     
@@ -907,8 +907,8 @@
   
   <entry>
     <title>ArcGIS Engine 地图操作基础——地图文档保存</title>
-    <link href="http://yoursite.com/2017/06/13/ArcGIS-Engine-%E5%9C%B0%E5%9B%BE%E6%93%8D%E4%BD%9C%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94%E5%9C%B0%E5%9B%BE%E6%96%87%E6%A1%A3%E4%BF%9D%E5%AD%98/"/>
-    <id>http://yoursite.com/2017/06/13/ArcGIS-Engine-地图操作基础——地图文档保存/</id>
+    <link href="http://yoursite.com/posts/ArcGIS/2017-06-13-ArcGIS-Engine-%E5%9C%B0%E5%9B%BE%E6%93%8D%E4%BD%9C%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94%E5%9C%B0%E5%9B%BE%E6%96%87%E6%A1%A3%E4%BF%9D%E5%AD%98.html"/>
+    <id>http://yoursite.com/posts/ArcGIS/2017-06-13-ArcGIS-Engine-地图操作基础——地图文档保存.html</id>
     <published>2017-06-13T13:15:30.000Z</published>
     <updated>2017-06-13T14:27:06.536Z</updated>
     
@@ -962,8 +962,8 @@
   
   <entry>
     <title>Hexo+Github 搭建个人博客（小白版图文教程）</title>
-    <link href="http://yoursite.com/2017/06/09/Hexo-Github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E5%B0%8F%E7%99%BD%E7%89%88%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%EF%BC%89/"/>
-    <id>http://yoursite.com/2017/06/09/Hexo-Github搭建个人博客（小白版图文教程）/</id>
+    <link href="http://yoursite.com/posts/Hexo-Github/2017-06-09-Hexo-Github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E5%B0%8F%E7%99%BD%E7%89%88%E5%9B%BE%E6%96%87%E6%95%99%E7%A8%8B%EF%BC%89.html"/>
+    <id>http://yoursite.com/posts/Hexo-Github/2017-06-09-Hexo-Github搭建个人博客（小白版图文教程）.html</id>
     <published>2017-06-09T15:13:15.000Z</published>
     <updated>2017-06-14T00:33:10.120Z</updated>
     
@@ -1070,8 +1070,8 @@
   
   <entry>
     <title>ArcGIS Engine 地图操作基础——数据加载</title>
-    <link href="http://yoursite.com/2017/06/05/ArcGIS-Engine-%E5%9C%B0%E5%9B%BE%E6%93%8D%E4%BD%9C%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E5%8A%A0%E8%BD%BD/"/>
-    <id>http://yoursite.com/2017/06/05/ArcGIS-Engine-地图操作基础——数据加载/</id>
+    <link href="http://yoursite.com/posts/ArcGIS/2017-06-05-ArcGIS-Engine-%E5%9C%B0%E5%9B%BE%E6%93%8D%E4%BD%9C%E5%9F%BA%E7%A1%80%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E5%8A%A0%E8%BD%BD.html"/>
+    <id>http://yoursite.com/posts/ArcGIS/2017-06-05-ArcGIS-Engine-地图操作基础——数据加载.html</id>
     <published>2017-06-05T04:47:44.000Z</published>
     <updated>2017-06-13T14:27:20.221Z</updated>
     

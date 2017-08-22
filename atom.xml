@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-21T16:19:16.813Z</updated>
+  <updated>2017-08-22T10:31:19.909Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>HTML基础学习笔记</title>
+    <title>html-basic-learning-notes</title>
     <link href="http://yoursite.com/posts/html-css-js/2017-08-21-HTML%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html"/>
     <id>http://yoursite.com/posts/html-css-js/2017-08-21-HTML基础学习笔记.html</id>
     <published>2017-08-21T06:17:00.000Z</published>
-    <updated>2017-08-21T16:19:16.813Z</updated>
+    <updated>2017-08-22T10:31:19.909Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><div align="center"><img src="http://img.blog.csdn.net/20170821153435182" alt="html"></div></p>
 <p><div><p id="div-border-left-blue">自学 html 基础笔记。</p></div><br><a id="more"></a></p>

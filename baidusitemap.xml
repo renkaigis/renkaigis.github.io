@@ -4,8 +4,8 @@
 
     
   <url>
-    <loc>http://renkaigis.com/posts/Hexo/Github/2017-06-09-Hexo-Github-build-blog-so-easy.html</loc>
-    <lastmod>2017-08-22T14:35:19.644Z</lastmod>
+    <loc>http://renkaigis.com/posts/Github/Hexo/2017-06-09-Hexo-Github-build-blog-so-easy.html</loc>
+    <lastmod>2017-08-23T07:46:31.832Z</lastmod>
     <data>
         <display>
         <title>Hexo+Github 搭建个人博客（小白版图文教程）</title>
@@ -18,10 +18,32 @@
          
            
              
-              <breadCrumb title="Hexo" url="http://yoursite.com/categories/Hexo/"/>
+              <breadCrumb title="Github" url="http://yoursite.com/categories/Github/"/>
           
              
-              <breadCrumb title="Github" url="http://yoursite.com/categories/Hexo/Github/"/>
+              <breadCrumb title="Hexo" url="http://yoursite.com/categories/Github/Hexo/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://renkaigis.com/posts/Chrome/2017-07-27-method-setup-XX-Net-Chrome-Windows.html</loc>
+    <lastmod>2017-08-23T07:34:12.622Z</lastmod>
+    <data>
+        <display>
+        <title>Chrome 浏览器设置 XX-Net 的方法（Windows）</title>
+        <pubTime>2017-07-27T02:11:01.000Z</pubTime>
+        
+        <tag>Chrome</tag>
+         
+        <tag>XX-Net</tag>
+         
+         
+           
+             
+              <breadCrumb title="Chrome" url="http://yoursite.com/categories/Chrome/"/>
           
         </display>
     </data>
@@ -64,28 +86,6 @@
            
              
               <breadCrumb title="html+css+js" url="http://yoursite.com/categories/html-css-js/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://renkaigis.com/posts/Chrome/2017-07-27-method-setup-XX-Net-Chrome-Windows.html</loc>
-    <lastmod>2017-07-29T03:24:40.513Z</lastmod>
-    <data>
-        <display>
-        <title>Chrome 浏览器设置 XX-Net 的方法（Windows）</title>
-        <pubTime>2017-07-27T02:11:01.000Z</pubTime>
-        
-        <tag>Chrome</tag>
-         
-        <tag>XX-Net</tag>
-         
-         
-           
-             
-              <breadCrumb title="Chrome" url="http://yoursite.com/categories/Chrome/"/>
           
         </display>
     </data>

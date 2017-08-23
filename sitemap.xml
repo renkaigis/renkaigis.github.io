@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/posts/Hexo/Github/2017-06-09-Hexo-Github-build-blog-so-easy.html</loc>
+    <loc>http://yoursite.com/posts/Github/Hexo/2017-06-09-Hexo-Github-build-blog-so-easy.html</loc>
     
-    <lastmod>2017-08-22T14:35:19.644Z</lastmod>
+    <lastmod>2017-08-23T07:46:31.832Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/posts/Chrome/2017-07-27-method-setup-XX-Net-Chrome-Windows.html</loc>
+    
+    <lastmod>2017-08-23T07:34:12.622Z</lastmod>
     
   </url>
   
@@ -33,13 +40,6 @@
     <loc>http://yoursite.com/posts/html-css-js/2017-08-21-html-basic-learning-notes.html</loc>
     
     <lastmod>2017-08-22T10:33:24.368Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/posts/Chrome/2017-07-27-method-setup-XX-Net-Chrome-Windows.html</loc>
-    
-    <lastmod>2017-07-29T03:24:40.513Z</lastmod>
     
   </url>
   

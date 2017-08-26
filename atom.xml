@@ -772,11 +772,11 @@
     <link href="http://yoursite.com/posts/Chrome/2017-07-27-method-setup-XX-Net-Chrome-Windows.html"/>
     <id>http://yoursite.com/posts/Chrome/2017-07-27-method-setup-XX-Net-Chrome-Windows.html</id>
     <published>2017-07-27T02:11:01.000Z</published>
-    <updated>2017-08-24T11:54:04.369Z</updated>
+    <updated>2017-08-26T13:40:25.860Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://img.blog.csdn.net/20170727091437967" width="300" height="300"></div>
 
-<p id="div-border-left-yellow">本文详细介绍如何在一台 Windows 电脑上架设起 Chrome + XX-Net 的上网渠道。XX-Net 对于需要翻墙的用户来说非常方便。尤其是配置了自己的私有 appid 后，浏览外网毫无压力。<br>在整个部署过程中可能有部分网页需要翻墙才可以进入，可以暂时使用 <a href="https://getlantern.org" target="_blank" rel="external">Lantern</a> 进行翻墙。<br>Lantern 下载地址：<a id="download" href="http://or2dtuwv6.bkt.clouddn.com/lantern-installer.exe" target="_blank" rel="external">download</a></p>
+<p id="div-border-left-yellow">本文详细介绍如何在一台 Windows 电脑上架设起 Chrome + XX-Net 的上网渠道。XX-Net 对于需要翻墙的用户来说非常方便。尤其是配置了自己的私有 appid 后，浏览外网毫无压力。<br>在整个部署过程中可能有部分网页需要翻墙才可以进入，可以暂时使用 <a href="https://getlantern.org" target="_blank" rel="external">Lantern</a> 进行翻墙。<br>Lantern 下载地址：<a id="download" href="http://or2dtuwv6.bkt.clouddn.com/lantern-installer.exe" target="_blank"><i class="fa fa-download">&nbsp;&nbsp;</i>Download Now</a></p>
 
 <a id="more"></a>
 <h1 id="下载安装-Chrome-浏览器"><a href="#下载安装-Chrome-浏览器" class="headerlink" title="下载安装 Chrome 浏览器"></a>下载安装 Chrome 浏览器</h1><ul>
@@ -896,7 +896,7 @@
     
       &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://img.blog.csdn.net/20170727091437967&quot; width=&quot;300&quot; height=&quot;300&quot;&gt;&lt;/div&gt;
 
-&lt;p id=&quot;div-border-left-yellow&quot;&gt;本文详细介绍如何在一台 Windows 电脑上架设起 Chrome + XX-Net 的上网渠道。XX-Net 对于需要翻墙的用户来说非常方便。尤其是配置了自己的私有 appid 后，浏览外网毫无压力。&lt;br&gt;在整个部署过程中可能有部分网页需要翻墙才可以进入，可以暂时使用 &lt;a href=&quot;https://getlantern.org&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Lantern&lt;/a&gt; 进行翻墙。&lt;br&gt;Lantern 下载地址：&lt;a id=&quot;download&quot; href=&quot;http://or2dtuwv6.bkt.clouddn.com/lantern-installer.exe&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;download&lt;/a&gt;&lt;/p&gt;
+&lt;p id=&quot;div-border-left-yellow&quot;&gt;本文详细介绍如何在一台 Windows 电脑上架设起 Chrome + XX-Net 的上网渠道。XX-Net 对于需要翻墙的用户来说非常方便。尤其是配置了自己的私有 appid 后，浏览外网毫无压力。&lt;br&gt;在整个部署过程中可能有部分网页需要翻墙才可以进入，可以暂时使用 &lt;a href=&quot;https://getlantern.org&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Lantern&lt;/a&gt; 进行翻墙。&lt;br&gt;Lantern 下载地址：&lt;a id=&quot;download&quot; href=&quot;http://or2dtuwv6.bkt.clouddn.com/lantern-installer.exe&quot; target=&quot;_blank&quot;&gt;&lt;i class=&quot;fa fa-download&quot;&gt;&amp;nbsp;&amp;nbsp;&lt;/i&gt;Download Now&lt;/a&gt;&lt;/p&gt;
     
     </summary>
     

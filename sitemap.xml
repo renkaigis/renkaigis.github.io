@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/posts/Chrome/2017-07-27-method-setup-XX-Net-Chrome-Windows.html</loc>
+    
+    <lastmod>2017-08-26T13:40:25.860Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/posts/Mine/2016-11-27-welcome-to-nanjing-my-love.html</loc>
     
     <lastmod>2017-08-24T14:46:45.043Z</lastmod>
@@ -68,13 +75,6 @@
     <loc>http://yoursite.com/posts/Mine/2012-12-30-happy-in-nwsuaf.html</loc>
     
     <lastmod>2017-08-24T14:45:41.338Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/posts/Chrome/2017-07-27-method-setup-XX-Net-Chrome-Windows.html</loc>
-    
-    <lastmod>2017-08-24T11:54:04.369Z</lastmod>
     
   </url>
   

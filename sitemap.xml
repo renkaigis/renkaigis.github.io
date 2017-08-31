@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/posts/Mine/2017-08-31-video-qsmoon-flhs.html</loc>
+    
+    <lastmod>2017-08-31T15:52:14.819Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/about/index.html</loc>
     
-    <lastmod>2017-08-31T13:23:56.629Z</lastmod>
+    <lastmod>2017-08-31T15:51:07.723Z</lastmod>
     
   </url>
   
@@ -12,13 +19,6 @@
     <loc>http://yoursite.com/posts/HTML-CSS-JS/2017-08-31-css-basic-learning-notes.html</loc>
     
     <lastmod>2017-08-31T13:22:28.277Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/posts/Mine/2017-08-31-video-qsmoon-flhs.html</loc>
-    
-    <lastmod>2017-08-31T13:20:53.476Z</lastmod>
     
   </url>
   

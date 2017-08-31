@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/about/index.html</loc>
+    
+    <lastmod>2017-08-31T13:23:56.629Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/posts/HTML-CSS-JS/2017-08-31-css-basic-learning-notes.html</loc>
+    
+    <lastmod>2017-08-31T13:22:28.277Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/posts/Mine/2017-08-31-video-qsmoon-flhs.html</loc>
+    
+    <lastmod>2017-08-31T13:20:53.476Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/posts/HTML-CSS-JS/2017-08-21-html-basic-learning-notes.html</loc>
+    
+    <lastmod>2017-08-31T03:06:29.092Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/posts/Mine/2013-08-03-view-of-muslim-funeral.html</loc>
     
     <lastmod>2017-08-29T15:58:46.240Z</lastmod>
@@ -86,13 +114,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/posts/html-css-js/2017-08-21-html-basic-learning-notes.html</loc>
-    
-    <lastmod>2017-08-24T05:54:45.906Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/baidu_verify_r1mSIrNf8h.html</loc>
     
     <lastmod>2017-08-22T13:51:55.781Z</lastmod>
@@ -117,13 +138,6 @@
     <loc>http://yoursite.com/categories/index.html</loc>
     
     <lastmod>2017-07-28T11:19:42.665Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/about/index.html</loc>
-    
-    <lastmod>2017-07-28T11:19:13.883Z</lastmod>
     
   </url>
   

@@ -594,10 +594,10 @@
   
   <entry>
     <title>HTML基础学习笔记</title>
-    <link href="http://yoursite.com/posts/HTML-CSS-JS/2017-08-21-html-basic-learning-notes.html"/>
-    <id>http://yoursite.com/posts/HTML-CSS-JS/2017-08-21-html-basic-learning-notes.html</id>
-    <published>2017-08-21T06:17:00.000Z</published>
-    <updated>2017-08-31T03:06:29.092Z</updated>
+    <link href="http://yoursite.com/posts/HTML-CSS-JS/2017-08-22-html-basic-learning-notes.html"/>
+    <id>http://yoursite.com/posts/HTML-CSS-JS/2017-08-22-html-basic-learning-notes.html</id>
+    <published>2017-08-22T06:17:00.000Z</published>
+    <updated>2017-09-01T13:00:34.021Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><div align="center"><img src="http://img.blog.csdn.net/20170821153435182" alt="html"></div></p>
 <p><div><p id="div-border-left-blue">自学 html 基础笔记。</p></div><br><a id="more"></a></p>

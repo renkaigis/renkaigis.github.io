@@ -143,7 +143,7 @@
 <meta property="og:site_name" content="秋月春风等闲度">
 <meta property="og:description" content="自学 CSS 基础笔记。笔记整理中，未完待续……">
 <meta property="og:image" content="http://image.renkaigis.com/images/html-css-js/css.jpg">
-<meta property="og:updated_time" content="2017-08-31T13:22:28.277Z">
+<meta property="og:updated_time" content="2017-11-03T13:25:22.074Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSS 基础学习笔记">
 <meta name="twitter:description" content="自学 CSS 基础笔记。笔记整理中，未完待续……">
@@ -454,7 +454,7 @@
                   <span class="post-meta-item-text">WordsCount</span>
                 
                 <span title="WordsCount">
-                  2,922
+                  3,688
                 </span>
               
 
@@ -539,7 +539,7 @@
 <li>无数高级、先进的技巧…</li>
 </ul>
 <blockquote>
-<p>采用CSS布局相对于传统的TABLE网页布局而具有以下4个显著优势：</p>
+<p>采用CSS布局相对于传统的 TABLE 网页布局而具有以下4个显著优势：</p>
 </blockquote>
 <ul>
 <li>表现和内容相分离</li>
@@ -551,27 +551,27 @@
 <ul>
 <li>提高页面浏览速度</li>
 <li><ul>
-<li>对于同一个页面视觉效果，采用CSS布局的页面容量要比TABLE编码的页面文件容量小得多，前者一般只有后者的1/2大小。浏览器就不用去编译大量冗长的标签。</li>
+<li>对于同一个页面视觉效果，采用 CSS 布局的页面容量要比 TABLE 编码的页面文件容量小得多，前者一般只有后者的1/2大小。浏览器就不用去编译大量冗长的标签。</li>
 </ul>
 </li>
 </ul>
 <ul>
 <li>易于维护和改版</li>
 <li><ul>
-<li>你只要简单的修改几个CSS文件就可以重新设计整个网站的页面。</li>
+<li>你只要简单的修改几个 CSS 文件就可以重新设计整个网站的页面。</li>
 </ul>
 </li>
 </ul>
 <ul>
-<li>使用CSS布局更符合现在的W3C标准</li>
+<li>使用CSS布局更符合现在的 W3C 标准</li>
 <li><ul>
-<li>W3C组织并不是ISO国际标准组织的成员，而是自成一派的万维网联盟(World Wide Web Consortium)，又称W3C理事会，是Web技术领域最具权威和影响力的国际中立性技术标准机构。</li>
+<li>W3C 组织并不是 ISO 国际标准组织的成员，而是自成一派的万维网联盟(World Wide Web Consortium)，又称 W3C 理事会，是 Web 技术领域最具权威和影响力的国际中立性技术标准机构。</li>
 </ul>
 </li>
 </ul>
 <h1 id="CSS-工作原理"><a href="#CSS-工作原理" class="headerlink" title="CSS 工作原理"></a>CSS 工作原理</h1><h2 id="CSS-语法"><a href="#CSS-语法" class="headerlink" title="CSS 语法"></a>CSS 语法</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">选择器&#123;属性:值; 属性:值;.... &#125;</div></pre></td></tr></table></figure>
 <p>选择器：就是一个选择谁的过程。</p>
-<p>参数说明：属性和属性值之间用<code>冒号(:)</code>隔开，定义多个属性时，属性之间用英文输入法下的<code>分号(;)</code>隔开。</p>
+<p>参数说明：属性和属性值之间用 <code>冒号(:)</code> 隔开，定义多个属性时，属性之间用英文输入法下的 <code>分号(;)</code> 隔开。</p>
 <table>
 <thead>
 <tr>
@@ -947,8 +947,10 @@
 <p><strong>注意：</strong>文字加粗显示，推荐使用 font-weight:700;</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">p&#123;</div><div class="line">    font-weight: normal;</div><div class="line"></div><div class="line">    <span class="comment">&lt;!-- 文字加粗 --&gt;</span></div><div class="line">    <span class="comment">&lt;!-- font-weight: 900; --&gt;</span> </div><div class="line">    <span class="comment">&lt;!-- font-weight: bold; --&gt;</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="font-style"><a href="#font-style" class="headerlink" title="font-style"></a>font-style</h3><ul>
-<li>italic：文字斜体显示</li>
-<li>normal：文字正常显示</li>
+<li><p>italic：文字斜体显示</p>
+</li>
+<li><p>normal：文字正常显示</p>
+</li>
 </ul>
 <h3 id="font-属性联写"><a href="#font-属性联写" class="headerlink" title="font 属性联写"></a>font 属性联写</h3><p>用法：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">font: font-style font-weight font-size/line-height font-family</div></pre></td></tr></table></figure>
@@ -956,8 +958,10 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">p&#123;</div><div class="line">    font: italic 700 30px 宋体;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><strong>注意：</strong></p>
 <ul>
-<li>font属性联写必须有 <strong>font-size</strong> 和 <strong>font-family</strong> （其他属性可以不写）；</li>
-<li>font-size 和 font-family 的 <strong>顺序不能换</strong>。</li>
+<li><p>font属性联写必须有 <strong>font-size</strong> 和 <strong>font-family</strong> （其他属性可以不写）；</p>
+</li>
+<li><p>font-size 和 font-family 的 <strong>顺序不能换</strong>。</p>
+</li>
 </ul>
 <h2 id="标签指定式选择器"><a href="#标签指定式选择器" class="headerlink" title="标签指定式选择器"></a>标签指定式选择器</h2><p>标签指定式选择器又称交集选择器，由两个选择器构成，其中第一个为标记选择器，第二个为 class 选择器或 id 选择器，两个选择器之间不能有空格。如：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">h1.one</div><div class="line">或</div><div class="line">h1#two</div></pre></td></tr></table></figure>
@@ -983,7 +987,177 @@
 <p>作用：将样式集体声明，css 样式初始化</p>
 <p>特点：并集选择器之间必须用逗号隔开！</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">div,p,span&#123;</div><div class="line">    color: red;</div><div class="line">&#125;</div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></div><div class="line"></div><div class="line">        div,p,span&#123;</div><div class="line">            color: red;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span>123<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>567<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>asdf<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
-<h1 id="未完待续……"><a href="#未完待续……" class="headerlink" title="未完待续……"></a>未完待续……</h1>
+<h1 id="CSS-书写位置及-Html-标签分类"><a href="#CSS-书写位置及-Html-标签分类" class="headerlink" title="CSS 书写位置及 Html 标签分类"></a>CSS 书写位置及 Html 标签分类</h1><h2 id="CSS-书写位置"><a href="#CSS-书写位置" class="headerlink" title="CSS 书写位置"></a>CSS 书写位置</h2><h3 id="外部样式表"><a href="#外部样式表" class="headerlink" title="外部样式表"></a>外部样式表</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">link</span>  <span class="attr">rel</span>=<span class="string">”stylesheet”</span>  <span class="attr">href</span>=<span class="string">””</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li><p>新建一个文件，后缀名以 <code>.css</code> 命名（css文件）</p>
+</li>
+<li><p>在 html 页面中通过 <code>&lt;link  rel=”stylesheet”  href=””&gt;</code> 标签将 css 文件引入.</p>
+</li>
+</ul>
+<p>例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>外部样式表<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"1/1.css"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="内部样式表"><a href="#内部样式表" class="headerlink" title="内部样式表"></a>内部样式表</h3><p>当单个文档需要特殊的样式时，就应该使用内部样式表。你可以使用 <code>&lt;style&gt;</code> 标签在文档头部定义内部样式表，就像这样:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>内部样式表<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></div><div class="line">        p &#123;</div><div class="line">            color: red;</div><div class="line">        &#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="内联样式表"><a href="#内联样式表" class="headerlink" title="内联样式表"></a>内联样式表</h3><p>由于要将表现和内容混杂在一起，内联样式会损失掉样式表的许多优势。请慎用这种方法，例如当样式仅需要在一个元素上应用一次时。</p>
+<p>要使用内联样式，你需要在相关的标签内使用样式（style）属性。Style 属性可以包含任何 CSS 属性。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">"color:red;font-size: 30px;font-family: 华文宋体;font-weight: 900;"</span>&gt;</span>p中的文字<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="CSS-书写方式之间的区别-1"><a href="#CSS-书写方式之间的区别-1" class="headerlink" title="CSS 书写方式之间的区别"></a>CSS 书写方式之间的区别</h3><ul>
+<li>内嵌式写法：</li>
+</ul>
+<p>◆ 代码可维护性较差，没有实现 css 代码与 html 结构的完全分离</p>
+<p>◆ 影响的范围只有当前页面</p>
+<ul>
+<li>行内式写法：</li>
+</ul>
+<p>◆ 代码可维护性极差，css 代码和 html 结构没有实现分离</p>
+<p>◆ 影响的范围只有当前标签</p>
+<ul>
+<li>外联式写法：</li>
+</ul>
+<p>◆ 代码可维护性高，css 与 html 结构完全分离</p>
+<p>◆ 影响范围广，当前整个网页站点。</p>
+<h2 id="HTML-标签的分类"><a href="#HTML-标签的分类" class="headerlink" title="HTML 标签的分类"></a>HTML 标签的分类</h2><h3 id="块级标签"><a href="#块级标签" class="headerlink" title="块级标签"></a>块级标签</h3><p>例如：</p>
+<p><code>div,p,h1-h6,ul,li,dl,dt,dd</code></p>
+<p>特点：</p>
+<ul>
+<li><p>元素自己独占一行显示，不与其他元素待在同一行</p>
+</li>
+<li><p>可以设置宽度和高度</p>
+</li>
+<li><p>当嵌套一个块级元素，子元素如果不设置宽度，那么该子元素的宽度为父元素的宽度。</p>
+</li>
+</ul>
+<h3 id="行级标签"><a href="#行级标签" class="headerlink" title="行级标签"></a>行级标签</h3><p>例如：</p>
+<p><code>a，span,strong,u</code></p>
+<p>特点：</p>
+<ul>
+<li><p>元素在一行上显示</p>
+</li>
+<li><p>不能直接设置宽度和高度</p>
+</li>
+</ul>
+<h3 id="行内块元素"><a href="#行内块元素" class="headerlink" title="行内块元素"></a>行内块元素</h3><p>例如：</p>
+<p><code>img,input,textarea</code></p>
+<p>特点：</p>
+<ul>
+<li><p>元素在一行上显示</p>
+</li>
+<li><p>可以设置宽度和高度</p>
+</li>
+</ul>
+<h3 id="元素之间的转换"><a href="#元素之间的转换" class="headerlink" title="元素之间的转换"></a>元素之间的转换</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">display:inline // 将元素转化为行内元素</div><div class="line">display:inline-block // 将元素转化行内块元素</div><div class="line">display:block // 将元素转化为块元素</div></pre></td></tr></table></figure>
+<p>实例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">a&#123;</div><div class="line">    width: 300px;</div><div class="line">    height: 300px;</div><div class="line">    background-color: red;</div><div class="line">    /*  display: inline-block;   */  </div><div class="line">    /* 将行内元素转化为行内块元素 */</div><div class="line">    display: block;</div><div class="line">    /* 将行内元素转化为块元素 */</div><div class="line">&#125;</div><div class="line"></div><div class="line">div&#123;</div><div class="line">    width: 300px;</div><div class="line">    height: 300px;</div><div class="line">    background-color: pink;</div><div class="line">    /* 将行内元素转化为行内元素 */</div><div class="line">    display: inline;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -1017,7 +1191,7 @@
   <p><span>本文标题:</span><a href="/posts/HTML-CSS-JS/2017-08-31-css-basic-learning-notes.html">CSS 基础学习笔记</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 RenKai 的个人博客">RenKai</a></p>
   <p><span>发布时间:</span>2017年08月31日 - 11:08</p>
-  <p><span>最后更新:</span>2017年08月31日 - 21:08</p>
+  <p><span>最后更新:</span>2017年11月03日 - 21:11</p>
   <p><span>原始链接:</span><a href="/posts/HTML-CSS-JS/2017-08-31-css-basic-learning-notes.html" title="CSS 基础学习笔记">http://yoursite.com/posts/HTML-CSS-JS/2017-08-31-css-basic-learning-notes.html</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/posts/HTML-CSS-JS/2017-08-31-css-basic-learning-notes.html"  aria-label="复制成功！"></i></span>
   </p>
@@ -1180,7 +1354,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1308,7 +1482,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-概念"><span class="nav-number">1.1.</span> <span class="nav-text">CSS 概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可以用-CSS-做什么？"><span class="nav-number">1.2.</span> <span class="nav-text">可以用 CSS 做什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-和-HTML-的区别在哪里？"><span class="nav-number">1.3.</span> <span class="nav-text">CSS 和 HTML 的区别在哪里？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#采用CSS有哪些好处？"><span class="nav-number">1.4.</span> <span class="nav-text">采用CSS有哪些好处？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS-工作原理"><span class="nav-number">2.</span> <span class="nav-text">CSS 工作原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-语法"><span class="nav-number">2.1.</span> <span class="nav-text">CSS 语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-书写位置介绍"><span class="nav-number">2.2.</span> <span class="nav-text">CSS 书写位置介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法1：行内样式表（style属性）"><span class="nav-number">2.2.1.</span> <span class="nav-text">方法1：行内样式表（style属性）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法2：内部样式表（style元素）"><span class="nav-number">2.2.2.</span> <span class="nav-text">方法2：内部样式表（style元素）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法3：外部样式表（引用一个样式表文件）"><span class="nav-number">2.2.3.</span> <span class="nav-text">方法3：外部样式表（引用一个样式表文件）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-书写方式之间的区别"><span class="nav-number">2.2.4.</span> <span class="nav-text">CSS 书写方式之间的区别</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#选择器"><span class="nav-number">3.</span> <span class="nav-text">选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标签选择器"><span class="nav-number">3.1.</span> <span class="nav-text">标签选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用法"><span class="nav-number">3.1.1.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补充"><span class="nav-number">3.1.2.</span> <span class="nav-text">补充</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类选择器（重点）"><span class="nav-number">3.2.</span> <span class="nav-text">类选择器（重点）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用法-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">3.2.2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类的命名规范"><span class="nav-number">3.2.3.</span> <span class="nav-text">类的命名规范</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#id-选择器"><span class="nav-number">3.3.</span> <span class="nav-text">id 选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用法-2"><span class="nav-number">3.3.1.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点-1"><span class="nav-number">3.3.2.</span> <span class="nav-text">特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通配符选择器"><span class="nav-number">3.4.</span> <span class="nav-text">通配符选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用法-3"><span class="nav-number">3.4.1.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点-2"><span class="nav-number">3.4.2.</span> <span class="nav-text">特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字体相关属性"><span class="nav-number">3.5.</span> <span class="nav-text">字体相关属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#font-family"><span class="nav-number">3.5.1.</span> <span class="nav-text">font-family</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#font-weight"><span class="nav-number">3.5.2.</span> <span class="nav-text">font-weight</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#font-style"><span class="nav-number">3.5.3.</span> <span class="nav-text">font-style</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#font-属性联写"><span class="nav-number">3.5.4.</span> <span class="nav-text">font 属性联写</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标签指定式选择器"><span class="nav-number">3.6.</span> <span class="nav-text">标签指定式选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后代选择器"><span class="nav-number">3.7.</span> <span class="nav-text">后代选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并集选择器"><span class="nav-number">3.8.</span> <span class="nav-text">并集选择器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#未完待续……"><span class="nav-number">4.</span> <span class="nav-text">未完待续……</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-概念"><span class="nav-number">1.1.</span> <span class="nav-text">CSS 概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可以用-CSS-做什么？"><span class="nav-number">1.2.</span> <span class="nav-text">可以用 CSS 做什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-和-HTML-的区别在哪里？"><span class="nav-number">1.3.</span> <span class="nav-text">CSS 和 HTML 的区别在哪里？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#采用CSS有哪些好处？"><span class="nav-number">1.4.</span> <span class="nav-text">采用CSS有哪些好处？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS-工作原理"><span class="nav-number">2.</span> <span class="nav-text">CSS 工作原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-语法"><span class="nav-number">2.1.</span> <span class="nav-text">CSS 语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-书写位置介绍"><span class="nav-number">2.2.</span> <span class="nav-text">CSS 书写位置介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法1：行内样式表（style属性）"><span class="nav-number">2.2.1.</span> <span class="nav-text">方法1：行内样式表（style属性）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法2：内部样式表（style元素）"><span class="nav-number">2.2.2.</span> <span class="nav-text">方法2：内部样式表（style元素）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法3：外部样式表（引用一个样式表文件）"><span class="nav-number">2.2.3.</span> <span class="nav-text">方法3：外部样式表（引用一个样式表文件）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-书写方式之间的区别"><span class="nav-number">2.2.4.</span> <span class="nav-text">CSS 书写方式之间的区别</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#选择器"><span class="nav-number">3.</span> <span class="nav-text">选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标签选择器"><span class="nav-number">3.1.</span> <span class="nav-text">标签选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用法"><span class="nav-number">3.1.1.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补充"><span class="nav-number">3.1.2.</span> <span class="nav-text">补充</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类选择器（重点）"><span class="nav-number">3.2.</span> <span class="nav-text">类选择器（重点）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用法-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">3.2.2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类的命名规范"><span class="nav-number">3.2.3.</span> <span class="nav-text">类的命名规范</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#id-选择器"><span class="nav-number">3.3.</span> <span class="nav-text">id 选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用法-2"><span class="nav-number">3.3.1.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点-1"><span class="nav-number">3.3.2.</span> <span class="nav-text">特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通配符选择器"><span class="nav-number">3.4.</span> <span class="nav-text">通配符选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用法-3"><span class="nav-number">3.4.1.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特点-2"><span class="nav-number">3.4.2.</span> <span class="nav-text">特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字体相关属性"><span class="nav-number">3.5.</span> <span class="nav-text">字体相关属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#font-family"><span class="nav-number">3.5.1.</span> <span class="nav-text">font-family</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#font-weight"><span class="nav-number">3.5.2.</span> <span class="nav-text">font-weight</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#font-style"><span class="nav-number">3.5.3.</span> <span class="nav-text">font-style</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#font-属性联写"><span class="nav-number">3.5.4.</span> <span class="nav-text">font 属性联写</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标签指定式选择器"><span class="nav-number">3.6.</span> <span class="nav-text">标签指定式选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后代选择器"><span class="nav-number">3.7.</span> <span class="nav-text">后代选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并集选择器"><span class="nav-number">3.8.</span> <span class="nav-text">并集选择器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS-书写位置及-Html-标签分类"><span class="nav-number">4.</span> <span class="nav-text">CSS 书写位置及 Html 标签分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS-书写位置"><span class="nav-number">4.1.</span> <span class="nav-text">CSS 书写位置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#外部样式表"><span class="nav-number">4.1.1.</span> <span class="nav-text">外部样式表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内部样式表"><span class="nav-number">4.1.2.</span> <span class="nav-text">内部样式表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内联样式表"><span class="nav-number">4.1.3.</span> <span class="nav-text">内联样式表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-书写方式之间的区别-1"><span class="nav-number">4.1.4.</span> <span class="nav-text">CSS 书写方式之间的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML-标签的分类"><span class="nav-number">4.2.</span> <span class="nav-text">HTML 标签的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#块级标签"><span class="nav-number">4.2.1.</span> <span class="nav-text">块级标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#行级标签"><span class="nav-number">4.2.2.</span> <span class="nav-text">行级标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#行内块元素"><span class="nav-number">4.2.3.</span> <span class="nav-text">行内块元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元素之间的转换"><span class="nav-number">4.2.4.</span> <span class="nav-text">元素之间的转换</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -1363,7 +1537,7 @@
 
 <div class="theme-info">
 <i class="fa fa-pencil"></i> 
-  <span class="post-count">全站共 25.5k</span> 字
+  <span class="post-count">全站共 26.3k</span> 字
 </div>
 
 <center>

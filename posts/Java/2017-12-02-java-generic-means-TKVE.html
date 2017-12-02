@@ -117,7 +117,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="凱" />
+  <meta name="keywords" content="Java," />
 
 
 
@@ -135,15 +135,17 @@
 
 
 
-<meta name="description" content="一枚想成为技术控的菜鸟">
-<meta property="og:type" content="website">
-<meta property="og:title" content="秋月春风等闲度">
-<meta property="og:url" content="http://yoursite.com/archives/2009/index.html">
+<meta name="description" content="从 Java 5 之后，Java 引入了 “参数化类型（parameterized type）” 的概念，允许程序在创建集合时指定集合元素的类型。例如 List&amp;lt;String&amp;gt; ，这表明该 List 只能保存字符串类型的对象。Java 的参数化类型被称为 泛型（Generic）。  看了很多的泛型，T、K、V、E 的字眼层出不穷，却不知道是什么意思。网上查了一些资料，学习了！">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 泛型：T&#x2F;K&#x2F;V&#x2F;E含义">
+<meta property="og:url" content="http://yoursite.com/posts/Java/2017-12-02-java-generic-means-TKVE.html">
 <meta property="og:site_name" content="秋月春风等闲度">
-<meta property="og:description" content="一枚想成为技术控的菜鸟">
+<meta property="og:description" content="从 Java 5 之后，Java 引入了 “参数化类型（parameterized type）” 的概念，允许程序在创建集合时指定集合元素的类型。例如 List&amp;lt;String&amp;gt; ，这表明该 List 只能保存字符串类型的对象。Java 的参数化类型被称为 泛型（Generic）。  看了很多的泛型，T、K、V、E 的字眼层出不穷，却不知道是什么意思。网上查了一些资料，学习了！">
+<meta property="og:updated_time" content="2017-12-02T12:32:05.746Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="秋月春风等闲度">
-<meta name="twitter:description" content="一枚想成为技术控的菜鸟">
+<meta name="twitter:title" content="Java 泛型：T&#x2F;K&#x2F;V&#x2F;E含义">
+<meta name="twitter:description" content="从 Java 5 之后，Java 引入了 “参数化类型（parameterized type）” 的概念，允许程序在创建集合时指定集合元素的类型。例如 List&amp;lt;String&amp;gt; ，这表明该 List 只能保存字符串类型的对象。Java 的参数化类型被称为 泛型（Generic）。  看了很多的泛型，T、K、V、E 的字眼层出不穷，却不知道是什么意思。网上查了一些资料，学习了！">
 
 
 
@@ -171,13 +173,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2009/"/>
+  <link rel="canonical" href="http://yoursite.com/posts/Java/2017-12-02-java-generic-means-TKVE.html"/>
 
 
 
 
 
-  <title>Archive | 秋月春风等闲度</title>
+  <title>Java 泛型：T/K/V/E含义 | 秋月春风等闲度</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -203,7 +205,7 @@
     
   
 
-  <div class="container sidebar-position-left  page-archive  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
 <a href="https://github.com/renkaigis"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
@@ -343,66 +345,286 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      Um..! 18 posts in total. Keep on posting.
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/Java/2017-12-02-java-generic-means-TKVE.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RenKai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="秋月春风等闲度">
     </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java 泛型：T/K/V/E含义</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-02T19:54:51+08:00">
+                2017-12-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+
+          
+            
+          
+
+          
+          
+             <span id="/posts/Java/2017-12-02-java-generic-means-TKVE.html" class="leancloud_visitors" data-flag-title="Java 泛型：T/K/V/E含义">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                                <span class="post-meta-divider">|</span>
+             </span>
+          
+
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">WordsCount</span>
+                
+                <span title="WordsCount">
+                  688
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
 
       
       
-      
 
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p id="div-border-left-red">从 Java 5 之后，Java 引入了 “<code>参数化类型（parameterized type）</code>” 的概念，允许程序在创建集合时指定集合元素的类型。例如 <code>List&lt;String&gt;</code> ，这表明该 <code>List</code> 只能保存字符串类型的对象。Java 的参数化类型被称为 <code>泛型（Generic）</code>。</p>
+
+<p>看了很多的泛型，T、K、V、E 的字眼层出不穷，却不知道是什么意思。网上查了一些资料，学习了！</p>
+<a id="more"></a>
+<h2 id="Java-泛型中的标记符含义："><a href="#Java-泛型中的标记符含义：" class="headerlink" title="Java 泛型中的标记符含义："></a>Java 泛型中的标记符含义：</h2><blockquote>
+<p><code>？</code>：表示不确定的 java 类型。</p>
+<p><code>T</code>：表示 java 类型。</p>
+<p><code>K、V</code>：分别代表 java 键值中的 Key、Value。</p>
+<p><code>E</code>：表示 enum 枚举。</p>
+<p><code>Object</code>：java 中所有类的父类。</p>
+</blockquote>
+<p> jdk 中的 K，V，T，E 等泛型名称很多人以为是固定写法，其实这些名称是可以改的，比如改成 zhangsan，lisi 都可以，jdk 为了容易看懂，所以用 K 表示键，V 表示值，T 表示 type 类型，E 表示 enum 枚举，其实<strong>这四个都只是符号，都是表示泛型名称</strong>，T 全部可以换成 E，也可以换成 K，V，zhangsan，都没关系。 </p>
+<h2 id="Object-跟这些标记符代表的-java-类型有什么区别呢？"><a href="#Object-跟这些标记符代表的-java-类型有什么区别呢？" class="headerlink" title="Object 跟这些标记符代表的 java 类型有什么区别呢？"></a>Object 跟这些标记符代表的 java 类型有什么区别呢？</h2><p>Object 是所有类的根类，任何类的对象都可以设置给该 Object 引用变量，使用的时候可能需要类型强制转换，但是用使用了泛型 T、E 等这些标识符后，在实际用之前类型就已经确定了，不需要再进行类型强制转换。</p>
+<p> <strong>代码摘自网络：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.HashMap;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"><span class="keyword">import</span> java.util.Map;</div><div class="line"><span class="comment">//T1,T2都是随便定义的东西，注意1:他们不会关联到其他类，只是在本类中通用，只是告诉我们new的时候要加入泛型</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span>&lt;<span class="title">T1</span>, <span class="title">T2</span>&gt; </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        System.out.println(<span class="keyword">new</span> Test().getaa());</div><div class="line">        <span class="keyword">new</span> Test&lt;String, String&gt; ().getbb(<span class="string">""</span>);</div><div class="line">        <span class="keyword">new</span> Test().getcc(Test.class);</div><div class="line">        <span class="comment">//注意下6:面这个HashMap的括号里面不能是T,E,T1,T2等不确定的东西,但可以是?</span></div><div class="line">        HashMap&lt;Object, String&gt; map = <span class="keyword">new</span> HashMap&lt;Object, String&gt;();</div><div class="line">        List&lt;?&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function">T2 <span class="title">getaa</span><span class="params">()</span> </span>&#123;    </div><div class="line">        <span class="comment">//注意2:T2将自动转型为String,这个不需要去担心</span></div><div class="line">        <span class="keyword">return</span> (T2) <span class="string">"few"</span>;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">getbb</span><span class="params">(T x)</span> </span>&#123;</div><div class="line">        <span class="comment">//注意3:Class&lt;T&gt;前面缺少&lt;T&gt;将编译错误</span></div><div class="line">        System.out.println(x.getClass().getName());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> &lt;T&gt; Class&lt;?&gt;  getcc(Class&lt;T&gt; a) &#123;</div><div class="line">        <span class="comment">//getcc前面的Class&lt;T&gt;前面缺少&lt;T&gt;将编译错误,注意4:Class&lt;?&gt;里面的问号可以换成T</span></div><div class="line">        System.out.println(a.getClass().getName());    </div><div class="line">        <span class="comment">//注意5:参数里面的Class&lt;T&gt;最大的好处是如果方法里面定义了泛型，可以自动获取类型值，比如如下的List&lt;T&gt;可以自动获取到a的类型，不必强调死</span></div><div class="line">        List&lt;T&gt; aa=<span class="keyword">new</span> ArrayList&lt;T&gt;();</div><div class="line">        System.out.println(aa);</div><div class="line">        <span class="keyword">return</span> a;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>运行结果：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">few</div><div class="line">java.lang.String</div><div class="line">java.lang.Class</div><div class="line">[]</div></pre></td></tr></table></figure>
+      
+    </div>
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">--- The End&nbsp;&nbsp;<i class="fa fa-paw"></i>&nbsp;&nbsp;Thanks For Your Reading ---</div>
+    
+</div>
+  
+</div>
+
+    <div>
       
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2009">2009</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文标题:</span><a href="/posts/Java/2017-12-02-java-generic-means-TKVE.html">Java 泛型：T/K/V/E含义</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 RenKai 的个人博客">RenKai</a></p>
+  <p><span>发布时间:</span>2017年12月02日 - 19:12</p>
+  <p><span>最后更新:</span>2017年12月02日 - 20:12</p>
+  <p><span>原始链接:</span><a href="/posts/Java/2017-12-02-java-generic-means-TKVE.html" title="Java 泛型：T/K/V/E含义">http://yoursite.com/posts/Java/2017-12-02-java-generic-means-TKVE.html</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/posts/Java/2017-12-02-java-generic-means-TKVE.html"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({   
+          title: "",   
+          text: '复制成功',   
+          html: false,
+          timer: 500,   
+          showConfirmButton: false
+        });
+      });
+    }));  
+</script>
+
+      
+</div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>宠辱不惊，看庭前花开花落；去留无意，望天上云卷云舒。　</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="RenKai WeChat Pay"/>
+          <p>微信打赏</p>
         </div>
       
       
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.png" alt="RenKai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
 
       
+    </div>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
+    <div>
+      
         
-            <a class="post-title-link" href="/posts/Mine/2009-01-18-novel-about-israeli-palestinian-war.html" itemprop="url">
-              
-                <span itemprop="name">『我不恨你们』——感巴以战争</span>
-              
-            </a>
-        
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2009-01-18T11:33:09+08:00"
-              content="2009-01-18" >
-          01-18
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/Mine/2017-11-20-experiment-in-Kunming-Dianchi.html" rel="next" title="滇池实验——昆明之旅">
+                <i class="fa fa-chevron-left"></i> 滇池实验——昆明之旅
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
 
-    
-
-  </section>
-
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -410,6 +632,13 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTc3Ni82MzQy"></div>
+    
+    
+  </div>
+
 
         </div>
         
@@ -429,8 +658,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -567,6 +805,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-泛型中的标记符含义："><span class="nav-number">1.</span> <span class="nav-text">Java 泛型中的标记符含义：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-跟这些标记符代表的-java-类型有什么区别呢？"><span class="nav-number">2.</span> <span class="nav-text">Object 跟这些标记符代表的 java 类型有什么区别呢？</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -722,11 +976,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
 
 
   

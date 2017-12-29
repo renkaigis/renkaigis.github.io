@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/posts/Mine/2017-12-31-2017-2018singledogsingledog.html</loc>
+    
+    <lastmod>2017-12-29T10:53:35.819Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/posts/Mine/2013-04-07-travel-to-yanan.html</loc>
+    
+    <lastmod>2017-12-29T09:42:34.120Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/about/index.html</loc>
     
     <lastmod>2017-12-28T08:38:49.760Z</lastmod>
@@ -96,13 +110,6 @@
     <loc>http://yoursite.com/posts/Mine/2017-07-30-view-of-army-building-90th.html</loc>
     
     <lastmod>2017-08-24T14:46:36.865Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/posts/Mine/2013-04-07-travel-to-yanan.html</loc>
-    
-    <lastmod>2017-08-24T14:46:13.982Z</lastmod>
     
   </url>
   

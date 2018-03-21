@@ -117,7 +117,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Kai's Blog" />
+  <meta name="keywords" content="ArcGIS,AE," />
 
 
 
@@ -135,15 +135,23 @@
 
 
 
-<meta name="description" content="一枚想成为技术控的菜鸟">
-<meta property="og:type" content="website">
-<meta property="og:title" content="秋月春风等闲度">
-<meta property="og:url" content="http://yoursite.com/archives/2017/page/2/index.html">
+<meta name="description" content="做项目遇到需要将矢量数据转换成栅格数据的问题，走了很多弯路，后来发现使用 GP 工具很轻松就解决了，记录一下。">
+<meta name="keywords" content="ArcGIS,AE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ArcEngine 之 GP 工具实现矢量转栅格">
+<meta property="og:url" content="http://yoursite.com/posts/ArcGIS/2018-03-21-ArcEnginePointToRaster.html">
 <meta property="og:site_name" content="秋月春风等闲度">
-<meta property="og:description" content="一枚想成为技术控的菜鸟">
+<meta property="og:description" content="做项目遇到需要将矢量数据转换成栅格数据的问题，走了很多弯路，后来发现使用 GP 工具很轻松就解决了，记录一下。">
+<meta property="og:image" content="http://image.renkaigis.com/images/ArcGIS/PointToRaster1.png">
+<meta property="og:image" content="http://image.renkaigis.com/images/ArcGIS/PointToRaster2.png">
+<meta property="og:image" content="http://image.renkaigis.com/images/ArcGIS/PointToRaster3.png">
+<meta property="og:image" content="http://image.renkaigis.com/images/ArcGIS/PointToRaster4.png">
+<meta property="og:image" content="http://image.renkaigis.com/images/ArcGIS/PointToRaster5.png">
+<meta property="og:updated_time" content="2018-03-21T09:40:24.812Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="秋月春风等闲度">
-<meta name="twitter:description" content="一枚想成为技术控的菜鸟">
+<meta name="twitter:title" content="ArcEngine 之 GP 工具实现矢量转栅格">
+<meta name="twitter:description" content="做项目遇到需要将矢量数据转换成栅格数据的问题，走了很多弯路，后来发现使用 GP 工具很轻松就解决了，记录一下。">
+<meta name="twitter:image" content="http://image.renkaigis.com/images/ArcGIS/PointToRaster1.png">
 
 
 
@@ -171,13 +179,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2017/page/2/"/>
+  <link rel="canonical" href="http://yoursite.com/posts/ArcGIS/2018-03-21-ArcEnginePointToRaster.html"/>
 
 
 
 
 
-  <title>Archive | 秋月春风等闲度</title>
+  <title>ArcEngine 之 GP 工具实现矢量转栅格 | 秋月春风等闲度</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -203,7 +211,7 @@
     
   
 
-  <div class="container sidebar-position-left  page-archive  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
 <a href="https://github.com/renkaigis"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
@@ -343,70 +351,323 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      Um..! 20 posts in total. Keep on posting.
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/ArcGIS/2018-03-21-ArcEnginePointToRaster.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RenKai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="秋月春风等闲度">
     </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ArcEngine 之 GP 工具实现矢量转栅格</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-21T17:02:30+08:00">
+                2018-03-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ArcGIS/" itemprop="url" rel="index">
+                    <span itemprop="name">ArcGIS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+
+          
+            
+          
+
+          
+          
+             <span id="/posts/ArcGIS/2018-03-21-ArcEnginePointToRaster.html" class="leancloud_visitors" data-flag-title="ArcEngine 之 GP 工具实现矢量转栅格">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                                <span class="post-meta-divider">|</span>
+             </span>
+          
+
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">WordsCount</span>
+                
+                <span title="WordsCount">
+                  645
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
 
       
       
-      
 
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>做项目遇到需要将矢量数据转换成栅格数据的问题，走了很多弯路，后来发现使用 GP 工具很轻松就解决了，记录一下。</p>
+<a id="more"></a>
+<p>ArcGIS 软件中 <code>ArcToolbox</code> 中的工具几乎都可以使用 GP 工具来完成。矢量转栅格的工具主要在 <code>ArcToolbox --&gt; Conversion Tools --&gt; To Raster</code> 下，包括 <code>Feature to Raster</code>、<code>Point to Raster</code>、<code>Polygon to Raster</code> 和 <code>Polyline to Raster</code>。其中 <code>Feature to Raster</code> 与其他三种效果相同。</p>
+<p>ArcGIS 中 <code>Feature to Raster</code> 方法如下图所示：</p>
+<p><img src="http://image.renkaigis.com/images/ArcGIS/PointToRaster1.png"></p>
+<p>官方文档给出的工具语法如下：</p>
+<ul>
+<li>FeatureToRaster_conversion (in_features, field, out_raster, {cell_size})</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Explanation</th>
+<th>Data Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>in_features</td>
+<td>The input feature dataset to be converted to a raster dataset.</td>
+<td>Feature Layer</td>
+</tr>
+<tr>
+<td>field</td>
+<td>The field used to assign values to the output raster.<br>It can be any field of the input feature dataset’s attribute table.<br>If the Shape field of a point or multipoint dataset contains z or m values, then either of these can be used.</td>
+<td>Field</td>
+</tr>
+<tr>
+<td>out_raster</td>
+<td>The output raster dataset to be created.<br>When not saving to a geodatabase, specify .tif for a TIFF file format, .img for an ERDAS IMAGINE file format, or no extension for an Esri Grid raster format.</td>
+<td>Raster Dataset</td>
+</tr>
+<tr>
+<td>cell_size<br>(Optional)</td>
+<td>The cell size for the output raster dataset.<br>The default cell size is the shortest of the width or height of the extent of the input feature dataset, in the output spatial reference, divided by 250.</td>
+<td>Analysis Cell Size</td>
+</tr>
+</tbody>
+</table>
+<p><strong>AE 代码见 Github：</strong><a href="https://github.com/renkaigis/PointToRaster" target="_blank">PointToRaster</a> (AE 版本 10.1，VS 版本 2017)</p>
+<p>若代码不能运行，请添加如下引用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">using ESRI.ArcGIS.Carto;</div><div class="line">using ESRI.ArcGIS.esriSystem;</div><div class="line">using ESRI.ArcGIS.Geodatabase;</div><div class="line">using ESRI.ArcGIS.Geoprocessing;</div><div class="line">using ESRI.ArcGIS.AnalysisTools;</div><div class="line">using System;</div><div class="line">using System.Collections.Generic;</div><div class="line">using System.ComponentModel;</div><div class="line">using System.Data;</div><div class="line">using System.Drawing;</div><div class="line">using System.Linq;</div><div class="line">using System.Text;</div><div class="line">using System.Threading.Tasks;</div><div class="line">using System.Windows.Forms;</div><div class="line">using ESRI.ArcGIS.Geoprocessor;</div><div class="line">using ESRI.ArcGIS.DataSourcesRaster;</div></pre></td></tr></table></figure>
+<p>我主要实现了 <strong>点转栅格</strong> 的方法，核心代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line">private void toRaster_Click(object sender, EventArgs e)</div><div class="line">&#123;</div><div class="line">    Geoprocessor gp = new Geoprocessor();</div><div class="line">    gp.OverwriteOutput = true;</div><div class="line"></div><div class="line">    int pLayerId = -1;</div><div class="line">    ILayer pLayer = null;</div><div class="line">    for (int i = 0; i &lt; axMapControl1.LayerCount; i++)</div><div class="line">    &#123;</div><div class="line">        pLayer = axMapControl1.get_Layer(i);</div><div class="line">        //if (pLayer is IFeatureLayer &amp;&amp; pLayer.Name == &quot;质点&quot;)</div><div class="line">        if (pLayer is IFeatureLayer)</div><div class="line">        &#123;</div><div class="line">            pLayerId = i;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    if (pLayerId == -1)</div><div class="line">    &#123;</div><div class="line">        MessageBox.Show(&quot;找不到点图层，请重新加载&quot;, &quot;提示&quot;, MessageBoxButtons.OK, MessageBoxIcon.Error);</div><div class="line">        return;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    try</div><div class="line">    &#123;</div><div class="line">        ESRI.ArcGIS.ConversionTools.FeatureToRaster ptr = new ESRI.ArcGIS.ConversionTools.FeatureToRaster();</div><div class="line"></div><div class="line">        // 获得点图层</div><div class="line">        IFeatureLayer pfeatureLayer = axMapControl1.get_Layer(pLayerId) as IFeatureLayer;</div><div class="line">        IFeatureClass feaureClass = pfeatureLayer.FeatureClass;</div><div class="line"></div><div class="line">        ptr.in_features = pfeatureLayer;</div><div class="line">        string filepath = @&quot;d:\gis\&quot;;</div><div class="line">        ptr.out_raster = filepath + pfeatureLayer.Name + &quot;.tif&quot;; // 将转换结果保存为tif格式</div><div class="line">        ptr.field = &quot;id&quot;; // 设置根据那个字段进行转换</div><div class="line">        ptr.cell_size = 64; // 设置转换后的栅格像元大小</div><div class="line">        gp.Execute(ptr, null); // 执行 GP 工具</div><div class="line"></div><div class="line">        MessageBox.Show(&quot;转换成功！&quot;, &quot;恭喜你！&quot;, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);</div><div class="line"></div><div class="line">        // 加载栅格</div><div class="line">        IWorkspaceFactory pWorkspaceFactory = new RasterWorkspaceFactory();</div><div class="line">        IWorkspace pWorkspace = pWorkspaceFactory.OpenFromFile(filepath, 0);</div><div class="line">        IRasterWorkspace pRasterWorkspace = pWorkspace as IRasterWorkspace;</div><div class="line">        IRasterDataset pRasterDataset = pRasterWorkspace.OpenRasterDataset(pfeatureLayer.Name + &quot;.tif&quot;);</div><div class="line">        IRaster pRaster= pRasterDataset.CreateDefaultRaster();</div><div class="line">        IRasterLayer pRasterLayer = new RasterLayerClass();</div><div class="line">        pRasterLayer.CreateFromRaster(pRaster);</div><div class="line">        ILayer layer = pRasterLayer as ILayer;</div><div class="line">        axMapControl1.AddLayer(layer, 0);</div><div class="line">    &#125;</div><div class="line">    catch (Exception ex)</div><div class="line">    &#123;</div><div class="line">        MessageBox.Show(&quot;转换失败！&quot;, &quot;很遗憾！&quot;, MessageBoxButtons.OK, MessageBoxIcon.Error);</div><div class="line">        return;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>运行结果：</strong></p>
+<p><img src="http://image.renkaigis.com/images/ArcGIS/PointToRaster2.png"></p>
+<p><img src="http://image.renkaigis.com/images/ArcGIS/PointToRaster3.png"></p>
+<p>经测试，该代码同样适用与 <code>面数据转换栅格</code>：</p>
+<p><img src="http://image.renkaigis.com/images/ArcGIS/PointToRaster4.png"></p>
+<p><img src="http://image.renkaigis.com/images/ArcGIS/PointToRaster5.png"></p>
+
+      
+    </div>
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">--- The End&nbsp;&nbsp;<i class="fa fa-paw"></i>&nbsp;&nbsp;Thanks For Your Reading ---</div>
+    
+</div>
+  
+</div>
+
+    <div>
       
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文标题:</span><a href="/posts/ArcGIS/2018-03-21-ArcEnginePointToRaster.html">ArcEngine 之 GP 工具实现矢量转栅格</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 RenKai 的个人博客">RenKai</a></p>
+  <p><span>发布时间:</span>2018年03月21日 - 17:03</p>
+  <p><span>最后更新:</span>2018年03月21日 - 17:03</p>
+  <p><span>原始链接:</span><a href="/posts/ArcGIS/2018-03-21-ArcEnginePointToRaster.html" title="ArcEngine 之 GP 工具实现矢量转栅格">http://yoursite.com/posts/ArcGIS/2018-03-21-ArcEnginePointToRaster.html</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/posts/ArcGIS/2018-03-21-ArcEnginePointToRaster.html"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({   
+          title: "",   
+          text: '复制成功',   
+          html: false,
+          timer: 500,   
+          showConfirmButton: false
+        });
+      });
+    }));  
+</script>
+
+      
+</div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>宠辱不惊，看庭前花开花落；去留无意，望天上云卷云舒。　</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="RenKai WeChat Pay"/>
+          <p>微信打赏</p>
         </div>
       
       
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.png" alt="RenKai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
 
       
+    </div>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
+    <div>
+      
         
-            <a class="post-title-link" href="/posts/ArcGIS/2017-06-05-ArcGIS-Engine-map-basic-load-data.html" itemprop="url">
-              
-                <span itemprop="name">ArcGIS Engine 地图操作基础——数据加载</span>
-              
-            </a>
-        
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-06-05T12:47:44+08:00"
-              content="2017-06-05" >
-          06-05
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ArcGIS/" rel="tag"><i class="fa fa-tag"></i> ArcGIS</a>
+          
+            <a href="/tags/AE/" rel="tag"><i class="fa fa-tag"></i> AE</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/Mine/2017-12-31-2017-2018singledogsingledog.html" rel="next" title="单身久了，就会变成狗">
+                <i class="fa fa-chevron-left"></i> 单身久了，就会变成狗
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
 
-    
-
-  </section>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2017/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/2017/">1</a><span class="page-number current">2</span>
-  </nav>
-
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -414,6 +675,13 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTc3Ni82MzQy"></div>
+    
+    
+  </div>
+
 
         </div>
         
@@ -730,11 +998,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
 
 
   

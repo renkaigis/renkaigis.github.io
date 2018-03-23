@@ -117,7 +117,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Kai's Blog" />
+  <meta name="keywords" content="ArcGIS,AE," />
 
 
 
@@ -135,15 +135,20 @@
 
 
 
-<meta name="description" content="一枚想成为技术控的菜鸟">
-<meta property="og:type" content="website">
-<meta property="og:title" content="秋月春风等闲度">
-<meta property="og:url" content="http://yoursite.com/categories/Mine/page/2/index.html">
+<meta name="description" content="做项目遇到的问题。寥寥几行代码轻松解决，记录一下。">
+<meta name="keywords" content="ArcGIS,AE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ArcGIS Engine 空间关系之判断点在面内">
+<meta property="og:url" content="http://yoursite.com/posts/ArcGIS/2018-03-23-ArcGIS-Engine-PointInPolygon.html">
 <meta property="og:site_name" content="秋月春风等闲度">
-<meta property="og:description" content="一枚想成为技术控的菜鸟">
+<meta property="og:description" content="做项目遇到的问题。寥寥几行代码轻松解决，记录一下。">
+<meta property="og:image" content="http://image.renkaigis.com/images/ArcGIS/PointInPolygon1.png">
+<meta property="og:image" content="http://image.renkaigis.com/images/ArcGIS/PointInPolygon2.png">
+<meta property="og:updated_time" content="2018-03-23T03:07:42.231Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="秋月春风等闲度">
-<meta name="twitter:description" content="一枚想成为技术控的菜鸟">
+<meta name="twitter:title" content="ArcGIS Engine 空间关系之判断点在面内">
+<meta name="twitter:description" content="做项目遇到的问题。寥寥几行代码轻松解决，记录一下。">
+<meta name="twitter:image" content="http://image.renkaigis.com/images/ArcGIS/PointInPolygon1.png">
 
 
 
@@ -171,13 +176,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/Mine/page/2/"/>
+  <link rel="canonical" href="http://yoursite.com/posts/ArcGIS/2018-03-23-ArcGIS-Engine-PointInPolygon.html"/>
 
 
 
 
 
-  <title>Category: Mine | 秋月春风等闲度</title>
+  <title>ArcGIS Engine 空间关系之判断点在面内 | 秋月春风等闲度</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -203,7 +208,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
 <a href="https://github.com/renkaigis"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
@@ -343,77 +348,329 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h1>Mine<small>Category</small>
-      </h1>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/posts/Mine/2011-04-28-grow-up-18th.html" itemprop="url">
-              
-                <span itemprop="name">成长</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2011-04-28T22:27:07+08:00"
-              content="2011-04-28" >
-          04-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/posts/Mine/2009-01-18-novel-about-israeli-palestinian-war.html" itemprop="url">
-              
-                <span itemprop="name">『我不恨你们』——感巴以战争</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2009-01-18T11:33:09+08:00"
-              content="2009-01-18" >
-          01-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </section>
 
   
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/categories/Mine/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/categories/Mine/">1</a><span class="page-number current">2</span>
-  </nav>
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/ArcGIS/2018-03-23-ArcGIS-Engine-PointInPolygon.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RenKai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="秋月春风等闲度">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ArcGIS Engine 空间关系之判断点在面内</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-23T10:36:45+08:00">
+                2018-03-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ArcGIS/" itemprop="url" rel="index">
+                    <span itemprop="name">ArcGIS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
 
+          
+            
+          
+
+          
+          
+             <span id="/posts/ArcGIS/2018-03-23-ArcGIS-Engine-PointInPolygon.html" class="leancloud_visitors" data-flag-title="ArcGIS Engine 空间关系之判断点在面内">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                                <span class="post-meta-divider">|</span>
+             </span>
+          
+
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">WordsCount</span>
+                
+                <span title="WordsCount">
+                  991
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>做项目遇到的问题。寥寥几行代码轻松解决，记录一下。</p>
+<a id="more"></a>
+<p>几何对象之间的空间关系主要有<code>包含</code>、<code>相等</code>、<code>在内部</code>、<code>相交</code>等。矢量数据的空间关系运算需要用到 <code>IRelationalOperation</code> 接口，通过该接口的不同方法判定两个几何对象之间的关系是否存在。关系运算符用于比较两个几何体，并返回一个布尔类型值来说明某种控件关系是否存在。</p>
+<h2 id="空间包含关系（Contains-amp-Within）"><a href="#空间包含关系（Contains-amp-Within）" class="headerlink" title="空间包含关系（Contains &amp; Within）"></a>空间包含关系（Contains &amp; Within）</h2><p>空间包含（Contains）表示当前几何对象包含输入几何对象。在内部（Within）表示当前几何对象在输入几何对象的内部。Contains 和 Within 是相对的关系，即 Contains 的反面就是 Within。</p>
+<h2 id="交叉（Crosses）"><a href="#交叉（Crosses）" class="headerlink" title="交叉（Crosses）"></a>交叉（Crosses）</h2><p>交叉（Crosses）表示线和线或者线和面的边界之间有相交。</p>
+<h2 id="相离（Disjoint）"><a href="#相离（Disjoint）" class="headerlink" title="相离（Disjoint）"></a>相离（Disjoint）</h2><p>相离（Disjoint）表示两个几何对象之间没有任何公共部分。</p>
+<h2 id="重叠（Overlaps）"><a href="#重叠（Overlaps）" class="headerlink" title="重叠（Overlaps）"></a>重叠（Overlaps）</h2><p>重叠（Overlaps）表示两个同一维度的几何对象具有公共部分，并且公共部分和输入集合对象具有相同的维度。</p>
+<h2 id="相等（Equals）"><a href="#相等（Equals）" class="headerlink" title="相等（Equals）"></a>相等（Equals）</h2><p>相等（Equals）表示两个几何对象具有相同的几何维度、顶点集合等。对于多边形和线几何类型，如果它们具有相等关系，则 SymmetricDifference 方法返回值为空。</p>
+<h2 id="相接（Touches）"><a href="#相接（Touches）" class="headerlink" title="相接（Touches）"></a>相接（Touches）</h2><p>相接（Touches）表示两个几何对象的边界相交。如果两个几何对象相接，那么它们的交集不为空，但是集合对象的内部交集为空。</p>
+<p><hr><br>IRelationalOperator的一些关系类型:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">关系类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Contains</td>
+<td>判断一个图形是否包含另外一个图形</td>
+</tr>
+<tr>
+<td style="text-align:center">Within</td>
+<td>判断一个图形是否被另外一个图形所包含。</td>
+</tr>
+<tr>
+<td style="text-align:center">Crosses</td>
+<td>判断两个图形是否在维数较少的那个图形的内部相交</td>
+</tr>
+<tr>
+<td style="text-align:center">Disjoint</td>
+<td>判断两个图形间是否没有相同点</td>
+</tr>
+<tr>
+<td style="text-align:center">Equals</td>
+<td>判断两个图形是否是同一个类型并且在平面上的点是否是相同的位置。如果返回值为真，则它们应该包含（Contains）另外一个图形同时也被另外一个图形所包含(Within)。</td>
+</tr>
+<tr>
+<td style="text-align:center">Overlaps</td>
+<td>判断两个图形的交集是否和其中的一个图形拥有相同的维数，并且他们交集不能和其中任何一个图形相等。该方法只使用与两个Polyline 之间或者两个Polygon 之间。</td>
+</tr>
+<tr>
+<td style="text-align:center">Touches</td>
+<td>判断两个图形的边界是否相交，如果两个图形的交集不为空，但两个图形内部的交集为空，则返回值为真。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>本文主要实现了判断点在面内（空间包含关系）</strong></p>
+<p><strong>AE 代码见 Github：</strong><a href="https://github.com/renkaigis/PointInPolygon" target="_blank">PointInPolygon</a> (AE 版本 10.1，VS 版本 2017)</p>
+<p>若代码不能运行，请添加如下引用：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">using</span> ESRI.ArcGIS.Carto;</div><div class="line"><span class="keyword">using</span> ESRI.ArcGIS.esriSystem;</div><div class="line"><span class="keyword">using</span> ESRI.ArcGIS.Geodatabase;</div><div class="line"><span class="keyword">using</span> ESRI.ArcGIS.Geoprocessing;</div><div class="line"><span class="keyword">using</span> ESRI.ArcGIS.AnalysisTools;</div><div class="line"><span class="keyword">using</span> System;</div><div class="line"><span class="keyword">using</span> System.Collections.Generic;</div><div class="line"><span class="keyword">using</span> System.ComponentModel;</div><div class="line"><span class="keyword">using</span> System.Data;</div><div class="line"><span class="keyword">using</span> System.Drawing;</div><div class="line"><span class="keyword">using</span> System.Linq;</div><div class="line"><span class="keyword">using</span> System.Text;</div><div class="line"><span class="keyword">using</span> System.Threading.Tasks;</div><div class="line"><span class="keyword">using</span> System.Windows.Forms;</div><div class="line"><span class="keyword">using</span> ESRI.ArcGIS.Geoprocessor;</div><div class="line"><span class="keyword">using</span> ESRI.ArcGIS.Geometry;</div></pre></td></tr></table></figure>
+<p>我主要实现了 <strong>判断点在面内</strong> 的方法，核心代码如下：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">pointInPolygonButton_Click</span>(<span class="params"><span class="keyword">object</span> sender, EventArgs e</span>)</span></div><div class="line">&#123;</div><div class="line">    <span class="comment">// 获得点图层</span></div><div class="line">    <span class="keyword">int</span> PointId = <span class="number">1</span>;</div><div class="line">    IFeatureLayer PointLayer = <span class="literal">null</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; axMapControl1.LayerCount; i++)</div><div class="line">    &#123;</div><div class="line">        PointLayer = axMapControl1.get_Layer(i) <span class="keyword">as</span> IFeatureLayer;</div><div class="line">        <span class="keyword">if</span> (PointLayer <span class="keyword">is</span> IFeatureLayer &amp;&amp; PointLayer.FeatureClass.ShapeType == esriGeometryType.esriGeometryPoint)</div><div class="line">        &#123;</div><div class="line">            PointId = i;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (PointId == <span class="number">-1</span>)</div><div class="line">    &#123;</div><div class="line">        MessageBox.Show(<span class="string">"找不到质点图层，请重新加载"</span>, <span class="string">"提示"</span>, MessageBoxButtons.OK, MessageBoxIcon.Error);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 获得面图层</span></div><div class="line">    <span class="keyword">int</span> PolygonId = <span class="number">-1</span>;</div><div class="line">    IFeatureLayer PolygonLayer = <span class="literal">null</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; axMapControl1.LayerCount; i++)</div><div class="line">    &#123;</div><div class="line">        PolygonLayer = axMapControl1.get_Layer(i) <span class="keyword">as</span> IFeatureLayer;</div><div class="line">        <span class="keyword">if</span> (PolygonLayer <span class="keyword">is</span> IFeatureLayer &amp;&amp; PolygonLayer.FeatureClass.ShapeType == esriGeometryType.esriGeometryPolygon)</div><div class="line">        &#123;</div><div class="line">            PolygonId = i;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (PolygonId == <span class="number">-1</span>)</div><div class="line">    &#123;</div><div class="line">        MessageBox.Show(<span class="string">"找不到边界图层，请重新加载"</span>, <span class="string">"提示"</span>, MessageBoxButtons.OK, MessageBoxIcon.Error);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    PointLayer = axMapControl1.get_Layer(PointId) <span class="keyword">as</span> IFeatureLayer;</div><div class="line">    PolygonLayer = axMapControl1.get_Layer(PolygonId) <span class="keyword">as</span> IFeatureLayer;</div><div class="line"></div><div class="line">    IFeatureCursor PointFeatureCursor = PointLayer.Search(<span class="literal">null</span>, <span class="literal">true</span>);</div><div class="line">    IFeature PointFeature = PointFeatureCursor.NextFeature();</div><div class="line"></div><div class="line">    IFeatureCursor PolygonFeatureCursor = PolygonLayer.Search(<span class="literal">null</span>, <span class="literal">true</span>);</div><div class="line">    IFeature PolygonFeature = PolygonFeatureCursor.NextFeature();</div><div class="line"></div><div class="line">    IRelationalOperator pRelationalOperator = PolygonFeature.Shape <span class="keyword">as</span> IRelationalOperator;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (pRelationalOperator.Contains(PointFeature.Shape))</div><div class="line">    &#123;</div><div class="line">        MessageBox.Show(<span class="string">"点在面内！"</span>, <span class="string">"恭喜你！"</span>, MessageBoxButtons.OK, MessageBoxIcon.Information);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        MessageBox.Show(<span class="string">"点在面外！"</span>, <span class="string">"很遗憾！"</span>, MessageBoxButtons.OK, MessageBoxIcon.Error);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>运行结果：</strong></p>
+<p><img src="http://image.renkaigis.com/images/ArcGIS/PointInPolygon1.png"></p>
+<p><img src="http://image.renkaigis.com/images/ArcGIS/PointInPolygon2.png"></p>
+
+      
+    </div>
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">--- The End&nbsp;&nbsp;<i class="fa fa-paw"></i>&nbsp;&nbsp;Thanks For Your Reading ---</div>
+    
+</div>
+  
+</div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文标题:</span><a href="/posts/ArcGIS/2018-03-23-ArcGIS-Engine-PointInPolygon.html">ArcGIS Engine 空间关系之判断点在面内</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 RenKai 的个人博客">RenKai</a></p>
+  <p><span>发布时间:</span>2018年03月23日 - 10:03</p>
+  <p><span>最后更新:</span>2018年03月23日 - 11:03</p>
+  <p><span>原始链接:</span><a href="/posts/ArcGIS/2018-03-23-ArcGIS-Engine-PointInPolygon.html" title="ArcGIS Engine 空间关系之判断点在面内">http://yoursite.com/posts/ArcGIS/2018-03-23-ArcGIS-Engine-PointInPolygon.html</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/posts/ArcGIS/2018-03-23-ArcGIS-Engine-PointInPolygon.html"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({   
+          title: "",   
+          text: '复制成功',   
+          html: false,
+          timer: 500,   
+          showConfirmButton: false
+        });
+      });
+    }));  
+</script>
+
+      
+</div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>宠辱不惊，看庭前花开花落；去留无意，望天上云卷云舒。　</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="RenKai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.png" alt="RenKai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ArcGIS/" rel="tag"><i class="fa fa-tag"></i> ArcGIS</a>
+          
+            <a href="/tags/AE/" rel="tag"><i class="fa fa-tag"></i> AE</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/ArcGIS/2018-03-21-ArcGIS-Engine-PointToRaster.html" rel="next" title="ArcGIS Engine 之 GP 工具实现矢量转栅格">
+                <i class="fa fa-chevron-left"></i> ArcGIS Engine 之 GP 工具实现矢量转栅格
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -421,6 +678,13 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTc3Ni82MzQy"></div>
+    
+    
+  </div>
+
 
         </div>
         
@@ -440,8 +704,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -582,6 +855,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#空间包含关系（Contains-amp-Within）"><span class="nav-number">1.</span> <span class="nav-text">空间包含关系（Contains & Within）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#交叉（Crosses）"><span class="nav-number">2.</span> <span class="nav-text">交叉（Crosses）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相离（Disjoint）"><span class="nav-number">3.</span> <span class="nav-text">相离（Disjoint）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重叠（Overlaps）"><span class="nav-number">4.</span> <span class="nav-text">重叠（Overlaps）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相等（Equals）"><span class="nav-number">5.</span> <span class="nav-text">相等（Equals）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相接（Touches）"><span class="nav-number">6.</span> <span class="nav-text">相接（Touches）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -737,10 +1026,10 @@
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 

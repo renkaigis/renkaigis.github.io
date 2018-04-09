@@ -117,7 +117,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Kai's Blog" />
+  <meta name="keywords" content="JavaWeb," />
 
 
 
@@ -135,15 +135,17 @@
 
 
 
-<meta name="description" content="一枚想成为技术控的菜鸟">
-<meta property="og:type" content="website">
-<meta property="og:title" content="秋月春风等闲度">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="HTTP 协议HTTP 协议的概念超文本传输协议（HTTP，HyperText Transfer Protocol)是互联网上应用最为广泛的一种网络协议。所有的 WWW 文件都必须遵守这个标准。 规定被约束的对象要遵守的规则！ HTTP 协议HTTP 协议规定：浏览器（客户端）向服务器发送何种格式的数据，服务器会处理数据，向浏览器（客户端）作出响应。（向客户端发送何种格式的数据） HTTP 协议的">
+<meta name="keywords" content="JavaWeb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWeb 学习笔记（一）—— HTTP 与 Servlet">
+<meta property="og:url" content="http://yoursite.com/posts/JavaWeb/2018-03-27-JavaWeb01-http-servlet.html">
 <meta property="og:site_name" content="秋月春风等闲度">
-<meta property="og:description" content="一枚想成为技术控的菜鸟">
+<meta property="og:description" content="HTTP 协议HTTP 协议的概念超文本传输协议（HTTP，HyperText Transfer Protocol)是互联网上应用最为广泛的一种网络协议。所有的 WWW 文件都必须遵守这个标准。 规定被约束的对象要遵守的规则！ HTTP 协议HTTP 协议规定：浏览器（客户端）向服务器发送何种格式的数据，服务器会处理数据，向浏览器（客户端）作出响应。（向客户端发送何种格式的数据） HTTP 协议的">
+<meta property="og:updated_time" content="2018-04-09T08:45:14.793Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="秋月春风等闲度">
-<meta name="twitter:description" content="一枚想成为技术控的菜鸟">
+<meta name="twitter:title" content="JavaWeb 学习笔记（一）—— HTTP 与 Servlet">
+<meta name="twitter:description" content="HTTP 协议HTTP 协议的概念超文本传输协议（HTTP，HyperText Transfer Protocol)是互联网上应用最为广泛的一种网络协议。所有的 WWW 文件都必须遵守这个标准。 规定被约束的对象要遵守的规则！ HTTP 协议HTTP 协议规定：浏览器（客户端）向服务器发送何种格式的数据，服务器会处理数据，向浏览器（客户端）作出响应。（向客户端发送何种格式的数据） HTTP 协议的">
 
 
 
@@ -171,14 +173,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/posts/JavaWeb/2018-03-27-JavaWeb01-http-servlet.html"/>
 
 
 
 
 
-  <title> Kai's Blog - 秋月春风等闲度 - 一枚想成为技术控的菜鸟
-</title>
+  <title>JavaWeb 学习笔记（一）—— HTTP 与 Servlet | 秋月春风等闲度</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -204,9 +205,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
 <a href="https://github.com/renkaigis"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
@@ -345,9 +344,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -373,9 +372,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/JavaWeb/2018-03-27-JavaWeb01-http-servlet.html" itemprop="url">JavaWeb 学习笔记（一）—— HTTP 与 Servlet</a></h1>
+          <h1 class="post-title" itemprop="name headline">JavaWeb 学习笔记（一）—— HTTP 与 Servlet</h1>
         
 
         <div class="post-meta">
@@ -477,9 +474,7 @@
       
 
       
-        
-          
-            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="HTTP-协议"><a href="#HTTP-协议" class="headerlink" title="HTTP 协议"></a>HTTP 协议</h1><h2 id="HTTP-协议的概念"><a href="#HTTP-协议的概念" class="headerlink" title="HTTP 协议的概念"></a>HTTP 协议的概念</h2><p><code>超文本传输协议</code>（HTTP，HyperText Transfer Protocol)是互联网上应用最为广泛的一种网络协议。所有的 WWW 文件都必须遵守这个标准。</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="HTTP-协议"><a href="#HTTP-协议" class="headerlink" title="HTTP 协议"></a>HTTP 协议</h1><h2 id="HTTP-协议的概念"><a href="#HTTP-协议的概念" class="headerlink" title="HTTP 协议的概念"></a>HTTP 协议的概念</h2><p><code>超文本传输协议</code>（HTTP，HyperText Transfer Protocol)是互联网上应用最为广泛的一种网络协议。所有的 WWW 文件都必须遵守这个标准。</p>
 <p><strong>规定被约束的对象要遵守的规则！</strong></p>
 <h2 id="HTTP-协议-1"><a href="#HTTP-协议-1" class="headerlink" title="HTTP 协议"></a>HTTP 协议</h2><p>HTTP 协议规定：浏览器（客户端）向服务器发送何种格式的数据，服务器会处理数据，向浏览器（客户端）作出响应。（向客户端发送何种格式的数据）</p>
 <p>HTTP 协议的特点:</p>
@@ -808,1673 +803,109 @@ HttpServlet:抽象类
 </blockquote>
 <h2 id="获取文件的路径"><a href="#获取文件的路径" class="headerlink" title="获取文件的路径"></a>获取文件的路径</h2><p>通过类加载器获取文件：2.txt 放在 classes 目录下无论是 java 项目还是 web 项目都可以。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">类.class.getClassLoader().getResource(<span class="string">"2.txt"</span>).getPath();</div></pre></td></tr></table></figure>
-          
-        
       
     </div>
 
 <div>
   
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">--- The End&nbsp;&nbsp;<i class="fa fa-paw"></i>&nbsp;&nbsp;Thanks For Your Reading ---</div>
+    
+</div>
+  
 </div>
 
     <div>
       
+        
+
+      
     </div>
 
     <div>
+      
+        
       
 </div>
 
     <div>
       
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/ArcGIS/2018-03-23-ArcGIS-Engine-PointInPolygon.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="RenKai">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="秋月春风等闲度">
-    </span>
-
-    
-      <header class="post-header">
-
         
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/ArcGIS/2018-03-23-ArcGIS-Engine-PointInPolygon.html" itemprop="url">ArcGIS Engine 空间关系之判断点在面内</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-23T10:36:45+08:00">
-                2018-03-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ArcGIS/" itemprop="url" rel="index">
-                    <span itemprop="name">ArcGIS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-
-          
-            
-          
-
-          
-          
-             <span id="/posts/ArcGIS/2018-03-23-ArcGIS-Engine-PointInPolygon.html" class="leancloud_visitors" data-flag-title="ArcGIS Engine 空间关系之判断点在面内">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                                <span class="post-meta-divider">|</span>
-             </span>
-          
-
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">WordsCount</span>
-                
-                <span title="WordsCount">
-                  991
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>宠辱不惊，看庭前花开花落；去留无意，望天上云卷云舒。　</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="RenKai WeChat Pay"/>
+          <p>微信打赏</p>
         </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
       
       
-
-      
-        
-          <p>做项目遇到的问题。寥寥几行代码轻松解决，记录一下。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/ArcGIS/2018-03-23-ArcGIS-Engine-PointInPolygon.html#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-<div>
-  
-</div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-</div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/ArcGIS/2018-03-21-ArcGIS-Engine-PointToRaster.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="RenKai">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="秋月春风等闲度">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/ArcGIS/2018-03-21-ArcGIS-Engine-PointToRaster.html" itemprop="url">ArcGIS Engine 之 GP 工具实现矢量转栅格</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-21T17:02:30+08:00">
-                2018-03-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ArcGIS/" itemprop="url" rel="index">
-                    <span itemprop="name">ArcGIS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-
-          
-            
-          
-
-          
-          
-             <span id="/posts/ArcGIS/2018-03-21-ArcGIS-Engine-PointToRaster.html" class="leancloud_visitors" data-flag-title="ArcGIS Engine 之 GP 工具实现矢量转栅格">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                                <span class="post-meta-divider">|</span>
-             </span>
-          
-
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">WordsCount</span>
-                
-                <span title="WordsCount">
-                  645
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.png" alt="RenKai Alipay"/>
+          <p>支付宝打赏</p>
         </div>
-      </header>
-    
+      
+    </div>
+  </div>
 
-    <div class="post-body" itemprop="articleBody">
 
       
-      
+    </div>
 
+    <div>
       
         
-          <p>做项目遇到需要将矢量数据转换成栅格数据的问题，走了很多弯路，后来发现使用 GP 工具很轻松就解决了，记录一下。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/ArcGIS/2018-03-21-ArcGIS-Engine-PointToRaster.html#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
 
-<div>
-  
-</div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-</div>
-
-    <div>
-      
-    </div>
-
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/Mine/2017-12-31-2017-2018singledogsingledog.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="RenKai">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="秋月春风等闲度">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/Mine/2017-12-31-2017-2018singledogsingledog.html" itemprop="url">单身久了，就会变成狗</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-31T17:37:34+08:00">
-                2017-12-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mine/" itemprop="url" rel="index">
-                    <span itemprop="name">Mine</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/JavaWeb/" rel="tag"><i class="fa fa-tag"></i> JavaWeb</a>
           
-
-
-          
-            
-          
-
-          
-          
-             <span id="/posts/Mine/2017-12-31-2017-2018singledogsingledog.html" class="leancloud_visitors" data-flag-title="单身久了，就会变成狗">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                                <span class="post-meta-divider">|</span>
-             </span>
-          
-
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">WordsCount</span>
-                
-                <span title="WordsCount">
-                  181
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          <div align="center"><img src="http://image.renkaigis.com/images/living/2017end.jpg" width="500" height="500"></div>
-
-<p><span id="inline-red">本想写个年终总结的。</span></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/Mine/2017-12-31-2017-2018singledogsingledog.html#more" rel="contents">
-              Read more &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/ArcGIS/2018-03-23-ArcGIS-Engine-PointInPolygon.html" rel="next" title="ArcGIS Engine 空间关系之判断点在面内">
+                <i class="fa fa-chevron-left"></i> ArcGIS Engine 空间关系之判断点在面内
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
 
-<div>
-  
-</div>
+          <span class="post-nav-divider"></span>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-</div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/Java/2017-12-02-java-generic-means-TKVE.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="RenKai">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="秋月春风等闲度">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/Java/2017-12-02-java-generic-means-TKVE.html" itemprop="url">Java 泛型：T/K/V/E含义</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-02T19:54:51+08:00">
-                2017-12-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-
-          
-            
-          
-
-          
-          
-             <span id="/posts/Java/2017-12-02-java-generic-means-TKVE.html" class="leancloud_visitors" data-flag-title="Java 泛型：T/K/V/E含义">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                                <span class="post-meta-divider">|</span>
-             </span>
-          
-
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">WordsCount</span>
-                
-                <span title="WordsCount">
-                  688
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p id="div-border-left-red">从 Java 5 之后，Java 引入了 “<code>参数化类型（parameterized type）</code>” 的概念，允许程序在创建集合时指定集合元素的类型。例如 <code>List&lt;String&gt;</code> ，这表明该 <code>List</code> 只能保存字符串类型的对象。Java 的参数化类型被称为 <code>泛型（Generic）</code>。</p>
-
-<p>看了很多的泛型，T、K、V、E 的字眼层出不穷，却不知道是什么意思。网上查了一些资料，学习了！</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/Java/2017-12-02-java-generic-means-TKVE.html#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-<div>
-  
-</div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-</div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/Mine/2017-11-20-experiment-in-Kunming-Dianchi.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="RenKai">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="秋月春风等闲度">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/Mine/2017-11-20-experiment-in-Kunming-Dianchi.html" itemprop="url">滇池实验——昆明之旅</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-20T10:02:56+08:00">
-                2017-11-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mine/" itemprop="url" rel="index">
-                    <span itemprop="name">Mine</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-
-          
-            
-          
-
-          
-          
-             <span id="/posts/Mine/2017-11-20-experiment-in-Kunming-Dianchi.html" class="leancloud_visitors" data-flag-title="滇池实验——昆明之旅">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                                <span class="post-meta-divider">|</span>
-             </span>
-          
-
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">WordsCount</span>
-                
-                <span title="WordsCount">
-                  498
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><div align="center"><br>于我而言，对这趟“滇池实验”充满着期待…<br>第一次出差，<br>第一次去云南，<br>第一次坐飞机，<br>第一次冲上云霄，<br>……</div></p>
-<p><div align="center"><span id="inline-red">内含多图，流量慎点！</span></div><br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/Mine/2017-11-20-experiment-in-Kunming-Dianchi.html#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+    <div class="post-spread">
       
     </div>
-
-<div>
-  
-</div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-</div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/Mine/2017-08-31-video-qsmoon-flhs.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="RenKai">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="秋月春风等闲度">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/Mine/2017-08-31-video-qsmoon-flhs.html" itemprop="url">秦时明月之风林火山集结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-31T21:02:14+08:00">
-                2017-08-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mine/" itemprop="url" rel="index">
-                    <span itemprop="name">Mine</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-
-          
-            
-          
-
-          
-          
-             <span id="/posts/Mine/2017-08-31-video-qsmoon-flhs.html" class="leancloud_visitors" data-flag-title="秦时明月之风林火山集结">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                                <span class="post-meta-divider">|</span>
-             </span>
-          
-
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">WordsCount</span>
-                
-                <span title="WordsCount">
-                  89
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><img src="http://image.renkaigis.com/images/living/qsmoon-flhs.jpg" title="风 林 火 山"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/Mine/2017-08-31-video-qsmoon-flhs.html#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-<div>
-  
-</div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-</div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/HTML-CSS-JS/2017-08-31-css-basic-learning-notes.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="RenKai">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="秋月春风等闲度">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/HTML-CSS-JS/2017-08-31-css-basic-learning-notes.html" itemprop="url">CSS 基础学习笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-31T11:05:17+08:00">
-                2017-08-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/HTML-CSS-JS/" itemprop="url" rel="index">
-                    <span itemprop="name">HTML+CSS+JS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-
-          
-            
-          
-
-          
-          
-             <span id="/posts/HTML-CSS-JS/2017-08-31-css-basic-learning-notes.html" class="leancloud_visitors" data-flag-title="CSS 基础学习笔记">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                                <span class="post-meta-divider">|</span>
-             </span>
-          
-
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">WordsCount</span>
-                
-                <span title="WordsCount">
-                  3,688
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><div align="center"><img src="http://image.renkaigis.com/images/html-css-js/css.jpg" alt="html"></div></p>
-<p><div><p id="div-border-left-green">自学 CSS 基础笔记。</p></div><br><span id="inline-purple">笔记整理中，未完待续……</span></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/HTML-CSS-JS/2017-08-31-css-basic-learning-notes.html#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-<div>
-  
-</div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-</div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/HTML-CSS-JS/2017-08-22-html-basic-learning-notes.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="RenKai">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="秋月春风等闲度">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/HTML-CSS-JS/2017-08-22-html-basic-learning-notes.html" itemprop="url">HTML基础学习笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-22T14:17:00+08:00">
-                2017-08-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/HTML-CSS-JS/" itemprop="url" rel="index">
-                    <span itemprop="name">HTML+CSS+JS</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-
-          
-            
-          
-
-          
-          
-             <span id="/posts/HTML-CSS-JS/2017-08-22-html-basic-learning-notes.html" class="leancloud_visitors" data-flag-title="HTML基础学习笔记">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                                <span class="post-meta-divider">|</span>
-             </span>
-          
-
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">WordsCount</span>
-                
-                <span title="WordsCount">
-                  6,586
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><div align="center"><img src="http://img.blog.csdn.net/20170821153435182" alt="html"></div></p>
-<p><div><p id="div-border-left-blue">自学 html 基础笔记。</p></div><br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/HTML-CSS-JS/2017-08-22-html-basic-learning-notes.html#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-<div>
-  
-</div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-</div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/Mine/2017-07-30-view-of-army-building-90th.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="RenKai">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="秋月春风等闲度">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/Mine/2017-07-30-view-of-army-building-90th.html" itemprop="url">观建军90周年阅兵之感悟</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-30T13:45:20+08:00">
-                2017-07-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mine/" itemprop="url" rel="index">
-                    <span itemprop="name">Mine</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-
-          
-            
-          
-
-          
-          
-             <span id="/posts/Mine/2017-07-30-view-of-army-building-90th.html" class="leancloud_visitors" data-flag-title="观建军90周年阅兵之感悟">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                                <span class="post-meta-divider">|</span>
-             </span>
-          
-
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">WordsCount</span>
-                
-                <span title="WordsCount">
-                  526
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p></p><p id="div-border-top-red">恰逢 <font color="#FF0000"><b>中国人民解放军建军 90 周年</b></font>  ，下一个百年会是什么样的盛况？十年后的今天，肯定特别隆重，中国军队更加现代化，中国的综合实力更加强胜。<br>2017 年 7 月 30 日，一个小阅兵式，不比 2015 年的 9.3 阅兵，但也足以展示中国军队的强势！<br></p><p></p>
-<p><div align="center"><img src="http://img.blog.csdn.net/20170730170540645" alt="01"></div><br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/Mine/2017-07-30-view-of-army-building-90th.html#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-<div>
-  
-</div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-</div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
+  </div>
 
 
           </div>
@@ -2482,6 +913,13 @@ HttpServlet:抽象类
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTc3Ni82MzQy"></div>
+    
+    
+  </div>
+
 
         </div>
         
@@ -2501,8 +939,17 @@ HttpServlet:抽象类
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -2643,6 +1090,22 @@ HttpServlet:抽象类
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP-协议"><span class="nav-number">1.</span> <span class="nav-text">HTTP 协议</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-协议的概念"><span class="nav-number">1.1.</span> <span class="nav-text">HTTP 协议的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-协议-1"><span class="nav-number">1.2.</span> <span class="nav-text">HTTP 协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-协议的请求部分（Request）"><span class="nav-number">1.3.</span> <span class="nav-text">HTTP 协议的请求部分（Request）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#请求行"><span class="nav-number">1.3.1.</span> <span class="nav-text">请求行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求头"><span class="nav-number">1.3.2.</span> <span class="nav-text">请求头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求体"><span class="nav-number">1.3.3.</span> <span class="nav-text">请求体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-协议的响应部分（Response）"><span class="nav-number">1.4.</span> <span class="nav-text">HTTP 协议的响应部分（Response）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#响应行"><span class="nav-number">1.4.1.</span> <span class="nav-text">响应行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应头"><span class="nav-number">1.4.2.</span> <span class="nav-text">响应头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应体"><span class="nav-number">1.4.3.</span> <span class="nav-text">响应体</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet"><span class="nav-number">2.</span> <span class="nav-text">Servlet</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">2.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet-实现过程"><span class="nav-number">2.2.</span> <span class="nav-text">Servlet 实现过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写一个-Servlet-步骤"><span class="nav-number">2.3.</span> <span class="nav-text">编写一个 Servlet 步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#接收参数"><span class="nav-number">2.3.1.</span> <span class="nav-text">接收参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回写内容"><span class="nav-number">2.3.2.</span> <span class="nav-text">回写内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编写配置文件"><span class="nav-number">2.3.3.</span> <span class="nav-text">编写配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置-Servlet-的启动时加载"><span class="nav-number">2.3.4.</span> <span class="nav-text">配置 Servlet 的启动时加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路径的写法"><span class="nav-number">2.3.5.</span> <span class="nav-text">路径的写法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet-结构与方法"><span class="nav-number">2.4.</span> <span class="nav-text">Servlet 结构与方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#servlet的体系结构"><span class="nav-number">2.4.1.</span> <span class="nav-text">servlet的体系结构:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Servlet-常用方法"><span class="nav-number">2.4.2.</span> <span class="nav-text">Servlet 常用方法:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GenericServlet-常用方法"><span class="nav-number">2.4.3.</span> <span class="nav-text">GenericServlet 常用方法:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HttpServlet-常用方法："><span class="nav-number">2.4.4.</span> <span class="nav-text">HttpServlet 常用方法：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet-的生命周期"><span class="nav-number">2.5.</span> <span class="nav-text">Servlet 的生命周期</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#补充"><span class="nav-number">3.</span> <span class="nav-text">补充</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常见的响应头——refresh"><span class="nav-number">3.1.</span> <span class="nav-text">常见的响应头——refresh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ServletContext"><span class="nav-number">3.2.</span> <span class="nav-text">ServletContext</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#作用"><span class="nav-number">3.2.1.</span> <span class="nav-text">作用:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取-servletcontext"><span class="nav-number">3.2.2.</span> <span class="nav-text">获取 servletcontext</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用方法"><span class="nav-number">3.2.3.</span> <span class="nav-text">常用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#域对象-★★★"><span class="nav-number">3.2.4.</span> <span class="nav-text">域对象 ★★★</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取文件的路径"><span class="nav-number">3.3.</span> <span class="nav-text">获取文件的路径</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -2798,10 +1261,10 @@ HttpServlet:抽象类
   
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
 
-  
+
 
   
 

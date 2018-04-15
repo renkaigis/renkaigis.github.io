@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://renkaigis.com/posts/Mine/2017-12-31-2017-2018singledogsingledog.html</loc>
+    <lastmod>2018-04-15T05:05:02.843Z</lastmod>
+    <data>
+        <display>
+        <title>2018 要酷酷的</title>
+        <pubTime>2017-12-31T09:37:34.000Z</pubTime>
+        
+        <tag>living</tag>
+         
+         
+           
+             
+              <breadCrumb title="Mine" url="http://yoursite.com/categories/Mine/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://renkaigis.com/posts/JavaWeb/2018-03-27-JavaWeb01-http-servlet.html</loc>
     <lastmod>2018-04-09T12:16:43.670Z</lastmod>
     <data>
@@ -61,26 +81,6 @@
            
              
               <breadCrumb title="ArcGIS" url="http://yoursite.com/categories/ArcGIS/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://renkaigis.com/posts/Mine/2017-12-31-2017-2018singledogsingledog.html</loc>
-    <lastmod>2018-03-03T07:57:27.471Z</lastmod>
-    <data>
-        <display>
-        <title>单身久了，就会变成狗</title>
-        <pubTime>2017-12-31T09:37:34.000Z</pubTime>
-        
-        <tag>living</tag>
-         
-         
-           
-             
-              <breadCrumb title="Mine" url="http://yoursite.com/categories/Mine/"/>
           
         </display>
     </data>

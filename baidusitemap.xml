@@ -4,12 +4,12 @@
 
     
   <url>
-    <loc>http://renkaigis.com/posts/JavaWeb/2018-04-30-JavaWeb01-request-response.html</loc>
-    <lastmod>2018-05-01T10:42:20.863Z</lastmod>
+    <loc>http://renkaigis.com/posts/JavaWeb/2018-03-27-JavaWeb01-http-servlet.html</loc>
+    <lastmod>2018-05-01T10:46:45.551Z</lastmod>
     <data>
         <display>
-        <title>JavaWeb 学习笔记（二）—— Request 与 Response</title>
-        <pubTime>2018-04-30T13:24:06.000Z</pubTime>
+        <title>JavaWeb 学习笔记（一）—— HTTP 与 Servlet</title>
+        <pubTime>2018-03-27T13:14:24.000Z</pubTime>
         
         <tag>JavaWeb</tag>
          
@@ -24,12 +24,12 @@
 
     
   <url>
-    <loc>http://renkaigis.com/posts/JavaWeb/2018-03-27-JavaWeb01-http-servlet.html</loc>
-    <lastmod>2018-04-30T13:25:37.057Z</lastmod>
+    <loc>http://renkaigis.com/posts/JavaWeb/2018-04-30-JavaWeb01-request-response.html</loc>
+    <lastmod>2018-05-01T10:42:20.863Z</lastmod>
     <data>
         <display>
-        <title>JavaWeb 学习笔记（一）—— HTTP 与 Servlet</title>
-        <pubTime>2018-03-27T13:14:24.000Z</pubTime>
+        <title>JavaWeb 学习笔记（二）—— Request 与 Response</title>
+        <pubTime>2018-04-30T13:24:06.000Z</pubTime>
         
         <tag>JavaWeb</tag>
          

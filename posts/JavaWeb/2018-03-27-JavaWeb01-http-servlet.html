@@ -141,7 +141,7 @@
 <meta property="og:url" content="http://yoursite.com/posts/JavaWeb/2018-03-27-JavaWeb01-http-servlet.html">
 <meta property="og:site_name" content="秋月春风等闲度">
 <meta property="og:image" content="http://image.renkaigis.com/images/JavaWeb/0100.jpg">
-<meta property="og:updated_time" content="2018-04-30T13:25:37.057Z">
+<meta property="og:updated_time" content="2018-05-01T10:46:45.551Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaWeb 学习笔记（一）—— HTTP 与 Servlet">
 <meta name="twitter:image" content="http://image.renkaigis.com/images/JavaWeb/0100.jpg">
@@ -451,7 +451,7 @@
                   <span class="post-meta-item-text">WordsCount</span>
                 
                 <span title="WordsCount">
-                  2,889
+                  2,885
                 </span>
               
 
@@ -505,7 +505,53 @@
 <p>只有表单设置为 <code>method=&quot;post&quot;</code> 才是 post 请求，其他的都是 get 请求</p>
 <h3 id="请求头"><a href="#请求头" class="headerlink" title="请求头"></a>请求头</h3><p>请求头：请求信息的第二行到空行结束。</p>
 <p>格式：key：value（value可以是多个值）</p>
-<p>常见的请求头:<br>| 请求头 | 描述 |<br>| — | — |<br>| Accept: text/html,image/bmp | 支持数据类型<br>text/html text/css text/javascript 大类型/小类型 mime类型 |<br>| Accept-Charset: ISO-8859-1 | 字符集 |<br>| Accept-Encoding: gzip | 支持压缩 |<br>| Accept-Language:zh-cn | 语言环境 |<br>| Host: www.renkaigis.com:80 | 访问主机 |<br>| ★ If-Modified-Since: Tue, 11 Jul 2000 18:23:51 GMT | 缓存文件的最后修改时间，和响应中一个头一起使用，完成本地缓存的查找 |<br>| ★ Referer: <a href="http://www.renkaigis.com/index.jsp" target="_blank" rel="external">http://www.renkaigis.com/index.jsp</a> | 来自哪个页面、防盗链 |<br>| ★ User-Agent: Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.0)| 获得客户端浏览器的信息。（文件下载：IE：URL编码，火狐：Base64） |<br>| Connection:Keep-Alive | 链接状态 |</p>
+<p>常见的请求头:</p>
+<table>
+<thead>
+<tr>
+<th>请求头</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Accept: text/html,image/bmp</td>
+<td>支持数据类型<br>text/html text/css text/javascript 大类型/小类型 mime类型</td>
+</tr>
+<tr>
+<td>Accept-Charset: ISO-8859-1</td>
+<td>字符集</td>
+</tr>
+<tr>
+<td>Accept-Encoding: gzip</td>
+<td>支持压缩</td>
+</tr>
+<tr>
+<td>Accept-Language:zh-cn</td>
+<td>语言环境</td>
+</tr>
+<tr>
+<td>Host: www.renkaigis.com:80</td>
+<td>访问主机</td>
+</tr>
+<tr>
+<td>★ If-Modified-Since: Tue, 11 Jul 2000 18:23:51 GMT</td>
+<td>缓存文件的最后修改时间，和响应中一个头一起使用，完成本地缓存的查找</td>
+</tr>
+<tr>
+<td>★ Referer: <a href="http://www.renkaigis.com/index.jsp" target="_blank" rel="external">http://www.renkaigis.com/index.jsp</a></td>
+<td>来自哪个页面、防盗链</td>
+</tr>
+<tr>
+<td>★ User-Agent: Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.0)</td>
+<td>获得客户端浏览器的信息。（文件下载：IE：URL编码，火狐：Base64）</td>
+</tr>
+<tr>
+<td>Connection:Keep-Alive</td>
+<td>链接状态</td>
+</tr>
+</tbody>
+</table>
 <h3 id="请求体"><a href="#请求体" class="headerlink" title="请求体"></a>请求体</h3><p>请求体：空行以下的内容。</p>
 <p>只有post才有请求体，获取请求参数：<a href="http://xxxx?username=tom&amp;password=123" target="_blank" rel="external">http://xxxx?username=tom&amp;password=123</a></p>
 <p>格式：username=tom&amp;password=123</p>

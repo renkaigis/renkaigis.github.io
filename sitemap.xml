@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/posts/Mine/2017-12-31-2017-2018singledogsingledog.html</loc>
+    <loc>http://yoursite.com/posts/JavaWeb/2018-04-30-JavaWeb01-request-response.html</loc>
     
-    <lastmod>2018-04-15T05:05:02.843Z</lastmod>
+    <lastmod>2018-05-01T10:16:45.804Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoursite.com/posts/JavaWeb/2018-03-27-JavaWeb01-http-servlet.html</loc>
     
-    <lastmod>2018-04-09T12:16:43.670Z</lastmod>
+    <lastmod>2018-04-30T13:25:37.057Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/posts/Mine/2017-12-31-2017-2018singledogsingledog.html</loc>
+    
+    <lastmod>2018-04-15T05:05:02.843Z</lastmod>
     
   </url>
   

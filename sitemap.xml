@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/posts/uncategorized/2018-05-16-mysqlerror00.html</loc>
+    
+    <lastmod>2018-05-16T03:06:08.891Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/posts/JavaWeb/2018-05-01-JavaWeb03-jsp.html</loc>
+    
+    <lastmod>2018-05-01T15:18:51.807Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/posts/JavaWeb/2018-03-27-JavaWeb01-http-servlet.html</loc>
     
     <lastmod>2018-05-01T10:46:45.551Z</lastmod>
@@ -9,7 +23,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/posts/JavaWeb/2018-04-30-JavaWeb01-request-response.html</loc>
+    <loc>http://yoursite.com/posts/JavaWeb/2018-04-30-JavaWeb02-request-response.html</loc>
     
     <lastmod>2018-05-01T10:42:20.863Z</lastmod>
     

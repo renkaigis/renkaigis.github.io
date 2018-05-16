@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-05-01T10:42:20.863Z</updated>
+  <updated>2018-05-16T03:06:08.891Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,9 +16,84 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>MySQL 重新启动出错：MySQL is not running, but lock file (/var/lock/subsys/mysql) exists.</title>
+    <link href="http://yoursite.com/posts/uncategorized/2018-05-16-mysqlerror00.html"/>
+    <id>http://yoursite.com/posts/uncategorized/2018-05-16-mysqlerror00.html</id>
+    <published>2018-05-16T02:56:28.000Z</published>
+    <updated>2018-05-16T03:06:08.891Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Linux 下：</p>
+<p>运行 <code>service mysql status</code> 时出错：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">MySQL is not running, but lock file (/var/lock/subsys/mysql) exists</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p><strong>解决方案：</strong> <code>rm -f /var/lock/subsys/mysql</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@centos65 /]<span class="comment"># rm -f /var/lock/subsys/mysql</span></div></pre></td></tr></table></figure>
+<p>重新检查 mysql 状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@centos65 /]<span class="comment"># service mysql status</span></div></pre></td></tr></table></figure>
+<p>若没有启动，可以重新启动 mysql 服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@centos65 /]<span class="comment"># service mysql start</span></div><div class="line">Starting MySQL..</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Linux 下：&lt;/p&gt;
+&lt;p&gt;运行 &lt;code&gt;service mysql status&lt;/code&gt; 时出错：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;MySQL is not running, but lock file (/var/lock/subsys/mysql) exists&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JavaWeb 学习笔记（三）—— JSP</title>
+    <link href="http://yoursite.com/posts/JavaWeb/2018-05-01-JavaWeb03-jsp.html"/>
+    <id>http://yoursite.com/posts/JavaWeb/2018-05-01-JavaWeb03-jsp.html</id>
+    <published>2018-05-01T14:08:57.000Z</published>
+    <updated>2018-05-01T15:18:51.807Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/0300.png" title="JSP"></div>
+
+<a id="more"></a>
+<h1 id="JSP-简介"><a href="#JSP-简介" class="headerlink" title="JSP 简介"></a>JSP 简介</h1><h2 id="JSP-概念"><a href="#JSP-概念" class="headerlink" title="JSP 概念"></a>JSP 概念</h2><p><code>JSP</code>（Java Server Pages），java 服务器页面，其根本是一个简化的 Servlet 设计，是一种动态网页技术标准。JSP 是在传统的网页 <code>HTML（标准通用标记语言的子集）文件(*.htm,*.html)</code>中插入 <code>Java 程序段</code>(Scriptlet)和 <code>JSP 标记</code>(tag)，从而形成 JSP 文件，后缀名为(<code>*.jsp</code>)。 用 JSP 开发的 Web 应用是跨平台的，既能在 Linux 下运行，也能在其他操作系统上运行。</p>
+<p><code>JSP</code> 运行在服务器端，处理请求，生成动态的内容。对应的 java 和 class 文件在 tomcat 目录下的 work 目录下。</p>
+<h2 id="JSP-执行流程"><a href="#JSP-执行流程" class="headerlink" title="JSP 执行流程"></a>JSP 执行流程</h2><ol>
+<li>浏览器发送请求，访问 <code>jsp</code> 页面；</li>
+<li>服务器接受请求，<code>jspSerlvet</code> 会帮我们查找对应的 <code>jsp</code> 文件；</li>
+<li>服务器将 <code>jsp</code> 页面翻译成 <code>java</code> 文件；</li>
+<li><code>jvm</code> 会将 <code>java</code> 编译成 <code>.class</code> 文件；</li>
+<li>服务器运行 <code>class</code> 文件，生成动态的内容；</li>
+<li>将内容发送给服务器；</li>
+<li>服务器组成响应信息，发送给浏览器；</li>
+<li>浏览器接受数据，解析展示。</li>
+</ol>
+<h2 id="JSP-脚本"><a href="#JSP-脚本" class="headerlink" title="JSP 脚本"></a>JSP 脚本</h2><ul>
+<li><p>&lt;%   %&gt;：java 程序片段，生成在 jsp 的 service 方法中</p>
+</li>
+<li><p>&lt;%=  %&gt;：输出表达式，生成在 jsp 的 service 方法中，相当于 java 中调用 out.print(..)</p>
+</li>
+<li><p>&lt;%!  %&gt;：声明成员，翻译成 servlet 内部的内容。</p>
+</li>
+</ul>
+<h2 id="JSP-注释"><a href="#JSP-注释" class="headerlink" title="JSP 注释"></a>JSP 注释</h2><p>JSP 支持三种注释：<code>HTML</code> 注释、<code>Java</code> 注释、<code>JSP</code> 注释:</p>
+<h1 id="JSP-指令"><a href="#JSP-指令" class="headerlink" title="JSP 指令"></a>JSP 指令</h1><h1 id="EL-表达式"><a href="#EL-表达式" class="headerlink" title="EL 表达式"></a>EL 表达式</h1><h1 id="JSP-标注标签库（JSTL）"><a href="#JSP-标注标签库（JSTL）" class="headerlink" title="JSP 标注标签库（JSTL）"></a>JSP 标注标签库（JSTL）</h1>]]></content>
+    
+    <summary type="html">
+    
+      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/images/JavaWeb/0300.png&quot; title=&quot;JSP&quot;&gt;&lt;/div&gt;
+    
+    </summary>
+    
+      <category term="JavaWeb" scheme="http://yoursite.com/categories/JavaWeb/"/>
+    
+    
+      <category term="JavaWeb" scheme="http://yoursite.com/tags/JavaWeb/"/>
+    
+  </entry>
+  
+  <entry>
     <title>JavaWeb 学习笔记（二）—— Request 与 Response</title>
-    <link href="http://yoursite.com/posts/JavaWeb/2018-04-30-JavaWeb01-request-response.html"/>
-    <id>http://yoursite.com/posts/JavaWeb/2018-04-30-JavaWeb01-request-response.html</id>
+    <link href="http://yoursite.com/posts/JavaWeb/2018-04-30-JavaWeb02-request-response.html"/>
+    <id>http://yoursite.com/posts/JavaWeb/2018-04-30-JavaWeb02-request-response.html</id>
     <published>2018-04-30T13:24:06.000Z</published>
     <updated>2018-05-01T10:42:20.863Z</updated>
     
@@ -3057,92 +3132,6 @@ HttpServlet:抽象类
     
     
       <category term="living" scheme="http://yoursite.com/tags/living/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【书评】穆斯林的葬礼</title>
-    <link href="http://yoursite.com/posts/Mine/2013-08-03-view-of-muslim-funeral.html"/>
-    <id>http://yoursite.com/posts/Mine/2013-08-03-view-of-muslim-funeral.html</id>
-    <published>2013-08-03T03:10:45.000Z</published>
-    <updated>2017-08-29T15:58:46.240Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><span id="inline-blue">搬运旧时文章。</span><br>年轻时的我，还是个文艺小青年。 ——2017.08</p>
-<p id="div-border-left-yellow">速葬、薄葬，是穆斯林的美德，伊斯兰教的葬礼是世界上各种族、各宗教中最简朴的葬礼，没有精美的棺木，没有华贵的寿衣，没有花里胡哨的纸车、纸轿、纸人、纸马，没有旗、锣、伞、扇的仪仗，没有吹吹打打的乐队，也没有漫天抛撒的纸钱……一心向主的穆斯林，不需要任何身外之物来粉饰自己。</p>
-
-<a id="more"></a>
-<p><br></p>
-<p id="div-border-right-green">“一个穆斯林家族，六十年间的兴衰，三代人命运的沉浮，两个发生在不同时代、有着不同内容却又交错扭结的爱情悲剧。”两根故事线，一大家子人的悲欢离合，就这样交织重叠地，从作者笔下娓娓流出。<br><br>“一道门，隔着两个世界。”——一个是玉的世界，一个是月的世界。</p>
-
-<p><br><img src="http://or2dtuwv6.bkt.clouddn.com//images/living/muslim-funeral.jpg" title="穆斯林的葬礼"></p>
-<p><br>这是一本非常值得一读的书，精彩与感动交织……曲终掩卷，荡气回肠，久久地沉浸在书中故事情节当中，为书中人物的喜而乐，为他们的忧而愁。</p>
-<h1 id="【人物】"><a href="#【人物】" class="headerlink" title="【人物】"></a>【人物】</h1><p><br><strong>梁亦清</strong>：“玉器梁”的传人，人性善良，安分守己，虔诚的信奉着真主，一生酷爱琢玉，玉相伴其一生，生于玉，也死于玉，如此固执又如此爱玉的一个人最终还是一口鲜血喷在了未完成的“宝船”上。一代琢玉高手，玉殒人亡，千古遗恨啊。</p>
-<p><strong>梁君壁</strong>：年轻时的君壁是多么善良，多么单纯，多么害羞的女孩儿，还记得她很娇羞地喊着“奇哥哥”的样子，然后遭遇了父亲的变故后，子奇忍辱负重三年学艺归来，两人潦草地结为连理。当然也一直是贤妻良母，但性情变了，变暴躁了，尤其是日军侵华时与妹妹和子奇因是否逃往英国还大吵了一番，后又因为逃亡归来的子奇和冰玉有了一个女儿，而彻底将冰玉赶出家门。作为姨妈的她，对新月冷言冷语，不曾给过一分关怀，同时，毁了新月，亦毁了天星的爱情，当然也逼着子奇一步一步走向毁灭。</p>
-<p><strong>梁冰玉</strong>：冰玉和女儿新月一样，都是有文化、有修养的知识分子，敢爱敢恨，最终在英国和姐夫子奇产生了所谓的爱情，觉得家中容不得她便弃身而去。待到三十多年后，人老珠黄的她归来时，却已物是人非，她所牵挂的所有人都死了，姐姐死了，奇哥哥死了，她最最心爱却又不曾给过母爱的女儿新月也死去了……</p>
-<p><strong>韩子奇</strong>：易卜拉欣初到梁家，便被璀璨的珠玉所吸引，立志献身于迷人的玉器。拜梁亦清为师，改名韩子奇，两人亲如父子。然后师父死在了玉上，自己偷学技艺三年，与君壁结婚，因战乱跑到英国与冰玉产生了真正的爱情，产有一女名为新月。非常心疼小女新月，却因为自己做了对不起君壁的事而心存悔恨，低声下气的，想爱可怜的新月却是那么的难啊！最后的最后，自己守了一辈子的美玉被红卫兵们搬走了，毫无音信。临死前给心爱的冰玉写了一封信（被天星烧了），他要在死之前，对未了的情、未熄的火、未还的债、未赎的罪得以清算，要求得到那个不能忘怀的人的宽恕。精彩、神奇却又悲惨的一生就这样在疾病中结束了……</p>
-<p><strong>韩天星</strong>：知道新月的身世，待新月极好了。可怜自己的爱情被妈妈从中拆散，为了家庭却只能忍气吞声。他看不惯妈妈对新月的态度，却也无可奈何。</p>
-<p><strong>陈淑彦</strong>：多么好的一位姑娘，新月的好朋友，天星的好妻子。对韩家劳心劳力，深爱着木讷的天星。</p>
-<p><strong>楚雁潮</strong>：如此如此深深地爱着新月，为了新月，他愿意做任何事情。在新月生病住院的时候，不舍昼夜地守候在她的身边，给她带来活下去的希望，激励她勇敢地活下去。可是却未能见到新月最后一面，新月就离他而去了。二十多年后的他，在新月生日这天，依旧在新月的坟前，为她拉着那曲《梁山伯与祝英台》，想念着那个他心心念念想着的人儿……</p>
-<p><strong>姑妈</strong>：她在文中一直扮演着和事佬，就像韩家的奴仆一样为这个家操劳着、奉献着自己的一生。她早年遭遇悲惨，丈夫和儿子都被日军抓走，所幸自己得以被韩家收留，并将天星视为自己的儿子一样看待，对新月也如同亲生女儿一样疼爱有加。她也是一位心脏病人啊，可是韩家哪个人真正关心和注意过她呢，最后可怜的她在新月追问自己的生母的哭声中死于急性心肌梗塞。她从来没有心疼过自己，血肉耗尽了，心操碎了，终于倒下去了，再也没有起来。</p>
-<p><strong>韩新月</strong>：新月，我有太多的词来形容你。你感动了我，你便是整篇文章的精魂，我宁愿相信《穆斯林的葬礼》其实便说的是你的葬礼。给我最多感动的新月，愿真主祥助你！（有太多话想说，却不知道从何说起，此处略去一千字）</p>
-<h1 id="【书评】"><a href="#【书评】" class="headerlink" title="【书评】"></a>【书评】</h1><p><br>《穆斯林的葬礼》，书中对穆斯林的生活细节详细的加以描述，不仅仅以极重的笔墨描写穆斯林的葬礼，也详细的描述了穆斯林的婚礼。我固执的以为这场葬礼说的是新月的葬礼，这个可怜的姑娘的葬礼。</p>
-<p>但这场葬礼却并非那么简单，书的最后韩子奇说出了一个天大的秘密 <strong>“我……不是回回！”</strong> 这也许才是真正的穆斯林的葬礼，一直虔诚信奉真主的梁家（韩家）后代身上竟然流着回、汉两族的血液啊！这可谓是对这个穆斯林家族及其沉重的打击。</p>
-<p>看过这本书，就好像陪主人公走过了那段岁月，心灵仿佛受到了一次的洗礼。</p>
-<p>什么是善？什么是恶？什么是丑？什么是美？什么是爱？什么是恨？</p>
-<p>当这些与我们的心灵碰撞的时候，我们能说得清吗?</p>
-<h1 id="【精彩段落】"><a href="#【精彩段落】" class="headerlink" title="【精彩段落】"></a>【精彩段落】</h1><p><br></p>
-<blockquote>
-<p>楚雁潮痴痴地凝望着新月……<br>他看见新月走进燕园，穿着白色的衬衫，蓝色的长裤，手里提着沉重的皮箱和网袋……<br>他看见在未名湖畔迷路的新月，正惊喜地朝他跑来……<br>他看见在红枫掩映的湖心小岛上，新月朝他蓦然回首……<br>他看见了那锁住新月的病床，听见了那刻骨铭心的话语：“老师，我们之间是……爱情吗？”<br>“告诉你，新月！几乎可以这样说，自从见到你的第一天，我就在悄悄地爱着你！”<br>“啊，那是命运，让您等着我，让我遇到您！”<br>“我们付出了爱，也得到了爱，爱得深沉，爱得强烈，爱得长久……”<br>“正因为爱得太深，才惟恐它不能长久，总有一天我会把您丢下……”<br>“任何时候我都不会丢下你，两个生命合在一起该有多大的力量？我扶着你、背着你、拖着你，也要向前走，走出‘阿拉斯加’，我们就有美好的明天！”<br>“‘人生得一知己足矣’，我已经可以死而无憾！”<br>“楚老师，不要为我悲伤，您对我说过：自知是一种幸运，现在我终于自知了，也算是一个幸运的人了。感谢您过去所给予我的全部关怀，但愿我今后不再打扰您了！”<br>他似乎也看见了新月在最后的时刻嘴唇艰难地嚅动，听见了她痛苦的呼唤：“楚……”<br>“新月！我在这儿呢，在你身边！”他痴痴地回答，凝望着新月的遗体。<br>新月再也没有任何回应。她静静地躺在这最后的归宿，低垂的眼睑仿佛还在苦思，紧闭的嘴唇似乎蕴含着万语千言。谁也不知道她的灵魂在想什么，要说什么。她的脸朝向西&gt; 方，她的主宰、她的祖先召唤着她，告别尘世的一切，到该去的地方去……</p>
-</blockquote>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;span id=&quot;inline-blue&quot;&gt;搬运旧时文章。&lt;/span&gt;&lt;br&gt;年轻时的我，还是个文艺小青年。 ——2017.08&lt;/p&gt;
-&lt;p id=&quot;div-border-left-yellow&quot;&gt;速葬、薄葬，是穆斯林的美德，伊斯兰教的葬礼是世界上各种族、各宗教中最简朴的葬礼，没有精美的棺木，没有华贵的寿衣，没有花里胡哨的纸车、纸轿、纸人、纸马，没有旗、锣、伞、扇的仪仗，没有吹吹打打的乐队，也没有漫天抛撒的纸钱……一心向主的穆斯林，不需要任何身外之物来粉饰自己。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Mine" scheme="http://yoursite.com/categories/Mine/"/>
-    
-    
-      <category term="View" scheme="http://yoursite.com/tags/View/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>游革命圣地延安</title>
-    <link href="http://yoursite.com/posts/Mine/2013-04-07-travel-to-yanan.html"/>
-    <id>http://yoursite.com/posts/Mine/2013-04-07-travel-to-yanan.html</id>
-    <published>2013-04-07T08:35:06.000Z</published>
-    <updated>2017-12-29T09:42:34.120Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><span id="inline-purple">游记篇——朝花夕拾。</span></p>
-<p><img src="http://image.renkaigis.com/images/living/travel-to-yanan1.jpg" title="游客照"></p>
-<a id="more"></a>
-<p><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;“清明时节雨纷纷，路上行人欲断魂”，仿佛是为了迎合这句古诗，在清明这天，三秦大地上落下了一场小雨，它洗去污浊，褪去铅华，平息了城市的喧哗。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;但这场春雨并不能浇灭人们出游的热情。清明，万物都开始焕发生机，此正是外出踏青的好时节。而我，则邀好友一同去往红色革命圣地延安。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;延安，这个从小到大“耳熟”得不能再熟的地方，我终于见到了它的庐山真面目。延安依群山傍延河，宝塔山、清凉山、凤凰山三山鼎峙，黄河支流从这里流过。无论站在这个城市的哪个地方，都可以看见那座著名的“宝塔山”，以及山上随处可见的一个个圆拱形的窑洞。这里的每个角落都透露着一股宁静、幽雅、古朴而又不失厚重的气息。走在灯红酒绿的繁华市区，虽然天空中仍有小雨在淅淅沥沥地飘落，但我依旧能从中感受到这座城市的勃勃生机，它真不愧是中国革命圣地。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;清明假期，我游历了杨家岭革命旧址、枣园革命旧址、延安革命纪念馆、凤凰山革命旧址等地，我进入了曾经召开过第七次党代会的中央大礼堂，我参观了毛泽东、周恩来、朱德、杨尚昆、任弼时等重要革命人曾经居住过的窑洞，我目睹了神奇的非物质文化遗产——剪纸艺术。身处圣地延安，任红色春风肆意吹拂，身临其境的我仿佛依稀可见革命人艰苦奋斗的岁月，心中不由升起浓浓的敬意。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在这一片净土，曾孕育了光照千秋的延安精神。我也终于在这片红色热土上悟得了延安精神，其实就是艰苦奋斗的精神。待到坐上返程的列车，心中只有不舍，舍不得离开这里，而更多的是舍不得和朋友分开。这一别，不知下次到延安，会是以什么原因，以什么目的，又是以什么心情，更重要的是要找寻什么样的人儿？</p>
-<div align="right">2013年4月7日记<br>任凯</div>
-
-<p><br><img src="http://or2dtuwv6.bkt.clouddn.com/images/living/travel-to-yanan2.jpg" title="富有陕北风情的老人"></p>
-<p><img src="http://or2dtuwv6.bkt.clouddn.com/images/living/travel-to-yanan4.jpg" title="伟大的中国"></p>
-<p><img src="http://or2dtuwv6.bkt.clouddn.com/images/living/travel-to-yanan3.jpg" title="内幕内幕！居然给自己登到院报上去了！"></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;span id=&quot;inline-purple&quot;&gt;游记篇——朝花夕拾。&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://image.renkaigis.com/images/living/travel-to-yanan1.jpg&quot; title=&quot;游客照&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Mine" scheme="http://yoursite.com/categories/Mine/"/>
-    
-    
-      <category term="Travel" scheme="http://yoursite.com/tags/Travel/"/>
     
   </entry>
   

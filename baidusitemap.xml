@@ -4,6 +4,41 @@
 
     
   <url>
+    <loc>http://renkaigis.com/posts/uncategorized/2018-05-16-mysqlerror00.html</loc>
+    <lastmod>2018-05-16T03:06:08.891Z</lastmod>
+    <data>
+        <display>
+        <title>MySQL 重新启动出错：MySQL is not running, but lock file (/var/lock/subsys/mysql) exists.</title>
+        <pubTime>2018-05-16T02:56:28.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://renkaigis.com/posts/JavaWeb/2018-05-01-JavaWeb03-jsp.html</loc>
+    <lastmod>2018-05-01T15:18:51.807Z</lastmod>
+    <data>
+        <display>
+        <title>JavaWeb 学习笔记（三）—— JSP</title>
+        <pubTime>2018-05-01T14:08:57.000Z</pubTime>
+        
+        <tag>JavaWeb</tag>
+         
+         
+           
+             
+              <breadCrumb title="JavaWeb" url="http://yoursite.com/categories/JavaWeb/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://renkaigis.com/posts/JavaWeb/2018-03-27-JavaWeb01-http-servlet.html</loc>
     <lastmod>2018-05-01T10:46:45.551Z</lastmod>
     <data>
@@ -24,7 +59,7 @@
 
     
   <url>
-    <loc>http://renkaigis.com/posts/JavaWeb/2018-04-30-JavaWeb01-request-response.html</loc>
+    <loc>http://renkaigis.com/posts/JavaWeb/2018-04-30-JavaWeb02-request-response.html</loc>
     <lastmod>2018-05-01T10:42:20.863Z</lastmod>
     <data>
         <display>

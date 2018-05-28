@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[JavaWeb 之 idea 新建部署 JavaWeb 项目]]></title>
+    <url>%2Fposts%2FJavaWeb%2F2018-05-28-JavaWeb-idea-new-web-project.html</url>
+    <content type="text"><![CDATA[习惯了 Eclipse ，想用用逼格高点的 idea 发现处处碰壁，终于搞好了，记录一下！ 新建项目新建项目 –&gt; Java EE –&gt; Web Application(勾选 Create web.xml)，点击 next，输入项目名和路径。 建 classes 和 lib 文件夹在 WEB-INF 目录下创建两个文件夹 classes、lib： classes：用来存放编译后输出的 class 文件 lib：用来存放项目所需的 jar 包 配置路径和 jar 包配置路径，File –&gt; Project Structure –&gt; Modules –&gt; Paths，选择 “Use module compile output path” -&gt; 将 Output path 和 Test output path 都选择刚刚创建的 classes 文件夹。 接着选择 Dependencies –&gt; 将 Module SDK 选择为自己电脑上的 jdk –&gt; 点击右边的“+”号 –&gt; 选择 “1 Jars or Directories” –&gt; 选择刚刚创建的 lib 文件夹 –&gt; 选择 jar directory，OK 就可以了。 配置 Tomcat 服务器菜单 Run –&gt; Edit Configurations… –&gt; 点击 “+” 号 –&gt; 选择 “Tomcat Server” –&gt; 选择 “Local”，在如下界面输入自己的服务器名。 点击 “Application server” 后面的 “Configure…”，弹出 Application Servers 窗口，选择本地安装的 Tomcat 目录 –&gt; OK； HTTP port 默认端口号是 8080，可以自己修改，也可以使用默认的。例如，我设为 9090，那么项目的访问路径就为：http://localhost:9090 左下角显示警告，是因为没有部署项目，点击右边的 Fix ，弹出下图，部署自己的项目，点击 ➕ 号，选择自己的 web 项目。右边可以输入项目的访问路径，可以默认，也可以自己定义。 若默认，则项目访问路径为：http://localhost:9090(我的9090端口) 若自己定义名称 test，则项目访问路径为：http://localhost:9090/test(我的9090端口) 部署并运行项目点击主界面上的 run 按钮，就可以启动服务器并运行自己的项目了。默认打开的是项目路径下的 index.jsp，可对他进行自定义编辑，看看自己的成果吧。]]></content>
+      <categories>
+        <category>JavaWeb</category>
+      </categories>
+      <tags>
+        <tag>JavaWeb</tag>
+        <tag>idea</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[MySQL 重新启动出错：MySQL is not running, but lock file (/var/lock/subsys/mysql) exists.]]></title>
     <url>%2Fposts%2Funcategorized%2F2018-05-16-mysqlerror00.html</url>
     <content type="text"><![CDATA[Linux 下： 运行 service mysql status 时出错： 1MySQL is not running, but lock file (/var/lock/subsys/mysql) exists 解决方案： rm -f /var/lock/subsys/mysql 1[root@centos65 /]# rm -f /var/lock/subsys/mysql 重新检查 mysql 状态： 1[root@centos65 /]# service mysql status 若没有启动，可以重新启动 mysql 服务： 12[root@centos65 /]# service mysql startStarting MySQL..]]></content>

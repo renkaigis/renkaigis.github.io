@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/posts/JavaWeb/2018-05-28-JavaWeb-idea-new-web-project.html</loc>
+    
+    <lastmod>2018-05-28T14:15:54.397Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/posts/uncategorized/2018-05-16-mysqlerror00.html</loc>
     
     <lastmod>2018-05-16T03:06:08.891Z</lastmod>

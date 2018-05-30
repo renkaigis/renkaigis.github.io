@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-05-30T08:47:20.046Z</updated>
+  <updated>2018-05-30T09:02:05.060Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,9 +20,11 @@
     <link href="http://yoursite.com/posts/JavaWeb/2018-05-30-JavaWeb-Hibernate03.html"/>
     <id>http://yoursite.com/posts/JavaWeb/2018-05-30-JavaWeb-Hibernate03.html</id>
     <published>2018-05-30T08:43:19.000Z</published>
-    <updated>2018-05-30T08:47:20.046Z</updated>
+    <updated>2018-05-30T09:02:05.060Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p id="div-border-left-green">Hibernate 持久化类、缓存与事务。</p>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/hibernate0300.png"></div>
+
+<p id="div-border-left-green">Hibernate 持久化类、缓存与事务。</p>
 
 <a id="more"></a>
 <hr>
@@ -290,7 +292,9 @@
     
     <summary type="html">
     
-      &lt;p id=&quot;div-border-left-green&quot;&gt;Hibernate 持久化类、缓存与事务。&lt;/p&gt;
+      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/images/JavaWeb/hibernate0300.png&quot;&gt;&lt;/div&gt;
+
+&lt;p id=&quot;div-border-left-green&quot;&gt;Hibernate 持久化类、缓存与事务。&lt;/p&gt;
     
     </summary>
     
@@ -308,9 +312,11 @@
     <link href="http://yoursite.com/posts/JavaWeb/2018-05-30-JavaWeb-Hibernate02.html"/>
     <id>http://yoursite.com/posts/JavaWeb/2018-05-30-JavaWeb-Hibernate02.html</id>
     <published>2018-05-30T08:33:19.000Z</published>
-    <updated>2018-05-30T08:49:49.841Z</updated>
+    <updated>2018-05-30T09:02:17.431Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p id="div-border-left-green">Hibernate 配置文件与接口方法。</p>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/hibernate0200.png"></div>
+
+<p id="div-border-left-green">Hibernate 配置文件与接口方法。</p>
 
 <a id="more"></a>
 <hr>
@@ -524,7 +530,9 @@
     
     <summary type="html">
     
-      &lt;p id=&quot;div-border-left-green&quot;&gt;Hibernate 配置文件与接口方法。&lt;/p&gt;
+      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/images/JavaWeb/hibernate0200.png&quot;&gt;&lt;/div&gt;
+
+&lt;p id=&quot;div-border-left-green&quot;&gt;Hibernate 配置文件与接口方法。&lt;/p&gt;
     
     </summary>
     
@@ -542,9 +550,11 @@
     <link href="http://yoursite.com/posts/JavaWeb/2018-05-30-JavaWeb-Hibernate01.html"/>
     <id>http://yoursite.com/posts/JavaWeb/2018-05-30-JavaWeb-Hibernate01.html</id>
     <published>2018-05-30T08:23:19.000Z</published>
-    <updated>2018-05-30T08:50:37.437Z</updated>
+    <updated>2018-05-30T09:02:24.518Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p id="div-border-left-green">Hibernate 快速入门。</p>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/hibernate0100.png"></div>
+
+<p id="div-border-left-green">Hibernate 快速入门。</p>
 
 <a id="more"></a>
 <hr>
@@ -675,7 +685,9 @@
     
     <summary type="html">
     
-      &lt;p id=&quot;div-border-left-green&quot;&gt;Hibernate 快速入门。&lt;/p&gt;
+      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/images/JavaWeb/hibernate0100.png&quot;&gt;&lt;/div&gt;
+
+&lt;p id=&quot;div-border-left-green&quot;&gt;Hibernate 快速入门。&lt;/p&gt;
     
     </summary>
     

@@ -1,0 +1,1756 @@
+<!doctype html>
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+    
+
+    
+  
+
+  
+    
+
+    
+  
+
+  
+    
+
+    
+  
+
+  
+    
+
+    
+  
+
+  
+    
+    
+    <link href="fonts.loli.net/css?family=Comic Sans MS:300,300italic,400,400italic,700,700italicPingFang SC:300,300italic,400,400italic,700,700italicComic Sans MS:300,300italic,400,400italic,700,700italicConsolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaWeb,Hibernate," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="秋月春风等闲度" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Hibernate 持久化类、缓存与事务。">
+<meta name="keywords" content="JavaWeb,Hibernate">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWeb 之 Hibernate 持久化类、缓存与事务">
+<meta property="og:url" content="http://yoursite.com/posts/JavaWeb/2018-05-30-JavaWeb-Hibernate03.html">
+<meta property="og:site_name" content="秋月春风等闲度">
+<meta property="og:description" content="Hibernate 持久化类、缓存与事务。">
+<meta property="og:updated_time" content="2018-05-30T08:47:20.046Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaWeb 之 Hibernate 持久化类、缓存与事务">
+<meta name="twitter:description" content="Hibernate 持久化类、缓存与事务。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/posts/JavaWeb/2018-05-30-JavaWeb-Hibernate03.html"/>
+
+
+
+
+
+  <title>JavaWeb 之 Hibernate 持久化类、缓存与事务 | 秋月春风等闲度</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+<a href="https://github.com/renkaigis"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
+   
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">秋月春风等闲度</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">要有最朴素的生活，与最遥远的梦想。即使明日天寒地冻，路远马亡。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/JavaWeb/2018-05-30-JavaWeb-Hibernate03.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RenKai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="秋月春风等闲度">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaWeb 之 Hibernate 持久化类、缓存与事务</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-30T16:43:19+08:00">
+                2018-05-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaWeb/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaWeb</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+
+          
+            
+          
+
+          
+          
+             <span id="/posts/JavaWeb/2018-05-30-JavaWeb-Hibernate03.html" class="leancloud_visitors" data-flag-title="JavaWeb 之 Hibernate 持久化类、缓存与事务">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                                <span class="post-meta-divider">|</span>
+             </span>
+          
+
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">WordsCount</span>
+                
+                <span title="WordsCount">
+                  3,831
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p id="div-border-left-green">Hibernate 持久化类、缓存与事务。</p>
+
+<a id="more"></a>
+<hr>
+<h1 id="Hibernate-的持久化类"><a href="#Hibernate-的持久化类" class="headerlink" title="Hibernate 的持久化类"></a>Hibernate 的持久化类</h1><hr>
+<h2 id="什么是持久化类"><a href="#什么是持久化类" class="headerlink" title="什么是持久化类"></a>什么是持久化类</h2><p>持久化类：就是一个 Java 类（自己编写的 JavaBean），这个 Java 类与表建立了映射关系就可以称为是持久化类。</p>
+<ul>
+<li>持久化类 = JavaBean + xxx.hbm.xml</li>
+</ul>
+<h2 id="持久化类的编写规则"><a href="#持久化类的编写规则" class="headerlink" title="持久化类的编写规则"></a>持久化类的编写规则</h2><ul>
+<li>提供一个无参数 public 访问控制符的构造器     – 底层需要进行反射。</li>
+<li>提供一个标识属性，映射数据表主键字段       – 唯一标识 OID。数据库中通过主键，Java 对象通过地址确定对象，持久化类通过唯一标识 OID 确定记录。</li>
+<li>所有属性提供 public 访问控制符的 set 或者 get 方法</li>
+<li>标识属性应尽量使用基本数据类型的包装类型</li>
+</ul>
+<h2 id="区分自然主键和代理主键"><a href="#区分自然主键和代理主键" class="headerlink" title="区分自然主键和代理主键"></a>区分自然主键和代理主键</h2><p>创建表的时候</p>
+<ul>
+<li><p>自然主键：对象本身的一个属性。创建一个人员表，每个人都有一个身份证号（唯一的）。使用身份证号作为表的主键，自然主键。（开发中不会使用这种方式）</p>
+</li>
+<li><p>代理主键：不是对象本身的一个属性。创建一个人员表，为每个人员单独创建一个字段。用这个字段作为主键，代理主键。（开发中推荐使用这种方式）</p>
+</li>
+</ul>
+<ol>
+<li>创建表的时候尽量使用代理主键创建表</li>
+</ol>
+<h2 id="主键的生成策略"><a href="#主键的生成策略" class="headerlink" title="主键的生成策略"></a>主键的生成策略</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">hibernate-mapping</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">class</span> <span class="attr">name</span>=<span class="string">"com.renkaigis.domain.User"</span> <span class="attr">table</span>=<span class="string">"t_user"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">id</span> <span class="attr">name</span>=<span class="string">"id"</span> <span class="attr">column</span>=<span class="string">"id"</span>&gt;</span></div><div class="line">            <span class="comment">&lt;!--主键的生成策略--&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">generator</span> <span class="attr">class</span>=<span class="string">"native"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">column</span>=<span class="string">"name"</span> <span class="attr">length</span>=<span class="string">"30"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"age"</span> <span class="attr">column</span>=<span class="string">"age"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">class</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">hibernate-mapping</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>重要的是 <code>uuid</code> 和 <code>native</code></p>
+<h3 id="increment"><a href="#increment" class="headerlink" title="increment"></a>increment</h3><p>适用于 short，int，long 作为主键。不是使用的数据库自动增长机制。</p>
+<ul>
+<li>Hibernate中提供的一种增长机制。</li>
+<li>先进行查询：<code>select max(id) from user;</code></li>
+<li>再进行插入：获得 <code>最大值 + 1</code>作为新的记录的主键。</li>
+</ul>
+<p>SQL 代码如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Hibernate: </div><div class="line">    <span class="keyword">select</span></div><div class="line">        <span class="keyword">max</span>(<span class="keyword">id</span>) </div><div class="line">    <span class="keyword">from</span></div><div class="line">        t_user</div><div class="line">Hibernate: </div><div class="line">    <span class="keyword">insert</span> </div><div class="line">    <span class="keyword">into</span></div><div class="line">        t_user</div><div class="line">        (<span class="keyword">name</span>, age, <span class="keyword">id</span>) </div><div class="line">    <span class="keyword">values</span></div><div class="line">        (?, ?, ?)</div></pre></td></tr></table></figure>
+<p><em>问题：</em> 不能在集群环境下或者有并发访问的情况下使用。</p>
+<h3 id="identity"><a href="#identity" class="headerlink" title="identity"></a>identity</h3><p>适用于 short，int，long 作为主键。但是这个必须使用在有自动增长数据库中，采用的是数据库底层的自动增长机制。</p>
+<ul>
+<li>底层使用的是数据库的自动增长（auto_increment）。像 Oracle 数据库没有自动增长。</li>
+</ul>
+<h3 id="sequence"><a href="#sequence" class="headerlink" title="sequence"></a>sequence</h3><p>适用于 short，int，long 作为主键。底层使用的是序列的增长方式。</p>
+<ul>
+<li>Oracle 数据库底层没有自动增长，想自动增长需要使用序列。</li>
+</ul>
+<h3 id="uuid-★"><a href="#uuid-★" class="headerlink" title="uuid ★"></a>uuid <strong>★</strong></h3><p>适用于 char，varchar 类型的作为主键。</p>
+<ul>
+<li>使用随机的字符串作为主键。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 测试 uuid 生成主键策略</div><div class="line"> * Person 类有两个属性 String pname 和 String pid</div><div class="line"> * Person.hbm.xml 如下编写：</div><div class="line"> * &lt;id name="pid" column="pid"&gt;</div><div class="line">        &lt;generator class="uuid"/&gt;</div><div class="line">    &lt;/id&gt;</div><div class="line"> */</div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">runUUID</span><span class="params">()</span> </span>&#123;</div><div class="line">    Session session = HibernateUtils.getSession();</div><div class="line">    Transaction tr = session.beginTransaction();</div><div class="line">    Person p = <span class="keyword">new</span> Person();</div><div class="line">    p.setPname(<span class="string">"老王"</span>);</div><div class="line"></div><div class="line">    session.save(p);</div><div class="line">    tr.commit();</div><div class="line">    session.close();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>查看生成的 uuid 主键：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select * from t_person;</div><div class="line">+----------------------------------+--------+</div><div class="line">| pid                              | pname  |</div><div class="line">+----------------------------------+--------+</div><div class="line">| ff80808163ab33ae0163ab33b2370000 | 老王   |</div><div class="line">+----------------------------------+--------+</div><div class="line">1 row in set (0.00 sec)</div></pre></td></tr></table></figure>
+<h3 id="native-★"><a href="#native-★" class="headerlink" title="native ★"></a>native <strong>★</strong></h3><p>本地策略。根据底层的数据库不同，自动选择适用于该种数据库的生成策略。（short，int，long）</p>
+<ul>
+<li><p>如果底层使用 MySQL 数据库：相当于 identity</p>
+</li>
+<li><p>如果底层使用 Oracle 数据库：相当于 sequence</p>
+</li>
+</ul>
+<h3 id="assigned"><a href="#assigned" class="headerlink" title="assigned"></a>assigned</h3><p>主键的生成不用 Hibernate 管理了。必须手动设置主键。    </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">p.setPid(<span class="string">"abc"</span>);</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="Hibernate-持久化对象的状态"><a href="#Hibernate-持久化对象的状态" class="headerlink" title="Hibernate 持久化对象的状态"></a>Hibernate 持久化对象的状态</h1><hr>
+<h2 id="持久化对象的状态"><a href="#持久化对象的状态" class="headerlink" title="持久化对象的状态"></a>持久化对象的状态</h2><p>Hibernate 为了管理持久化类：将持久化类分成了三个状态</p>
+<ul>
+<li>瞬时态：Transient  Object</li>
+<li><ul>
+<li>没有持久化标识 OID，没有被纳入到 Session 对象的管理。</li>
+</ul>
+</li>
+<li><p>持久态：Persistent Object</p>
+</li>
+<li><ul>
+<li>有持久化标识 OID，已经被纳入到 Session 对象的管理。</li>
+</ul>
+</li>
+<li><p>脱管态：Detached Object</p>
+</li>
+<li><ul>
+<li>有持久化标识 OID，没有被纳入到 Session 对象的管理。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 持久化对象的状态</div><div class="line"> */</div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run3</span><span class="params">()</span> </span>&#123;</div><div class="line">    Session session = HibernateUtils.getSession();</div><div class="line">    Transaction tr = session.beginTransaction();</div><div class="line"></div><div class="line">    <span class="comment">// 瞬时态：没有 OID 的值，也没有被 session 管理，此时 user 对象是瞬时态对象</span></div><div class="line">    User user=<span class="keyword">new</span> User();</div><div class="line">    user.setName(<span class="string">"空空"</span>);</div><div class="line">    user.setAge(<span class="number">18</span>);</div><div class="line"></div><div class="line">    <span class="comment">// 此时 user 中已经有 id 值了，默认的情况下，把 user 对象也保存到 session 的缓存中</span></div><div class="line">    session.save(user);</div><div class="line">    System.out.println(user.getId());</div><div class="line">    <span class="comment">// 此时，user 是持久化对象</span></div><div class="line"></div><div class="line">    tr.commit();</div><div class="line">    <span class="comment">// session 销毁，缓存没有了</span></div><div class="line">    session.close();</div><div class="line">    <span class="comment">// 此时 user 对象存在 id 值，但是 session 销毁了，缓存不存在了，session 不管理 user 对象了</span></div><div class="line">    <span class="comment">// user 是托管态对象</span></div><div class="line">    System.out.println(user.getId());</div><div class="line">    System.out.println(user.getName());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>控制台输出的结果：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Hibernate: </div><div class="line">    <span class="function">select</span></div><div class="line">        <span class="title">max</span><span class="params">(id)</span> </div><div class="line">    from</div><div class="line">        t_user</div><div class="line">2           <span class="comment">// 此时的 user 有 id 值，并且被 session 管理，证明 user 是持久态对象</span></div><div class="line">Hibernate: </div><div class="line">    insert </div><div class="line">    into</div><div class="line">        <span class="title">t_user</span></div><div class="line">        <span class="params">(name, age, id)</span> </div><div class="line">    <span class="title">values</span></div><div class="line">        <span class="params">(?, ?, ?)</span></div><div class="line">2           <span class="comment">// 此时 session 已经销毁，但是 user 还有 id 值，证明 user 是托管态对象</span></div><div class="line">空空</div></pre></td></tr></table></figure>
+<h2 id="Hibernate-持久化对象状态的转换"><a href="#Hibernate-持久化对象状态的转换" class="headerlink" title="Hibernate 持久化对象状态的转换"></a>Hibernate 持久化对象状态的转换</h2><h3 id="瞬时态"><a href="#瞬时态" class="headerlink" title="瞬时态"></a>瞬时态</h3><ul>
+<li>获得瞬时态的对象</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">User user = <span class="keyword">new</span> User()</div></pre></td></tr></table></figure>
+<ul>
+<li>瞬时态对象转换持久态</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">save();</div><div class="line">或者</div><div class="line">saveOrUpdate();</div></pre></td></tr></table></figure>
+<ul>
+<li>瞬时态对象转换成脱管态</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">user.setId(<span class="number">1</span>)</div></pre></td></tr></table></figure>
+<h3 id="持久态"><a href="#持久态" class="headerlink" title="持久态"></a>持久态</h3><ul>
+<li>获得持久态的对象</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">get();</div><div class="line">或者</div><div class="line">load();</div></pre></td></tr></table></figure>
+<ul>
+<li>持久态转换成瞬时态对象</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">delete();  <span class="comment">// 比较有争议的，进入特殊的状态（删除态：Hibernate 中不建议使用的）</span></div></pre></td></tr></table></figure>
+<ul>
+<li>持久态对象转成脱管态对象</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">session.close()/evict()/clear();</div></pre></td></tr></table></figure>
+<h3 id="脱管态"><a href="#脱管态" class="headerlink" title="脱管态"></a>脱管态</h3><ul>
+<li>获得托管态对象:不建议直接获得脱管态的对象.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">User user = <span class="keyword">new</span> User();</div><div class="line">user.setId(<span class="number">1</span>);</div></pre></td></tr></table></figure>
+<ul>
+<li>脱管态对象转换成持久态对象</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">update();或者</div><div class="line">saveOrUpdate();或者</div><div class="line">lock();</div></pre></td></tr></table></figure>
+<ul>
+<li>脱管态对象转换成瞬时态对象</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">user.setId(<span class="keyword">null</span>);</div></pre></td></tr></table></figure>
+<p><strong>注意：</strong> 持久态对象有自动更新数据库的能力！！</p>
+<p>持久态对象自动更新数据库：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 持久态对象自动更新数据库</div><div class="line"> */</div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run4</span><span class="params">()</span> </span>&#123;</div><div class="line">    Session session = HibernateUtils.getSession();</div><div class="line">    Transaction tr = session.beginTransaction();</div><div class="line"></div><div class="line">    <span class="comment">// user 是持久态对象，有自动更新数据库的能力</span></div><div class="line">    User user = session.get(User.class, <span class="number">1</span>);</div><div class="line">    <span class="comment">// 重新设置名称</span></div><div class="line">    user.setName(<span class="string">"天才"</span>);</div><div class="line"></div><div class="line">    <span class="comment">// session.update(user);</span></div><div class="line"></div><div class="line">    tr.commit();</div><div class="line">    session.close();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面代码注释掉了 <code>session.update(user);</code> 方法，但是数据库依旧更新了，SQL 语句也正常执行了。</p>
+<p>控制台输出结果（没调用 update，但是执行了 update 语句。原因是因为一级缓存的存在。）：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">Hibernate: </div><div class="line">    <span class="keyword">select</span></div><div class="line">        user0_.id <span class="keyword">as</span> id1_1_0_,</div><div class="line">        user0_.name <span class="keyword">as</span> name2_1_0_,</div><div class="line">        user0_.age <span class="keyword">as</span> age3_1_0_ </div><div class="line">    <span class="keyword">from</span></div><div class="line">        t_user user0_ </div><div class="line">    <span class="keyword">where</span></div><div class="line">        user0_.id=?</div><div class="line">Hibernate: </div><div class="line">    <span class="keyword">update</span></div><div class="line">        t_user </div><div class="line">    <span class="keyword">set</span></div><div class="line">        <span class="keyword">name</span>=?,</div><div class="line">        age=? </div><div class="line">    <span class="keyword">where</span></div><div class="line">        <span class="keyword">id</span>=?</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="Hibernate-的一级缓存"><a href="#Hibernate-的一级缓存" class="headerlink" title="Hibernate 的一级缓存"></a>Hibernate 的一级缓存</h1><hr>
+<h2 id="Session-对象的一级缓存（重点）"><a href="#Session-对象的一级缓存（重点）" class="headerlink" title="Session 对象的一级缓存（重点）"></a>Session 对象的一级缓存（重点）</h2><h3 id="什么是缓存？"><a href="#什么是缓存？" class="headerlink" title="什么是缓存？"></a>什么是缓存？</h3><p>其实就是一块内存空间，将数据源（数据库或者文件）中的数据存放到缓存中。再次获取的时候，直接从缓存中获取。可以提升程序的性能！</p>
+<h3 id="Hibernate-框架提供了两种缓存"><a href="#Hibernate-框架提供了两种缓存" class="headerlink" title="Hibernate 框架提供了两种缓存"></a>Hibernate 框架提供了两种缓存</h3><p>一级缓存</p>
+<ul>
+<li>自带的不可卸载的。一级缓存的生命周期与 session 一致。一级缓存称为 session 级别的缓存。</li>
+</ul>
+<p>二级缓存（有更好的替代品）</p>
+<ul>
+<li>默认没有开启，需要手动配置才可以使用的。二级缓存可以在多个 session 中共享数据，二级缓存称为是 sessionFactory 级别的缓存。</li>
+</ul>
+<h3 id="Session-对象的缓存概述"><a href="#Session-对象的缓存概述" class="headerlink" title="Session 对象的缓存概述"></a>Session 对象的缓存概述</h3><ul>
+<li><p>Session 接口中，有一系列的 java 的集合，这些 java 集合构成了 Session 级别的缓存（一级缓存），将对象存入到一级缓存中，session 没有结束生命周期，那么对象在 session 中存放着</p>
+</li>
+<li><p>内存中包含 Session 实例 –&gt; Session 的缓存（一些集合） –&gt; 集合中包含的是缓存对象！</p>
+</li>
+</ul>
+<h3 id="证明一级缓存的存在，编写查询的代码即可证明"><a href="#证明一级缓存的存在，编写查询的代码即可证明" class="headerlink" title="证明一级缓存的存在，编写查询的代码即可证明"></a>证明一级缓存的存在，编写查询的代码即可证明</h3><ul>
+<li>在同一个 Session 对象中两次查询，可以证明使用了缓存。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 证明一级缓存的存在</div><div class="line"> */</div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run5</span><span class="params">()</span> </span>&#123;</div><div class="line">    Session session = HibernateUtils.getSession();</div><div class="line">    Transaction tr = session.beginTransaction();</div><div class="line"></div><div class="line">    User user = <span class="keyword">new</span> User();</div><div class="line">    user.setName(<span class="string">"天行健"</span>);</div><div class="line"></div><div class="line">    <span class="comment">// 保存用户，user 已经存入到 session 的缓存中</span></div><div class="line">    <span class="comment">// id 是生成的 id</span></div><div class="line">    Serializable id = session.save(user);</div><div class="line">    System.out.println(id);</div><div class="line"></div><div class="line">    <span class="comment">// 获取对象，不会看到 SQL 语句</span></div><div class="line">    User user2 = session.get(User.class, id);</div><div class="line">    System.out.println(user2.getName());</div><div class="line"></div><div class="line">    tr.commit();</div><div class="line">    session.close();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>控制台输出结果：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Hibernate: </div><div class="line">    <span class="keyword">insert</span> </div><div class="line">    <span class="keyword">into</span></div><div class="line">        t_user</div><div class="line">        (<span class="keyword">name</span>, age) </div><div class="line">    <span class="keyword">values</span></div><div class="line">        (?, ?)</div><div class="line"><span class="number">4</span></div><div class="line">天行健</div></pre></td></tr></table></figure>
+<p><strong>分析：</strong> 获取对象的时候没有查询的 SQL 语句执行，说明 session 是从缓存中获取对象的。证明 session 一级缓存的存在。</p>
+<h3 id="Hibernate框架是如何做到数据发生变化时进行同步操作的呢？"><a href="#Hibernate框架是如何做到数据发生变化时进行同步操作的呢？" class="headerlink" title="Hibernate框架是如何做到数据发生变化时进行同步操作的呢？"></a>Hibernate框架是如何做到数据发生变化时进行同步操作的呢？</h3><ul>
+<li><p>使用 get 方法查询 User 对象</p>
+</li>
+<li><p>然后设置 User 对象的一个属性，注意：没有做 update 操作。发现，数据库中的记录也改变了。</p>
+</li>
+<li><p>利用快照机制来完成的（SnapShot）</p>
+</li>
+</ul>
+<h3 id="控制Session的一级缓存（了解）"><a href="#控制Session的一级缓存（了解）" class="headerlink" title="控制Session的一级缓存（了解）"></a>控制Session的一级缓存（了解）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Session.clear(); <span class="comment">// 清空缓存。</span></div><div class="line">Session.evict(Object entity); <span class="comment">// 从一级缓存中清除指定的实体对象。</span></div><div class="line">Session.flush(); <span class="comment">// 刷出缓存</span></div></pre></td></tr></table></figure>
+<hr>
+<h1 id="Hibernate中的事务与并发"><a href="#Hibernate中的事务与并发" class="headerlink" title="Hibernate中的事务与并发"></a>Hibernate中的事务与并发</h1><hr>
+<h2 id="事务相关的概念"><a href="#事务相关的概念" class="headerlink" title="事务相关的概念**"></a>事务相关的概念**</h2><h3 id="什么是事务"><a href="#什么是事务" class="headerlink" title="什么是事务"></a>什么是事务</h3><ul>
+<li>事务就是逻辑上的一组操作，组成事务的各个执行单元，操作要么全都成功，要么全都失败.</li>
+<li>转账的例子：扣钱，加钱。两个操作组成了一个事情！</li>
+</ul>
+<h3 id="事务的特性"><a href="#事务的特性" class="headerlink" title="事务的特性"></a>事务的特性</h3><ul>
+<li>原子性    – 事务不可分割。</li>
+<li>一致性    – 事务执行的前后数据的完整性保持一致。</li>
+<li>隔离性    – 一个事务执行的过程中，不应该受到其他的事务的干扰。</li>
+<li>持久性    – 事务一旦提交，数据就永久保持到数据库中。</li>
+</ul>
+<h3 id="如果不考虑隔离性：引发一些读的问题"><a href="#如果不考虑隔离性：引发一些读的问题" class="headerlink" title="如果不考虑隔离性：引发一些读的问题"></a>如果不考虑隔离性：引发一些读的问题</h3><ul>
+<li><p>脏读            – 一个事务读到了另一个事务未提交的数据。</p>
+</li>
+<li><p>不可重复读            – 一个事务读到了另一个事务已经提交的 update 数据，导致多次查询结果不一致。</p>
+</li>
+<li><p>虚读            – 一个事务读到了另一个事务已经提交的 insert 数据，导致多次查询结构不一致。</p>
+</li>
+</ul>
+<h3 id="设置隔离级别"><a href="#设置隔离级别" class="headerlink" title="设置隔离级别"></a>设置隔离级别</h3><p>通过设置数据库的隔离级别来解决上述读的问题</p>
+<ul>
+<li><p>未提交读：以上的读的问题都有可能发生。</p>
+</li>
+<li><p>已提交读：避免脏读，但是不可重复读，虚读都有可能发生。</p>
+</li>
+<li><p>可重复读：避免脏读，不可重复读。但是虚读是有可能发生。</p>
+</li>
+<li><p>串行化：以上读的情况都可以避免。</p>
+</li>
+</ul>
+<p>如果想在 Hibernate 的框架中来设置隔离级别，需要在 <code>hibernate.cfg.xml</code> 的配置文件中通过标签来配置（默认隔离级别是 4）：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.connection.isolation"</span>&gt;</span>4<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>通过：<code>hibernate.connection.isolation = 4</code> 来配置，取值如下：</p>
+<ul>
+<li>1 — Read uncommitted isolation</li>
+<li>2 — Read committed isolation</li>
+<li>4 — Repeatable read isolation</li>
+<li>8 — Serializable isolation</li>
+</ul>
+<h2 id="丢失更新的问题"><a href="#丢失更新的问题" class="headerlink" title="丢失更新的问题"></a>丢失更新的问题</h2><p>如果不考虑隔离性，也会产生写入数据的问题，这一类的问题叫丢失更新的问题。</p>
+<p>例如：两个事务同时对某一条记录做修改，就会引发丢失更新的问题。</p>
+<ul>
+<li><p>A事务和B事务同时获取到一条数据，同时再做修改</p>
+</li>
+<li><p>如果A事务修改完成后，提交了事务</p>
+</li>
+<li><p>B事务修改完成后，不管是提交还是回滚，如果不做处理，都会对数据产生影响</p>
+</li>
+</ul>
+<h3 id="丢失更新问题演示"><a href="#丢失更新问题演示" class="headerlink" title="丢失更新问题演示"></a>丢失更新问题演示</h3><p>更新前的数据库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select * from t_user;</div><div class="line">+----+-----------+------+</div><div class="line">| id | name      | age  |</div><div class="line">+----+-----------+------+</div><div class="line">|  1 | 天才      |   18 |</div><div class="line">|  2 | 空空      |   18 |</div><div class="line">+----+-----------+------+</div><div class="line">4 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.01 sec)</div></pre></td></tr></table></figure>
+<p>假设 runA 方法和 runB() 方法同时对 t_user 表进行修改，同时查询到 id = 1 的用户（需加断点），对其进行修改。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 丢失更新1</div><div class="line"> */</div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">runA</span><span class="params">()</span> </span>&#123;</div><div class="line">    Session session = HibernateUtils.getSession();</div><div class="line">    Transaction tr = session.beginTransaction();</div><div class="line"></div><div class="line">    User user = session.get(User.class, <span class="number">1</span>);</div><div class="line">    <span class="comment">// 修改 id = 1 的用户名为白蛇</span></div><div class="line">    user.setName(<span class="string">"白蛇"</span>);</div><div class="line"></div><div class="line">    tr.commit();</div><div class="line">    session.close();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 丢失更新2</div><div class="line"> */</div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">runB</span><span class="params">()</span> </span>&#123;</div><div class="line">    Session session = HibernateUtils.getSession();</div><div class="line">    Transaction tr = session.beginTransaction();</div><div class="line"></div><div class="line">    User user = session.get(User.class, <span class="number">1</span>);</div><div class="line">    <span class="comment">// 修改 id = 1 的用户年龄为 88 </span></div><div class="line">    user.setAge(<span class="number">88</span>);</div><div class="line"></div><div class="line">    tr.commit();</div><div class="line">    session.close();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>分析：假设 runA 方法先提交，那么数据库中的数据为：</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select * from t_user;</div><div class="line">+----+-----------+------+</div><div class="line">| id | name      | age  |</div><div class="line">+----+-----------+------+</div><div class="line">|  1 | 白蛇      |   18 |</div><div class="line">|  2 | 空空      |   18 |</div><div class="line">+----+-----------+------+</div><div class="line">4 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.01 sec)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>分析：runA 提交之后，runB 提交，则此时数据库中数据为：</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select * from t_user;</div><div class="line">+----+-----------+------+</div><div class="line">| id | name      | age  |</div><div class="line">+----+-----------+------+</div><div class="line">|  1 | 天才      |   88 |</div><div class="line">|  2 | 空空      |   18 |</div><div class="line">+----+-----------+------+</div><div class="line">4 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.01 sec)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>分析：最后数据库中的数据只是 runB 修改的结果，而 runA 修改的结果“丢失了”，这就是丢失更新的问题。</p>
+</blockquote>
+<h3 id="丢失更新解决方案"><a href="#丢失更新解决方案" class="headerlink" title="丢失更新解决方案"></a>丢失更新解决方案</h3><h4 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h4><p>乐观锁采用 <code>版本号</code> 的机制来解决的。会给表结构添加一个字段 version = 0 ，默认值是 0</p>
+<ul>
+<li><p>当 A 事务在操作完该条记录，提交事务时，会先检查版本号，如果发生版本号的值相同时，才可以提交事务。同时会更新版本号 version = 1 。</p>
+</li>
+<li><p>当 B 事务操作完该条记录时，提交事务时，会先检查版本号，如果发现版本不同时，程序会出现错误。</p>
+</li>
+</ul>
+<h4 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h4><p>悲观锁采用的是数据库提供的一种锁机制，如果采用做了这种机制，在 SQL 语句的后面添加 for update 子句</p>
+<ul>
+<li>当 A 事务在操作该条记录时，会把该条记录锁起来，其他事务是不能操作这条记录的。</li>
+<li>只有当 A 事务提交后，锁释放了，其他事务才能操作该条记录</li>
+</ul>
+<h3 id="使用-Hibernate-框架解决丢失更新的问题"><a href="#使用-Hibernate-框架解决丢失更新的问题" class="headerlink" title="使用 Hibernate 框架解决丢失更新的问题"></a>使用 Hibernate 框架解决丢失更新的问题</h3><h4 id="悲观锁-1"><a href="#悲观锁-1" class="headerlink" title="悲观锁"></a>悲观锁</h4><ul>
+<li>使用session.get(Customer.class, 1,LockMode.UPGRADE); 方法</li>
+</ul>
+<h4 id="乐观锁-1"><a href="#乐观锁-1" class="headerlink" title="乐观锁"></a>乐观锁</h4><ul>
+<li>在对应的 JavaBean 中添加一个属性，名称可以是任意的。例如：<code>private Integer version</code>; 并提供 <code>get</code> 和 <code>set</code> 方法。</li>
+<li>在映射的配置文件中，提供 <code>&lt;version name=&quot;version&quot;/&gt;</code> 标签即可。</li>
+<li>注意 version 标签的编写位置。 </li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">class</span> <span class="attr">name</span>=<span class="string">"com.renkaigis.domain.User"</span> <span class="attr">table</span>=<span class="string">"t_user"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">name</span>=<span class="string">"id"</span> <span class="attr">column</span>=<span class="string">"id"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">generator</span> <span class="attr">class</span>=<span class="string">"native"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="comment">&lt;!--乐观锁，使用 version 标签--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">version</span> <span class="attr">name</span>=<span class="string">"version"</span>/&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">column</span>=<span class="string">"name"</span> <span class="attr">length</span>=<span class="string">"30"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"age"</span> <span class="attr">column</span>=<span class="string">"age"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">class</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="绑定本地的Session"><a href="#绑定本地的Session" class="headerlink" title="绑定本地的Session"></a>绑定本地的Session</h2><p>Hibernate 框架中，使用 session 对象开启事务，所以需要来传递 session 对象，框架提供了 ThreadLocal 的方式</p>
+<ul>
+<li>需要在 <code>hibernate.cfg.xml</code> 的配置文件中提供配置</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--开启绑定本地的 session--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.current_session_context_class"</span>&gt;</span>thread<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>重新编写 <code>HibernateUtils</code> 的工具类，使用 SessionFactory 的 getCurrentSession() 方法，获取当前的 Session 对象。并且该 Session 对象不用手动关闭，线程结束了，会自动关闭。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 业务层开事务</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Session <span class="title">getCurrentSession</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="comment">// 从 ThreadLocal 类中获取到 session 对象</span></div><div class="line">    <span class="keyword">return</span> FACTORY.getCurrentSession();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>注意：</strong> 想使用 <code>getCurrentSession()</code> 方法，必须要先配置才能使用。</p>
+<h3 id="演示绑定本地-session"><a href="#演示绑定本地-session" class="headerlink" title="演示绑定本地 session"></a>演示绑定本地 session</h3><h4 id="web层"><a href="#web层" class="headerlink" title="web层"></a>web层</h4><p>浏览器端发送请求，同时新增两个用户。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SaveServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</div><div class="line">        User u1 = <span class="keyword">new</span> User();</div><div class="line">        u1.setName(<span class="string">"测试1"</span>);</div><div class="line"></div><div class="line">        User u2 = <span class="keyword">new</span> User();</div><div class="line">        u2.setName(<span class="string">"测试2"</span>);</div><div class="line"></div><div class="line">        <span class="keyword">new</span> UserService().save(u1, u2);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="业务层"><a href="#业务层" class="headerlink" title="业务层"></a>业务层</h4><p>业务层获取当前线程的 session，开启事务，调用 dao 保存用户，若发生异常则回滚。</p>
+<p>线程结束后 session 自动关闭。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserService</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">save</span><span class="params">(User u1, User u2)</span> </span>&#123;</div><div class="line">        UserDao dao = <span class="keyword">new</span> UserDao();</div><div class="line">        Session session = HibernateUtils.getCurrentSession();</div><div class="line">        Transaction tr = session.beginTransaction();</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            dao.save1(u1);</div><div class="line">            <span class="comment">// int a = 10 / 0;</span></div><div class="line">            dao.save2(u2);</div><div class="line">            tr.commit();</div><div class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">            <span class="comment">// 出现问题，回滚事务</span></div><div class="line">            tr.rollback();</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            <span class="comment">// session.close();</span></div><div class="line">            <span class="comment">// 以前需要自己释放资源</span></div><div class="line">            <span class="comment">// 现在 session 不用关闭，线程结束后 session 自动关闭。</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="持久层"><a href="#持久层" class="headerlink" title="持久层"></a>持久层</h4><p>获取当前 session，与业务层 session 保持一致，进行保存操作。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDao</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">save1</span><span class="params">(User u1)</span> </span>&#123;</div><div class="line">        Session session = HibernateUtils.getCurrentSession();</div><div class="line">        session.save(u1);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">save2</span><span class="params">(User u2)</span> </span>&#123;</div><div class="line">        Session session = HibernateUtils.getCurrentSession();</div><div class="line">        session.save(u2);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>访问 Servlet，数据添加完成。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select * from t_user;</div><div class="line">+----+---------+------+---------+</div><div class="line">| id | name    | age  | version |</div><div class="line">+----+---------+------+---------+</div><div class="line">|  1 | 天才    |   88 |       1 |</div><div class="line">|  2 | 空空    |   18 |       0 |</div><div class="line">|  7 | 测试1   | NULL |       0 |</div><div class="line">|  8 | 测试2   | NULL |       0 |</div><div class="line">+----+---------+------+---------+</div><div class="line">4 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</div></pre></td></tr></table></figure>
+      
+    </div>
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">--- The End&nbsp;&nbsp;<i class="fa fa-paw"></i>&nbsp;&nbsp;Thanks For Your Reading ---</div>
+    
+</div>
+  
+</div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文标题:</span><a href="/posts/JavaWeb/2018-05-30-JavaWeb-Hibernate03.html">JavaWeb 之 Hibernate 持久化类、缓存与事务</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 RenKai 的个人博客">RenKai</a></p>
+  <p><span>发布时间:</span>2018年05月30日 - 16:05</p>
+  <p><span>最后更新:</span>2018年05月30日 - 16:05</p>
+  <p><span>原始链接:</span><a href="/posts/JavaWeb/2018-05-30-JavaWeb-Hibernate03.html" title="JavaWeb 之 Hibernate 持久化类、缓存与事务">http://yoursite.com/posts/JavaWeb/2018-05-30-JavaWeb-Hibernate03.html</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/posts/JavaWeb/2018-05-30-JavaWeb-Hibernate03.html"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({   
+          title: "",   
+          text: '复制成功',   
+          html: false,
+          timer: 500,   
+          showConfirmButton: false
+        });
+      });
+    }));  
+</script>
+
+      
+</div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>宠辱不惊，看庭前花开花落；去留无意，望天上云卷云舒。　</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="RenKai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.png" alt="RenKai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaWeb/" rel="tag"><i class="fa fa-tag"></i> JavaWeb</a>
+          
+            <a href="/tags/Hibernate/" rel="tag"><i class="fa fa-tag"></i> Hibernate</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/JavaWeb/2018-05-30-JavaWeb-Hibernate02.html" rel="next" title="JavaWeb 之 Hibernate 配置及接口">
+                <i class="fa fa-chevron-left"></i> JavaWeb 之 Hibernate 配置及接口
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yOTc3Ni82MzQy"></div>
+    
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="RenKai" />
+          <p class="site-author-name" itemprop="name">RenKai</p>
+           
+              <p class="site-description motion-element" itemprop="description">一枚想成为技术控的菜鸟</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/renkaigis" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/renkai123" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/renkaigis" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-crosshairs"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/f44c72ff4b81/timeline" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-heartbeat"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:renkaigis@163.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友链
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.renkaigis.com/KeepCoding/" title="Plan - KeepCoding" target="_blank">Plan - KeepCoding</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.renkaigis.com/KeepEveryDay/" title="Plan - KeepEveryDay" target="_blank">Plan - KeepEveryDay</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://weijuanran.cn/" title="Weijuanran's Blog" target="_blank">Weijuanran's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://blog.jiangyayu.cn/" title="Alex's Blog" target="_blank">Alex's Blog</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=29999506&auto=1&height=66"></iframe>
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hibernate-的持久化类"><span class="nav-number">1.</span> <span class="nav-text">Hibernate 的持久化类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是持久化类"><span class="nav-number">1.1.</span> <span class="nav-text">什么是持久化类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#持久化类的编写规则"><span class="nav-number">1.2.</span> <span class="nav-text">持久化类的编写规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区分自然主键和代理主键"><span class="nav-number">1.3.</span> <span class="nav-text">区分自然主键和代理主键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主键的生成策略"><span class="nav-number">1.4.</span> <span class="nav-text">主键的生成策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#increment"><span class="nav-number">1.4.1.</span> <span class="nav-text">increment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#identity"><span class="nav-number">1.4.2.</span> <span class="nav-text">identity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sequence"><span class="nav-number">1.4.3.</span> <span class="nav-text">sequence</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#uuid-★"><span class="nav-number">1.4.4.</span> <span class="nav-text">uuid ★</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#native-★"><span class="nav-number">1.4.5.</span> <span class="nav-text">native ★</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#assigned"><span class="nav-number">1.4.6.</span> <span class="nav-text">assigned</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hibernate-持久化对象的状态"><span class="nav-number">2.</span> <span class="nav-text">Hibernate 持久化对象的状态</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#持久化对象的状态"><span class="nav-number">2.1.</span> <span class="nav-text">持久化对象的状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hibernate-持久化对象状态的转换"><span class="nav-number">2.2.</span> <span class="nav-text">Hibernate 持久化对象状态的转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#瞬时态"><span class="nav-number">2.2.1.</span> <span class="nav-text">瞬时态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#持久态"><span class="nav-number">2.2.2.</span> <span class="nav-text">持久态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#脱管态"><span class="nav-number">2.2.3.</span> <span class="nav-text">脱管态</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hibernate-的一级缓存"><span class="nav-number">3.</span> <span class="nav-text">Hibernate 的一级缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Session-对象的一级缓存（重点）"><span class="nav-number">3.1.</span> <span class="nav-text">Session 对象的一级缓存（重点）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是缓存？"><span class="nav-number">3.1.1.</span> <span class="nav-text">什么是缓存？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hibernate-框架提供了两种缓存"><span class="nav-number">3.1.2.</span> <span class="nav-text">Hibernate 框架提供了两种缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Session-对象的缓存概述"><span class="nav-number">3.1.3.</span> <span class="nav-text">Session 对象的缓存概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#证明一级缓存的存在，编写查询的代码即可证明"><span class="nav-number">3.1.4.</span> <span class="nav-text">证明一级缓存的存在，编写查询的代码即可证明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hibernate框架是如何做到数据发生变化时进行同步操作的呢？"><span class="nav-number">3.1.5.</span> <span class="nav-text">Hibernate框架是如何做到数据发生变化时进行同步操作的呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制Session的一级缓存（了解）"><span class="nav-number">3.1.6.</span> <span class="nav-text">控制Session的一级缓存（了解）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hibernate中的事务与并发"><span class="nav-number">4.</span> <span class="nav-text">Hibernate中的事务与并发</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#事务相关的概念"><span class="nav-number">4.1.</span> <span class="nav-text">事务相关的概念**</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是事务"><span class="nav-number">4.1.1.</span> <span class="nav-text">什么是事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务的特性"><span class="nav-number">4.1.2.</span> <span class="nav-text">事务的特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果不考虑隔离性：引发一些读的问题"><span class="nav-number">4.1.3.</span> <span class="nav-text">如果不考虑隔离性：引发一些读的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置隔离级别"><span class="nav-number">4.1.4.</span> <span class="nav-text">设置隔离级别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#丢失更新的问题"><span class="nav-number">4.2.</span> <span class="nav-text">丢失更新的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#丢失更新问题演示"><span class="nav-number">4.2.1.</span> <span class="nav-text">丢失更新问题演示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#丢失更新解决方案"><span class="nav-number">4.2.2.</span> <span class="nav-text">丢失更新解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#乐观锁"><span class="nav-number">4.2.2.1.</span> <span class="nav-text">乐观锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#悲观锁"><span class="nav-number">4.2.2.2.</span> <span class="nav-text">悲观锁</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-Hibernate-框架解决丢失更新的问题"><span class="nav-number">4.2.3.</span> <span class="nav-text">使用 Hibernate 框架解决丢失更新的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#悲观锁-1"><span class="nav-number">4.2.3.1.</span> <span class="nav-text">悲观锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#乐观锁-1"><span class="nav-number">4.2.3.2.</span> <span class="nav-text">乐观锁</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绑定本地的Session"><span class="nav-number">4.3.</span> <span class="nav-text">绑定本地的Session</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#演示绑定本地-session"><span class="nav-number">4.3.1.</span> <span class="nav-text">演示绑定本地 session</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#web层"><span class="nav-number">4.3.1.1.</span> <span class="nav-text">web层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#业务层"><span class="nav-number">4.3.1.2.</span> <span class="nav-text">业务层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#持久层"><span class="nav-number">4.3.1.3.</span> <span class="nav-text">持久层</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <center>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+<div class="copyright" >
+  <span><a href="http://www.miitbeian.gov.cn/" target="_blank">陕ICP备17015858号</a></span>&nbsp;
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-flash"></i>
+  </span>Powered By - 
+  <span class="author" itemprop="copyrightHolder" ><a class="theme-link" href="http://renkaigis.com">RenKai</a></span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数：<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<div class="powered-by">
+<span class="site-pv">
+<i class="fa fa-eye"></i> 
+  访问次数：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+</div>
+
+
+
+<div class="theme-info">
+<i class="fa fa-pencil"></i> 
+  <span class="post-count">全站共 43.6k</span> 字
+</div>
+
+<center>
+
+<!--
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+-->
+
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (search_path.endsWith("json")) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("UmN2zDPRHzd28CBIusNcb55r-gzGzoHsz", "y8w2I87XXk00wTQhj8v8vxRD");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

@@ -4,8 +4,74 @@
 
     
   <url>
+    <loc>http://renkaigis.com/posts/JavaWeb/2018-05-30-JavaWeb-Hibernate01.html</loc>
+    <lastmod>2018-05-30T08:50:37.437Z</lastmod>
+    <data>
+        <display>
+        <title>JavaWeb 之 Hibernate 快速入门</title>
+        <pubTime>2018-05-30T08:23:19.000Z</pubTime>
+        
+        <tag>JavaWeb</tag>
+         
+        <tag>Hibernate</tag>
+         
+         
+           
+             
+              <breadCrumb title="JavaWeb" url="http://yoursite.com/categories/JavaWeb/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://renkaigis.com/posts/JavaWeb/2018-05-30-JavaWeb-Hibernate02.html</loc>
+    <lastmod>2018-05-30T08:49:49.841Z</lastmod>
+    <data>
+        <display>
+        <title>JavaWeb 之 Hibernate 配置及接口</title>
+        <pubTime>2018-05-30T08:33:19.000Z</pubTime>
+        
+        <tag>JavaWeb</tag>
+         
+        <tag>Hibernate</tag>
+         
+         
+           
+             
+              <breadCrumb title="JavaWeb" url="http://yoursite.com/categories/JavaWeb/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://renkaigis.com/posts/JavaWeb/2018-05-30-JavaWeb-Hibernate03.html</loc>
+    <lastmod>2018-05-30T08:47:20.046Z</lastmod>
+    <data>
+        <display>
+        <title>JavaWeb 之 Hibernate 持久化类、缓存与事务</title>
+        <pubTime>2018-05-30T08:43:19.000Z</pubTime>
+        
+        <tag>JavaWeb</tag>
+         
+        <tag>Hibernate</tag>
+         
+         
+           
+             
+              <breadCrumb title="JavaWeb" url="http://yoursite.com/categories/JavaWeb/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://renkaigis.com/posts/JavaWeb/2018-05-28-JavaWeb-idea-new-web-project.html</loc>
-    <lastmod>2018-05-28T14:15:54.397Z</lastmod>
+    <lastmod>2018-05-30T08:35:51.229Z</lastmod>
     <data>
         <display>
         <title>JavaWeb 之 idea 新建部署 JavaWeb 项目</title>

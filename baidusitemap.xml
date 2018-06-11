@@ -3,6 +3,50 @@
 
 
     
+  <url>
+    <loc>http://renkaigis.com/posts/JavaWeb/2018-06-05-JavaWeb-Hibernate05.html</loc>
+    <lastmod>2018-06-11T02:52:57.674Z</lastmod>
+    <data>
+        <display>
+        <title>JavaWeb 之 Hibernate 查询方式与策略优化</title>
+        <pubTime>2018-06-05T07:21:45.000Z</pubTime>
+        
+        <tag>JavaWeb</tag>
+         
+        <tag>Hibernate</tag>
+         
+         
+           
+             
+              <breadCrumb title="JavaWeb" url="http://yoursite.com/categories/JavaWeb/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://renkaigis.com/posts/JavaWeb/2018-06-01-JavaWeb-Hibernate04.html</loc>
+    <lastmod>2018-06-11T02:50:56.199Z</lastmod>
+    <data>
+        <display>
+        <title>JavaWeb 之 Hibernate 关联关系映射</title>
+        <pubTime>2018-06-01T10:45:37.000Z</pubTime>
+        
+        <tag>JavaWeb</tag>
+         
+        <tag>Hibernate</tag>
+         
+         
+           
+             
+              <breadCrumb title="JavaWeb" url="http://yoursite.com/categories/JavaWeb/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>http://renkaigis.com/posts/JavaWeb/2018-05-30-JavaWeb-Hibernate01.html</loc>

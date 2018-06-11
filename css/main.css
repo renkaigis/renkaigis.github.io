@@ -401,7 +401,7 @@ table>tbody>tr:nth-of-type(odd) {
   background-color: #f9f9f9;
 }
 table>tbody>tr:hover {
-  background-color: #73c7f1;
+  background-color: #f5f5f5;
 }
 caption,
 th,
@@ -1216,7 +1216,7 @@ pre .javascript .function {
   margin-left: -2px;
   width: 4px;
   height: 100%;
-  background: #73c7f1;
+  background: #f5f5f5;
   z-index: -1;
 }
 @media (max-width: 767px) {
@@ -1945,7 +1945,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffa3ff;
+  background: #21ffff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -1975,7 +1975,7 @@ img:hover {
   color: #1d1b1b;
 }
 .sidebar-nav li:hover {
-  color: #73c7f1;
+  color: #f5f5f5;
 }
 .page-post-detail .sidebar-nav-toc {
   padding: 0 5px;
@@ -2742,7 +2742,7 @@ hr {
   margin-top: 80px;
 }
 .header {
-  background: #73c7f1;
+  background: #f5f5f5;
 }
 .header-inner {
   padding: 25px 0 20px;
@@ -2936,7 +2936,7 @@ hr {
 }
 .posts-expand .post-tags a {
   padding: 1px 5px;
-  background: #73c7f1;
+  background: #f5f5f5;
   border-bottom: none;
 }
 .posts-expand .post-tags a:hover {
@@ -3023,7 +3023,7 @@ hr {
 .footer {
   margin-top: 80px;
   padding: 10px 0;
-  background: #73c7f1;
+  background: #f5f5f5;
   color: #666;
 }
 .footer-inner {
@@ -3039,6 +3039,12 @@ hr {
 .site-subtitle {
   font-size: 15px;
   color: #fff;
+}
+.header {
+  background: #f5f5f5;
+}
+.footer {
+  background: #f5f5f5;
 }
 .site-title {
   font-size: 35px;
@@ -3063,7 +3069,7 @@ a:hover {
   margin-top: 10px;
   margin-bottom: 40px;
   padding: 30px;
-  -webkit-box-shadow: 0 0 7px #73c7f1;
+  -webkit-box-shadow: 0 0 7px #a9a9a9;
 }
 .header-inner {
   font-family: 'Comic Sans MS', sans-serif;
@@ -3103,9 +3109,6 @@ strong {
 }
 blockquote {
   border-left: 5px solid #48d1cc;
-}
-.footer {
-  color: #555;
 }
 body {
   color: #444;

@@ -194,9 +194,9 @@
    page-home 
  ">
     <div class="headband"></div>
+ 
+   <a href="https://github.com/renkaigis"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 
-<a href="https://github.com/renkaigis"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
-   
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
@@ -325,6 +325,7 @@
 
  </div>
     </header>
+    
 
     <main id="main" class="main">
       <div class="main-inner">
@@ -332,6 +333,398 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/ArcGIS/2017-06-13-ArcGIS-Engine-map-basic-save-documents.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RenKai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="秋月春风等闲度">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/ArcGIS/2017-06-13-ArcGIS-Engine-map-basic-save-documents.html" itemprop="url">ArcGIS Engine 地图操作基础——地图文档保存</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-13T21:15:30+08:00">
+                2017-06-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ArcGIS/" itemprop="url" rel="index">
+                    <span itemprop="name">ArcGIS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/posts/ArcGIS/2017-06-13-ArcGIS-Engine-map-basic-save-documents.html#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://yoursite.com/posts/ArcGIS/2017-06-13-ArcGIS-Engine-map-basic-save-documents.html" class="cy_cmt_count" data-xid="posts/ArcGIS/2017-06-13-ArcGIS-Engine-map-basic-save-documents.html" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/posts/ArcGIS/2017-06-13-ArcGIS-Engine-map-basic-save-documents.html" class="leancloud_visitors" data-flag-title="ArcGIS Engine 地图操作基础——地图文档保存">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                                <span class="post-meta-divider">|</span>
+             </span>
+          
+
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">WordsCount</span>
+                
+                <span title="WordsCount">
+                  525
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p></p><p id="div-border-top-purple">在对地图文档进行修改后，经常需要对其进行保存。地图文档的保存分为直接保存和另存为两种。这里的保存仅仅只是修改地图文档文件记录的信息，并不会对数据进行更改。保存地图文档的一般格式是 *.mxd 格式。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/ArcGIS/2017-06-13-ArcGIS-Engine-map-basic-save-documents.html#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+<div>
+  
+</div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+</div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/Github/Hexo/2017-06-09-Hexo-Github-build-blog-so-easy.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RenKai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="秋月春风等闲度">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/posts/Github/Hexo/2017-06-09-Hexo-Github-build-blog-so-easy.html" itemprop="url">Hexo+Github 搭建个人博客（小白版图文教程）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-09T23:13:15+08:00">
+                2017-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Github/" itemprop="url" rel="index">
+                    <span itemprop="name">Github</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Github/Hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">Hexo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/posts/Github/Hexo/2017-06-09-Hexo-Github-build-blog-so-easy.html#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://yoursite.com/posts/Github/Hexo/2017-06-09-Hexo-Github-build-blog-so-easy.html" class="cy_cmt_count" data-xid="posts/Github/Hexo/2017-06-09-Hexo-Github-build-blog-so-easy.html" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/posts/Github/Hexo/2017-06-09-Hexo-Github-build-blog-so-easy.html" class="leancloud_visitors" data-flag-title="Hexo+Github 搭建个人博客（小白版图文教程）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                                <span class="post-meta-divider">|</span>
+             </span>
+          
+
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">WordsCount</span>
+                
+                <span title="WordsCount">
+                  1,976
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p></p><p id="div-border-left-red">本人技术小白，折腾了两天时间，看遍了网上各种各样杂乱的教程，走了很多弯路，终于成功搭建出来了个人博客。等到结束的那一刻，心里很是开心。回想这一整个步骤，其实并不难，很简单就能掌握。<br>有过经历，才知道好的教程的重要性。因而我将自己的经验分享出来~</p><p></p>
+<p><center><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1497031713267&amp;di=5c99dcb83022b7302b8c479e50fa82c4&amp;imgtype=0&amp;src=http%3A%2F%2Fwuchenxu.com%2F2015%2F11%2F04%2FStatic-Blog-hexo-github-1-Start%2Fhexo_github.png" alt=""><center><br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/posts/Github/Hexo/2017-06-09-Hexo-Github-build-blog-so-easy.html#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+<div>
+  
+</div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+</div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -409,6 +802,17 @@
 
 
           
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/posts/ArcGIS/2017-06-05-ArcGIS-Engine-map-basic-load-data.html#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://yoursite.com/posts/ArcGIS/2017-06-05-ArcGIS-Engine-map-basic-load-data.html" class="cy_cmt_count" data-xid="posts/ArcGIS/2017-06-05-ArcGIS-Engine-map-basic-load-data.html" itemprop="commentsCount" ></span>
+                </a>
+              
             
           
 
@@ -588,6 +992,17 @@
 
 
           
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/posts/Mine/2014-08-24-video-for-ansai-practical-activity.html#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://yoursite.com/posts/Mine/2014-08-24-video-for-ansai-practical-activity.html" class="cy_cmt_count" data-xid="posts/Mine/2014-08-24-video-for-ansai-practical-activity.html" itemprop="commentsCount" ></span>
+                </a>
+              
             
           
 
@@ -769,6 +1184,17 @@
 
           
             
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/posts/Mine/2014-03-01-i-love-dad-and-mom.html#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://yoursite.com/posts/Mine/2014-03-01-i-love-dad-and-mom.html" class="cy_cmt_count" data-xid="posts/Mine/2014-03-01-i-love-dad-and-mom.html" itemprop="commentsCount" ></span>
+                </a>
+              
+            
           
 
           
@@ -948,6 +1374,17 @@
 
 
           
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/posts/Mine/2014-01-01-video-for-lantianjingtu.html#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://yoursite.com/posts/Mine/2014-01-01-video-for-lantianjingtu.html" class="cy_cmt_count" data-xid="posts/Mine/2014-01-01-video-for-lantianjingtu.html" itemprop="commentsCount" ></span>
+                </a>
+              
             
           
 
@@ -1129,6 +1566,17 @@
 
           
             
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/posts/Mine/2013-08-03-view-of-muslim-funeral.html#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://yoursite.com/posts/Mine/2013-08-03-view-of-muslim-funeral.html" class="cy_cmt_count" data-xid="posts/Mine/2013-08-03-view-of-muslim-funeral.html" itemprop="commentsCount" ></span>
+                </a>
+              
+            
           
 
           
@@ -1308,6 +1756,17 @@
 
 
           
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/posts/Mine/2013-04-07-travel-to-yanan.html#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://yoursite.com/posts/Mine/2013-04-07-travel-to-yanan.html" class="cy_cmt_count" data-xid="posts/Mine/2013-04-07-travel-to-yanan.html" itemprop="commentsCount" ></span>
+                </a>
+              
             
           
 
@@ -1489,6 +1948,17 @@
 
           
             
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/posts/Mine/2012-12-30-happy-in-nwsuaf.html#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://yoursite.com/posts/Mine/2012-12-30-happy-in-nwsuaf.html" class="cy_cmt_count" data-xid="posts/Mine/2012-12-30-happy-in-nwsuaf.html" itemprop="commentsCount" ></span>
+                </a>
+              
+            
           
 
           
@@ -1669,6 +2139,17 @@
 
           
             
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/posts/Mine/2011-04-28-grow-up-18th.html#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://yoursite.com/posts/Mine/2011-04-28-grow-up-18th.html" class="cy_cmt_count" data-xid="posts/Mine/2011-04-28-grow-up-18th.html" itemprop="commentsCount" ></span>
+                </a>
+              
+            
           
 
           
@@ -1771,192 +2252,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/Mine/2009-01-18-novel-about-israeli-palestinian-war.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="RenKai">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="秋月春风等闲度">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/posts/Mine/2009-01-18-novel-about-israeli-palestinian-war.html" itemprop="url">『我不恨你们』——感巴以战争</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2009-01-18T11:33:09+08:00">
-                2009-01-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Mine/" itemprop="url" rel="index">
-                    <span itemprop="name">Mine</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-
-          
-            
-          
-
-          
-          
-             <span id="/posts/Mine/2009-01-18-novel-about-israeli-palestinian-war.html" class="leancloud_visitors" data-flag-title="『我不恨你们』——感巴以战争">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                                <span class="post-meta-divider">|</span>
-             </span>
-          
-
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">WordsCount</span>
-                
-                <span title="WordsCount">
-                  2,140
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><span id="inline-blue">搬运旧时文章。</span></p>
-<p>高中时期随便写的一个小说。 ——2017.08</p>
-<p id="div-border-top-purple"><strong>背景资料</strong><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;巴以（巴勒斯坦和以色列）冲突(The Israeli Palestinian Conflict)是中东地区冲突的热点之一，冲突的背后隐藏着深刻的历史根源，既有宗教的、文化的、民族的因素，更重要的是大国干预等外部因素，各种因素互相影响、激化，使得巴以冲突的复杂性非同一般。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2008年的平安夜，当哈马斯组织发射的50多枚火箭弹划破夜空，落在以色列南部后，几乎没有人会否认以色列将使用武力，但恐怕没人想到竟会是这样的规模：以色列对加沙地区发动大规模空袭和地面攻击造成数千人的伤亡。而以军也在战争中损失巨大。战争就在你攻我守的循环中持续到了2009年，原本就处于“冷对峙”状态的巴以局势，发展成全面的“热冲突”。这场战争，给巴以双方造成了难以估量的损失，尤其是两国人民所遭受的痛苦，一时是难以消除的。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/posts/Mine/2009-01-18-novel-about-israeli-palestinian-war.html#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-<div>
-  
-</div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-</div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2001,7 +2301,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -2176,7 +2476,7 @@
 
 <div class="theme-info">
 <i class="fa fa-pencil"></i> 
-  <span class="post-count">全站共 43.6k</span> 字
+  <span class="post-count">全站共 49.0k</span> 字
 </div>
 
 <center>
@@ -2320,18 +2620,11 @@
 
 
   
-    <script type="text/javascript">
-      (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-    </script>
-  
 
+
+  
+    <script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytEYq24O"></script>
+  
 
 
 

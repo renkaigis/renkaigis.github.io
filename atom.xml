@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-06-12T09:44:52.224Z</updated>
+  <updated>2018-06-12T09:46:13.422Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,11 +20,11 @@
     <link href="http://yoursite.com/posts/Mine/2018-06-11-novel-nverqing.html"/>
     <id>http://yoursite.com/posts/Mine/2018-06-11-novel-nverqing.html</id>
     <published>2018-06-11T12:05:27.000Z</published>
-    <updated>2018-06-12T09:44:52.224Z</updated>
+    <updated>2018-06-12T09:46:13.422Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><a id="more"></a>
-<p><div align="center"><br>那一年，他离开女儿国<br>她在城头似哭似笑<br>当着百官的面对着他的背影大喊<br>“唐玄奘，下辈子娶我可好？”<br>夕阳下，白衣骑白马<br>风沙漫天，看不见他的表情<br>僧人不语，只余风声喧嚣<br>这一年，他圆寂<br>千佛诵经，万众朝宗<br>他走的时候却只笑着留下一句：<br>“好！”<br></div></p>
-<p><div align="center"><span id="inline-red">未完待续…</span></div></p>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><br>那一年，他离开女儿国<br>她在城头似哭似笑<br>当着百官的面对着他的背影大喊<br>“唐玄奘，下辈子娶我可好？”<br>夕阳下，白衣骑白马<br>风沙漫天，看不见他的表情<br>僧人不语，只余风声喧嚣<br>这一年，他圆寂<br>千佛诵经，万众朝宗<br>他走的时候却只笑着留下一句：<br>“好！”<br></div><br><div align="center"><span id="inline-red">未完待续…</span></div>
+
+<a id="more"></a>
 <hr>
 
 <p>快开题了还不赶紧的！</p>
@@ -32,8 +32,7 @@
     
     <summary type="html">
     
-      &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css&quot;&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;&lt;div align=&quot;center&quot;&gt;
+      &lt;div align=&quot;center&quot;&gt;&lt;br&gt;那一年，他离开女儿国&lt;br&gt;她在城头似哭似笑&lt;br&gt;当着百官的面对着他的背影大喊&lt;br&gt;“唐玄奘，下辈子娶我可好？”&lt;br&gt;夕阳下，白衣骑白马&lt;br&gt;风沙漫天，看不见他的表情&lt;br&gt;僧人不语，只余风声喧嚣&lt;br&gt;这一年，他圆寂&lt;br&gt;千佛诵经，万众朝宗&lt;br&gt;他走的时候却只笑着留下一句：&lt;br&gt;“好！”&lt;br&gt;&lt;/div&gt;&lt;br&gt;&lt;div align=&quot;center&quot;&gt;&lt;span id=&quot;inline-red&quot;&gt;未完待续…&lt;/span&gt;&lt;/div&gt;
     
     </summary>
     

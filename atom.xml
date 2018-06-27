@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-06-12T09:46:13.422Z</updated>
+  <updated>2018-06-27T13:41:34.682Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,307 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JavaWeb 之 Struts2 快速入门</title>
+    <link href="http://yoursite.com/posts/JavaWeb/2018-06-27-JavaWeb-Struts201.html"/>
+    <id>http://yoursite.com/posts/JavaWeb/2018-06-27-JavaWeb-Struts201.html</id>
+    <published>2018-06-27T13:39:05.000Z</published>
+    <updated>2018-06-27T13:41:34.682Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/struts20100.png"></div>
+
+<p id="div-border-left-blue">Struts2 快速入门。</p>
+
+<a id="more"></a>
+<hr>
+<h3 id="案例一：使用Struts2框架完成登录功能"><a href="#案例一：使用Struts2框架完成登录功能" class="headerlink" title="案例一：使用Struts2框架完成登录功能"></a>案例一：使用Struts2框架完成登录功能</h3><hr>
+<p><strong>需求分析</strong></p>
+<pre><code>1. 使用Struts2完成登录的功能
+</code></pre><hr>
+<h1 id="Struts2-框架的概述"><a href="#Struts2-框架的概述" class="headerlink" title="Struts2 框架的概述"></a>Struts2 框架的概述</h1><hr>
+<h2 id="什么是Struts2的框架"><a href="#什么是Struts2的框架" class="headerlink" title="什么是Struts2的框架"></a>什么是Struts2的框架</h2><ul>
+<li>Struts2是Struts1的下一代产品，是在 struts1和WebWork的技术基础上进行了合并的全新的Struts 2框架。</li>
+<li>其全新的Struts 2的体系结构与Struts 1的体系结构差别巨大。</li>
+<li>Struts 2以WebWork为核心，采用拦截器的机制来处理用户的请求，这样的设计也使得业务逻辑控制器能够与ServletAPI完全脱离开，所以Struts 2可以理解为WebWork的更新产品。</li>
+<li>虽然从Struts 1到Struts 2有着太大的变化，但是相对于WebWork，Struts 2的变化很小。</li>
+</ul>
+<h2 id="Struts2是一个基于MVC设计模式的Web层框架"><a href="#Struts2是一个基于MVC设计模式的Web层框架" class="headerlink" title="Struts2是一个基于MVC设计模式的Web层框架"></a>Struts2是一个基于MVC设计模式的Web层框架</h2><ul>
+<li>MVC和JavaEE的三层结构<ul>
+<li>MVC设计模式:是由一些网站的开发人员提出来的</li>
+<li>JavaEE三层结构:SUN公司为EE开发划分的结构</li>
+</ul>
+</li>
+</ul>
+<h2 id="常见的Web层的框架"><a href="#常见的Web层的框架" class="headerlink" title="常见的Web层的框架"></a>常见的Web层的框架</h2><ul>
+<li>Struts1</li>
+<li>Struts2 <strong>★</strong></li>
+<li>Webwork</li>
+<li>SpringMVC <strong>★</strong></li>
+</ul>
+<h2 id="Web层框架的特点"><a href="#Web层框架的特点" class="headerlink" title="Web层框架的特点"></a>Web层框架的特点</h2><ul>
+<li>都是一个特点，前端控制器模式</li>
+<li>记住：前端控制器（核心的控制器）</li>
+<li>Struts2 框架前端的控制器就是过滤器</li>
+</ul>
+<hr>
+<h1 id="Struts2-快速入门"><a href="#Struts2-快速入门" class="headerlink" title="Struts2 快速入门"></a>Struts2 快速入门</h1><hr>
+<h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><h3 id="创建-WEB-项目"><a href="#创建-WEB-项目" class="headerlink" title="创建 WEB 项目"></a>创建 <code>WEB</code> 项目</h3><p>编写 <code>JSP</code> 的页面，编写超链接，点击超链接发送请求，请求服务器，让服务器的方法去执行！！</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>Struts2的入门程序<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"$&#123; pageContext.request.contextPath &#125;/hello.action"</span>&gt;</span>Struts2入门程序<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="下载-Struts2-的开发包"><a href="#下载-Struts2-的开发包" class="headerlink" title="下载 Struts2 的开发包"></a>下载 Struts2 的开发包</h3><ul>
+<li><a href="https://struts.apache.org/" target="_blank" rel="external">https://struts.apache.org/</a>        – 官网地址</li>
+</ul>
+<h3 id="解压struts-2-3-24-all-zip包"><a href="#解压struts-2-3-24-all-zip包" class="headerlink" title="解压struts-2.3.24-all.zip包"></a>解压struts-2.3.24-all.zip包</h3><ul>
+<li>解压后会看到有包和一些文件，大家需要掌握包相关的信息</li>
+</ul>
+<blockquote>
+<p>apps    – Struts2 框架提供了一些应用<br>libs    – Struts2 框架开发的 jar 包<br>docs    – Struts2 框架开发文档<br>src    – Struts2 框架源码</p>
+</blockquote>
+<h3 id="引入需要开发的-jar-包"><a href="#引入需要开发的-jar-包" class="headerlink" title="引入需要开发的 jar 包"></a>引入需要开发的 jar 包</h3><ul>
+<li>Struts2 框架的开发 <code>jar</code> 包非常多，但是不是所有都是必须要引入的，有一些必须要导入的 jar 包，这些 jar 包可以从 Struts2 框架提供的<code>应用</code>中找到。</li>
+<li>可以打开 <code>apps</code> 目录，然后找到 <code>struts2-blank.war</code> 应用。<code>war 包和</code>zip` 包的压缩格式是一样的，所以可以修改后缀名，解压。</li>
+<li>找到解压后的应用，打开 <code>WEB-INF/lib</code> 目录下所以的 <code>jar</code> 包。复制到工程中，就可以了。</li>
+</ul>
+<h3 id="配置-Struts2-的前端控制器"><a href="#配置-Struts2-的前端控制器" class="headerlink" title="配置 Struts2 的前端控制器"></a>配置 Struts2 的前端控制器</h3><p>注意：这一步是必须要做的操作，这是 <code>Struts2</code> 核心的控制器。</p>
+<ul>
+<li><code>Struts2</code> 的前端控制器就是一个过滤器，那么过滤器相关知识咱们都学习过，需要在 <code>web.xml</code> 中进行配置。</li>
+<li>前端控制器的类的路径和名称：<code>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</code></li>
+<li>具体配置如下</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>struts2<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>struts2<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="编写-Action-类"><a href="#编写-Action-类" class="headerlink" title="编写 Action 类"></a>编写 Action 类</h2><p><code>Action</code> 类是动作类，是 <code>Struts2</code> <code>处理请求</code>，<code>封装数据</code>，<code>响应页面</code>的<code>核心控制器</code>。需要自己编写。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Struts2 框架都是用 Action 类处理用户的请求</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloAction</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Action 类中的方法签名是有要求的，必须这么做</div><div class="line">     * public 共有的</div><div class="line">     * 必须有返回值，必须 String 类型</div><div class="line">     * 方法名称可以是任意的，但是不能有参数列表</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">sayHello</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"Hello Struts2!"</span>);</div><div class="line">        <span class="keyword">return</span> <span class="string">"OK"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="编写-Struts-的配置文件"><a href="#编写-Struts-的配置文件" class="headerlink" title="编写 Struts 的配置文件"></a>编写 Struts 的配置文件</h2><ol>
+<li>配置文件名称是 <code>struts.xml</code>（名称必须是struts.xml）</li>
+<li>在 <code>src</code> 下引入 <code>struts.xml</code> 配置文件（配置文件的路径必须是在 <code>src</code> 的目录下）</li>
+<li>配置如下</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line"></div><div class="line"><span class="meta">&lt;!DOCTYPE struts PUBLIC</span></div><div class="line">        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"</div><div class="line">        "http://struts.apache.org/dtds/struts-2.3.dtd"&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">struts</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"default"</span> <span class="attr">namespace</span>=<span class="string">"/"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!--配置 Action--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"hello"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.action.HelloAction"</span> <span class="attr">method</span>=<span class="string">"sayHello"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">package</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">struts</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="编写跳转"><a href="#编写跳转" class="headerlink" title="编写跳转"></a>编写跳转</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">struts</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"default"</span> <span class="attr">namespace</span>=<span class="string">"/"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"hello"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.action.HelloAction"</span> <span class="attr">method</span>=<span class="string">"sayHello"</span>&gt;</span></div><div class="line">            <span class="comment">&lt;!--配置跳转的页面，路径的写法。在 Struts2 框架中，不管是转发还是重定向，都不用写项目名--&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"OK"</span>&gt;</span>/demo1/success.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">action</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">package</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">struts</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="总结-Struts2-执行流程"><a href="#总结-Struts2-执行流程" class="headerlink" title="总结 Struts2 执行流程"></a>总结 Struts2 执行流程</h2><h3 id="执行的流程"><a href="#执行的流程" class="headerlink" title="执行的流程"></a>执行的流程</h3><ul>
+<li><p>编写的页面，点击超链接，请求提交到服务器端。</p>
+</li>
+<li><p>请求会先经过 <code>Struts2</code> 的核心过滤器（<code>StrutsPrepareAndExecuteFilter</code>）</p>
+</li>
+</ul>
+<blockquote>
+<p>过滤器的功能是完成了一部分代码功能<br>就是一系列的拦截器执行了，进行一些处理工作。<br>可以在 <code>struts-default.xml</code> 配置文件中看到有很多的拦截器。</p>
+</blockquote>
+<ul>
+<li>拦截器执行完后，会根据 <code>struts.xml</code> 的配置文件找到请求路径，找到具体的类，通过<code>反射</code>的方式让方法执行。</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>JSP页面 –&gt; <code>StrutsPrepereAndExecuteFilter</code>过滤器 –&gt; 执行一系列拦截器（完成了部分代码） –&gt; 执行到目标 <code>Action</code> –&gt; 返回字符串 –&gt; 结果页面（result） –&gt; 页面跳转</li>
+</ul>
+<hr>
+<h2 id="Struts2框架配置文件加载的顺序"><a href="#Struts2框架配置文件加载的顺序" class="headerlink" title="Struts2框架配置文件加载的顺序"></a>Struts2框架配置文件加载的顺序</h2><h3 id="Struts2-框架的核心是-StrutsPrepareAndExecuteFilter-过滤器"><a href="#Struts2-框架的核心是-StrutsPrepareAndExecuteFilter-过滤器" class="headerlink" title="Struts2 框架的核心是 StrutsPrepareAndExecuteFilter 过滤器"></a>Struts2 框架的核心是 <code>StrutsPrepareAndExecuteFilter</code> 过滤器</h3><p>该过滤器有两个功能</p>
+<ul>
+<li>Prepare        – 预处理，加载核心的配置文件</li>
+<li>Execute        – 执行，让部分拦截器执行</li>
+</ul>
+<ol>
+<li><code>StrutsPrepareAndExecuteFilter</code>  过滤器会加载哪些配置文件呢？</li>
+</ol>
+<p>通过源代码可以看到具体加载的配置文件和加载配置文件的顺序</p>
+<ul>
+<li>init_DefaultProperties();                 – 加载 org/apache/struts2/default.properties</li>
+<li>init_TraditionalXmlConfigurations();        – 加载 struts-default.xml,struts-plugin.xml,struts.xml</li>
+<li>init_LegacyStrutsProperties();            – 加载自定义的 struts.properties.</li>
+<li>init_CustomConfigurationProviders();        – 加载用户自定义配置提供者</li>
+<li>init_FilterInitParameters() ;                – 加载 web.xml</li>
+</ul>
+<ol>
+<li>重点了解的配置文件</li>
+</ol>
+<ul>
+<li>default.properties        – 在 org/apache/struts2/ 目录下，代表的是配置的是 Struts2 的常量的值</li>
+<li>struts-default.xml        – 在 Struts2 的核心包下，代表的是 Struts2 核心功能的配置（Bean、拦截器、结果类型等）</li>
+<li>struts.xml                – 重点中的重点配置，代表 WEB 应用的默认配置，在工作中，基本就配置它就可以了！！（可以配置常量）</li>
+<li>web.xml                    – 配置前端控制器（可以配置常量）</li>
+</ul>
+<p>注意：</p>
+<ul>
+<li><p>前 3 个配置文件是 struts2 框架的默认配置文件，基本不用修改。</p>
+</li>
+<li><p>后 3 个配置文件可以允许自己修改 struts2 的常量。但是有一个特点：后加载的配置文件修改的常量的值，会覆盖掉前面修改的常量的值。</p>
+</li>
+</ul>
+<ol>
+<li>总结（重点掌握的配置文件）</li>
+</ol>
+<ul>
+<li>先加载default.properties文件，在org/apache/struts2/default.properties文件，都是常量。</li>
+<li>又加载struts-default.xml配置文件，在核心的jar包最下方，struts2框架的核心功能都是在该配置文件中配置的。</li>
+<li>再加载struts.xml的配置文件，在src的目录下，代表用户自己配置的配置文件</li>
+<li><p>最后加载web.xml的配置文件</p>
+</li>
+<li><p>后加载的配置文件会覆盖掉之前加载的配置文件（在这些配置文件中可以配置常量）</p>
+</li>
+</ul>
+<ol>
+<li>注意一个问题</li>
+</ol>
+<p>哪些配置文件中可以配置常量？</p>
+<ul>
+<li>default.properties        – 默认值，是不能修改的！！</li>
+<li>struts.xml                – 可以配置，开发中基本上都在该配置文件中配置常量</li>
+<li>struts.properties            – 可以配置，基本不会在该配置文件中配置</li>
+<li><p>web.xml                    – 可以配置，基本不会在该配置文件中配置</p>
+</li>
+<li><p>后加载的配置文件会覆盖掉之前加载的配置！！</p>
+</li>
+</ul>
+<hr>
+<h1 id="struts-xml-配置文件"><a href="#struts-xml-配置文件" class="headerlink" title="struts.xml 配置文件"></a>struts.xml 配置文件</h1><hr>
+<h2 id="基本标签"><a href="#基本标签" class="headerlink" title="基本标签"></a>基本标签</h2><h3 id="lt-package-gt-标签"><a href="#lt-package-gt-标签" class="headerlink" title="&lt;package&gt; 标签"></a><code>&lt;package&gt;</code> 标签</h3><p>如果要配置 <code>&lt;Action&gt;</code> 的标签，那么必须要先配置 <code>&lt;package&gt;</code> 标签，代表的包的概念</p>
+<p>包含的属性:</p>
+<ul>
+<li>name                    – 包的名称，要求是唯一的，管理 <code>action</code>配置</li>
+<li>extends                – 继承，可以继承其他的包，只要继承了，那么该包就包含了其他包的功能，一般都是继承 <code>struts-default</code></li>
+<li>namespace                – 名称空间，一般与 <code>&lt;action&gt;</code> 标签中的 <code>name</code> 属性共同决定访问路径（通俗话：怎么来访问 <code>action</code>），常见的配置如下<blockquote>
+<p>namespace=”/“        – 根名称空间<br>namespace=”/aaa”    – 带有名称的名称空间</p>
+</blockquote>
+</li>
+<li>abstract                – 抽象的。这个属性基本很少使用，值如果是 <code>true</code>，那么编写的包是被继承的</li>
+</ul>
+<h3 id="lt-action-gt-标签"><a href="#lt-action-gt-标签" class="headerlink" title="&lt;action&gt; 标签"></a><code>&lt;action&gt;</code> 标签</h3><p>代表配置 <code>action</code> 类，包含的属性</p>
+<ul>
+<li>name            – 和 <code>&lt;package&gt;</code> 标签的 <code>namespace</code> 属性一起来决定访问路径的</li>
+<li>class            – 配置 <code>Action</code> 类的全路径（默认值是 <code>ActionSupport</code> 类）</li>
+<li>method        – <code>Action</code> 类中执行的方法，如果不指定，默认值是 <code>execute</code></li>
+</ul>
+<h3 id="lt-result-gt-标签"><a href="#lt-result-gt-标签" class="headerlink" title="&lt;result&gt; 标签"></a><code>&lt;result&gt;</code> 标签</h3><p><code>action</code>类中方法执行，返回的结果跳转的页面</p>
+<ul>
+<li>name        – 结果页面逻辑视图名称</li>
+<li>type        – 结果类型（默认值是转发，也可以设置其他的值）</li>
+</ul>
+<hr>
+<h2 id="Struts2-配置常量"><a href="#Struts2-配置常量" class="headerlink" title="Struts2 配置常量"></a>Struts2 配置常量</h2><h3 id="Struts2-框架中的哪些配置文件中配置常量？"><a href="#Struts2-框架中的哪些配置文件中配置常量？" class="headerlink" title="Struts2 框架中的哪些配置文件中配置常量？"></a>Struts2 框架中的哪些配置文件中配置常量？</h3><p>struts.xml（必须要掌握，开发中基本上就在该配置文件中编写常量）</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">* <span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"key"</span> <span class="attr">value</span>=<span class="string">"value"</span>&gt;</span><span class="tag">&lt;/<span class="name">constant</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>web.xml</p>
+<ul>
+<li><p>在 <code>StrutsPrepareAndExecuteFilter</code> 配置文件中配置初始化参数</p>
+</li>
+<li><p>注意：后加载的配置的文件的常量会覆盖之前加载的常量！！</p>
+</li>
+</ul>
+<h3 id="需要了解的常量"><a href="#需要了解的常量" class="headerlink" title="需要了解的常量"></a>需要了解的常量</h3><ul>
+<li>struts.i18n.encoding=UTF-8            – 指定默认编码集，作用于 HttpServletRequest 的 setCharacterEncoding 方法 </li>
+<li>struts.action.extension=action,,        – 该属性指定需要 Struts 2 处理的请求后缀，该属性的默认值是 action，即所有匹配 <code>*.action</code> 的请求都由 Struts2 处理。如果用户需要指定多个请求后缀，则多个后缀之间以英文逗号（,）隔开</li>
+<li>struts.serve.static.browserCache=true        – 设置浏览器是否缓存静态内容,默认值为 <code>true</code> (生产环境下使用)，开发阶段最好关闭 </li>
+<li>struts.configuration.xml.reload=false        – 当 struts 的配置文件修改后，系统是否自动重新加载该文件，默认值为 <code>false</code>(生产环境下使用) </li>
+<li>struts.devMode = false                    – 开发模式下使用，这样可以打印出更详细的错误信息 </li>
+</ul>
+<h2 id="指定多个struts的配置文件（了解）"><a href="#指定多个struts的配置文件（了解）" class="headerlink" title="指定多个struts的配置文件（了解）"></a>指定多个struts的配置文件（了解）</h2><ol>
+<li>在大部分应用里，随着应用规模的增加，系统中 <code>Action</code> 的数量也会大量增加，导致 <code>struts.xml</code> 配置文件变得非常臃肿。</li>
+</ol>
+<p>为了避免 <code>struts.xml</code> 文件过于庞大、臃肿，提高 <code>struts.xml</code> 文件的可读性，我们可以将一个 <code>struts.xml</code> 配置文件分解成多个配置文件，然后在 <code>struts.xml</code> 文件中包含其他配置文件。</p>
+<ol>
+<li>可以在 <code>&lt;package&gt;</code> 标签中，使用 <code>&lt;include&gt;</code> 标签来引入其他的 <code>struts_xx.xml</code> 的配置文件。例如：</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">struts</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">include</span> <span class="attr">file</span>=<span class="string">"struts-part1.xml"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">include</span> <span class="attr">file</span>=<span class="string">"struts-part2.xml"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">struts</span>&gt;</span></div></pre></td></tr></table></figure>
+<ol>
+<li>注意注意注意（重要的事情说三遍）：</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">include</span> <span class="attr">file</span>=<span class="string">"com/renkaigis/demo2/struts-part1.xml"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="Action-类的三种写法"><a href="#Action-类的三种写法" class="headerlink" title="Action 类的三种写法"></a>Action 类的三种写法</h2><h3 id="Action类就是一个POJO类"><a href="#Action类就是一个POJO类" class="headerlink" title="Action类就是一个POJO类"></a>Action类就是一个POJO类</h3><ul>
+<li>什么是 POJO 类，<code>POJO（Plain Ordinary Java Object）</code>简单的 Java 对象，简单记：没有继承某个类，没有实现接口，就是 POJO 的类。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 是 POJO 类：没有任何继承和实现</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo1Action</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * execute 是默认方法</div><div class="line">     * return null; 不会进行跳转</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">execute</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"Demo1Action 是一个 POJO 类…"</span>);</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>配置文件：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--POJO 类的方式--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"demo1Action"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.action1.Demo1Action"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="Action-类可以实现-Action-接口"><a href="#Action-类可以实现-Action-接口" class="headerlink" title="Action 类可以实现 Action 接口"></a>Action 类可以实现 Action 接口</h3><p>Action 接口中定义了 5 个常量，5 个常量的值对应的是 5 个逻辑视图跳转页面（跳转的页面还是需要自己来配置），还定义了一个方法，<code>execute</code> 方法。</p>
+<p>需要掌握5个逻辑视图的常量</p>
+<ul>
+<li>SUCCESS        – 成功</li>
+<li>INPUT            – 用于数据表单校验.如果校验失败,跳转 INPUT 视图</li>
+<li>LOGIN            – 登录</li>
+<li>ERROR            – 错误</li>
+<li>NONE            – 页面不转向</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 实现 Action 接口，Action 是框架提供的接口</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo2Action</span> <span class="keyword">implements</span> <span class="title">Action</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">execute</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        System.out.println(<span class="string">"Demo2Action 实现了 Action 的接口…"</span>);</div><div class="line">        <span class="keyword">return</span> SUCCESS;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>配置文件：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--实现 Action 接口的方式--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"demo2Action"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.action1.Demo2Action"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"success"</span>&gt;</span>/demo1/success.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="Action-类可以去继承-ActionSupport-类"><a href="#Action-类可以去继承-ActionSupport-类" class="headerlink" title="Action 类可以去继承 ActionSupport 类"></a>Action 类可以去继承 ActionSupport 类</h3><p>（开发中这种方式使用最多）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 编写 Action 类继承 ActionSupport 类，ActionSupport 类已经实现了 Action 和一些其他的接口</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo3Action</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">execute</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        System.out.println(<span class="string">"Demo3Action 继承了 ActionSupport 类…"</span>);</div><div class="line">        <span class="keyword">return</span> NONE;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>配置文件：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--继承 ActionSupport 类的方式--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"demo3Action"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.action1.Demo3Action"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="Action-的访问"><a href="#Action-的访问" class="headerlink" title="Action 的访问"></a>Action 的访问</h2><h3 id="传统的配置方式"><a href="#传统的配置方式" class="headerlink" title="传统的配置方式"></a>传统的配置方式</h3><p>通过 <code>&lt;action&gt;</code> 标签中的 <code>method</code> 属性，访问到 Action 中的具体的方法。</p>
+<ul>
+<li>传统的配置方式，配置更清晰更好理解！但是扩展需要修改配置文件等！</li>
+</ul>
+<h4 id="具体的实例如下："><a href="#具体的实例如下：" class="headerlink" title="具体的实例如下："></a>具体的实例如下：</h4><ul>
+<li>页面代码</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">H3</span>&gt;</span>传统的配置文件的方式<span class="tag">&lt;/<span class="name">H3</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;pageContext.request.contextPath&#125;/saveCust.action"</span>&gt;</span>保存客户<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;pageContext.request.contextPath&#125;/updCust.action"</span>&gt;</span>修改客户<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>配置文件的代码</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--传统方式--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"saveCust"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.action2.CustomerAction"</span> <span class="attr">method</span>=<span class="string">"save"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"updCust"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.action2.CustomerAction"</span> <span class="attr">method</span>=<span class="string">"update"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>Action 的代码</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 编写客户的 Action 类</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomerAction</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">save</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"保存客户…"</span>);</div><div class="line">        <span class="keyword">return</span> NONE;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">update</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"修改用户…"</span>);</div><div class="line">        <span class="keyword">return</span> NONE;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="通配符的访问方式"><a href="#通配符的访问方式" class="headerlink" title="通配符的访问方式"></a>通配符的访问方式</h3><p>（访问的路径和方法的名称必须要有某种联系）</p>
+<p>通配符就是 <code>*</code> 代表任意的字符</p>
+<ul>
+<li>使用通配符的方式可以简化配置文件的代码编写，而且扩展和维护比较容易。</li>
+</ul>
+<h4 id="具体实例如下："><a href="#具体实例如下：" class="headerlink" title="具体实例如下："></a>具体实例如下：</h4><ul>
+<li>页面代码</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">H3</span>&gt;</span>通配符配置文件的方式<span class="tag">&lt;/<span class="name">H3</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;pageContext.request.contextPath&#125;/linkman_save.action"</span>&gt;</span>保存联系人<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;pageContext.request.contextPath&#125;/linkman_update.action"</span>&gt;</span>修改联系人<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>配置文件代码</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--通配符的方式--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"linkman_*"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.action2.LinkmanAction"</span> <span class="attr">method</span>=<span class="string">"&#123;1&#125;"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"saveOK"</span>&gt;</span>/demo2/success.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>Action 的代码</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 使用联系人来测试通配符</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkmanAction</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">save</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"保存联系人…"</span>);</div><div class="line">        <span class="keyword">return</span> <span class="string">"saveOK"</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">update</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"修改联系人…"</span>);</div><div class="line">        <span class="keyword">return</span> NONE;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>具体理解：在 JSP 页面发送请求，<code>http://localhost:9090/demo2/linkman_save.action</code>，配置文件中的 <code>linkman_*</code> 可以匹配该请求，<code>*</code> 就相当于变成了 <code>add</code>，<code>method</code> 属性的值使用 <code>{1}</code> 来代替，<code>{1}</code> 就表示的是第一个 <code>*</code> 号的位置！！所以 <code>method</code> 的值就等于了 <code>add</code>，那么就找到 <code>Action</code> 类中的 <code>add</code> 方法，那么 <code>add</code> 方法就执行了！</li>
+</ul>
+<h3 id="动态方法访问的方式"><a href="#动态方法访问的方式" class="headerlink" title="动态方法访问的方式"></a>动态方法访问的方式</h3><p>（有的开发中也会使用这种方式）</p>
+<ul>
+<li><p>如果想完成动态方法访问的方式，需要开启一个常量，<code>struts.enable.DynamicMethodInvocation = false</code>，把值设置成 <code>true</code>。</p>
+</li>
+<li><p>注意：不同的 <code>Struts2</code> 框架的版本，该常量的值不一定是 <code>true</code> 或者 <code>false</code>，需要自己来看一下。如果是 <code>false</code>，需要自己开启。</p>
+</li>
+<li><p>在 <code>struts.xml</code> 中开启该常量。</p>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 开启动态方法访问 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.enable.DynamicMethodInvocation"</span> <span class="attr">value</span>=<span class="string">"true"</span>&gt;</span><span class="tag">&lt;/<span class="name">constant</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="具体代码如下"><a href="#具体代码如下" class="headerlink" title="具体代码如下"></a>具体代码如下</h4><ul>
+<li>页面的代码</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">H3</span>&gt;</span>动态方法访问的方式<span class="tag">&lt;/<span class="name">H3</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;pageContext.request.contextPath&#125;/user!save.action"</span>&gt;</span>保存用户<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;pageContext.request.contextPath&#125;/user!update.action"</span>&gt;</span>修改用户<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>配置文件代码</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--配置动态方法访问--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"user"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.action2.UserAction"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>Action的类的代码</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserAction</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">save</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"保存用户…"</span>);</div><div class="line">        <span class="keyword">return</span> NONE;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">update</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"修改用户…"</span>);</div><div class="line">        <span class="keyword">return</span> NONE;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/images/JavaWeb/struts20100.png&quot;&gt;&lt;/div&gt;
+
+&lt;p id=&quot;div-border-left-blue&quot;&gt;Struts2 快速入门。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="JavaWeb" scheme="http://yoursite.com/categories/JavaWeb/"/>
+    
+    
+      <category term="JavaWeb" scheme="http://yoursite.com/tags/JavaWeb/"/>
+    
+      <category term="Struts2" scheme="http://yoursite.com/tags/Struts2/"/>
+    
+  </entry>
   
   <entry>
     <title>世间安得双全法，不负如来不负卿</title>
@@ -3827,52 +4128,6 @@ HttpServlet:抽象类
     
     
       <category term="HTML" scheme="http://yoursite.com/tags/HTML/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>观建军90周年阅兵之感悟</title>
-    <link href="http://yoursite.com/posts/Mine/2017-07-30-view-of-army-building-90th.html"/>
-    <id>http://yoursite.com/posts/Mine/2017-07-30-view-of-army-building-90th.html</id>
-    <published>2017-07-30T05:45:20.000Z</published>
-    <updated>2017-08-24T14:46:36.865Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p></p><p id="div-border-top-red">恰逢 <font color="#FF0000"><b>中国人民解放军建军 90 周年</b></font>  ，下一个百年会是什么样的盛况？十年后的今天，肯定特别隆重，中国军队更加现代化，中国的综合实力更加强胜。<br>2017 年 7 月 30 日，一个小阅兵式，不比 2015 年的 9.3 阅兵，但也足以展示中国军队的强势！<br></p><p></p>
-<p><div align="center"><img src="http://img.blog.csdn.net/20170730170540645" alt="01"></div><br><a id="more"></a></p>
-<p><div align="center"><br>2017 年 7 月 30 日 9 时，在朱日和训练基地隆重举行了庆祝建军 90 周年阅兵式。<br>中共中央总书记、国家主席、中央军委主席习近平检阅部队并发表重要讲话。<br></div></p>
-<p><div align="center"><br><img src="http://img.blog.csdn.net/20170730170924306" alt="02"><br><img src="http://img.blog.csdn.net/20170730170948713" alt="03"></div></p>
-<p><div align="center"><br>政治觉悟强、思想素质高的我专门观看了这场直播。<br>看的真是个热血沸腾！<br>尤其是国歌响起的时候，<br>看到我们的军队气势如虹，<br>中国已经不是以前的模样了！<br>她那么年轻，又那么富有活力，<br>最重要的是有一群铁骨铮铮的人的在守卫着她的每一寸土地和国民。</div></p>
-<p><div align="center"><br><img src="http://img.blog.csdn.net/20170730171000421" alt="04"><br><img src="http://img.blog.csdn.net/20170730171013492" alt="05"><br><img src="http://img.blog.csdn.net/20170730171027540" alt="06"><br></div></p>
-<p><div align="center"><br>从 1927 到 2017 ，中国军队走过了漫长的岁月，中国军队日益强大。<br>车牌 1927 和 2017 相互对接，是一种历史的传承。<br></div></p>
-<p><div align="center"><br><a href="http://music.163.com/#/song?id=25841337" target="_blank" rel="external">《国歌》</a></div></p>
-<p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=25841337&auto=0&height=66"></iframe></p>
-<p><div align="center"><br>国歌响起的刹那，热泪盈眶。<br>每一个中国人都熟悉的一首歌，竟这样好听。<br>习大大在主席台上也跟着音乐在哼唱着。</div></p>
-<p><div align="center"><br><img src="http://img.blog.csdn.net/20170730171038547" alt="07"><br></div></p>
-<p><div align="center"><br><a href="http://music.163.com/#/song?id=395434" target="_blank" rel="external">《检阅进行曲》</a></div></p>
-<p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=395434&auto=0&height=66"></iframe></p>
-<p><div align="center"><br>习大大身着迷彩登上车牌 2017 的野战车的时候，<br>《检阅进行曲》响起，<br>一排排列队整齐的军队，<br>一辆辆现代化的作战车辆，<br>一架架直升机、空中梯队，<br>严阵以待，等待着党和人民的检阅。</div></p>
-<p><div align="center"><br><img src="http://img.blog.csdn.net/20170730171050913" alt="08"><br><img src="http://img.blog.csdn.net/20170730171101783" alt="09"><br><img src="http://img.blog.csdn.net/20170730171114011" alt="10"><br><img src="http://img.blog.csdn.net/20170730171132049" alt="11"><br><img src="http://img.blog.csdn.net/20170730171144807" alt="12"><br><img src="http://img.blog.csdn.net/20170730171156284" alt="13"><br><img src="http://img.blog.csdn.net/20170730171208514" alt="14"><br></div></p>
-<p><div align="center"><br><a href="http://music.163.com/#/song?id=395437" target="_blank" rel="external">《分列式进行曲》</a></div></p>
-<p><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=395437&auto=0&height=66"></iframe></p>
-<p><div align="center"><br>这就是我们的军队，<br>这是人民的军队。</div></p>
-<p><blockquote class="blockquote-center"><br>时至今日，<br>兔子们已经把种花家变成了蓝星最牛的堂口之一，<br>他走过骨血硝烟，<br>走过繁花似锦，<br>曾跌入泥潭，<br>也能踏上云端。<br></blockquote></p>
-<p><div align="center"><br><img src="http://img.blog.csdn.net/20170730171220831" alt="15"><br><img src="http://img.blog.csdn.net/20170730171233551" alt="16"><br><img src="http://img.blog.csdn.net/20170730171245933" alt="17"><br><img src="http://img.blog.csdn.net/20170730171258250" alt="18"><br><img src="http://img.blog.csdn.net/20170730171311695" alt="19"><br><img src="http://img.blog.csdn.net/20170730171334012" alt="20"><br><img src="http://img.blog.csdn.net/20170730171346603" alt="21"><br><img src="http://img.blog.csdn.net/20170730171357432" alt="22"><br><img src="http://img.blog.csdn.net/20170730171408018" alt="23"><br><img src="http://img.blog.csdn.net/20170730171422673" alt="24"><br><img src="http://img.blog.csdn.net/20170730171434852" alt="25"><br><img src="http://img.blog.csdn.net/20170730171450095" alt="26"><br></div><br><br></p>
-<p><div align="center"><font color="#FF0000"><b>每一只兔子都有一个大国梦。<br>今生不悔入华夏，来世还愿种花家。</b></font></div></p>
-<p><div align="center"><br><img src="http://img.blog.csdn.net/20170730171502615" alt="27"><br></div></p>
-<p><div align="center"><font color="#FF0000"><font size="10"><b>『 幸福并感激着！ 』</b></font></font></div><br><br></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;/p&gt;&lt;p id=&quot;div-border-top-red&quot;&gt;恰逢 &lt;font color=&quot;#FF0000&quot;&gt;&lt;b&gt;中国人民解放军建军 90 周年&lt;/b&gt;&lt;/font&gt;  ，下一个百年会是什么样的盛况？十年后的今天，肯定特别隆重，中国军队更加现代化，中国的综合实力更加强胜。&lt;br&gt;2017 年 7 月 30 日，一个小阅兵式，不比 2015 年的 9.3 阅兵，但也足以展示中国军队的强势！&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;
-&lt;p&gt;&lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://img.blog.csdn.net/20170730170540645&quot; alt=&quot;01&quot;&gt;&lt;/div&gt;&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Mine" scheme="http://yoursite.com/categories/Mine/"/>
-    
-    
-      <category term="View" scheme="http://yoursite.com/tags/View/"/>
     
   </entry>
   

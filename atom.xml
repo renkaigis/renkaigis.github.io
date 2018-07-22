@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-06-27T13:41:34.682Z</updated>
+  <updated>2018-07-22T15:54:38.339Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,247 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>JavaWeb 之 Struts2 中的 Servlet API、封装数据、拦截器</title>
+    <link href="http://yoursite.com/posts/JavaWeb/2018-07-22-JavaWeb-Struts202.html"/>
+    <id>http://yoursite.com/posts/JavaWeb/2018-07-22-JavaWeb-Struts202.html</id>
+    <published>2018-07-22T09:56:43.000Z</published>
+    <updated>2018-07-22T15:54:38.339Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/struts20200.png"></div>
+
+<p id="div-border-left-blue">Servlet API、封装数据、拦截器。</p>
+
+<a id="more"></a>
+<hr>
+<h1 id="Struts2-框架中-Servlet-API-的使用"><a href="#Struts2-框架中-Servlet-API-的使用" class="headerlink" title="Struts2 框架中 Servlet API 的使用"></a>Struts2 框架中 Servlet API 的使用</h1><hr>
+<h2 id="Servlet-的-API"><a href="#Servlet-的-API" class="headerlink" title="Servlet 的 API"></a>Servlet 的 API</h2><p>在 <code>Action</code> 类中也可以获取到 <code>Servlet</code> 一些常用的 <code>API</code></p>
+<ul>
+<li>案例需求：提供 <code>JSP</code> 的表单页面的数据，在 <code>Action</code> 中使用 <code>Servlet</code> 的 <code>API</code> 接收到，然后保存到三个域对象中，最后再显示到 <code>JSP</code> 的页面上。</li>
+</ul>
+<p>提供 JSP 注册的页面：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>注册页面<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"$&#123; pageContext.request.contextPath &#125;/xxx.action"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></div><div class="line">	姓名:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></div><div class="line">	密码:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"password"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"注册"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="完全解耦合的方式"><a href="#完全解耦合的方式" class="headerlink" title="完全解耦合的方式"></a>完全解耦合的方式</h3><p>为了避免与 <code>Servlet API</code> 耦合在一起，方便 Action 类做单元测试，Struts2 对 <code>HttpServletRequest</code>、<code>HttpSession</code> 和 <code>ServletContext</code> 进行了封装，构造了三个 Map 对象来替代这三种对象，在 Action 中，直接使用 <code>HttpServletRequest</code>、<code>HttpSession</code>、<code>ServletContext</code> 对应的 Map 对象来保存和读取数据。</p>
+<p>要获得这三个Map对象，可以使用 <code>com.opensymphony.xwork2.ActionContext类</code></p>
+<p><code>ActionContext</code> ： <code>请求上下文</code></p>
+<p>常用的方法如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">static ActionContext getContext()  										-- 获取 ActionContext 对象实例</div><div class="line">java.util.Map&lt;java.lang.String,java.lang.Object&gt; getParameters()  		-- 获取请求参数，相当于 request.getParameterMap();</div><div class="line">java.util.Map&lt;java.lang.String,java.lang.Object&gt; getSession()  			-- 获取的代表 session 域的 Map 集合，就相当于操作 session 域。</div><div class="line">java.util.Map&lt;java.lang.String,java.lang.Object&gt; getApplication() 		-- 获取代表 application 域的 Map 集合</div><div class="line">void put(java.lang.String key, java.lang.Object value)  					-- 注意：向 request 域中存入值。</div></pre></td></tr></table></figure>
+<h4 id="案例演示"><a href="#案例演示" class="headerlink" title="案例演示"></a>案例演示</h4><p><strong>Demo1Action.java</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 完全解耦合的方式，使用 Servlet 的 API</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo1Action</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">execute</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="comment">// 完全解耦合的方式</span></div><div class="line">        ActionContext context = ActionContext.getContext();</div><div class="line">        <span class="comment">// 获取到请求的参数，封装所有请求的参数</span></div><div class="line">        Map&lt;String, Object&gt; map = context.getParameters();</div><div class="line">        <span class="comment">// 遍历获取数据</span></div><div class="line">        Set&lt;String&gt; keys = map.keySet();</div><div class="line">        <span class="keyword">for</span> (String key : keys) &#123;</div><div class="line">            <span class="comment">// 通过 Key，来获取到值</span></div><div class="line">            String[] vals = (String[]) map.get(key);</div><div class="line">            System.out.println(key + <span class="string">":"</span> + Arrays.toString(vals));</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 向 request 域中存入值</span></div><div class="line">        context.put(<span class="string">"msg"</span>,<span class="string">"小天"</span>);</div><div class="line">        <span class="comment">// 获取其他 map 集合，并存入数据</span></div><div class="line">        context.getSession().put(<span class="string">"msg"</span>,<span class="string">"小明"</span>);</div><div class="line">        context.getApplication().put(<span class="string">"msg"</span>,<span class="string">"小红"</span>);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> SUCCESS;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>JSP 输入页面：</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>完全解耦合方式<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"$&#123; pageContext.request.contextPath &#125;/demo1Action.action"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></div><div class="line">    姓名:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></div><div class="line">    密码:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"password"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"注册"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><code>JSP 跳转页面：</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>使用 EL 表达式获取值<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div><div class="line">$&#123;requestScope.msg&#125;</div><div class="line">$&#123;sessionScope.msg&#125;</div><div class="line">$&#123;applicationScope.msg&#125;</div></pre></td></tr></table></figure>
+<p><code>struts.xml 配置文件：</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"demo1"</span> <span class="attr">namespace</span>=<span class="string">"/"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!--完全解耦合的方式--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"demo1Action"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.demo1.Demo1Action"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"success"</span>&gt;</span>/demo1/success.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">action</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">package</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="案例结果："><a href="#案例结果：" class="headerlink" title="案例结果："></a>案例结果：</h4><p>输入信息：</p>
+<p><img src="http://image.renkaigis.com/images/JavaWeb/struts20201.png"></p>
+<p>跳转并取值：</p>
+<p><img src="http://image.renkaigis.com/images/JavaWeb/struts20202.png"></p>
+<p>控制台输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">password:[12345]</div><div class="line">username:[renkai]</div></pre></td></tr></table></figure>
+<h3 id="使用原生-Servlet-的-API-的方式"><a href="#使用原生-Servlet-的-API-的方式" class="headerlink" title="使用原生 Servlet 的 API 的方式"></a>使用原生 Servlet 的 API 的方式</h3><p>直接访问 <code>Servlet API</code> 将使 <code>Action</code> 类与 <code>Servlet API</code> 耦合在一起，<code>Servlet API</code> 对象均由 <code>Servlet</code> 容器来构造，与这些对象绑定在一起，测试过程中就必须有 <code>Servlet</code> 容器，这样不便于 <code>Action</code> 类的测试，但有时候，确实需要访问这些对象，<code>Struts2</code> 同样提供了直接访问 <code>ServletAPI</code> 对象的方式。</p>
+<p>要直接获取 <code>Servlet API</code> 对象可以使用 <code>org.apache.struts2.ServletActionContext</code> 类，该类是 <code>ActionContext</code> 类的子类。</p>
+<ul>
+<li>具体的方法如下</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">HttpServletRequest request=ServletActionContext.getRequest();</div><div class="line">HttpSession session=request.getSession();</div><div class="line">session.setAttribute(<span class="string">"xxx"</span>,xxx);</div><div class="line">HttpServletResponse response=ServletActionContext.getResponse();</div><div class="line">HttpServletContext application=ServletActionContext.getApplication();</div></pre></td></tr></table></figure>
+<h4 id="案例演示-1"><a href="#案例演示-1" class="headerlink" title="案例演示"></a>案例演示</h4><p><strong>Demo2Action.java</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 原生 Servlet API</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo2Action</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">execute</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="comment">// 获取到 request 对象</span></div><div class="line">        HttpServletRequest request = ServletActionContext.getRequest();</div><div class="line">        request.setAttribute(<span class="string">"msg"</span>, <span class="string">"天天"</span>);</div><div class="line">        request.getSession().setAttribute(<span class="string">"msg"</span>, <span class="string">"美美"</span>);</div><div class="line">        ServletActionContext.getServletContext().setAttribute(<span class="string">"msg"</span>, <span class="string">"园园"</span>);</div><div class="line"></div><div class="line">        <span class="comment">// 获取 response 对象，可以使用输出流，输出内容</span></div><div class="line">        HttpServletResponse response = ServletActionContext.getResponse();</div><div class="line"></div><div class="line">        <span class="keyword">return</span> SUCCESS;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>JSP 输入页面：</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>ServletCActionContext 类<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"$&#123; pageContext.request.contextPath &#125;/demo2Action.action"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></div><div class="line">    姓名:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></div><div class="line">    密码:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"password"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"注册"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><code>JSP 跳转页面：</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>使用 EL 表达式获取值<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div><div class="line">$&#123;requestScope.msg&#125;</div><div class="line">$&#123;sessionScope.msg&#125;</div><div class="line">$&#123;applicationScope.msg&#125;</div></pre></td></tr></table></figure>
+<p><code>struts.xml 配置文件：</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--原生 Servlet API 方式--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"demo2Action"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.demo1.Demo2Action"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"success"</span>&gt;</span>/demo1/success.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="案例结果：-1"><a href="#案例结果：-1" class="headerlink" title="案例结果："></a>案例结果：</h4><p>输入信息：</p>
+<p><img src="http://image.renkaigis.com/images/JavaWeb/struts20203.png"></p>
+<p>跳转并取值：</p>
+<p><img src="http://image.renkaigis.com/images/JavaWeb/struts20204.png"></p>
+<h2 id="结果页面的跳转"><a href="#结果页面的跳转" class="headerlink" title="结果页面的跳转"></a>结果页面的跳转</h2><p>结果页面存在两种方式</p>
+<h3 id="全局结果页面"><a href="#全局结果页面" class="headerlink" title="全局结果页面"></a>全局结果页面</h3><p>条件：如果 <code>&lt;package&gt;</code> 包中的一些 <code>action</code> 都返回 <code>success</code>，并且返回的页面都是同一个 <code>JSP</code> 页面，这样就可以配置全局的结果页面。</p>
+<p>全局结果页面针对的 <code>当前包</code> 中的所有的 <code>Action</code>，但是如果局部还有结果页面，会 <code>优先局部</code> 的。使用的标签是：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"demo1"</span> <span class="attr">namespace</span>=<span class="string">"/"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!--配置全局的结果页面--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">global-results</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"success"</span>&gt;</span>/demo1/success.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">global-results</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">package</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="局部结果页面"><a href="#局部结果页面" class="headerlink" title="局部结果页面"></a>局部结果页面</h3><p>也就是之前一直所使用的。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">result</span>&gt;</span>/demo1/success.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="结果页面的类型"><a href="#结果页面的类型" class="headerlink" title="结果页面的类型"></a>结果页面的类型</h3><ul>
+<li>结果页面使用 <code>&lt;result&gt;</code> 标签进行配置，包含两个属性</li>
+</ul>
+<blockquote>
+<p>name    – 逻辑视图的名称</p>
+<p>type    – 跳转的类型，需要掌握一些常用的类型。常见的结果类型去 <code>struts-default.xml</code> 中查找。</p>
+</blockquote>
+<ul>
+<li>dispatcher        – 转发，<code>type的默认值</code>。Action—&gt;JSP</li>
+<li>redirect            – 重定向。    Action—&gt;JSP</li>
+<li>chain                – 多个action之间跳转，从一个Action转发到另一个Action。    Action—Action</li>
+<li>redirectAction    – 多个action之间跳转，从一个Action重定向到另一个Action。    Action—Action</li>
+<li>stream            – 文件下载时候使用的</li>
+</ul>
+<hr>
+<h1 id="Struts2-框架的数据封装"><a href="#Struts2-框架的数据封装" class="headerlink" title="Struts2 框架的数据封装"></a>Struts2 框架的数据封装</h1><hr>
+<h2 id="数据的封装"><a href="#数据的封装" class="headerlink" title="数据的封装"></a>数据的封装</h2><ul>
+<li>作为 <code>MVC</code> 框架，必须要负责解析 <code>HTTP</code> 请求参数，并将其封装到 <code>Model</code> 对象中</li>
+<li>封装数据为开发提供了很多方便</li>
+<li>Struts2 框架提供了很强大的数据封装的功能，<code>不再需要使用 Servlet 的 API 完成手动封装了</code>！</li>
+</ul>
+<p>Struts2 中提供了两类数据封装的方式：</p>
+<h3 id="第一种方式：属性驱动"><a href="#第一种方式：属性驱动" class="headerlink" title="第一种方式：属性驱动"></a>第一种方式：属性驱动</h3><h4 id="提供对应属性的-set-方法进行数据的封装。"><a href="#提供对应属性的-set-方法进行数据的封装。" class="headerlink" title="提供对应属性的 set 方法进行数据的封装。"></a>提供对应属性的 <code>set</code> 方法进行数据的封装。</h4><ul>
+<li><p>表单的哪些属性需要封装数据，那么在对应的 <code>Action</code> 类中提供该属性的 <code>set</code> 方法即可。</p>
+</li>
+<li><p>表单中的数据提交，最终找到 <code>Action</code> 类中的 <code>setXxx</code> 的方法，最后赋值给全局变量。</p>
+</li>
+<li><p>注意0：<code>Struts2</code> 的框架采用拦截器完成数据的封装。</p>
+</li>
+<li><p>注意1：这种方式不是特别好：因为属性特别多，提供特别多的set方法，而且还需要手动将数据存入到对象中。</p>
+</li>
+<li><p>注意2：这种情况下，<code>Action</code> 类就相当于一个 <code>JavaBean</code>，就没有体现出 <code>MVC</code> 的思想，<code>Action</code> 类又封装数据，又接收请求处理，耦合性较高。</p>
+</li>
+</ul>
+<p><strong>Action:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> String username;</div><div class="line"><span class="keyword">private</span> String password;</div><div class="line"><span class="keyword">private</span> Integer age;</div><div class="line"><span class="comment">// 只需要提供 set 方法</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUsername</span><span class="params">(String username)</span> </span>&#123;</div><div class="line">	<span class="keyword">this</span>.username = username;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPassword</span><span class="params">(String password)</span> </span>&#123;</div><div class="line">	<span class="keyword">this</span>.password = password;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(Integer age)</span> </span>&#123;</div><div class="line">	<span class="keyword">this</span>.age = age;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>struts.xml</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"demo2"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span> <span class="attr">namespace</span>=<span class="string">"/"</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!--属性驱动的方式--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"regist1"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.demo2.Regist1Action"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">package</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>jsp页面</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;h3&gt;属性驱动的方式&lt;/h3&gt;</div><div class="line">&lt;form action="$&#123; pageContext.request.contextPath &#125;/regist1.action" method="post"&gt;</div><div class="line">    姓名:&lt;input type="text" name="username" /&gt;&lt;br/&gt;</div><div class="line">    密码:&lt;input type="password" name="password" /&gt;&lt;br/&gt;</div><div class="line">    年龄:&lt;input type="text" name="age" /&gt;&lt;br/&gt;</div><div class="line">    &lt;input type="submit" value="注册" /&gt;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure>
+<p><strong>输出结果</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">renkai 12 25</div></pre></td></tr></table></figure>
+<h4 id="属性驱动：把数据封装到-JavaBean-对象中"><a href="#属性驱动：把数据封装到-JavaBean-对象中" class="headerlink" title="属性驱动：把数据封装到 JavaBean 对象中"></a>属性驱动：把数据封装到 JavaBean 对象中</h4><blockquote>
+<p>在页面上，使用 <code>OGNL</code> 表达式进行数据封装。</p>
+</blockquote>
+<ul>
+<li><p>在页面中使用 <code>OGNL</code> 表达式进行数据的封装，就可以直接把属性封装到某一个 <code>JavaBean</code> 的对象中。</p>
+</li>
+<li><p>在页面中定义一个 <code>JavaBean</code>，并且提供 <code>set</code> 方法：例如：<code>private User user;</code></p>
+</li>
+<li><p>页面中的编写发生了变化，需要使用 <code>OGNL</code> 的方式，表单中的写法：<code>&lt;input type=&quot;text&quot; name=&quot;user.username&quot;&gt;</code></p>
+</li>
+<li><p>注意：只提供一个 <code>set</code> 方法还不够，必须还需要提供 <code>user</code> 属性的 <code>get</code> 和 <code>set</code> 方法！！！</p>
+</li>
+</ul>
+<p><strong>原理：</strong> 先调用 <code>get</code> 方法，判断一下是否有 <code>user</code> 对象的实例对象，如果没有，调用 <code>set</code> 方法把拦截器创建的对象注入进来。</p>
+<p><strong>Action:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 需要提供 get 和 set 方法</span></div><div class="line"><span class="keyword">private</span> User user;</div><div class="line"><span class="function"><span class="keyword">public</span> User <span class="title">getUser</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">return</span> user;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUser</span><span class="params">(User user)</span> </span>&#123;</div><div class="line">	<span class="keyword">this</span>.user = user;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>struts.xml</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"demo2"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span> <span class="attr">namespace</span>=<span class="string">"/"</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!--属性驱动的方式，把数据封装到 JavaBean 的对象中--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"regist2"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.demo2.Regist2Action"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">package</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>jsp页面</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;h3&gt;属性驱动的方式（把数据封装到 JavaBean 的对象中）&lt;/h3&gt;</div><div class="line">&lt;%--页面的编写发生了变化，使用的是 OGNL 表达式的写法--%&gt;</div><div class="line">&lt;form action="$&#123; pageContext.request.contextPath &#125;/regist2.action" method="post"&gt;</div><div class="line">    姓名:&lt;input type="text" name="user.username" /&gt;&lt;br/&gt;</div><div class="line">    密码:&lt;input type="password" name="user.password" /&gt;&lt;br/&gt;</div><div class="line">    年龄:&lt;input type="text" name="user.age" /&gt;&lt;br/&gt;</div><div class="line">    &lt;input type="submit" value="注册" /&gt;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure>
+<p><strong>输出结果</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">User&#123;username=&apos;renkai&apos;, password=&apos;12&apos;, age=25&#125;</div></pre></td></tr></table></figure>
+<h3 id="第二种方式：模型驱动"><a href="#第二种方式：模型驱动" class="headerlink" title="第二种方式：模型驱动"></a>第二种方式：模型驱动</h3><blockquote>
+<p>使用模型驱动的方式，也可以把表单中的数据直接封装到一个 <code>JavaBean</code> 的对象中，并且表单的写法和之前的写法没有区别！</p>
+<p>编写的页面不需要任何变化，正常编写 <code>name</code> 属性的值</p>
+<p>模型驱动的编写步骤：</p>
+</blockquote>
+<ul>
+<li><p>手动实例化 <code>JavaBean</code>，即：<code>private User user = new User();</code></p>
+</li>
+<li><p>必须实现 <code>ModelDriven&lt;T&gt;</code> 接口，实现 <code>getModel()</code> 的方法，在 <code>getModel()</code> 方法中返回 <code>user</code> 即可！！</p>
+</li>
+</ul>
+<p><strong>Action:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 模型驱动的方式</div><div class="line"> * 需要实现 ModelDriven 接口</div><div class="line"> * 必须要手动实例化对象（需要自己new好）</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Regist3Action</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> <span class="keyword">implements</span> <span class="title">ModelDriven</span>&lt;<span class="title">User</span>&gt; </span>&#123;</div><div class="line">    <span class="comment">// 必须要手动实例化</span></div><div class="line">    <span class="keyword">private</span> User user = <span class="keyword">new</span> User();</div><div class="line">    <span class="comment">// 获取模型对象</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">getModel</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> user;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">execute</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        System.out.println(user);</div><div class="line">        <span class="keyword">return</span> NONE;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>struts.xml</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"demo2"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span> <span class="attr">namespace</span>=<span class="string">"/"</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!--模型驱动的方式--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"regist3"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.demo2.Regist3Action"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">package</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>jsp页面</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;h3&gt;模型驱动的方式&lt;/h3&gt;</div><div class="line">&lt;form action="$&#123; pageContext.request.contextPath &#125;/regist3.action" method="post"&gt;</div><div class="line">    姓名:&lt;input type="text" name="username" /&gt;&lt;br/&gt;</div><div class="line">    密码:&lt;input type="password" name="password" /&gt;&lt;br/&gt;</div><div class="line">    年龄:&lt;input type="text" name="age" /&gt;&lt;br/&gt;</div><div class="line">    &lt;input type="submit" value="注册" /&gt;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure>
+<p><strong>输出结果</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">User&#123;username=&apos;renkai&apos;, password=&apos;12&apos;, age=25&#125;</div></pre></td></tr></table></figure>
+<h3 id="Struts2-把数据封装到集合中"><a href="#Struts2-把数据封装到集合中" class="headerlink" title="Struts2 把数据封装到集合中"></a>Struts2 把数据封装到集合中</h3><p>（默认采用的是属性驱动的方式）</p>
+<h4 id="把数据封装到-List-集合中"><a href="#把数据封装到-List-集合中" class="headerlink" title="把数据封装到 List 集合中"></a>把数据封装到 List 集合中</h4><ul>
+<li>因为 <code>Collection</code> 接口都会有下标值，所有页面的写法会有一些区别，注意：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"products[0].name"</span> /&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>在 <code>Action</code> 中的写法，需要提供 <code>user</code> 的集合，并且提供 <code>get</code> 和 <code>set</code> 方法。</li>
+</ul>
+<p><strong>Action:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 属性驱动的方式，把数据封装到List集合中</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Regist4Action</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> List&lt;User&gt; list;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">getList</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> list;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setList</span><span class="params">(List&lt;User&gt; list)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.list = list;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">execute</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="keyword">for</span> (User user : list) &#123;</div><div class="line">            System.out.println(user);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> NONE;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>struts.xml</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"demo2"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span> <span class="attr">namespace</span>=<span class="string">"/"</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!--把数据封装到List集合中--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"regist4"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.demo2.Regist4Action"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">package</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>jsp页面</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;h3&gt;向List集合封装数据（默认情况下，采用的是属性驱动的方式）&lt;/h3&gt;</div><div class="line">&lt;form action="$&#123; pageContext.request.contextPath &#125;/regist4.action" method="post"&gt;</div><div class="line">    姓名:&lt;input type="text" name="list[0].username" /&gt;&lt;br/&gt;</div><div class="line">    密码:&lt;input type="password" name="list[0].password" /&gt;&lt;br/&gt;</div><div class="line">    年龄:&lt;input type="text" name="list[0].age" /&gt;&lt;br/&gt;</div><div class="line"></div><div class="line">    姓名:&lt;input type="text" name="list[1].username" /&gt;&lt;br/&gt;</div><div class="line">    密码:&lt;input type="password" name="list[1].password" /&gt;&lt;br/&gt;</div><div class="line">    年龄:&lt;input type="text" name="list[1].age" /&gt;&lt;br/&gt;</div><div class="line">    &lt;input type="submit" value="注册" /&gt;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure>
+<p><strong>输出结果</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">User&#123;username=&apos;renkai&apos;, password=&apos;12&apos;, age=25&#125;</div><div class="line">User&#123;username=&apos;xiaomei&apos;, password=&apos;34&apos;, age=22&#125;</div></pre></td></tr></table></figure>
+<h4 id="把数据封装到-Ma-中"><a href="#把数据封装到-Ma-中" class="headerlink" title="把数据封装到 Ma 中"></a>把数据封装到 Ma 中</h4><ul>
+<li><code>Map</code> 集合是键值对的形式，页面的写法</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"map['one'].name"</span> /&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>注意：</strong>里面的 <code>key</code> 值可以自定义。</p>
+<ul>
+<li>Action中提供 <code>map</code> 集合，并且提供 <code>get</code> 和 <code>set</code> 方法</li>
+</ul>
+<p><strong>Action:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 属性驱动的方式，把数据封装到map集合中</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Regist5Action</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> Map&lt;String, User&gt; map;</div><div class="line">    <span class="function"><span class="keyword">public</span> Map&lt;String, User&gt; <span class="title">getMap</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> map;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMap</span><span class="params">(Map&lt;String, User&gt; map)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.map = map;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">execute</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        System.out.println(map);</div><div class="line">        <span class="keyword">return</span> NONE;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>struts.xml</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"demo2"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span> <span class="attr">namespace</span>=<span class="string">"/"</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!--把数据封装到map集合中--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"regist5"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.demo2.Regist5Action"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">package</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>jsp页面</strong>：这里的 <code>key</code> 值自定义。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;h3&gt;向map集合封装数据（默认情况下，采用的是属性驱动的方式）&lt;/h3&gt;</div><div class="line">&lt;form action="$&#123; pageContext.request.contextPath &#125;/regist5.action" method="post"&gt;</div><div class="line">    姓名:&lt;input type="text" name="map['one'].username" /&gt;&lt;br/&gt;</div><div class="line">    密码:&lt;input type="password" name="map['one'].password" /&gt;&lt;br/&gt;</div><div class="line">    年龄:&lt;input type="text" name="map['one'].age" /&gt;&lt;br/&gt;</div><div class="line"></div><div class="line">    姓名:&lt;input type="text" name="map['two'].username" /&gt;&lt;br/&gt;</div><div class="line">    密码:&lt;input type="password" name="map['two'].password" /&gt;&lt;br/&gt;</div><div class="line">    年龄:&lt;input type="text" name="map['two'].age" /&gt;&lt;br/&gt;</div><div class="line">    &lt;input type="submit" value="注册" /&gt;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure>
+<p><strong>输出结果</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;one=User&#123;username=&apos;renkai&apos;, password=&apos;12&apos;, age=25&#125;, two=User&#123;username=&apos;xiaomei&apos;, password=&apos;34&apos;, age=22&#125;&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="Struts2-的拦截器技术"><a href="#Struts2-的拦截器技术" class="headerlink" title="Struts2 的拦截器技术"></a>Struts2 的拦截器技术</h1><hr>
+<h2 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h2><h3 id="拦截器概述"><a href="#拦截器概述" class="headerlink" title="拦截器概述"></a>拦截器概述</h3><ul>
+<li><p>拦截器就是 <code>AOP</code>（Aspect-Oriented Programming，面向切面编程）的一种实现。（AOP是指用于在某个方法或字段被访问之前，进行拦截然后在之前或之后加入某些操作。）</p>
+</li>
+<li><p>过滤器：过滤从客服端发送到服务器端请求的。</p>
+</li>
+<li><p>拦截器：对目标 <code>Action</code> 中的某些方法进行拦截。</p>
+</li>
+</ul>
+<blockquote>
+<p>拦截器不能拦截JSP</p>
+<p>拦截 <code>Action</code> 中某些方法</p>
+</blockquote>
+<h3 id="拦截器和过滤器的区别"><a href="#拦截器和过滤器的区别" class="headerlink" title="拦截器和过滤器的区别"></a>拦截器和过滤器的区别</h3><p>1）拦截器是基于 <code>JAVA反射机制</code> 的，而过滤器是基于 <code>函数回调</code> 的<br>2）过滤器依赖于Servlet容器，而拦截器不依赖于Servlet容器<br>3）拦截器 <code>只能对Action请求</code> 起作用（Action中的方法），而过滤器可以对 <code>几乎所有的请求</code> 起作用（CSS JSP JS）。</p>
+<ul>
+<li>拦截器 采用 <code>责任链</code> 模式</li>
+</ul>
+<blockquote>
+<p>在责任链模式里，很多对象由每一个对象对其下家的引用而连接起来形成一条链</p>
+<p>责任链每一个节点，都可以继续调用下一个节点，也可以阻止流程继续执行</p>
+</blockquote>
+<ul>
+<li>在 struts2 中可以定义很多个拦截器，将多个拦截器按照特定顺序组成拦截器栈（顺序调用栈中的每一个拦截器 ）</li>
+</ul>
+<p><strong>Struts2 框架的核心是拦截器</strong></p>
+<h2 id="自定义拦截器和配置"><a href="#自定义拦截器和配置" class="headerlink" title="自定义拦截器和配置"></a>自定义拦截器和配置</h2><h3 id="编写拦截器"><a href="#编写拦截器" class="headerlink" title="编写拦截器"></a>编写拦截器</h3><p>需要实现 <code>Interceptor</code> 接口，实现接口中的三个方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">protected</span> String <span class="title">doIntercept</span><span class="params">(ActionInvocation invocation)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">    <span class="comment">// 获取session对象</span></div><div class="line">    User user = (User) ServletActionContext.getRequest().getSession().getAttribute(<span class="string">"existUser"</span>);</div><div class="line">    <span class="keyword">if</span>(user == <span class="keyword">null</span>)&#123;</div><div class="line">        <span class="comment">// 说明，没有登录，后面就不会执行了</span></div><div class="line">        <span class="keyword">return</span> <span class="string">"login"</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> invocation.invoke(); </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="配置拦截器"><a href="#配置拦截器" class="headerlink" title="配置拦截器"></a>配置拦截器</h3><p><strong>注意：</strong> <em>只要引用了自己的拦截器，Struts2 框架默认栈的拦截器就不执行了，必须要手动引入默认栈。</em></p>
+<p>需要在 <code>struts.xml</code> 中进行拦截器的配置，配置一共有两种方式</p>
+<h4 id="第一种方式：直接引入"><a href="#第一种方式：直接引入" class="headerlink" title="第一种方式：直接引入"></a>第一种方式：直接引入</h4><ul>
+<li>在 <code>&lt;package&gt;</code> 包中定义拦截器，出现在 <code>&lt;package&gt;</code> 包的上方</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">interceptors</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">interceptor</span> <span class="attr">name</span>=<span class="string">"DemoInterceptor"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.interceptor.DemoInterceptor"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">interceptors</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>在某个 <code>action</code> 中引入拦截器：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"userAction"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.demo3.UserAction"</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 只要是引用自己的拦截器，默认栈的拦截器就不执行了，必须要手动引入默认栈 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">"DemoInterceptor"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">"defaultStack"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="第二种方式：定义拦截器栈"><a href="#第二种方式：定义拦截器栈" class="headerlink" title="第二种方式：定义拦截器栈"></a>第二种方式：定义拦截器栈</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">interceptors</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">interceptor</span> <span class="attr">name</span>=<span class="string">"DemoInterceptor"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.interceptor.DemoInterceptor"</span>/&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 定义拦截器栈 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">interceptor-stack</span> <span class="attr">name</span>=<span class="string">"myStack"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">"DemoInterceptor"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">"defaultStack"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">interceptor-stack</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">interceptors</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"userAction"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.demo3.UserAction"</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 只要是引用自己的拦截器，默认栈的拦截器就不执行了，必须要手动引入默认栈 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">"DemoInterceptor"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">"defaultStack"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/images/JavaWeb/struts20200.png&quot;&gt;&lt;/div&gt;
+
+&lt;p id=&quot;div-border-left-blue&quot;&gt;Servlet API、封装数据、拦截器。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="JavaWeb" scheme="http://yoursite.com/categories/JavaWeb/"/>
+    
+    
+      <category term="JavaWeb" scheme="http://yoursite.com/tags/JavaWeb/"/>
+    
+      <category term="Struts2" scheme="http://yoursite.com/tags/Struts2/"/>
+    
+  </entry>
+  
+  <entry>
     <title>JavaWeb 之 Struts2 快速入门</title>
     <link href="http://yoursite.com/posts/JavaWeb/2018-06-27-JavaWeb-Struts201.html"/>
     <id>http://yoursite.com/posts/JavaWeb/2018-06-27-JavaWeb-Struts201.html</id>
     <published>2018-06-27T13:39:05.000Z</published>
-    <updated>2018-06-27T13:41:34.682Z</updated>
+    <updated>2018-06-28T08:57:06.564Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/struts20100.png"></div>
 
@@ -28,34 +264,43 @@
 
 <a id="more"></a>
 <hr>
-<h3 id="案例一：使用Struts2框架完成登录功能"><a href="#案例一：使用Struts2框架完成登录功能" class="headerlink" title="案例一：使用Struts2框架完成登录功能"></a>案例一：使用Struts2框架完成登录功能</h3><hr>
-<p><strong>需求分析</strong></p>
-<pre><code>1. 使用Struts2完成登录的功能
-</code></pre><hr>
 <h1 id="Struts2-框架的概述"><a href="#Struts2-框架的概述" class="headerlink" title="Struts2 框架的概述"></a>Struts2 框架的概述</h1><hr>
-<h2 id="什么是Struts2的框架"><a href="#什么是Struts2的框架" class="headerlink" title="什么是Struts2的框架"></a>什么是Struts2的框架</h2><ul>
-<li>Struts2是Struts1的下一代产品，是在 struts1和WebWork的技术基础上进行了合并的全新的Struts 2框架。</li>
-<li>其全新的Struts 2的体系结构与Struts 1的体系结构差别巨大。</li>
-<li>Struts 2以WebWork为核心，采用拦截器的机制来处理用户的请求，这样的设计也使得业务逻辑控制器能够与ServletAPI完全脱离开，所以Struts 2可以理解为WebWork的更新产品。</li>
-<li>虽然从Struts 1到Struts 2有着太大的变化，但是相对于WebWork，Struts 2的变化很小。</li>
+<h2 id="Struts2-框架由来"><a href="#Struts2-框架由来" class="headerlink" title="Struts2 框架由来"></a>Struts2 框架由来</h2><ul>
+<li><p><code>Struts2</code> 是 <code>Struts1</code> 的下一代产品，是在 <code>struts1</code> 和 <code>WebWork</code> 的技术基础上进行了合并的全新的 <code>Struts2</code> 框架。</p>
+</li>
+<li><p>其全新的 <code>Struts2</code> 的体系结构与 <code>Struts1</code> 的体系结构差别巨大。</p>
+</li>
+<li><p><code>Struts2</code> 以 <code>WebWork</code> 为核心，采用拦截器的机制来处理用户的请求，这样的设计也使得业务逻辑控制器能够与 <code>ServletAPI</code> 完全脱离开，所以 <code>Struts2</code> 可以理解为 <code>WebWork</code> 的更新产品。</p>
+</li>
+<li><p>虽然从 <code>Struts1</code> 到 <code>Struts2</code> 有着太大的变化，但是相对于 <code>WebWork</code> ，<code>Struts2</code> 的变化很小。</p>
+</li>
 </ul>
-<h2 id="Struts2是一个基于MVC设计模式的Web层框架"><a href="#Struts2是一个基于MVC设计模式的Web层框架" class="headerlink" title="Struts2是一个基于MVC设计模式的Web层框架"></a>Struts2是一个基于MVC设计模式的Web层框架</h2><ul>
-<li>MVC和JavaEE的三层结构<ul>
-<li>MVC设计模式:是由一些网站的开发人员提出来的</li>
-<li>JavaEE三层结构:SUN公司为EE开发划分的结构</li>
-</ul>
+<h2 id="Struts2-设计模型"><a href="#Struts2-设计模型" class="headerlink" title="Struts2 设计模型"></a>Struts2 设计模型</h2><p><strong>Struts2 是一个基于 MVC 设计模式的 Web 层框架</strong></p>
+<ul>
+<li><p><code>MVC</code> 和 JavaEE 的三层结构</p>
+</li>
+<li><p><code>MVC</code> 设计模式：是由一些网站的开发人员提出来的（<code>Model View Controller</code>）</p>
+</li>
+<li><p>JavaEE 三层结构：SUN 公司为 EE 开发划分的结构</p>
 </li>
 </ul>
 <h2 id="常见的Web层的框架"><a href="#常见的Web层的框架" class="headerlink" title="常见的Web层的框架"></a>常见的Web层的框架</h2><ul>
-<li>Struts1</li>
-<li>Struts2 <strong>★</strong></li>
-<li>Webwork</li>
-<li>SpringMVC <strong>★</strong></li>
+<li><p>Struts1</p>
+</li>
+<li><p>Struts2 <strong>★</strong></p>
+</li>
+<li><p>Webwork</p>
+</li>
+<li><p>SpringMVC <strong>★</strong></p>
+</li>
 </ul>
 <h2 id="Web层框架的特点"><a href="#Web层框架的特点" class="headerlink" title="Web层框架的特点"></a>Web层框架的特点</h2><ul>
-<li>都是一个特点，前端控制器模式</li>
-<li>记住：前端控制器（核心的控制器）</li>
-<li>Struts2 框架前端的控制器就是过滤器</li>
+<li><p>都是一个特点，<code>前端控制器模式</code></p>
+</li>
+<li><p>记住：<code>前端控制器（核心的控制器）</code></p>
+</li>
+<li><p><code>Struts2</code> 框架前端的控制器就是 <code>过滤器</code></p>
+</li>
 </ul>
 <hr>
 <h1 id="Struts2-快速入门"><a href="#Struts2-快速入门" class="headerlink" title="Struts2 快速入门"></a>Struts2 快速入门</h1><hr>
@@ -68,10 +313,10 @@
 <li>解压后会看到有包和一些文件，大家需要掌握包相关的信息</li>
 </ul>
 <blockquote>
-<p>apps    – Struts2 框架提供了一些应用<br>libs    – Struts2 框架开发的 jar 包<br>docs    – Struts2 框架开发文档<br>src    – Struts2 框架源码</p>
+<p><code>apps</code>    – Struts2 框架提供了一些应用<br><code>libs</code>    – Struts2 框架开发的 jar 包<br><code>docs</code>    – Struts2 框架开发文档<br><code>src</code>    – Struts2 框架源码</p>
 </blockquote>
 <h3 id="引入需要开发的-jar-包"><a href="#引入需要开发的-jar-包" class="headerlink" title="引入需要开发的 jar 包"></a>引入需要开发的 jar 包</h3><ul>
-<li>Struts2 框架的开发 <code>jar</code> 包非常多，但是不是所有都是必须要引入的，有一些必须要导入的 jar 包，这些 jar 包可以从 Struts2 框架提供的<code>应用</code>中找到。</li>
+<li><code>Struts2</code> 框架的开发 <code>jar</code> 包非常多，但是不是所有都是必须要引入的，有一些必须要导入的 <code>jar</code> 包，这些 <code>jar</code> 包可以从 <code>Struts2</code> 框架提供的<code>应用</code>中找到。</li>
 <li>可以打开 <code>apps</code> 目录，然后找到 <code>struts2-blank.war</code> 应用。<code>war 包和</code>zip` 包的压缩格式是一样的，所以可以修改后缀名，解压。</li>
 <li>找到解压后的应用，打开 <code>WEB-INF/lib</code> 目录下所以的 <code>jar</code> 包。复制到工程中，就可以了。</li>
 </ul>
@@ -85,9 +330,12 @@
 <h2 id="编写-Action-类"><a href="#编写-Action-类" class="headerlink" title="编写 Action 类"></a>编写 Action 类</h2><p><code>Action</code> 类是动作类，是 <code>Struts2</code> <code>处理请求</code>，<code>封装数据</code>，<code>响应页面</code>的<code>核心控制器</code>。需要自己编写。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Struts2 框架都是用 Action 类处理用户的请求</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloAction</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Action 类中的方法签名是有要求的，必须这么做</div><div class="line">     * public 共有的</div><div class="line">     * 必须有返回值，必须 String 类型</div><div class="line">     * 方法名称可以是任意的，但是不能有参数列表</div><div class="line">     */</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">sayHello</span><span class="params">()</span></span>&#123;</div><div class="line">        System.out.println(<span class="string">"Hello Struts2!"</span>);</div><div class="line">        <span class="keyword">return</span> <span class="string">"OK"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="编写-Struts-的配置文件"><a href="#编写-Struts-的配置文件" class="headerlink" title="编写 Struts 的配置文件"></a>编写 Struts 的配置文件</h2><ol>
-<li>配置文件名称是 <code>struts.xml</code>（名称必须是struts.xml）</li>
-<li>在 <code>src</code> 下引入 <code>struts.xml</code> 配置文件（配置文件的路径必须是在 <code>src</code> 的目录下）</li>
-<li>配置如下</li>
+<li><p>配置文件名称是 <code>struts.xml</code>（名称必须是 <code>struts.xml</code>）</p>
+</li>
+<li><p>在 <code>src</code> 下引入 <code>struts.xml</code> 配置文件（配置文件的路径必须是在 <code>src</code> 的目录下）</p>
+</li>
+<li><p>配置如下</p>
+</li>
 </ol>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line"></div><div class="line"><span class="meta">&lt;!DOCTYPE struts PUBLIC</span></div><div class="line">        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"</div><div class="line">        "http://struts.apache.org/dtds/struts-2.3.dtd"&gt;</div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">struts</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"default"</span> <span class="attr">namespace</span>=<span class="string">"/"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!--配置 Action--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"hello"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.action.HelloAction"</span> <span class="attr">method</span>=<span class="string">"sayHello"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">package</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">struts</span>&gt;</span></div></pre></td></tr></table></figure>
 <h2 id="编写跳转"><a href="#编写跳转" class="headerlink" title="编写跳转"></a>编写跳转</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">struts</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"default"</span> <span class="attr">namespace</span>=<span class="string">"/"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"hello"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.action.HelloAction"</span> <span class="attr">method</span>=<span class="string">"sayHello"</span>&gt;</span></div><div class="line">            <span class="comment">&lt;!--配置跳转的页面，路径的写法。在 Struts2 框架中，不管是转发还是重定向，都不用写项目名--&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"OK"</span>&gt;</span>/demo1/success.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">action</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">package</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">struts</span>&gt;</span></div></pre></td></tr></table></figure>
@@ -104,57 +352,44 @@
 <li>拦截器执行完后，会根据 <code>struts.xml</code> 的配置文件找到请求路径，找到具体的类，通过<code>反射</code>的方式让方法执行。</li>
 </ul>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
-<li>JSP页面 –&gt; <code>StrutsPrepereAndExecuteFilter</code>过滤器 –&gt; 执行一系列拦截器（完成了部分代码） –&gt; 执行到目标 <code>Action</code> –&gt; 返回字符串 –&gt; 结果页面（result） –&gt; 页面跳转</li>
+<li>JSP页面 –&gt; <code>StrutsPrepereAndExecuteFilter</code>过滤器 –&gt; 执行一系列拦截器（完成了部分代码） –&gt; 执行到目标 <code>Action</code> –&gt; 返回字符串 –&gt; 结果页面（<code>result</code>） –&gt; 页面跳转</li>
 </ul>
 <hr>
-<h2 id="Struts2框架配置文件加载的顺序"><a href="#Struts2框架配置文件加载的顺序" class="headerlink" title="Struts2框架配置文件加载的顺序"></a>Struts2框架配置文件加载的顺序</h2><h3 id="Struts2-框架的核心是-StrutsPrepareAndExecuteFilter-过滤器"><a href="#Struts2-框架的核心是-StrutsPrepareAndExecuteFilter-过滤器" class="headerlink" title="Struts2 框架的核心是 StrutsPrepareAndExecuteFilter 过滤器"></a>Struts2 框架的核心是 <code>StrutsPrepareAndExecuteFilter</code> 过滤器</h3><p>该过滤器有两个功能</p>
-<ul>
+<h2 id="Struts2-框架配置文件加载的顺序"><a href="#Struts2-框架配置文件加载的顺序" class="headerlink" title="Struts2 框架配置文件加载的顺序"></a>Struts2 框架配置文件加载的顺序</h2><h3 id="Struts2-框架的核心是-StrutsPrepareAndExecuteFilter-过滤器"><a href="#Struts2-框架的核心是-StrutsPrepareAndExecuteFilter-过滤器" class="headerlink" title="Struts2 框架的核心是 StrutsPrepareAndExecuteFilter 过滤器"></a>Struts2 框架的核心是 <code>StrutsPrepareAndExecuteFilter</code> 过滤器</h3><h4 id="该过滤器有两个功能"><a href="#该过滤器有两个功能" class="headerlink" title="该过滤器有两个功能"></a>该过滤器有两个功能</h4><ul>
 <li>Prepare        – 预处理，加载核心的配置文件</li>
 <li>Execute        – 执行，让部分拦截器执行</li>
 </ul>
-<ol>
-<li><code>StrutsPrepareAndExecuteFilter</code>  过滤器会加载哪些配置文件呢？</li>
-</ol>
-<p>通过源代码可以看到具体加载的配置文件和加载配置文件的顺序</p>
+<h4 id="StrutsPrepareAndExecuteFilter-过滤器会加载哪些配置文件呢？"><a href="#StrutsPrepareAndExecuteFilter-过滤器会加载哪些配置文件呢？" class="headerlink" title="StrutsPrepareAndExecuteFilter  过滤器会加载哪些配置文件呢？"></a><code>StrutsPrepareAndExecuteFilter</code>  过滤器会加载哪些配置文件呢？</h4><p>通过源代码可以看到具体加载的配置文件和加载配置文件的顺序</p>
 <ul>
-<li>init_DefaultProperties();                 – 加载 org/apache/struts2/default.properties</li>
-<li>init_TraditionalXmlConfigurations();        – 加载 struts-default.xml,struts-plugin.xml,struts.xml</li>
-<li>init_LegacyStrutsProperties();            – 加载自定义的 struts.properties.</li>
+<li>init_DefaultProperties();                 – 加载 <code>org/apache/struts2/default.properties</code></li>
+<li>init_TraditionalXmlConfigurations();        – 加载 <code>struts-default.xml</code>,<code>struts-plugin.xml</code>,<code>struts.xml</code></li>
+<li>init_LegacyStrutsProperties();            – 加载自定义的 <code>struts.properties</code></li>
 <li>init_CustomConfigurationProviders();        – 加载用户自定义配置提供者</li>
-<li>init_FilterInitParameters() ;                – 加载 web.xml</li>
+<li>init_FilterInitParameters() ;                – 加载 <code>web.xml</code></li>
 </ul>
-<ol>
-<li>重点了解的配置文件</li>
-</ol>
-<ul>
-<li>default.properties        – 在 org/apache/struts2/ 目录下，代表的是配置的是 Struts2 的常量的值</li>
-<li>struts-default.xml        – 在 Struts2 的核心包下，代表的是 Struts2 核心功能的配置（Bean、拦截器、结果类型等）</li>
-<li>struts.xml                – 重点中的重点配置，代表 WEB 应用的默认配置，在工作中，基本就配置它就可以了！！（可以配置常量）</li>
+<h4 id="重点了解的配置文件"><a href="#重点了解的配置文件" class="headerlink" title="重点了解的配置文件"></a>重点了解的配置文件</h4><ul>
+<li>default.properties        – 在 <code>org/apache/struts2/</code> 目录下，代表的是配置的是 <code>Struts2</code> 的常量的值</li>
+<li>struts-default.xml        – 在 <code>Struts2</code> 的核心包下，代表的是 <code>Struts2</code> 核心功能的配置（Bean、拦截器、结果类型等）</li>
+<li>struts.xml                – 重点中的重点配置，代表 <code>WEB</code> 应用的默认配置，在工作中，基本就配置它就可以了！！（可以配置常量）</li>
 <li>web.xml                    – 配置前端控制器（可以配置常量）</li>
 </ul>
 <p>注意：</p>
 <ul>
-<li><p>前 3 个配置文件是 struts2 框架的默认配置文件，基本不用修改。</p>
+<li><p>前 3 个配置文件是 <code>struts2</code> 框架的默认配置文件，基本不用修改。</p>
 </li>
-<li><p>后 3 个配置文件可以允许自己修改 struts2 的常量。但是有一个特点：后加载的配置文件修改的常量的值，会覆盖掉前面修改的常量的值。</p>
+<li><p>后 3 个配置文件可以允许自己修改 <code>struts2</code> 的常量。但是有一个特点：后加载的配置文件修改的常量的值，会覆盖掉前面修改的常量的值。</p>
 </li>
 </ul>
-<ol>
-<li>总结（重点掌握的配置文件）</li>
-</ol>
-<ul>
-<li>先加载default.properties文件，在org/apache/struts2/default.properties文件，都是常量。</li>
-<li>又加载struts-default.xml配置文件，在核心的jar包最下方，struts2框架的核心功能都是在该配置文件中配置的。</li>
-<li>再加载struts.xml的配置文件，在src的目录下，代表用户自己配置的配置文件</li>
-<li><p>最后加载web.xml的配置文件</p>
+<h4 id="总结（重点掌握的配置文件）"><a href="#总结（重点掌握的配置文件）" class="headerlink" title="总结（重点掌握的配置文件）"></a>总结（重点掌握的配置文件）</h4><ul>
+<li>先加载 <code>default.properties</code> 文件，在 <code>org/apache/struts2/default.properties</code> 文件，都是常量。</li>
+<li>又加载 <code>struts-default.xml</code> 配置文件，在核心的 <code>jar</code> 包最下方，<code>struts2</code> 框架的核心功能都是在该配置文件中配置的。</li>
+<li>再加载 <code>struts.xml</code> 的配置文件，在 <code>src</code> 的目录下，代表用户自己配置的配置文件</li>
+<li><p>最后加载 <code>web.xml</code> 的配置文件</p>
 </li>
 <li><p>后加载的配置文件会覆盖掉之前加载的配置文件（在这些配置文件中可以配置常量）</p>
 </li>
 </ul>
-<ol>
-<li>注意一个问题</li>
-</ol>
-<p>哪些配置文件中可以配置常量？</p>
+<h4 id="注意一个问题"><a href="#注意一个问题" class="headerlink" title="注意一个问题"></a>注意一个问题</h4><p>哪些配置文件中可以配置常量？</p>
 <ul>
 <li>default.properties        – 默认值，是不能修改的！！</li>
 <li>struts.xml                – 可以配置，开发中基本上都在该配置文件中配置常量</li>
@@ -188,7 +423,6 @@
 <li>name        – 结果页面逻辑视图名称</li>
 <li>type        – 结果类型（默认值是转发，也可以设置其他的值）</li>
 </ul>
-<hr>
 <h2 id="Struts2-配置常量"><a href="#Struts2-配置常量" class="headerlink" title="Struts2 配置常量"></a>Struts2 配置常量</h2><h3 id="Struts2-框架中的哪些配置文件中配置常量？"><a href="#Struts2-框架中的哪些配置文件中配置常量？" class="headerlink" title="Struts2 框架中的哪些配置文件中配置常量？"></a>Struts2 框架中的哪些配置文件中配置常量？</h3><p>struts.xml（必须要掌握，开发中基本上就在该配置文件中编写常量）</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">* <span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"key"</span> <span class="attr">value</span>=<span class="string">"value"</span>&gt;</span><span class="tag">&lt;/<span class="name">constant</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>web.xml</p>
@@ -285,7 +519,7 @@
 </li>
 </ul>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 开启动态方法访问 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">constant</span> <span class="attr">name</span>=<span class="string">"struts.enable.DynamicMethodInvocation"</span> <span class="attr">value</span>=<span class="string">"true"</span>&gt;</span><span class="tag">&lt;/<span class="name">constant</span>&gt;</span></div></pre></td></tr></table></figure>
-<h4 id="具体代码如下"><a href="#具体代码如下" class="headerlink" title="具体代码如下"></a>具体代码如下</h4><ul>
+<h4 id="具体实例如下：-1"><a href="#具体实例如下：-1" class="headerlink" title="具体实例如下："></a>具体实例如下：</h4><ul>
 <li>页面的代码</li>
 </ul>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">H3</span>&gt;</span>动态方法访问的方式<span class="tag">&lt;/<span class="name">H3</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;pageContext.request.contextPath&#125;/user!save.action"</span>&gt;</span>保存用户<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;pageContext.request.contextPath&#125;/user!update.action"</span>&gt;</span>修改用户<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
@@ -297,6 +531,16 @@
 <li>Action的类的代码</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserAction</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">save</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"保存用户…"</span>);</div><div class="line">        <span class="keyword">return</span> NONE;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">update</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"修改用户…"</span>);</div><div class="line">        <span class="keyword">return</span> NONE;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h1><p>Struts2 框架主要以下几个步骤：</p>
+<h3 id="编写-web-xml-前端控制器"><a href="#编写-web-xml-前端控制器" class="headerlink" title="编写 web.xml 前端控制器"></a>编写 <code>web.xml</code> 前端控制器</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">filter</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>struts2<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>struts2<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="编写-struts-xml-配置文件"><a href="#编写-struts-xml-配置文件" class="headerlink" title="编写 struts.xml 配置文件"></a>编写 <code>struts.xml</code> 配置文件</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">namespace</span>=<span class="string">"/"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.action2.LinkmanAction"</span> <span class="attr">method</span>=<span class="string">"&#123;1&#125;"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"saveOK"</span>&gt;</span>/demo2/success.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">action</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">package</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="编写-Action-类-1"><a href="#编写-Action-类-1" class="headerlink" title="编写 Action 类"></a>编写 Action 类</h3><ul>
+<li><p>一般继承 <code>ActionSupport</code> 类</p>
+</li>
+<li><p><code>&lt;action&gt;</code> 访问配置一般使用 <code>通配符</code> 的方式：</p>
+</li>
+</ul>
+<p><code>name=&quot;user_*&quot; method=&quot;{1}&quot;</code></p>
 ]]></content>
     
     <summary type="html">
@@ -321,19 +565,155 @@
     <link href="http://yoursite.com/posts/Mine/2018-06-11-novel-nverqing.html"/>
     <id>http://yoursite.com/posts/Mine/2018-06-11-novel-nverqing.html</id>
     <published>2018-06-11T12:05:27.000Z</published>
-    <updated>2018-06-12T09:46:13.422Z</updated>
+    <updated>2018-06-29T14:19:08.108Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><br>那一年，他离开女儿国<br>她在城头似哭似笑<br>当着百官的面对着他的背影大喊<br>“唐玄奘，下辈子娶我可好？”<br>夕阳下，白衣骑白马<br>风沙漫天，看不见他的表情<br>僧人不语，只余风声喧嚣<br>这一年，他圆寂<br>千佛诵经，万众朝宗<br>他走的时候却只笑着留下一句：<br>“好！”<br></div><br><div align="center"><span id="inline-red">未完待续…</span></div>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center">那一年，他离开女儿国<br>她在城头似哭似笑<br>当着百官的面对着他的背影大喊<br>“唐玄奘，下辈子娶我可好？”<br>夕阳下，白衣骑白马<br>风沙漫天，看不见他的表情<br>僧人不语，只余风声喧嚣<br>这一年，他圆寂<br>千佛诵经，万众朝宗<br>他走的时候却只笑着留下一句：<br>“好！”<br></div><br><div align="center"><span id="inline-red">未完待续…</span></div>
 
 <a id="more"></a>
 <hr>
 
-<p>快开题了还不赶紧的！</p>
-]]></content>
+<h1 id="世间安得双全法，不负如来不负卿。"><a href="#世间安得双全法，不负如来不负卿。" class="headerlink" title="世间安得双全法，不负如来不负卿。"></a>世间安得双全法，不负如来不负卿。</h1><h2 id="（一）缘起"><a href="#（一）缘起" class="headerlink" title="（一）缘起"></a>（一）缘起</h2><p>小船悠悠，师徒四人不知不觉就来到了西梁女国了。</p>
+<p>唐玄奘虽也是见过大风大浪的人，可还是第一次来到一个只有女子的国度。</p>
+<p>走在大街上，周围投射来新奇又热烈的目光，玄奘只觉得浑身不自在。</p>
+<p>心中默念“阿弥陀佛”，一心只想着赶快换了通关文牒，离开这个是非之地。</p>
+<p>女王听闻唐朝高僧觐见，闪凤目，簇蛾眉，仔细观看，果然一表非凡。</p>
+<p>丰姿英伟，相貌轩昂。齿白如银砌，唇红口四方。顶平额阔天仓满，目秀眉清地阁长。两耳有轮真杰士，一身不俗是才郎。好个妙龄聪俊风流子，堪配西梁窈窕娘。<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top-right hint--error hint--large" aria-label="《西游记》第五十四回-法性西来逢女国，心猿定计脱烟花：女王闪凤目，簇蛾眉，仔细观看，果然一表非凡，你看他丰姿英伟，相貌轩昂。齿白如银砌，唇红口四方。顶平额阔天仓满，目秀眉清地阁长。两耳有轮真杰士，一身不俗是才郎。好个妙龄聪俊风流子，堪配西梁窈窕娘。">[1]</span></a></sup></p>
+<p>玄奘见到女王陛下，双手合十，恭敬的行礼：“贫僧唐三藏参见女王陛下”。</p>
+<p>却见没有声响。</p>
+<p>连忙继续“贫僧唐三藏参见女王陛下”。还是没有回应。</p>
+<p>无奈只得再拜“贫僧唐三藏参见女王陛下”。玄奘却不知，这女王正细细端详着他的面庞出神，哪听得到他在说什么。</p>
+<p>玄奘本想着通关文牒上加盖宝印是很简单的事，却没料想女王陛下让他与徒儿先到馆驿休息。</p>
+<h2 id="（二）梦"><a href="#（二）梦" class="headerlink" title="（二）梦"></a>（二）梦</h2><blockquote>
+<p>此部分对话皆来自<code>央视 86 版《西游记》第十六集《趣经女儿国》台词。</code><sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top-right hint--error hint--large" aria-label="央视 86 版《西游记》第十六集《趣经女儿国》台词。">[2]</span></a></sup></p>
+</blockquote>
+<p>夜里，檀香缭绕，女王独坐窗前，画笔下轻轻勾勒着，画上的人可不就是今天来的大唐高僧吗。</p>
+<p>闻得太师唤她，女王连忙用绢布将画遮起来。</p>
+<p>女王禁不住心下欣喜，同太师说道：“想我西梁女国，从未有过男子，今日有幸，天赐唐王御弟下降。我想这是千载难逢的机缘，愿以一国之富，招他为王，我为王后。”</p>
+<p>深夜，女王倚着软塌，望着唐三藏的画像，渐渐陷入了沉睡。</p>
+<p>这夜，她做了一个梦。</p>
+<p>梦里，他为王，她为后。</p>
+<p>梦里，他们策马驰骋。</p>
+<p>梦里，他们相互依偎，同游御花园…</p>
+<p>梦醒，却是一阵阵失落。</p>
+<p>翌日，依着梦境，女王邀玄奘同游御花园。</p>
+<p>女王莲步轻移，谈天说地，玄奘却一直恭恭敬敬，时刻与女王保持着距离。</p>
+<p>“你看那戏水鸳鸯，如胶似漆，多么欢快，你说是吗？”</p>
+<p>玄奘拱手道：“陛下看的真切，贫僧不曾留意。”</p>
+<p>“御弟哥哥，为什么天地间的鸟呀、蝶呀，都要成对成双的呢？”</p>
+<p>“这事自有天地以来便是如此。”</p>
+<p>“御弟……哥哥……”</p>
+<p>“陛下……”</p>
+<p>女王眸中泛着微光，带着哭腔央求道：“不去取经行不行？”</p>
+<p>“这……哎……”玄奘轻叹一声，不知如何回应。</p>
+<p>只听女王叹道：“为什么世间还有像我们这样的孤男寡女，不能成双成对？”</p>
+<p>玄奘连忙说，“陛下，贫僧许身佛门，正是为了解救芸芸众生，使世上不再有杀伐纷争，使人间不再有怨女旷夫。”</p>
+<p>“既然御弟哥哥有如此情怀，那么眼前就有需要你解救的芸芸众生！”</p>
+<p>女王无奈，你只知解救芸芸众生，却不救救我？</p>
+<p>“哎……陛下，贫僧取经心切，还望陛下早日发放通关牒文。”</p>
+<p>“今日且莫谈取经之事，御弟哥哥，你看这御花园中春光明媚，景色怡人，我再陪哥哥流连观赏一番，好吗？”</p>
+<p>且看湖中鸳鸯戏水，桥上人成双成对。</p>
+<p>女王看着玄奘的目光，柔情似水。</p>
+<h2 id="（三）情动"><a href="#（三）情动" class="headerlink" title="（三）情动"></a>（三）情动</h2><blockquote>
+<p>此部分对话皆来自<code>央视 86 版《西游记》第十六集《趣经女儿国》台词。</code><sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top-right hint--error hint--large" aria-label="央视 86 版《西游记》第十六集《趣经女儿国》台词。">[2]</span></a></sup></p>
+</blockquote>
+<p>是夜，女王以“夜赏国宝”为由将玄奘请至自己的寝殿。</p>
+<p>玄奘来到之后才恍然过来，急忙给女王解释道：“太师领贫僧夜赏国宝，不知为何闯到陛下寝宫？”</p>
+<p>只闻帘后人温柔至极，“御弟哥哥，那就请观赏国宝吧！”</p>
+<p>床帘徐徐展开，只见床上人斜倚塌前，薄纱缚身，丹唇轻启，头戴高簪珠翠，一副雍容华贵之姿。</p>
+<p>玄奘闻言，又看到这一幕，耳红面赤，羞答答不敢抬头。</p>
+<p>“难道在御弟哥哥眼里，我还算不得国宝吗？”</p>
+<p>说着，女王捧起一盏烛火向玄奘走来。</p>
+<p>玄奘早已慌得不知如何是好，不敢正面看她，却忍不住偷偷看她的背影。</p>
+<p>“哥哥你看，这烛光也知人情，欲照今日之喜。”</p>
+<p>“不知陛下喜从何来？”</p>
+<p>“我身为女王，饱享荣华富贵，可是，从未享受过人间欢乐。今日哥哥到此，真乃天赐良缘。来日哥哥登上宝座，我为王后，从此双宿双飞，这不是万千之喜吗？”</p>
+<p>玄奘目光移向别处，使自己快速镇静下来。“佛心四大皆空，贫僧尘念已绝，无缘消受人间富贵。阿弥陀佛…”</p>
+<p>说完，紧闭双眼，不敢再多看一眼。</p>
+<p>女王依旧巧笑嫣然，如若月里嫦娥到此一般，美得不可方物。</p>
+<p>“你说四大皆空，却紧闭双眼。要是你睁开眼睛看看我，我不相信你两眼空空。”</p>
+<p>玄奘眯着眼看了看，但又很快紧闭双眼，嘴中不停念叨着阿弥陀佛。</p>
+<p>“不敢睁眼看我，还说什么四大皆空呢？”女王看着他颤抖的唇和额头的汗珠，笑意盈盈的反驳他。</p>
+<p>玄奘无奈，睁开眼看向女王。</p>
+<p>只见眼前人，眉如翠羽，肌似羊脂。脸衬桃花瓣，鬟堆金凤丝。秋波湛湛妖娆态，春笋纤纤妖媚姿。斜红绡飘彩艳，高簪珠翠显光辉。<sup id="fnref:3"><a href="#fn:3" rel="footnote"><span class="hint--top-right hint--error hint--large" aria-label="《西游记》第五十四回-法性西来逢女国，心猿定计脱烟花：猪八戒在旁，掬着嘴，饧眼观看那女王，却也袅娜，真个眉如翠羽，肌似羊脂。脸衬桃花瓣，鬟堆金凤丝。秋波湛湛妖娆态，春笋纤纤妖媚姿。斜红绡飘彩艳，高簪珠翠显光辉。说什么昭君美貌，果然是赛过西施。柳腰微展鸣金珮，莲步轻移动玉肢。月里嫦娥难到此，九天仙子怎如斯。宫妆巧样非凡类，诚然王母降瑶池。
+">[3]</span></a></sup></p>
+<p>这一眼看得他额头又一次布满了细密的汗珠，这一眼看的他呆了很久很久。</p>
+<p>玄奘连忙回过神来，眼睛移向别处，赶忙用袖子擦拭额头的汗，又念了句“阿弥陀佛”。</p>
+<p>“哥哥，别闭上，睁开眼睛吧。”</p>
+<p>“你就睁开眼睛吧。”</p>
+<p>玄奘摇头，“我就是睁眼看你，又能怎样？”</p>
+<p>“哥哥……”</p>
+<p>说着，女王趴在玄奘肩上，拽着他的袈裟袖子，无限暧昧。</p>
+<p>玄奘慌了，连忙起身将袖子从她手中拽出。却不想拉扯之间，对方突然放手，自己躺倒在了女王的床上。</p>
+<p>玄奘欲起身，却见女王口中不停唤着“哥哥…哥哥…”，将他又一次推倒在床上。</p>
+<p>玄奘想反抗，却手忙脚乱不知如何是好，时刻把持着尺度。</p>
+<p>女王幽怨的看着他，“哥哥，你难道真的不喜欢我吗？”</p>
+<p>玄奘犹豫了，他心里似云海翻涌，不知道怎么作答。只得偏过头去，不让女王看见自己的表情。</p>
+<p>女王看着他的样子，更加贴近他，温言软语：“今夜良宵难得，你就答应了我吧”</p>
+<p>玄奘长呼一口气，镇静如初，“女王陛下，贫僧已许身佛门，与大唐天子有诺在先，还望女王陛下放了贫僧西去。”</p>
+<p>说着，顿了顿，玄奘缓缓转过头来，看着她的背影说道：“来世若有缘分……”</p>
+<p>后面的话犹豫了很久说不出口，玄奘也许真的动了心吧。今世无缘，只能来世再续。</p>
+<p>女王听闻，心中一喜，若论来世，谁又说的准呢。“我只想今生，不想来世。今生今世，我们俩是有缘分的。”</p>
+<p>说着，头倚在玄奘肩上。</p>
+<p>良辰美景，灯光烛影之间，两人你侬我侬，玄奘欲拒还迎，虽故作镇静，但凡心已动，怎奈终究摆脱不了女王。</p>
+<h2 id="（四）不负如来"><a href="#（四）不负如来" class="headerlink" title="（四）不负如来"></a>（四）不负如来</h2><p>却说唐玄奘被那蝎子精掳走，这妖精山洞中灯红酒绿，一副洞房的装扮。</p>
+<p>同样是绝世美人儿，玄奘却对那蝎子精提不起一点兴趣。</p>
+<p>即使她不是妖怪，即使她再怎么美艳动人，在玄奘眼中只有嫌弃。</p>
+<p>玄奘一个出家人自然不懂自己心里的变化。</p>
+<p>脑海里依旧浮现着女王的一颦一笑，极尽温柔，极尽欢乐。</p>
+<p>玄奘不知道自己动没动情。</p>
+<p>他自己不知道，他也不想知道。</p>
+<p>面对一个『情』字，七情六欲皆无的玄奘居然选择了逃避。</p>
+<p>他怕的是什么？什么王权富贵，什么戒律清规？</p>
+<p>他怕的是，如果动情了，就负了如来；如果不动情，就辜负了“她”。</p>
+<h2 id="（五）相见难，别亦难"><a href="#（五）相见难，别亦难" class="headerlink" title="（五）相见难，别亦难"></a>（五）相见难，别亦难</h2><p>待到临行女儿国之际，女王依依不舍的在通关文牒上盖上印章。</p>
+<p>女王哀怨的看着玄奘，舍不得与他分离。身为女王，却留不住这个凡人。</p>
+<p>那天，她一直送他到城外。</p>
+<p>这一路上，两人没有说过一句话。</p>
+<p>这段路，是女王走过的最长的路，也是女王最不想走完的一段路。</p>
+<p>这段路，是玄奘走的最不舒服的一段路，虽有佳人在侧，却如鲠在喉。</p>
+<p>直到城外，玄奘打破了沉默，“陛下，请留步！”。</p>
+<p>女王看着她，欲语还休，怎诉这胸中蜜语万千。只怨今生无缘，道不尽声声珍重，默默地祝君一路平安。</p>
+<p>女王唇齿轻咬，似乎是做了很大的一个决定，将关文递给眼前人。</p>
+<p>玄奘接过关文，对女王拱手道：“多谢陛下。”</p>
+<p>这里，玄奘行的是俗家礼，只因尘缘未了，只有等到来世…</p>
+<p>奈何戒律清规，奈何天子之诺，奈何芸芸众生，玄奘纵有万般不舍，也只得策马扬鞭，西行而去。</p>
+<p>她在城头似哭似笑，当着百官的面对着他的背影大喊：“御弟哥哥……”千言万语梗在胸中，无法诉说。</p>
+<p>夕阳下，玄奘勒马回头，只看了一眼。遂又毅然决然扬鞭而去…</p>
+<p>只留女王一人，孑然一人，孤立城头。</p>
+<p>“唐玄奘，下辈子娶我可好？”</p>
+<p>风沙漫天，看不见他的表情，也看不见她脸上的泪痕。</p>
+<p>僧人不语，只余风声喧嚣。</p>
+<h2 id="（六）"><a href="#（六）" class="headerlink" title="（六）"></a>（六）</h2><hr>
+
+<h1 id="女王"><a href="#女王" class="headerlink" title="女王"></a>女王</h1><blockquote class="blockquote-center">我做了一个梦，<br>你蓄起了长发，<br>我们一起慢慢变老。</blockquote>
+
+
+<hr>
+
+<h1 id="玄奘"><a href="#玄奘" class="headerlink" title="玄奘"></a>玄奘</h1><blockquote class="blockquote-center">世间安得双全法，不负如来不负卿。</blockquote>
+
+<p>我本是如来二弟子金蝉子，只因不听佛祖说法，轻漫佛法，转世为大唐高僧。奉观世音菩萨之命前往西天大雷音寺求取大乘佛法，普度众生。</p>
+<p>如果动情了，就负了如来；如果不动情，就辜负了“她”。</p>
+<hr>
+
+<h1 id="悟空"><a href="#悟空" class="headerlink" title="悟空"></a>悟空</h1><p>多年后，身为斗战胜佛的我还会想起曾经西天取经的一幕幕。这是一个漫长的过程，这也是我的成佛之路。</p>
+<p>这一路上，记不得杀死了多少妖怪，也记不得被那和尚赶走过多少次。</p>
+<p>原本心性顽劣的齐天大圣，也渐渐磨去棱角，成了佛。</p>
+<p>要说取经路上，遇到再怎么强大的妖怪我都不怕。</p>
+<p>可是，我最怕的是，那和尚没了取经的念头。</p>
+<p>记得那是在西梁女国，和尚居然动了凡心，差点就……</p>
+<hr>
+
+<h1 id="八戒"><a href="#八戒" class="headerlink" title="八戒"></a>八戒</h1><hr>
+
+<h1 id="悟净"><a href="#悟净" class="headerlink" title="悟净"></a>悟净</h1><hr>
+
+<p><a href="https://www.bilibili.com/video/av5973539" target="_blank" rel="external">B站 - 【西游记女儿国国王】之 浮生相思梦</a></p>
+<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">《西游记》第五十四回-法性西来逢女国，心猿定计脱烟花：女王闪凤目，簇蛾眉，仔细观看，果然一表非凡，你看他丰姿英伟，相貌轩昂。齿白如银砌，唇红口四方。顶平额阔天仓满，目秀眉清地阁长。两耳有轮真杰士，一身不俗是才郎。好个妙龄聪俊风流子，堪配西梁窈窕娘。<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">央视 86 版《西游记》第十六集《趣经女儿国》台词。<a href="#fnref:2" rev="footnote"> ↩</a></span></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">3.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">《西游记》第五十四回-法性西来逢女国，心猿定计脱烟花：猪八戒在旁，掬着嘴，饧眼观看那女王，却也袅娜，真个眉如翠羽，肌似羊脂。脸衬桃花瓣，鬟堆金凤丝。秋波湛湛妖娆态，春笋纤纤妖媚姿。斜红绡飘彩艳，高簪珠翠显光辉。说什么昭君美貌，果然是赛过西施。柳腰微展鸣金珮，莲步轻移动玉肢。月里嫦娥难到此，九天仙子怎如斯。宫妆巧样非凡类，诚然王母降瑶池。<a href="#fnref:3" rev="footnote"> ↩</a></span></li></ol></div></div>]]></content>
     
     <summary type="html">
     
-      &lt;div align=&quot;center&quot;&gt;&lt;br&gt;那一年，他离开女儿国&lt;br&gt;她在城头似哭似笑&lt;br&gt;当着百官的面对着他的背影大喊&lt;br&gt;“唐玄奘，下辈子娶我可好？”&lt;br&gt;夕阳下，白衣骑白马&lt;br&gt;风沙漫天，看不见他的表情&lt;br&gt;僧人不语，只余风声喧嚣&lt;br&gt;这一年，他圆寂&lt;br&gt;千佛诵经，万众朝宗&lt;br&gt;他走的时候却只笑着留下一句：&lt;br&gt;“好！”&lt;br&gt;&lt;/div&gt;&lt;br&gt;&lt;div align=&quot;center&quot;&gt;&lt;span id=&quot;inline-red&quot;&gt;未完待续…&lt;/span&gt;&lt;/div&gt;
+      &lt;div align=&quot;center&quot;&gt;那一年，他离开女儿国&lt;br&gt;她在城头似哭似笑&lt;br&gt;当着百官的面对着他的背影大喊&lt;br&gt;“唐玄奘，下辈子娶我可好？”&lt;br&gt;夕阳下，白衣骑白马&lt;br&gt;风沙漫天，看不见他的表情&lt;br&gt;僧人不语，只余风声喧嚣&lt;br&gt;这一年，他圆寂&lt;br&gt;千佛诵经，万众朝宗&lt;br&gt;他走的时候却只笑着留下一句：&lt;br&gt;“好！”&lt;br&gt;&lt;/div&gt;&lt;br&gt;&lt;div align=&quot;center&quot;&gt;&lt;span id=&quot;inline-red&quot;&gt;未完待续…&lt;/span&gt;&lt;/div&gt;
     
     </summary>
     
@@ -3422,712 +3802,6 @@ HttpServlet:抽象类
     
     
       <category term="CSS" scheme="http://yoursite.com/tags/CSS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>HTML基础学习笔记</title>
-    <link href="http://yoursite.com/posts/HTML-CSS-JS/2017-08-22-html-basic-learning-notes.html"/>
-    <id>http://yoursite.com/posts/HTML-CSS-JS/2017-08-22-html-basic-learning-notes.html</id>
-    <published>2017-08-22T06:17:00.000Z</published>
-    <updated>2017-09-01T13:00:34.021Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><div align="center"><img src="http://img.blog.csdn.net/20170821153435182" alt="html"></div></p>
-<p><div><p id="div-border-left-blue">自学 html 基础笔记。</p></div><br><a id="more"></a></p>
-<h1 id="Web-前端简单介绍"><a href="#Web-前端简单介绍" class="headerlink" title="Web 前端简单介绍"></a>Web 前端简单介绍</h1><p>web 前端包含：</p>
-<ul>
-<li>pc 端页面</li>
-<li>移动端页面</li>
-</ul>
-<p>web 前端首先要解决用户体验的问题</p>
-<h1 id="认识网页"><a href="#认识网页" class="headerlink" title="认识网页"></a>认识网页</h1><h2 id="网页的组成"><a href="#网页的组成" class="headerlink" title="网页的组成"></a>网页的组成</h2><p>网页主要由文字、图片和按钮等元素构成。当然，除了这些元素，网页中还可以包含音频、视频以及 Flash 等。</p>
-<h2 id="Web-标准"><a href="#Web-标准" class="headerlink" title="Web 标准"></a>Web 标准</h2><p>1：w3c 万维网联盟组织：用来制定 web 标准的机构（组织）</p>
-<p>2：web 标准：制作网页要遵循的规范</p>
-<p>3：web 标准规范的分类：结构标准；表现标准；行为标准</p>
-<ul>
-<li>结构标准：html（用来制作网页的）</li>
-<li>表现标准：css（对网页进行美化的）</li>
-<li>行为标准：javascript（让网页动起来，具有生命力）</li>
-</ul>
-<p>4：web 标准总结：          </p>
-<ul>
-<li>结构标准：相当于人的身体 </li>
-<li>表现标准：相当于人的衣服</li>
-<li>行为标准：相当于人的动作</li>
-</ul>
-<h2 id="浏览器介绍"><a href="#浏览器介绍" class="headerlink" title="浏览器介绍"></a>浏览器介绍</h2><p>浏览器是网页运行的平台，常用的浏览器有 IE、火狐（Firefox）、谷歌（Chrome）、Safari 和 Opera 等。</p>
-<p>浏览器内核：也就是浏览器所采用的渲染引擎，渲染引擎决定了浏览器如何显示网页的内 ，容以及页面的格式信息。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">IE</th>
-<th style="text-align:center">Google/Opera</th>
-<th style="text-align:center">FireFox</th>
-<th style="text-align:center">Safari</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">trident</td>
-<td style="text-align:center">blink</td>
-<td style="text-align:center">gecko</td>
-<td style="text-align:center">webkit</td>
-</tr>
-</tbody>
-</table>
-<h2 id="浏览器与服务器"><a href="#浏览器与服务器" class="headerlink" title="浏览器与服务器"></a>浏览器与服务器</h2><p>1：浏览器向服务器发送请求（通过http协议）  </p>
-<p>2：http协议：超文本传输协议，也就是浏览器和服务器端的网页传输数据的约束和规范</p>
-<p>3：https：加密处理</p>
-<p>4：url协议:平时我们写的网址就是 url 地址</p>
-<p>url协议：规定 url 地址的格式</p>
-<p>协议规定格式： scheme://host.domain:port/path/filename</p>
-<blockquote>
-<p>scheme: 定义因特网服务的类型。常见的就是http<br><br>host: 定义域主机（http 的默认主机是www）<br><br>domain: 定义因特网域名  比如：w3school.com.cn<br><br>:port  定义端口号（网页默认端口 :80）<br><br>path: 网页所在服务器上的路径<br><br>filename: 文件名称<br></p>
-</blockquote>
-<h1 id="认识-html"><a href="#认识-html" class="headerlink" title="认识 html"></a>认识 html</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>html (Hyper   Text    Markup   Language )   中文译为 <code>超文本标记语言</code>，主要是通过 html 标记对网页中的文本，图片，声音等内容进行描述。</p>
-<p>HTML 之所以称为超文本标记语言，不仅是因为他通过标记描述网页内容，同时也由于文本中包含了所谓的 <code>超级链接</code>，通过超链接可以实现网页的跳转。从而构成了丰富多彩的 Web 页面。</p>
-<h2 id="html-结构"><a href="#html-结构" class="headerlink" title="html 结构"></a>html 结构</h2><p><strong>基本结构如下：</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">!</span> <span class="attr">Doctype</span> <span class="attr">html</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p><strong>各部分的含义：</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 文档类型 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">!</span> <span class="attr">Doctype</span> <span class="attr">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 根标签 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p><code>&lt;html&gt;&lt;/html&gt;</code> 用于告知浏览器其自身是一个 HTML 文档，<code>&lt;/html&gt;</code> 标记标志着 HTML 文档的开始，<code>&lt;/html&gt;</code> 标记标志着 HTML 文档的结束，在他们之间的是文档的头部和主体内容。 </p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- &lt;html lang="en"&gt; 向搜索引擎表示该页面是html语言，并且语言为英文网站 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>  <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>这个主要是给搜索引擎看的，搜索引擎不会去判断该站点是中文站还是英文站，所以这句话就是让搜索引擎知道，你的站点是中文站，对 html 页面本身不会有影响。</p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- html文档头部分 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>主要用来封装其他位于文档头部的标记。一个 HTML 文档只能含有一对 <code>&lt;head&gt;</code> 标记，绝大多数文档头部包含的数据都不会真正作为内容显示在页面中。 </p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 网页的标题 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p><code>&lt;title&gt;</code> 标记用于定义HTML页面的标题，<code>&lt;title&gt;&lt;/title&gt;</code> 之间的内容将显示在浏即给网页取一个名字，必须位于 <code>&lt;head&gt;</code> 标记之内。一个HTML文档只能含有一对 <code>&lt;title&gt;&lt;/title&gt;</code> 标记，将显示在浏览器窗口的标题栏中。</p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- html结构的主体部分 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p><code>&lt;body&gt;</code> 标记用于定义 HTML 文档所要显示的内容，也称为主体标记。浏览器中显示的所有文本、图像、音频和视频等信息都必须位于 <code>&lt;body&gt;</code> 标记内，<code>&lt;body&gt;</code> 标记中的信息才是最终展示给用户看的。<br><br>一个HTML文档只能含有一对 <code>&lt;body&gt;</code> 标记，且 <code>&lt;body&gt;</code> 标记必须在 <code>&lt;html&gt;</code> 标记内，位于 <code>&lt;head&gt;</code> 头部标记之后。</p>
-</blockquote>
-<h2 id="标签的分类"><a href="#标签的分类" class="headerlink" title="标签的分类"></a>标签的分类</h2><p>HTML 标记标签通常被称为 HTML 标签 (HTML tag)。</p>
-<ul>
-<li>HTML 标签是由尖括号包围的关键词，比如 <code>&lt;html&gt;</code>；</li>
-<li>HTML 标签通常是成对出现的，比如 <code>&lt;b&gt;</code> 和 <code>&lt;/b&gt;</code>；</li>
-<li>标签对中的第一个标签是开始标签，第二个标签是结束标签；</li>
-<li>开始和结束标签也被称为开放标签和闭合标签；</li>
-</ul>
-<h3 id="HTML标记—双标记"><a href="#HTML标记—双标记" class="headerlink" title="HTML标记—双标记"></a>HTML标记—双标记</h3><p>双标记也称体标记，是指由开始和结束两个标记符组成的标记。其基本语法格式如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">标记名</span>&gt;</span><span class="tag">&lt;/<span class="name">标记名</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 例如： --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>该语法中 <code>&lt;标记名&gt;</code> 表示该标记的作用开始，一般称为 <code>开始标记（start tag）</code>，<code>&lt;/标记名&gt;</code> 表示该标记的作用结束，一般称为 <code>结束标记（end tag）</code>。和开始标记相比，结束标记只是在前面加了一个关闭符 <code>/</code>。</p>
-<h3 id="HTML标记—单标记"><a href="#HTML标记—单标记" class="headerlink" title="HTML标记—单标记"></a>HTML标记—单标记</h3><p>单标记也称空标记，只有开始标签没有结束标签：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">标记名</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 例如： --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">!</span> <span class="attr">doctype</span> <span class="attr">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<h2 id="标签关系"><a href="#标签关系" class="headerlink" title="标签关系"></a>标签关系</h2><ul>
-<li>嵌套关系：类似父亲和儿子之间的关系</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
-<ul>
-<li>并列关系：类似与兄弟之间的关系</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
-<h1 id="html-标签介绍"><a href="#html-标签介绍" class="headerlink" title="html 标签介绍"></a>html 标签介绍</h1><h2 id="单标签"><a href="#单标签" class="headerlink" title="单标签"></a>单标签</h2><h3 id="文本注释标签"><a href="#文本注释标签" class="headerlink" title="文本注释标签"></a>文本注释标签</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 文本注释标签 Ctrl+/  --&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="文本换行标签"><a href="#文本换行标签" class="headerlink" title="文本换行标签"></a>文本换行标签</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">你好<span class="tag">&lt;<span class="name">br</span>&gt;</span>我来自中国</div></pre></td></tr></table></figure>
-<p><code>效果演示：</code><br>你好<br>我来自中国</p>
-<h3 id="横线标签"><a href="#横线标签" class="headerlink" title="横线标签"></a>横线标签</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">hr</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><code>效果演示：</code></p>
-<hr>
-
-<h2 id="双标签"><a href="#双标签" class="headerlink" title="双标签"></a>双标签</h2><h3 id="段落标签"><a href="#段落标签" class="headerlink" title="段落标签"></a>段落标签</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>这是一行文字<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>这也是一行文字<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><code>效果演示：</code></p><p>这是一行文字</p><p>这也是一行文字</p><p></p>
-<h3 id="标题标签"><a href="#标题标签" class="headerlink" title="标题标签"></a>标题标签</h3><blockquote>
-<p>注意：标题标签只能取到数字 1-6 </p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>这是一个标题1<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>这是一个标题2<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>这是一个标题3<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">h4</span>&gt;</span>这是一个标题4<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">h5</span>&gt;</span>这是一个标题5<span class="tag">&lt;/<span class="name">h5</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">h6</span>&gt;</span>这是一个标题6<span class="tag">&lt;/<span class="name">h6</span>&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="文本标签"><a href="#文本标签" class="headerlink" title="文本标签"></a>文本标签</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">font</span>&gt;</span><span class="tag">&lt;/<span class="name">font</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>例如：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">font</span>  <span class="attr">size</span>=<span class="string">"10"</span>  <span class="attr">color</span>=<span class="string">"red"</span>&gt;</span>优美的文字<span class="tag">&lt;/<span class="name">font</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p><code>效果演示：</code></p>
-<font size="10" color="red">优美的文字</font> 
-
-<h3 id="文本格式化标签"><a href="#文本格式化标签" class="headerlink" title="文本格式化标签"></a>文本格式化标签</h3><h4 id="文字加粗显示"><a href="#文字加粗显示" class="headerlink" title="文字加粗显示"></a>文字加粗显示</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">strong</span>&gt;</span>该减肥了！<span class="tag">&lt;/<span class="name">strong</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><code>效果演示：</code><br><strong>该减肥了！</strong></p>
-<h4 id="文字斜体"><a href="#文字斜体" class="headerlink" title="文字斜体"></a>文字斜体</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">em</span>&gt;</span>这行字是斜的<span class="tag">&lt;/<span class="name">em</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><code>效果演示：</code><br><em>这行字是斜的</em></p>
-<h4 id="文字下横线"><a href="#文字下横线" class="headerlink" title="文字下横线"></a>文字下横线</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ins</span>&gt;</span>文字下横线<span class="tag">&lt;/<span class="name">ins</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">u</span>&gt;</span>文字下横线<span class="tag">&lt;/<span class="name">u</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><code>效果演示：</code><br><ins>文字下横线</ins><br><u>文字下横线</u></p>
-<h4 id="文字删除线"><a href="#文字删除线" class="headerlink" title="文字删除线"></a>文字删除线</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">del</span>&gt;</span>删除线<span class="tag">&lt;/<span class="name">del</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">s</span>&gt;</span>删除线<span class="tag">&lt;/<span class="name">s</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><code>效果演示：</code><br><del>删除线</del><br><s>删除线</s></p>
-<h2 id="图片标签"><a href="#图片标签" class="headerlink" title="图片标签"></a>图片标签</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">img</span>&gt;</span></div></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">属性</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">src</td>
-<td>设置显示图片（图片名称或者图片路径）</td>
-</tr>
-<tr>
-<td style="text-align:center">title</td>
-<td>用来设置鼠标放在图片上显示的文字</td>
-</tr>
-<tr>
-<td style="text-align:center">alt</td>
-<td>当图片无法正常显示的时候，对图片的描述</td>
-</tr>
-<tr>
-<td style="text-align:center">width</td>
-<td>用来设置图片宽度</td>
-</tr>
-<tr>
-<td style="text-align:center">height</td>
-<td>用来设置图片的高度</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 下图来自百度图片 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"www.baidu.com/imags/1.png"</span> <span class="attr">title</span>=<span class="string">"HTML"</span> <span class="attr">alt</span>=<span class="string">"测试图片"</span> <span class="attr">width</span>=<span class="string">"200"</span> <span class="attr">height</span>=<span class="string">"200"</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><code>效果演示：</code><br><img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=363357286,1094270233&fm=27&gp=0.jpg" title="HTML" alt="测试图片" width="200" height="200"></p>
-<h2 id="相对路径"><a href="#相对路径" class="headerlink" title="相对路径"></a>相对路径</h2><ul>
-<li>当图片和文件（html）在同一个文件夹中时，src 属性中直接写上图片名称即可。</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"1.jpg"</span>&gt;</span></div></pre></td></tr></table></figure>
-<ul>
-<li>当图片在文件（html）的下一级目录中时，src 属性中写上图片所在的文件夹名 +“/” + 图片名称</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"1/1.jpg"</span>&gt;</span></div></pre></td></tr></table></figure>
-<ul>
-<li>当图片在文件（html）的上一级目录中时，src 属性中写上 ../图片所在文件夹名 + “/” + 图片名称</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"../2/1.jpg"</span>&gt;</span></div></pre></td></tr></table></figure>
-<h2 id="绝对路径"><a href="#绝对路径" class="headerlink" title="绝对路径"></a>绝对路径</h2><p>凡是带有 <code>磁盘路径</code> 的都是绝对路径，或者带有 <code>网站地址</code> 的也是绝对路径。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"D:\a\1.png"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"www.baidu.com/imags/1.png"</span>&gt;</span></div></pre></td></tr></table></figure>
-<h2 id="超链接"><a href="#超链接" class="headerlink" title="超链接"></a>超链接</h2><p>在HTML中创建超链接非常简单，只需用 <code>&lt;a&gt;&lt;/a&gt;</code> 标记环绕需要被链接的对象即可，其基本语法格式如下：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"跳转目标"</span> <span class="attr">target</span>=<span class="string">"目标窗口的弹出方式"</span>&gt;</span>文本或图像<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">属性</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">href</td>
-<td>用于指定链接目标的 url 地址，当为 <code>&lt;a&gt;</code> 标记应用 <code>href</code> 属性时，它就具有了超链接的功能。</td>
-</tr>
-<tr>
-<td style="text-align:center">target</td>
-<td>用于指定链接页面的打开方式，其取值有 <code>_self</code> 和 <code>_blank</code> 两种，其中 <code>_self</code> 为默认值， <code>_blank</code> 为在新窗口中打开方式。</td>
-</tr>
-</tbody>
-</table>
-<p>在 <code>&lt;head&gt;</code> 标签中使用 <code>&lt;base&gt;</code> 标签可以设置网页整体链接的打开状态。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">base</span> <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>实例：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://www.baidu.com"</span> <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span>百度<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"http://www.renkaigis.com"</span> <span class="attr">target</span>=<span class="string">"_blank"</span>&gt;</span>Kai's Blog<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p><code>效果演示：</code><br><a href="http://www.baidu.com" target="_blank">百度</a><br><a href="http://www.renkaigis.com" target="_blank">Kai’s Blog</a></p>
-<p><strong>注意:</strong></p>
-<blockquote>
-<p>（1）暂时没有确定链接目标时，通常将 <code>&lt;a&gt;</code> 标记的 href 属性值定义为“#”(即 <code>href=&quot;#&quot;</code> )，表示该链接暂时为一个空链接。</p>
-<p>（2）不仅可以创建文本超链接，在网页中各种网页元素，如 <code>图像、表格、音频、视频</code> 等都可以添加超链接。</p>
-</blockquote>
-<h2 id="锚链接"><a href="#锚链接" class="headerlink" title="锚链接"></a>锚链接</h2><p>通过创建锚点链接，用户能够快速定位到目标内容。</p>
-<p>创建锚点链接分为两步：</p>
-<ul>
-<li>使用 “ <code>&lt;a href=&quot;#id名&quot;&gt;</code> 链接文本 <code>&lt;/a&gt;</code> ” 创建链接文本；</li>
-<li>使用相应的 id 名标注跳转目标的位置。</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 例如在网页顶部写个你好 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"db"</span>&gt;</span>你好<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 给 a 标签设置 href 属性 "#id名称" --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#db"</span>&gt;</span>返回顶部<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><code>效果演示：</code></p>
-<p></p><p id="db">你好</p><br><a href="#db">返回顶部</a><p></p>
-<h2 id="特殊字符"><a href="#特殊字符" class="headerlink" title="特殊字符"></a>特殊字符</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">特殊字符</th>
-<th style="text-align:center">描述</th>
-<th>字符的代码</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"></td>
-<td style="text-align:center">空格符</td>
-<td><code>&amp;nbsp;</code></td>
-</tr>
-<tr>
-<td style="text-align:center">&lt;</td>
-<td style="text-align:center">小于号</td>
-<td><code>&amp;lt;</code></td>
-</tr>
-<tr>
-<td style="text-align:center">&gt;</td>
-<td style="text-align:center">大于号</td>
-<td><code>&amp;gt;</code></td>
-</tr>
-<tr>
-<td style="text-align:center">&amp;</td>
-<td style="text-align:center">和号</td>
-<td><code>&amp;amp;</code></td>
-</tr>
-<tr>
-<td style="text-align:center">￥</td>
-<td style="text-align:center">人民币</td>
-<td><code>&amp;yen;</code></td>
-</tr>
-<tr>
-<td style="text-align:center">©</td>
-<td style="text-align:center">版权</td>
-<td><code>&amp;copy;</code></td>
-</tr>
-<tr>
-<td style="text-align:center">®</td>
-<td style="text-align:center">注册商标</td>
-<td><code>&amp;reg;</code></td>
-</tr>
-<tr>
-<td style="text-align:center">°</td>
-<td style="text-align:center">摄氏度</td>
-<td><code>&amp;deg;</code></td>
-</tr>
-<tr>
-<td style="text-align:center">±</td>
-<td style="text-align:center">正负号</td>
-<td><code>&amp;plusmn;</code></td>
-</tr>
-<tr>
-<td style="text-align:center">×</td>
-<td style="text-align:center">乘号</td>
-<td><code>&amp;times;</code></td>
-</tr>
-<tr>
-<td style="text-align:center">÷</td>
-<td style="text-align:center">除号</td>
-<td><code>&amp;divide;</code></td>
-</tr>
-<tr>
-<td style="text-align:center">²</td>
-<td style="text-align:center">平方（上标2）</td>
-<td><code>&amp;sup2;</code></td>
-</tr>
-<tr>
-<td style="text-align:center">³</td>
-<td style="text-align:center">立方（上标3）</td>
-<td><code>&amp;sup3;</code></td>
-</tr>
-</tbody>
-</table>
-<h1 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h1><h2 id="无序列表（ul）"><a href="#无序列表（ul）" class="headerlink" title="无序列表（ul）"></a>无序列表（ul）</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span>  列表项</div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    ......</div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>例如：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">大家喜欢吃什么水果</div><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>苹果<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>香蕉<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>葡萄<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>水蜜桃<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>菠萝<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p><code>效果演示：</code><br>大家喜欢吃什么水果<ul><li>苹果</li><li>香蕉</li><li>菠萝</li></ul></p>
-<p>属性：type</p>
-<blockquote>
-<p>（默认值）实心圆点：disc</p>
-<p>实心方块：square</p>
-<p>空心圆圈：circle</p>
-</blockquote>
-<p>实例：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>苹果<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>香蕉<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">type</span>=<span class="string">"square"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>苹果<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>香蕉<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">type</span>=<span class="string">"circle"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>苹果<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>香蕉<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<h2 id="有序列表（ol）"><a href="#有序列表（ol）" class="headerlink" title="有序列表（ol）"></a>有序列表（ol）</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>属性：type</p>
-<blockquote>
-<p>A（ABCD排序），a（abcd排序），i（小写的罗马数字），I（大写的罗马数字）</p>
-</blockquote>
-<p>属性：start=”3”，表示从第几个数开始</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">把大象放冰箱分几步？</div><div class="line"><span class="tag">&lt;<span class="name">ol</span> <span class="attr">type</span>=<span class="string">"a"</span>  <span class="attr">start</span>=<span class="string">"3"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>打开冰箱门<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>把大象放进去<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>关上冰箱门<span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><code>效果演示：</code></p>
-<p>把大象放冰箱分几步？<ol type="a" start="3"><li>打开冰箱门</li><li>把大象放进去</li><li>关上冰箱门</li></ol> </p>
-<h2 id="自定义列表（dl）"><a href="#自定义列表（dl）" class="headerlink" title="自定义列表（dl）"></a>自定义列表（dl）</h2><p>自定义列表常用于对术语或名词进行解释和描述，定义列表的列表项前没有任何项目符号。其基本语法如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dt</span>&gt;</span><span class="tag">&lt;/<span class="name">dt</span>&gt;</span>  小标题</div><div class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span><span class="tag">&lt;/<span class="name">dd</span>&gt;</span>  列表项</div><div class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span><span class="tag">&lt;/<span class="name">dd</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span><span class="tag">&lt;/<span class="name">dd</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>一般用于网页的底部，例如：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 自定义列表 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dl</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dt</span>&gt;</span>售后服务<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>收货地址<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>在线支付<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">dd</span>&gt;</span>联系客服<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dl</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p><code>效果演示：</code></p>
-<dl><dt>售后服务</dt><dd>收货地址</dd><dd>在线支付</dd><dd>联系客服</dd></dl>
-
-<h1 id="小补充"><a href="#小补充" class="headerlink" title="小补充"></a>小补充</h1><h2 id="页面背景音乐"><a href="#页面背景音乐" class="headerlink" title="页面背景音乐"></a>页面背景音乐</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">embed</span> <span class="attr">src</span>=<span class="string">"1.mp3"</span> <span class="attr">hidden</span>=<span class="string">"true"</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>属性：</p>
-<ul>
-<li>src：设置音乐路径</li>
-<li>hidden：隐藏播放按钮，true 隐藏，false 显示</li>
-</ul>
-<h2 id="页面滚动效果"><a href="#页面滚动效果" class="headerlink" title="页面滚动效果"></a>页面滚动效果</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 中间的内容可以为 文字、图片，也可以是由程序生成的文字或图片 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">marquee</span>&gt;</span></div><div class="line">    ...</div><div class="line"><span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>实例展示：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">marquee</span> <span class="attr">bgcolor</span>=<span class="string">"blue"</span> &gt;</span>我会滚动<span class="tag">&lt;/<span class="name">marquee</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><code>效果演示：</code></p>
-<marquee bgcolor="pink">我会滚动</marquee> 
-
-<table>
-<thead>
-<tr>
-<th style="text-align:center">属性</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">height</td>
-<td>设置高度</td>
-</tr>
-<tr>
-<td style="text-align:center">width</td>
-<td>设置宽度</td>
-</tr>
-<tr>
-<td style="text-align:center">bgcolor</td>
-<td>设置背景颜色</td>
-</tr>
-<tr>
-<td style="text-align:center">behavior</td>
-<td>设定滚动的方式：<br>alternate：表示在两端之间来回滚动；<br>scroll：表示由一端滚动到另一端，会重复；<br>slide：表示由一端滚动到另一端，不会重复。</td>
-</tr>
-<tr>
-<td style="text-align:center">direction</td>
-<td>设定滚动的时间：<br>down：向下滚动；<br>left：向左滚动；<br>right：向右滚动；<br>up：向上滚动。</td>
-</tr>
-<tr>
-<td style="text-align:center">loop</td>
-<td>设置滚动次数，-1 表示一直滚下去</td>
-</tr>
-</tbody>
-</table>
-<h1 id="Meta标签和Link标签"><a href="#Meta标签和Link标签" class="headerlink" title="Meta标签和Link标签"></a>Meta标签和Link标签</h1><h2 id="Meta-标签"><a href="#Meta-标签" class="headerlink" title="Meta 标签"></a>Meta 标签</h2><p>meta 的属性有两种：<code>name</code> 和 <code>http-equiv</code>。</p>
-<h3 id="name-属性"><a href="#name-属性" class="headerlink" title="name 属性"></a>name 属性</h3><p>主要用于描述网页，对应于 content（网页内容）。</p>
-<ul>
-<li>1、用来说明网页使用的字符集，即编码格式</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span>  <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div></pre></td></tr></table></figure>
-<ul>
-<li>2、用以说明生成工具（如Microsoft FrontPage 4.0）等；</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"generator"</span> <span class="attr">contect</span>=<span class="string">""</span>&gt;</span></div></pre></td></tr></table></figure>
-<ul>
-<li>3、向搜索引擎说明你的网页的关键词；</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"keywords"</span> <span class="attr">contect</span>=<span class="string">""</span>&gt;</span></div></pre></td></tr></table></figure>
-<ul>
-<li>4、告诉搜索引擎你的站点的主要内容；</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"description"</span> <span class="attr">contect</span>=<span class="string">""</span>&gt;</span></div></pre></td></tr></table></figure>
-<ul>
-<li>5、告诉搜索引擎你的站点的制作的作者；</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span>  <span class="attr">name</span>=<span class="string">"author"</span>  <span class="attr">contect</span>=<span class="string">"你的姓名"</span>&gt;</span></div></pre></td></tr></table></figure>
-<ul>
-<li>6、有时候会有一些站点内容，不希望被ROBOTS抓取而公开。为了解决这个问题，ROBOTS开发界提供了两个办法：一个是robots.txt，另一个是 <code>The Robots META</code> 标签。</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span>   <span class="attr">name</span>=<span class="string">"robots"</span> <span class="attr">contect</span>= <span class="string">"all|none|index|noindex|follow|nofollow"</span>&gt;</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p><code>robots</code> 其中的属性说明如下：</p>
-<p>设定为 <code>all</code>：文件将被检索，且页面上的链接可以被查询；</p>
-<p>设定为 <code>none</code>：文件将不被检索，且页面上的链接不可以被查询；</p>
-<p>设定为 <code>index</code>：文件将被检索；</p>
-<p>设定为 <code>follow</code>：页面上的链接可以被查询；</p>
-<p>设定为 <code>noindex</code>：文件将不被检索，但页面上的链接可以被查询；</p>
-<p>设定为 <code>n</code>ofollow`：文件将不被检索，页面上的链接可以被查询。</p>
-</blockquote>
-<h3 id="http-equiv-属性"><a href="#http-equiv-属性" class="headerlink" title="http-equiv 属性"></a>http-equiv 属性</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"refresh"</span> <span class="attr">content</span>=<span class="string">"5;url=http://www.baidu.com"</span> /&gt;</span></div></pre></td></tr></table></figure>
-<ul>
-<li>网页重定向，表示的是 <code>5</code> 秒后网页自动跳转到指定网址。</li>
-</ul>
-<h2 id="Link-标签"><a href="#Link-标签" class="headerlink" title="Link 标签"></a>Link 标签</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">link</span>  <span class="attr">rel</span>=<span class="string">"icon"</span>  <span class="attr">href</span>=<span class="string">"favicon.ico"</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>给网页 titile 中放置小图标<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>   <span class="attr">href</span>=<span class="string">"1.css"</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>引入外部样式表</p>
-<h1 id="表格（table）"><a href="#表格（table）" class="headerlink" title="表格（table）"></a>表格（table）</h1><h2 id="表格基本结构"><a href="#表格基本结构" class="headerlink" title="表格基本结构"></a>表格基本结构</h2><p>在 HTML 语言中，表格至少由 <code>&lt;TABLE&gt;</code> 标签、<code>&lt;TR&gt;</code> 标签和 <code>&lt;TD&gt;</code> 标签这 3 对标签组成。</p>
-<p>1.<code>&lt;table&gt;</code><br><code>&lt;table&gt;...&lt;/table&gt;</code> 标签用于在HTML文档中创建表格。它包含表名和表格本身内容的代码。表格的基本单元是单元格，用 <code>&lt;td&gt;...&lt;/td&gt;</code> 标签定义。</p>
-<p>2.<code>&lt;tr&gt;</code><br>表格行用 <code>&lt;tr&gt;</code> 标签定义，由单元格构成。多个行结合在一起就构成一个表格，这反映在用于创建表格的HTML语法中。表格的每一行都用 <code>&lt;tr&gt;</code> 标签表示，并用相应的 <code>&lt;/tr&gt;</code> 结束.</p>
-<p>3.<code>&lt;td&gt;</code><br>表格的每一行又有若干表格单元格，用 <code>&lt;td&gt;...&lt;/td&gt;</code> 标签表示。td 是”表格数据(Table Data)”的英文缩写。<code>&lt;td&gt;</code> 标签定义一个列，嵌套于 <code>&lt;tr&gt;</code> 标签内。<br>border 属性是最常用的属性，可用于定义表格的单元格和结构。该属性指定边框的厚度，如果其值设置为零(0)，则不显示边框。</p>
-<p><strong>基本语法：</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>姓名<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>年龄<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>职业<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>籍贯<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p><strong>属性介绍：</strong></p>
-<ul>
-<li>bord：设置表格边框的厚度</li>
-<li>width：设置表格宽度</li>
-<li>height：设置表格高度</li>
-<li>cellspacing：设置单元格之间的距离</li>
-<li>cellpadding：文字距离单元格边框的距离</li>
-<li>bgcolor=”red”：设置背景颜色</li>
-<li>align=”center” | left | right：给 tr 或者 td 设置让文字居中，给 table 设置让表格居中</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>属性名</th>
-<th>含义</th>
-<th>常用属性值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>border</td>
-<td>设置边框，默认为0，没有边框</td>
-<td>单位为 px 像素值</td>
-</tr>
-<tr>
-<td>cellspacing</td>
-<td>设置单元格与单元格之间的距离</td>
-<td>单位为 px 像素值，默认为 2px</td>
-</tr>
-<tr>
-<td>cellpadding</td>
-<td>设置文字与单元格之间的距离</td>
-<td>默认 1px</td>
-</tr>
-<tr>
-<td>width</td>
-<td>设置表格的宽度</td>
-<td>单位 px</td>
-</tr>
-<tr>
-<td>height</td>
-<td>设置表格的高度</td>
-<td>单位 px</td>
-</tr>
-<tr>
-<td>align</td>
-<td>设置表格在网页中的对其方式</td>
-<td>left 左<br>rigth 右<br>center 居中</td>
-</tr>
-<tr>
-<td>bgcolor</td>
-<td>设置背景颜色</td>
-<td>white，red，green等</td>
-</tr>
-</tbody>
-</table>
-<h2 id="设置表格表头，用法和-td-一样"><a href="#设置表格表头，用法和-td-一样" class="headerlink" title="设置表格表头，用法和 td 一样"></a>设置表格表头，用法和 td 一样</h2><p>表头一般位于表格的第一行或第一列，其文本加粗居中。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>姓名<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>年龄<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>职业<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>籍贯<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>小明<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>18<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>码农<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>江苏<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p><code>效果演示：</code></p>
-<table><tr><th>姓名</th><th>年龄</th><th>职业</th><th>籍贯</th></tr><tr><td>小明</td><td>18</td><td>码农</td><td>江苏</td></tr></table>
-
-<h2 id="表格属性设置示例："><a href="#表格属性设置示例：" class="headerlink" title="表格属性设置示例："></a>表格属性设置示例：</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">border</span>=<span class="string">"1"</span> <span class="attr">width</span>=<span class="string">"200"</span> <span class="attr">height</span>=<span class="string">"300"</span> <span class="attr">cellspacing</span>=<span class="string">"0"</span> <span class="attr">cellpadding</span>=<span class="string">"20"</span> <span class="attr">bgcolor</span>=<span class="string">"red"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>姓名<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>年龄<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>职业<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>籍贯<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>小明<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>18<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>码农<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>江苏<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><code>效果演示：（本应整个表格都是 bgcolor 的，这里显示有问题）</code></p>
-<table border="1" width="200" height="300" cellspacing="0" cellpadding="20" bgcolor="pink"><tr><th>姓名</th><th>年龄</th><th>职业</th><th>籍贯</th></tr><tr><td>小明</td><td>18</td><td>码农</td><td>江苏</td></tr></table>
-
-<h2 id="设置表格标题："><a href="#设置表格标题：" class="headerlink" title="设置表格标题："></a>设置表格标题：</h2><p>caption 标签必须紧随 table 标签之后。只能对每个表格定义一个标题。通常这个标题会被居中于表格之上。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 设置表格标题 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">caption</span>&gt;</span> <span class="tag">&lt;<span class="name">h3</span>&gt;</span>人员信息表<span class="tag">&lt;/<span class="name">h3</span>&gt;</span><span class="tag">&lt;/<span class="name">caption</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>姓名<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>年龄<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>职业<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>籍贯<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>小明<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>18<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>码农<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>江苏<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p><code>效果演示：</code></p>
-<table><caption> <h3>人员信息表</h3></caption><tr><th>姓名</th><th>年龄</th><th>职业</th><th>籍贯</th></tr><tr><td>小明</td><td>18</td><td>码农</td><td>江苏</td></tr></table>
-
-<h2 id="表格结构"><a href="#表格结构" class="headerlink" title="表格结构"></a>表格结构</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">thead</span>&gt;</span><span class="tag">&lt;/<span class="name">thead</span>&gt;</span>    头</div><div class="line">    <span class="tag">&lt;<span class="name">tbody</span>&gt;</span><span class="tag">&lt;/<span class="name">tbody</span>&gt;</span>    身体</div><div class="line">    <span class="tag">&lt;<span class="name">tfoot</span>&gt;</span><span class="tag">&lt;/<span class="name">tfoot</span>&gt;</span>    脚</div><div class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>在使用表格进行布局时，可以将表格划分为头部、主体和页脚，具体如下所示：</p>
-<ul>
-<li><code>&lt;thead&gt;&lt;/thead&gt;</code>：用于定义表格的头部，必须位于 <code>&lt;table&gt;&lt;/table&gt;</code> 标记中，一般包含网页的logo和导航等头部信息。</li>
-<li><code>&lt;tbody&gt;&lt;/tbody&gt;</code>：用于定义表格的主体，位于 <code>&lt;table&gt;&lt;/table&gt;</code> 标记中 <code>&lt;thead&gt;&lt;/thead&gt;</code> 标记之后，一般包含网页中除头部和底部之外的其他内容。</li>
-<li><code>&lt;tfoot&gt;&lt;/tfoot&gt;</code>：用于定义表格的页脚，位于 <code>&lt;table&gt;&lt;/table&gt;</code> 标记中 <code>&lt;tbody&gt;&lt;/tbody&gt;</code> 标记之后，一般包含网页底部的企业信息等。</li>
-</ul>
-<h2 id="补充知识：单元格的合并"><a href="#补充知识：单元格的合并" class="headerlink" title="补充知识：单元格的合并"></a>补充知识：单元格的合并</h2><h3 id="横向合并"><a href="#横向合并" class="headerlink" title="横向合并"></a>横向合并</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">colspan</span>=<span class="string">"2"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>实例展示：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 实例展示 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">border</span>=<span class="string">"1"</span> <span class="attr">cellspacing</span>=<span class="string">"0"</span> <span class="attr">cellpadding</span>=<span class="string">"20"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>姓名<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">th</span> <span class="attr">colspan</span>=<span class="string">"2"</span>&gt;</span>年龄<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!--&lt;th&gt;职业&lt;/th&gt;--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>籍贯<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>小明<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>18<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>码农<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>江苏<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p><code>效果演示：</code></p>
-<table border="1" cellspacing="0" cellpadding="20"><tr><th>姓名</th><th colspan="2">年龄</th><th>籍贯</th></tr><tr><td>小明</td><td>18</td><td>码农</td><td>江苏</td></tr></table>
-
-<h3 id="纵向合并"><a href="#纵向合并" class="headerlink" title="纵向合并"></a>纵向合并</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">td</span> <span class="attr">rowspan</span>=<span class="string">"2"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span>  <span class="comment">&lt;!-- 纵向合并 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--&lt;td&gt;&lt;/td&gt;--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>实例展示：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 实例展示 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">table</span> <span class="attr">border</span>=<span class="string">"1"</span> <span class="attr">cellspacing</span>=<span class="string">"0"</span> <span class="attr">cellpadding</span>=<span class="string">"20"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>姓名<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>年龄<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>职业<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">th</span>&gt;</span>籍贯<span class="tag">&lt;/<span class="name">th</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>小明<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>18<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span> <span class="attr">rowspan</span>=<span class="string">"2"</span>&gt;</span>码农<span class="tag">&lt;/<span class="name">td</span>&gt;</span>  <span class="comment">&lt;!-- 纵向合并 --&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>江苏<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">tr</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>小白<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>21<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!--&lt;td&gt;前端&lt;/td&gt;--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">td</span>&gt;</span>北京<span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">table</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p><code>效果演示：</code></p>
-<table border="1" cellspacing="0" cellpadding="20"><tr><th>姓名</th><th>年龄</th><th>职业</th><th>籍贯</th></tr><tr><td>小明</td><td>18</td><td rowspan="2">程序猿</td><td>江苏</td></tr><tr><td>小白</td><td>21</td><td>北京</td></tr></table>
-
-<h1 id="表单（form）"><a href="#表单（form）" class="headerlink" title="表单（form）"></a>表单（form）</h1><h2 id="表单介绍"><a href="#表单介绍" class="headerlink" title="表单介绍"></a>表单介绍</h2><p>表单的作用：主要负责数据采集功能。</p>
-<p>对于表单构成中的表单控件、提示信息和表单域，对他们的具体解释如下：</p>
-<ul>
-<li>表单控件：包含了具体的表单功能项，如单行文本输入框、密码输入框、复选框、提交按钮、重置按钮等。</li>
-<li>提示信息：一个表单中通常还需要包含一些说明性的文字，提示用户进行填写和操作。</li>
-<li>表单域：他相当于一个容器，用来容纳所有的表单控件和提示信息，可以通过他定义处理表单数据所用程序的url地址，以及数据提交到服务器的方法。如果不定义表单域，表单中的数据就无法传送到后台服务器。</li>
-</ul>
-<p><strong>基本语法：</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">name</span>=<span class="string">"form_name"</span> <span class="attr">action</span>=<span class="string">"url"</span> <span class="attr">method</span>=<span class="string">"get|post"</span>&gt;</span>…<span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p><strong>属性介绍：</strong></p>
-<ul>
-<li>Name ：定义表单的名称；</li>
-<li>Action ：用来指定表单处理程序的位置（服务器端脚本处理程序）；</li>
-<li>Method: 定义表单结果从浏览器传送到服务器的方式，默认参数为：get。</li>
-</ul>
-<blockquote>
-<p>get数据提交：① 通过地址栏的方式进行数据提交，将用户输入的信息显出来；② get提交安全性差。</p>
-<p>post提交：① 数据通过后台进行提交，不会将用户信息显示出来；② 安全性比较好。</p>
-</blockquote>
-<h2 id="表单域"><a href="#表单域" class="headerlink" title="表单域"></a>表单域</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">""</span>&gt;</span></div><div class="line">    …</div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>容纳表单空间和提示信息的一个区域。</p>
-<h2 id="表单控件"><a href="#表单控件" class="headerlink" title="表单控件"></a>表单控件</h2><h3 id="input-控件"><a href="#input-控件" class="headerlink" title="input 控件"></a>input 控件</h3><p><strong>语法：</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span>  <span class="attr">type</span>=<span class="string">“控件类型”</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>在上面的语法中，<code>&lt;input&gt;</code> 标记为单标记，type属性为其最基本的属性，其取值有多种，用于指定不同的控件类型。除了type属性之外，<code>&lt;input&gt;</code> 标记还可以定义很多其他的属性，其常用属性如下表所示。</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>属性值</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>type</td>
-<td>text<br>password<br>radio<br>checkbox<br>button<br>submit<br>reset<br>image<br>hidden<br>file</td>
-<td>单行文本输入框<br>密码输入框<br>单选按钮<br>复选框<br>普通按钮<br>提交按钮<br>重置按钮<br>图像形式的提交按钮<br>隐藏域<br>文件域</td>
-</tr>
-<tr>
-<td>name</td>
-<td>由用户自定义</td>
-<td>控件的名称</td>
-</tr>
-<tr>
-<td>value</td>
-<td>由用户自定义</td>
-<td>input 控件中的默认文本值</td>
-</tr>
-<tr>
-<td>size</td>
-<td>正整数</td>
-<td>input 控件在页面中的显示宽度</td>
-</tr>
-<tr>
-<td>readonly</td>
-<td>readonly</td>
-<td>该控件内容为只读（不能编辑修改）</td>
-</tr>
-<tr>
-<td>disabled</td>
-<td>disabled</td>
-<td>第一次加载页面时禁用该控件（显示为灰色）　</td>
-</tr>
-</tbody>
-</table>
-<h4 id="文本输入框"><a href="#文本输入框" class="headerlink" title="文本输入框"></a>文本输入框</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 文本输入框 --&gt;</span></div><div class="line">用户名：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">maxlength</span>=<span class="string">"6"</span>   <span class="attr">name</span>=<span class="string">"username"</span>  <span class="attr">value</span>=<span class="string">"1234"</span> &gt;</span></div></pre></td></tr></table></figure>
-<p><code>效果演示：</code><br>用户名：<input type="text" maxlength="6" name="username" value="1234"></p>
-<p><strong>属性:</strong></p>
-<ul>
-<li>maxlength：设置文本输入框最多能输多少字符</li>
-<li>readonly=”readonly”：设置文本输入框为只读（不能编辑）</li>
-<li>disabled+”disabled”：控件属于非激活状态</li>
-<li>name=”username”：给输入框设置名称</li>
-<li>value：设置默认显示的值</li>
-</ul>
-<h4 id="密码输入框"><a href="#密码输入框" class="headerlink" title="密码输入框"></a>密码输入框</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 密码输入框 --&gt;</span></div><div class="line">密码：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"pwd"</span> <span class="attr">value</span>=<span class="string">"123"</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><code>效果演示：</code><br>密码：<input type="password" name="pwd" value="123"></p>
-<p>属性用法与文本输入框的用法一样。</p>
-<h4 id="单选按钮"><a href="#单选按钮" class="headerlink" title="单选按钮"></a>单选按钮</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 单选按钮 --&gt;</span></div><div class="line">性别：</div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"xb"</span>  <span class="attr">checked</span>=<span class="string">"checked"</span> <span class="attr">value</span>=<span class="string">"nan"</span>&gt;</span>男</div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">name</span>=<span class="string">"xb"</span> <span class="attr">value</span>=<span class="string">"nv"</span> &gt;</span>女</div></pre></td></tr></table></figure>
-<p><code>效果演示：</code><br>性别：<input type="radio" name="xb" checked="checked" value="nan">男  <input type="radio" name="xb" value="nv">女</p>
-<p>注意：实现单选效果一定要给控件设置相同的名称</p>
-<p><strong>属性：</strong></p>
-<ul>
-<li>checked=”checked”：设置默认选中项</li>
-</ul>
-<h4 id="多选控件"><a href="#多选控件" class="headerlink" title="多选控件"></a>多选控件</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">兴趣爱好：</div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">checked</span>=<span class="string">"checked"</span>&gt;</span>抽烟</div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">checked</span>=<span class="string">"checked"</span>&gt;</span>喝酒</div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"checkbox"</span> <span class="attr">checked</span>=<span class="string">"checked"</span>&gt;</span>烫头</div></pre></td></tr></table></figure>
-<p><code>效果演示：</code><br>兴趣爱好：<input type="checkbox" checked="checked">抽烟<input type="checkbox">喝酒<input type="checkbox" checked="checked">烫头</p>
-<p><strong>属性：</strong></p>
-<ul>
-<li>checked=”checked”：设置默认选中项</li>
-</ul>
-<h4 id="图片上传控件"><a href="#图片上传控件" class="headerlink" title="图片上传控件"></a>图片上传控件</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">头像：</div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><code>效果演示：</code><br>头像：<input type="file"></p>
-<h4 id="表单提交按钮"><a href="#表单提交按钮" class="headerlink" title="表单提交按钮"></a>表单提交按钮</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 表单提交按钮 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span>  <span class="attr">value</span>=<span class="string">"登录"</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><code>效果演示：</code><input type="submit" value="登录"></p>
-<h4 id="普通按钮"><a href="#普通按钮" class="headerlink" title="普通按钮"></a>普通按钮</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 普通按钮 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span>  <span class="attr">value</span>=<span class="string">"普通按钮"</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><code>效果演示：</code><input type="button" value="普通按钮"></p>
-<blockquote>
-<p>注意：该按钮不能进行表单提交。通常和 js 代码配合使用。</p>
-</blockquote>
-<h4 id="重置按钮"><a href="#重置按钮" class="headerlink" title="重置按钮"></a>重置按钮</h4><p>清空所有表单数据，恢复到初始状态<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 重置按钮 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"reset"</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p><code>效果演示：</code><input type="reset"></p>
-<h4 id="图片按钮"><a href="#图片按钮" class="headerlink" title="图片按钮"></a>图片按钮</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 图片按钮 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"image"</span> <span class="attr">src</span>=<span class="string">"按钮.jpg"</span>&gt;</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>注意：该控件也可以进行表单的提交。</p>
-</blockquote>
-<h3 id="select-控件"><a href="#select-控件" class="headerlink" title="select 控件"></a>select 控件</h3><p>在 HTML 中，要想制作下拉菜单，就需要使用select控件。</p>
-<h4 id="下拉列表"><a href="#下拉列表" class="headerlink" title="下拉列表"></a>下拉列表</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">出生地：</div><div class="line">省：</div><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">multiple</span>=<span class="string">"multiple"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>山东<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>山西<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>河南<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>河北<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">option</span>  <span class="attr">selected</span>=<span class="string">"selected"</span>&gt;</span>北京<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><code>效果演示：</code><br>出生地：省：<select multiple="multiple"><br>    <option>山东</option><br>    <option>山西</option><br>    <option>河南</option><br>    <option>河北</option><br>    <option selected="selected">北京</option><br></select></p>
-<p><strong>属性：</strong></p>
-<ul>
-<li>selected=”selected”：设置默认选中项</li>
-<li>multiple=”multiple”：可以实现多选效果</li>
-</ul>
-<h4 id="下拉列表分组显示"><a href="#下拉列表分组显示" class="headerlink" title="下拉列表分组显示"></a>下拉列表分组显示</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">市(区)：</div><div class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"name"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">optgroup</span> <span class="attr">label</span>=<span class="string">"北京市"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">option</span>&gt;</span>西城区 <span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">option</span>&gt;</span>东城区<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">option</span>&gt;</span>海淀区<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">option</span>&gt;</span>昌平区<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">optgroup</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">optgroup</span> <span class="attr">label</span>=<span class="string">"上海市"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">option</span>&gt;</span>黄浦区 <span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">option</span>&gt;</span>松江区<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">option</span>&gt;</span>浦东新区<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">option</span>&gt;</span>静安区<span class="tag">&lt;/<span class="name">option</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">optgroup</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><code>效果演示：</code><br>市(区)：<select id="name"><br>    <optgroup label="北京市"><br>        <option>西城区 </option><br>        <option>东城区</option><br>        <option>海淀区</option><br>        <option>昌平区</option><br>    </optgroup><br>    <optgroup label="上海市"><br>        <option>黄浦区 </option><br>        <option>松江区</option><br>        <option>浦东新区</option><br>        <option>静安区</option><br>    </optgroup><br></select></p>
-<h3 id="textarea-控件"><a href="#textarea-控件" class="headerlink" title="textarea 控件"></a>textarea 控件</h3><p>如果需要输入大量的信息，就需要用到 <code>&lt;textarea&gt;&lt;/textarea&gt;</code> 标记。通过 textarea 控件可以轻松地创建多行文本输入框，其基本语法格式如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">cols</span>=<span class="string">"每行中的字符数"</span> <span class="attr">rows</span>=<span class="string">"显示的行数"</span>&gt;</span></div><div class="line">    文本内容</div><div class="line"><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p><strong>属性：</strong></p>
-<ul>
-<li>cols：相当于宽度</li>
-<li>rows：相当于高度</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">自我介绍：</div><div class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">cols</span>=<span class="string">"20"</span> <span class="attr">rows</span>=<span class="string">"5"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><code>效果演示：</code><br>自我介绍：</p>
-<textarea cols="20" rows="5"><br></textarea>
-
-<h2 id="组合表单"><a href="#组合表单" class="headerlink" title="组合表单"></a>组合表单</h2><p>fieldset 用于表单分组。<br><strong>语法：</strong><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">legend</span>&gt;</span>用户注册<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>举例：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">fieldset</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">legend</span>&gt;</span>用户注册<span class="tag">&lt;/<span class="name">legend</span>&gt;</span></div><div class="line">        用户名：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">maxlength</span>=<span class="string">"6"</span>   <span class="attr">name</span>=<span class="string">"username"</span>  <span class="attr">value</span>=<span class="string">""</span> &gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line">        密码：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"pwd"</span> <span class="attr">value</span>=<span class="string">"123"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p><code>效果演示：</code></p>
-<fieldset><br>    <legend>用户注册</legend><br>        用户名：<input type="text" maxlength="6" name="username" value=""><br>        <br><br>        <br><br>        密码：<input type="password" name="pwd" value="123"><br></fieldset>
-
-<h2 id="表单补充"><a href="#表单补充" class="headerlink" title="表单补充"></a>表单补充</h2><h3 id="判断网址"><a href="#判断网址" class="headerlink" title="判断网址"></a>判断网址</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 判断网址 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"url"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><code>效果演示：</code></p>
-<p><input type="url"></p>
-<input type="submit">
-
-<h3 id="判断邮箱"><a href="#判断邮箱" class="headerlink" title="判断邮箱"></a>判断邮箱</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 判断邮箱 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"email"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><code>效果演示：</code></p>
-<p><input type="email"></p>
-<input type="submit">
-
-<h3 id="日期控件"><a href="#日期控件" class="headerlink" title="日期控件"></a>日期控件</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 日期控件 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"date"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><code>效果演示：</code></p>
-<p><input type="date"></p>
-<input type="submit">
-
-<h3 id="时间控件"><a href="#时间控件" class="headerlink" title="时间控件"></a>时间控件</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 时间控件 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"time"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><code>效果演示：</code></p>
-<p><input type="time"></p>
-<input type="submit">
-
-<h3 id="带有-spinner-控件的数字字段"><a href="#带有-spinner-控件的数字字段" class="headerlink" title="带有 spinner 控件的数字字段"></a>带有 spinner 控件的数字字段</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 带有 spinner 控件的数字字段 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><strong>属性：</strong></p>
-<ul>
-<li>step：表示每次加减的值（即步长）</li>
-</ul>
-<p><code>效果演示：</code></p>
-<p><input type="number" step="5"></p>
-<input type="submit">
-
-<h3 id="带有-slider-控件的数字字段"><a href="#带有-slider-控件的数字字段" class="headerlink" title="带有 slider 控件的数字字段"></a>带有 slider 控件的数字字段</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 带有 slider 控件的数字字段 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"range"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><strong>属性：</strong></p>
-<ul>
-<li>max：最大值</li>
-<li>min：最小值</li>
-<li>step：每次加减的值（即步长）</li>
-</ul>
-<p><code>效果演示：</code></p>
-<p><input type="range" max="100" min="30" step="5"></p>
-<input type="submit">
-
-<h3 id="定义拾色器"><a href="#定义拾色器" class="headerlink" title="定义拾色器"></a>定义拾色器</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 定义拾色器 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"color"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span>&gt;</span></div></pre></td></tr></table></figure>
-<p><code>效果演示：</code></p>
-<p><input type="color"></p>
-<input type="submit">
-
-<h1 id="标签语义化"><a href="#标签语义化" class="headerlink" title="标签语义化"></a>标签语义化</h1><ul>
-<li>标签语义化概念：</li>
-</ul>
-<blockquote>
-<p>根据内容的结构化（内容语义化），选择合适的标签（代码语义化）</p>
-</blockquote>
-<ul>
-<li>标签语义化意义：</li>
-</ul>
-<blockquote>
-<p>1: 网页结构合理</p>
-<p>2: 有利于 SEO :和搜索引擎建立良好沟通，有了良好的结构和语义你的网页内容自然容易被搜索引擎抓取；</p>
-<p>3: 方便其他设备解析（如屏幕阅读器、盲人阅读器、移动设备）;</p>
-<p>4: 便于团队开发和维护.</p>
-</blockquote>
-<ul>
-<li>标签语义化（注意事项）</li>
-</ul>
-<blockquote>
-<p>1：尽可能少的使用无语义的标签 div 和 span ；</p>
-<p>2：在语义不明显时，既可以使用 div 或者 p 时，尽量用 p, 因为 p 在默认情况下有上下间距，对兼容特殊终端有利；</p>
-<p>3：不要使用纯样式标签，如：b、font、u 等，改用 css 设置。</p>
-<p>4：需要强调的文本，可以包含在 strong 或者 em 标签中。strong 默认样式是加粗（不要用b），em 是斜体（不用 i ）；</p>
-</blockquote>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>我的 html 基础学习是跟着传智播客2016年的视频课程学习的，基础就这些内容，特别整理下来以加深记忆。内容或多或少会与网络上的内容有些许出入。总的来说 html 很简单，很容易上手。但这只是基础，html + css + javascript 才能做出真正漂亮的网页。</p>
-<p>千里之行，始于足下，接下来的路，加油！</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://img.blog.csdn.net/20170821153435182&quot; alt=&quot;html&quot;&gt;&lt;/div&gt;&lt;/p&gt;
-&lt;p&gt;&lt;div&gt;&lt;p id=&quot;div-border-left-blue&quot;&gt;自学 html 基础笔记。&lt;/p&gt;&lt;/div&gt;&lt;br&gt;
-    
-    </summary>
-    
-      <category term="HTML+CSS+JS" scheme="http://yoursite.com/categories/HTML-CSS-JS/"/>
-    
-    
-      <category term="HTML" scheme="http://yoursite.com/tags/HTML/"/>
     
   </entry>
   

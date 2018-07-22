@@ -1,0 +1,1723 @@
+<!doctype html>
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+    
+
+    
+  
+
+  
+    
+
+    
+  
+
+  
+    
+
+    
+  
+
+  
+    
+
+    
+  
+
+  
+    
+    
+    <link href="fonts.loli.net/css?family=Comic Sans MS:300,300italic,400,400italic,700,700italicPingFang SC:300,300italic,400,400italic,700,700italicComic Sans MS:300,300italic,400,400italic,700,700italicConsolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaWeb,Struts2," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="秋月春风等闲度" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Servlet API、封装数据、拦截器。">
+<meta name="keywords" content="JavaWeb,Struts2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWeb 之 Struts2 中的 Servlet API、封装数据、拦截器">
+<meta property="og:url" content="http://yoursite.com/posts/JavaWeb/2018-07-22-JavaWeb-Struts202.html">
+<meta property="og:site_name" content="秋月春风等闲度">
+<meta property="og:description" content="Servlet API、封装数据、拦截器。">
+<meta property="og:image" content="http://image.renkaigis.com/images/JavaWeb/struts20200.png">
+<meta property="og:image" content="http://image.renkaigis.com/images/JavaWeb/struts20201.png">
+<meta property="og:image" content="http://image.renkaigis.com/images/JavaWeb/struts20202.png">
+<meta property="og:image" content="http://image.renkaigis.com/images/JavaWeb/struts20203.png">
+<meta property="og:image" content="http://image.renkaigis.com/images/JavaWeb/struts20204.png">
+<meta property="og:updated_time" content="2018-07-22T15:54:38.339Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaWeb 之 Struts2 中的 Servlet API、封装数据、拦截器">
+<meta name="twitter:description" content="Servlet API、封装数据、拦截器。">
+<meta name="twitter:image" content="http://image.renkaigis.com/images/JavaWeb/struts20200.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/posts/JavaWeb/2018-07-22-JavaWeb-Struts202.html"/>
+
+
+
+
+
+  <title>JavaWeb 之 Struts2 中的 Servlet API、封装数据、拦截器 | 秋月春风等闲度</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+ 
+   <a href="https://github.com/renkaigis"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">秋月春风等闲度</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">要有最朴素的生活，与最遥远的梦想。即使明日天寒地冻，路远马亡。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+    
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/JavaWeb/2018-07-22-JavaWeb-Struts202.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RenKai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="秋月春风等闲度">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaWeb 之 Struts2 中的 Servlet API、封装数据、拦截器</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-22T17:56:43+08:00">
+                2018-07-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaWeb/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaWeb</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/posts/JavaWeb/2018-07-22-JavaWeb-Struts202.html#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="posts/JavaWeb/2018-07-22-JavaWeb-Struts202.html" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/posts/JavaWeb/2018-07-22-JavaWeb-Struts202.html" class="leancloud_visitors" data-flag-title="JavaWeb 之 Struts2 中的 Servlet API、封装数据、拦截器">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                                <span class="post-meta-divider">|</span>
+             </span>
+          
+
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">WordsCount</span>
+                
+                <span title="WordsCount">
+                  3,580
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/struts20200.png"></div>
+
+<p id="div-border-left-blue">Servlet API、封装数据、拦截器。</p>
+
+<a id="more"></a>
+<hr>
+<h1 id="Struts2-框架中-Servlet-API-的使用"><a href="#Struts2-框架中-Servlet-API-的使用" class="headerlink" title="Struts2 框架中 Servlet API 的使用"></a>Struts2 框架中 Servlet API 的使用</h1><hr>
+<h2 id="Servlet-的-API"><a href="#Servlet-的-API" class="headerlink" title="Servlet 的 API"></a>Servlet 的 API</h2><p>在 <code>Action</code> 类中也可以获取到 <code>Servlet</code> 一些常用的 <code>API</code></p>
+<ul>
+<li>案例需求：提供 <code>JSP</code> 的表单页面的数据，在 <code>Action</code> 中使用 <code>Servlet</code> 的 <code>API</code> 接收到，然后保存到三个域对象中，最后再显示到 <code>JSP</code> 的页面上。</li>
+</ul>
+<p>提供 JSP 注册的页面：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>注册页面<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"$&#123; pageContext.request.contextPath &#125;/xxx.action"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></div><div class="line">	姓名:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></div><div class="line">	密码:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"password"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"注册"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="完全解耦合的方式"><a href="#完全解耦合的方式" class="headerlink" title="完全解耦合的方式"></a>完全解耦合的方式</h3><p>为了避免与 <code>Servlet API</code> 耦合在一起，方便 Action 类做单元测试，Struts2 对 <code>HttpServletRequest</code>、<code>HttpSession</code> 和 <code>ServletContext</code> 进行了封装，构造了三个 Map 对象来替代这三种对象，在 Action 中，直接使用 <code>HttpServletRequest</code>、<code>HttpSession</code>、<code>ServletContext</code> 对应的 Map 对象来保存和读取数据。</p>
+<p>要获得这三个Map对象，可以使用 <code>com.opensymphony.xwork2.ActionContext类</code></p>
+<p><code>ActionContext</code> ： <code>请求上下文</code></p>
+<p>常用的方法如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">static ActionContext getContext()  										-- 获取 ActionContext 对象实例</div><div class="line">java.util.Map&lt;java.lang.String,java.lang.Object&gt; getParameters()  		-- 获取请求参数，相当于 request.getParameterMap();</div><div class="line">java.util.Map&lt;java.lang.String,java.lang.Object&gt; getSession()  			-- 获取的代表 session 域的 Map 集合，就相当于操作 session 域。</div><div class="line">java.util.Map&lt;java.lang.String,java.lang.Object&gt; getApplication() 		-- 获取代表 application 域的 Map 集合</div><div class="line">void put(java.lang.String key, java.lang.Object value)  					-- 注意：向 request 域中存入值。</div></pre></td></tr></table></figure>
+<h4 id="案例演示"><a href="#案例演示" class="headerlink" title="案例演示"></a>案例演示</h4><p><strong>Demo1Action.java</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 完全解耦合的方式，使用 Servlet 的 API</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo1Action</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">execute</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="comment">// 完全解耦合的方式</span></div><div class="line">        ActionContext context = ActionContext.getContext();</div><div class="line">        <span class="comment">// 获取到请求的参数，封装所有请求的参数</span></div><div class="line">        Map&lt;String, Object&gt; map = context.getParameters();</div><div class="line">        <span class="comment">// 遍历获取数据</span></div><div class="line">        Set&lt;String&gt; keys = map.keySet();</div><div class="line">        <span class="keyword">for</span> (String key : keys) &#123;</div><div class="line">            <span class="comment">// 通过 Key，来获取到值</span></div><div class="line">            String[] vals = (String[]) map.get(key);</div><div class="line">            System.out.println(key + <span class="string">":"</span> + Arrays.toString(vals));</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// 向 request 域中存入值</span></div><div class="line">        context.put(<span class="string">"msg"</span>,<span class="string">"小天"</span>);</div><div class="line">        <span class="comment">// 获取其他 map 集合，并存入数据</span></div><div class="line">        context.getSession().put(<span class="string">"msg"</span>,<span class="string">"小明"</span>);</div><div class="line">        context.getApplication().put(<span class="string">"msg"</span>,<span class="string">"小红"</span>);</div><div class="line"></div><div class="line">        <span class="keyword">return</span> SUCCESS;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>JSP 输入页面：</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>完全解耦合方式<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"$&#123; pageContext.request.contextPath &#125;/demo1Action.action"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></div><div class="line">    姓名:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></div><div class="line">    密码:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"password"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"注册"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><code>JSP 跳转页面：</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>使用 EL 表达式获取值<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div><div class="line">$&#123;requestScope.msg&#125;</div><div class="line">$&#123;sessionScope.msg&#125;</div><div class="line">$&#123;applicationScope.msg&#125;</div></pre></td></tr></table></figure>
+<p><code>struts.xml 配置文件：</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"demo1"</span> <span class="attr">namespace</span>=<span class="string">"/"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!--完全解耦合的方式--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"demo1Action"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.demo1.Demo1Action"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"success"</span>&gt;</span>/demo1/success.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">action</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">package</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="案例结果："><a href="#案例结果：" class="headerlink" title="案例结果："></a>案例结果：</h4><p>输入信息：</p>
+<p><img src="http://image.renkaigis.com/images/JavaWeb/struts20201.png"></p>
+<p>跳转并取值：</p>
+<p><img src="http://image.renkaigis.com/images/JavaWeb/struts20202.png"></p>
+<p>控制台输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">password:[12345]</div><div class="line">username:[renkai]</div></pre></td></tr></table></figure>
+<h3 id="使用原生-Servlet-的-API-的方式"><a href="#使用原生-Servlet-的-API-的方式" class="headerlink" title="使用原生 Servlet 的 API 的方式"></a>使用原生 Servlet 的 API 的方式</h3><p>直接访问 <code>Servlet API</code> 将使 <code>Action</code> 类与 <code>Servlet API</code> 耦合在一起，<code>Servlet API</code> 对象均由 <code>Servlet</code> 容器来构造，与这些对象绑定在一起，测试过程中就必须有 <code>Servlet</code> 容器，这样不便于 <code>Action</code> 类的测试，但有时候，确实需要访问这些对象，<code>Struts2</code> 同样提供了直接访问 <code>ServletAPI</code> 对象的方式。</p>
+<p>要直接获取 <code>Servlet API</code> 对象可以使用 <code>org.apache.struts2.ServletActionContext</code> 类，该类是 <code>ActionContext</code> 类的子类。</p>
+<ul>
+<li>具体的方法如下</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">HttpServletRequest request=ServletActionContext.getRequest();</div><div class="line">HttpSession session=request.getSession();</div><div class="line">session.setAttribute(<span class="string">"xxx"</span>,xxx);</div><div class="line">HttpServletResponse response=ServletActionContext.getResponse();</div><div class="line">HttpServletContext application=ServletActionContext.getApplication();</div></pre></td></tr></table></figure>
+<h4 id="案例演示-1"><a href="#案例演示-1" class="headerlink" title="案例演示"></a>案例演示</h4><p><strong>Demo2Action.java</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 原生 Servlet API</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo2Action</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">execute</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="comment">// 获取到 request 对象</span></div><div class="line">        HttpServletRequest request = ServletActionContext.getRequest();</div><div class="line">        request.setAttribute(<span class="string">"msg"</span>, <span class="string">"天天"</span>);</div><div class="line">        request.getSession().setAttribute(<span class="string">"msg"</span>, <span class="string">"美美"</span>);</div><div class="line">        ServletActionContext.getServletContext().setAttribute(<span class="string">"msg"</span>, <span class="string">"园园"</span>);</div><div class="line"></div><div class="line">        <span class="comment">// 获取 response 对象，可以使用输出流，输出内容</span></div><div class="line">        HttpServletResponse response = ServletActionContext.getResponse();</div><div class="line"></div><div class="line">        <span class="keyword">return</span> SUCCESS;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>JSP 输入页面：</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>ServletCActionContext 类<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"$&#123; pageContext.request.contextPath &#125;/demo2Action.action"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></div><div class="line">    姓名:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"username"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></div><div class="line">    密码:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"password"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"注册"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><code>JSP 跳转页面：</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>使用 EL 表达式获取值<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div><div class="line">$&#123;requestScope.msg&#125;</div><div class="line">$&#123;sessionScope.msg&#125;</div><div class="line">$&#123;applicationScope.msg&#125;</div></pre></td></tr></table></figure>
+<p><code>struts.xml 配置文件：</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--原生 Servlet API 方式--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"demo2Action"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.demo1.Demo2Action"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"success"</span>&gt;</span>/demo1/success.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="案例结果：-1"><a href="#案例结果：-1" class="headerlink" title="案例结果："></a>案例结果：</h4><p>输入信息：</p>
+<p><img src="http://image.renkaigis.com/images/JavaWeb/struts20203.png"></p>
+<p>跳转并取值：</p>
+<p><img src="http://image.renkaigis.com/images/JavaWeb/struts20204.png"></p>
+<h2 id="结果页面的跳转"><a href="#结果页面的跳转" class="headerlink" title="结果页面的跳转"></a>结果页面的跳转</h2><p>结果页面存在两种方式</p>
+<h3 id="全局结果页面"><a href="#全局结果页面" class="headerlink" title="全局结果页面"></a>全局结果页面</h3><p>条件：如果 <code>&lt;package&gt;</code> 包中的一些 <code>action</code> 都返回 <code>success</code>，并且返回的页面都是同一个 <code>JSP</code> 页面，这样就可以配置全局的结果页面。</p>
+<p>全局结果页面针对的 <code>当前包</code> 中的所有的 <code>Action</code>，但是如果局部还有结果页面，会 <code>优先局部</code> 的。使用的标签是：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"demo1"</span> <span class="attr">namespace</span>=<span class="string">"/"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!--配置全局的结果页面--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">global-results</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"success"</span>&gt;</span>/demo1/success.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">global-results</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">package</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="局部结果页面"><a href="#局部结果页面" class="headerlink" title="局部结果页面"></a>局部结果页面</h3><p>也就是之前一直所使用的。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">result</span>&gt;</span>/demo1/success.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="结果页面的类型"><a href="#结果页面的类型" class="headerlink" title="结果页面的类型"></a>结果页面的类型</h3><ul>
+<li>结果页面使用 <code>&lt;result&gt;</code> 标签进行配置，包含两个属性</li>
+</ul>
+<blockquote>
+<p>name    – 逻辑视图的名称</p>
+<p>type    – 跳转的类型，需要掌握一些常用的类型。常见的结果类型去 <code>struts-default.xml</code> 中查找。</p>
+</blockquote>
+<ul>
+<li>dispatcher        – 转发，<code>type的默认值</code>。Action—&gt;JSP</li>
+<li>redirect            – 重定向。    Action—&gt;JSP</li>
+<li>chain                – 多个action之间跳转，从一个Action转发到另一个Action。    Action—Action</li>
+<li>redirectAction    – 多个action之间跳转，从一个Action重定向到另一个Action。    Action—Action</li>
+<li>stream            – 文件下载时候使用的</li>
+</ul>
+<hr>
+<h1 id="Struts2-框架的数据封装"><a href="#Struts2-框架的数据封装" class="headerlink" title="Struts2 框架的数据封装"></a>Struts2 框架的数据封装</h1><hr>
+<h2 id="数据的封装"><a href="#数据的封装" class="headerlink" title="数据的封装"></a>数据的封装</h2><ul>
+<li>作为 <code>MVC</code> 框架，必须要负责解析 <code>HTTP</code> 请求参数，并将其封装到 <code>Model</code> 对象中</li>
+<li>封装数据为开发提供了很多方便</li>
+<li>Struts2 框架提供了很强大的数据封装的功能，<code>不再需要使用 Servlet 的 API 完成手动封装了</code>！</li>
+</ul>
+<p>Struts2 中提供了两类数据封装的方式：</p>
+<h3 id="第一种方式：属性驱动"><a href="#第一种方式：属性驱动" class="headerlink" title="第一种方式：属性驱动"></a>第一种方式：属性驱动</h3><h4 id="提供对应属性的-set-方法进行数据的封装。"><a href="#提供对应属性的-set-方法进行数据的封装。" class="headerlink" title="提供对应属性的 set 方法进行数据的封装。"></a>提供对应属性的 <code>set</code> 方法进行数据的封装。</h4><ul>
+<li><p>表单的哪些属性需要封装数据，那么在对应的 <code>Action</code> 类中提供该属性的 <code>set</code> 方法即可。</p>
+</li>
+<li><p>表单中的数据提交，最终找到 <code>Action</code> 类中的 <code>setXxx</code> 的方法，最后赋值给全局变量。</p>
+</li>
+<li><p>注意0：<code>Struts2</code> 的框架采用拦截器完成数据的封装。</p>
+</li>
+<li><p>注意1：这种方式不是特别好：因为属性特别多，提供特别多的set方法，而且还需要手动将数据存入到对象中。</p>
+</li>
+<li><p>注意2：这种情况下，<code>Action</code> 类就相当于一个 <code>JavaBean</code>，就没有体现出 <code>MVC</code> 的思想，<code>Action</code> 类又封装数据，又接收请求处理，耦合性较高。</p>
+</li>
+</ul>
+<p><strong>Action:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> String username;</div><div class="line"><span class="keyword">private</span> String password;</div><div class="line"><span class="keyword">private</span> Integer age;</div><div class="line"><span class="comment">// 只需要提供 set 方法</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUsername</span><span class="params">(String username)</span> </span>&#123;</div><div class="line">	<span class="keyword">this</span>.username = username;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPassword</span><span class="params">(String password)</span> </span>&#123;</div><div class="line">	<span class="keyword">this</span>.password = password;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(Integer age)</span> </span>&#123;</div><div class="line">	<span class="keyword">this</span>.age = age;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>struts.xml</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"demo2"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span> <span class="attr">namespace</span>=<span class="string">"/"</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!--属性驱动的方式--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"regist1"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.demo2.Regist1Action"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">package</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>jsp页面</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;h3&gt;属性驱动的方式&lt;/h3&gt;</div><div class="line">&lt;form action="$&#123; pageContext.request.contextPath &#125;/regist1.action" method="post"&gt;</div><div class="line">    姓名:&lt;input type="text" name="username" /&gt;&lt;br/&gt;</div><div class="line">    密码:&lt;input type="password" name="password" /&gt;&lt;br/&gt;</div><div class="line">    年龄:&lt;input type="text" name="age" /&gt;&lt;br/&gt;</div><div class="line">    &lt;input type="submit" value="注册" /&gt;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure>
+<p><strong>输出结果</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">renkai 12 25</div></pre></td></tr></table></figure>
+<h4 id="属性驱动：把数据封装到-JavaBean-对象中"><a href="#属性驱动：把数据封装到-JavaBean-对象中" class="headerlink" title="属性驱动：把数据封装到 JavaBean 对象中"></a>属性驱动：把数据封装到 JavaBean 对象中</h4><blockquote>
+<p>在页面上，使用 <code>OGNL</code> 表达式进行数据封装。</p>
+</blockquote>
+<ul>
+<li><p>在页面中使用 <code>OGNL</code> 表达式进行数据的封装，就可以直接把属性封装到某一个 <code>JavaBean</code> 的对象中。</p>
+</li>
+<li><p>在页面中定义一个 <code>JavaBean</code>，并且提供 <code>set</code> 方法：例如：<code>private User user;</code></p>
+</li>
+<li><p>页面中的编写发生了变化，需要使用 <code>OGNL</code> 的方式，表单中的写法：<code>&lt;input type=&quot;text&quot; name=&quot;user.username&quot;&gt;</code></p>
+</li>
+<li><p>注意：只提供一个 <code>set</code> 方法还不够，必须还需要提供 <code>user</code> 属性的 <code>get</code> 和 <code>set</code> 方法！！！</p>
+</li>
+</ul>
+<p><strong>原理：</strong> 先调用 <code>get</code> 方法，判断一下是否有 <code>user</code> 对象的实例对象，如果没有，调用 <code>set</code> 方法把拦截器创建的对象注入进来。</p>
+<p><strong>Action:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 需要提供 get 和 set 方法</span></div><div class="line"><span class="keyword">private</span> User user;</div><div class="line"><span class="function"><span class="keyword">public</span> User <span class="title">getUser</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">return</span> user;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUser</span><span class="params">(User user)</span> </span>&#123;</div><div class="line">	<span class="keyword">this</span>.user = user;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>struts.xml</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"demo2"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span> <span class="attr">namespace</span>=<span class="string">"/"</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!--属性驱动的方式，把数据封装到 JavaBean 的对象中--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"regist2"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.demo2.Regist2Action"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">package</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>jsp页面</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;h3&gt;属性驱动的方式（把数据封装到 JavaBean 的对象中）&lt;/h3&gt;</div><div class="line">&lt;%--页面的编写发生了变化，使用的是 OGNL 表达式的写法--%&gt;</div><div class="line">&lt;form action="$&#123; pageContext.request.contextPath &#125;/regist2.action" method="post"&gt;</div><div class="line">    姓名:&lt;input type="text" name="user.username" /&gt;&lt;br/&gt;</div><div class="line">    密码:&lt;input type="password" name="user.password" /&gt;&lt;br/&gt;</div><div class="line">    年龄:&lt;input type="text" name="user.age" /&gt;&lt;br/&gt;</div><div class="line">    &lt;input type="submit" value="注册" /&gt;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure>
+<p><strong>输出结果</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">User&#123;username=&apos;renkai&apos;, password=&apos;12&apos;, age=25&#125;</div></pre></td></tr></table></figure>
+<h3 id="第二种方式：模型驱动"><a href="#第二种方式：模型驱动" class="headerlink" title="第二种方式：模型驱动"></a>第二种方式：模型驱动</h3><blockquote>
+<p>使用模型驱动的方式，也可以把表单中的数据直接封装到一个 <code>JavaBean</code> 的对象中，并且表单的写法和之前的写法没有区别！</p>
+<p>编写的页面不需要任何变化，正常编写 <code>name</code> 属性的值</p>
+<p>模型驱动的编写步骤：</p>
+</blockquote>
+<ul>
+<li><p>手动实例化 <code>JavaBean</code>，即：<code>private User user = new User();</code></p>
+</li>
+<li><p>必须实现 <code>ModelDriven&lt;T&gt;</code> 接口，实现 <code>getModel()</code> 的方法，在 <code>getModel()</code> 方法中返回 <code>user</code> 即可！！</p>
+</li>
+</ul>
+<p><strong>Action:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 模型驱动的方式</div><div class="line"> * 需要实现 ModelDriven 接口</div><div class="line"> * 必须要手动实例化对象（需要自己new好）</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Regist3Action</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> <span class="keyword">implements</span> <span class="title">ModelDriven</span>&lt;<span class="title">User</span>&gt; </span>&#123;</div><div class="line">    <span class="comment">// 必须要手动实例化</span></div><div class="line">    <span class="keyword">private</span> User user = <span class="keyword">new</span> User();</div><div class="line">    <span class="comment">// 获取模型对象</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">getModel</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> user;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">execute</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        System.out.println(user);</div><div class="line">        <span class="keyword">return</span> NONE;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>struts.xml</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"demo2"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span> <span class="attr">namespace</span>=<span class="string">"/"</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!--模型驱动的方式--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"regist3"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.demo2.Regist3Action"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">package</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>jsp页面</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;h3&gt;模型驱动的方式&lt;/h3&gt;</div><div class="line">&lt;form action="$&#123; pageContext.request.contextPath &#125;/regist3.action" method="post"&gt;</div><div class="line">    姓名:&lt;input type="text" name="username" /&gt;&lt;br/&gt;</div><div class="line">    密码:&lt;input type="password" name="password" /&gt;&lt;br/&gt;</div><div class="line">    年龄:&lt;input type="text" name="age" /&gt;&lt;br/&gt;</div><div class="line">    &lt;input type="submit" value="注册" /&gt;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure>
+<p><strong>输出结果</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">User&#123;username=&apos;renkai&apos;, password=&apos;12&apos;, age=25&#125;</div></pre></td></tr></table></figure>
+<h3 id="Struts2-把数据封装到集合中"><a href="#Struts2-把数据封装到集合中" class="headerlink" title="Struts2 把数据封装到集合中"></a>Struts2 把数据封装到集合中</h3><p>（默认采用的是属性驱动的方式）</p>
+<h4 id="把数据封装到-List-集合中"><a href="#把数据封装到-List-集合中" class="headerlink" title="把数据封装到 List 集合中"></a>把数据封装到 List 集合中</h4><ul>
+<li>因为 <code>Collection</code> 接口都会有下标值，所有页面的写法会有一些区别，注意：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"products[0].name"</span> /&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>在 <code>Action</code> 中的写法，需要提供 <code>user</code> 的集合，并且提供 <code>get</code> 和 <code>set</code> 方法。</li>
+</ul>
+<p><strong>Action:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 属性驱动的方式，把数据封装到List集合中</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Regist4Action</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> List&lt;User&gt; list;</div><div class="line">    <span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">getList</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> list;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setList</span><span class="params">(List&lt;User&gt; list)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.list = list;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">execute</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        <span class="keyword">for</span> (User user : list) &#123;</div><div class="line">            System.out.println(user);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> NONE;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>struts.xml</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"demo2"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span> <span class="attr">namespace</span>=<span class="string">"/"</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!--把数据封装到List集合中--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"regist4"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.demo2.Regist4Action"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">package</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>jsp页面</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;h3&gt;向List集合封装数据（默认情况下，采用的是属性驱动的方式）&lt;/h3&gt;</div><div class="line">&lt;form action="$&#123; pageContext.request.contextPath &#125;/regist4.action" method="post"&gt;</div><div class="line">    姓名:&lt;input type="text" name="list[0].username" /&gt;&lt;br/&gt;</div><div class="line">    密码:&lt;input type="password" name="list[0].password" /&gt;&lt;br/&gt;</div><div class="line">    年龄:&lt;input type="text" name="list[0].age" /&gt;&lt;br/&gt;</div><div class="line"></div><div class="line">    姓名:&lt;input type="text" name="list[1].username" /&gt;&lt;br/&gt;</div><div class="line">    密码:&lt;input type="password" name="list[1].password" /&gt;&lt;br/&gt;</div><div class="line">    年龄:&lt;input type="text" name="list[1].age" /&gt;&lt;br/&gt;</div><div class="line">    &lt;input type="submit" value="注册" /&gt;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure>
+<p><strong>输出结果</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">User&#123;username=&apos;renkai&apos;, password=&apos;12&apos;, age=25&#125;</div><div class="line">User&#123;username=&apos;xiaomei&apos;, password=&apos;34&apos;, age=22&#125;</div></pre></td></tr></table></figure>
+<h4 id="把数据封装到-Ma-中"><a href="#把数据封装到-Ma-中" class="headerlink" title="把数据封装到 Ma 中"></a>把数据封装到 Ma 中</h4><ul>
+<li><code>Map</code> 集合是键值对的形式，页面的写法</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"map['one'].name"</span> /&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>注意：</strong>里面的 <code>key</code> 值可以自定义。</p>
+<ul>
+<li>Action中提供 <code>map</code> 集合，并且提供 <code>get</code> 和 <code>set</code> 方法</li>
+</ul>
+<p><strong>Action:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 属性驱动的方式，把数据封装到map集合中</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Regist5Action</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> Map&lt;String, User&gt; map;</div><div class="line">    <span class="function"><span class="keyword">public</span> Map&lt;String, User&gt; <span class="title">getMap</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> map;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setMap</span><span class="params">(Map&lt;String, User&gt; map)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.map = map;</div><div class="line">    &#125;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">execute</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        System.out.println(map);</div><div class="line">        <span class="keyword">return</span> NONE;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>struts.xml</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"demo2"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span> <span class="attr">namespace</span>=<span class="string">"/"</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!--把数据封装到map集合中--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"regist5"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.demo2.Regist5Action"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">package</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>jsp页面</strong>：这里的 <code>key</code> 值自定义。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;h3&gt;向map集合封装数据（默认情况下，采用的是属性驱动的方式）&lt;/h3&gt;</div><div class="line">&lt;form action="$&#123; pageContext.request.contextPath &#125;/regist5.action" method="post"&gt;</div><div class="line">    姓名:&lt;input type="text" name="map['one'].username" /&gt;&lt;br/&gt;</div><div class="line">    密码:&lt;input type="password" name="map['one'].password" /&gt;&lt;br/&gt;</div><div class="line">    年龄:&lt;input type="text" name="map['one'].age" /&gt;&lt;br/&gt;</div><div class="line"></div><div class="line">    姓名:&lt;input type="text" name="map['two'].username" /&gt;&lt;br/&gt;</div><div class="line">    密码:&lt;input type="password" name="map['two'].password" /&gt;&lt;br/&gt;</div><div class="line">    年龄:&lt;input type="text" name="map['two'].age" /&gt;&lt;br/&gt;</div><div class="line">    &lt;input type="submit" value="注册" /&gt;</div><div class="line">&lt;/form&gt;</div></pre></td></tr></table></figure>
+<p><strong>输出结果</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;one=User&#123;username=&apos;renkai&apos;, password=&apos;12&apos;, age=25&#125;, two=User&#123;username=&apos;xiaomei&apos;, password=&apos;34&apos;, age=22&#125;&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="Struts2-的拦截器技术"><a href="#Struts2-的拦截器技术" class="headerlink" title="Struts2 的拦截器技术"></a>Struts2 的拦截器技术</h1><hr>
+<h2 id="拦截器"><a href="#拦截器" class="headerlink" title="拦截器"></a>拦截器</h2><h3 id="拦截器概述"><a href="#拦截器概述" class="headerlink" title="拦截器概述"></a>拦截器概述</h3><ul>
+<li><p>拦截器就是 <code>AOP</code>（Aspect-Oriented Programming，面向切面编程）的一种实现。（AOP是指用于在某个方法或字段被访问之前，进行拦截然后在之前或之后加入某些操作。）</p>
+</li>
+<li><p>过滤器：过滤从客服端发送到服务器端请求的。</p>
+</li>
+<li><p>拦截器：对目标 <code>Action</code> 中的某些方法进行拦截。</p>
+</li>
+</ul>
+<blockquote>
+<p>拦截器不能拦截JSP</p>
+<p>拦截 <code>Action</code> 中某些方法</p>
+</blockquote>
+<h3 id="拦截器和过滤器的区别"><a href="#拦截器和过滤器的区别" class="headerlink" title="拦截器和过滤器的区别"></a>拦截器和过滤器的区别</h3><p>1）拦截器是基于 <code>JAVA反射机制</code> 的，而过滤器是基于 <code>函数回调</code> 的<br>2）过滤器依赖于Servlet容器，而拦截器不依赖于Servlet容器<br>3）拦截器 <code>只能对Action请求</code> 起作用（Action中的方法），而过滤器可以对 <code>几乎所有的请求</code> 起作用（CSS JSP JS）。</p>
+<ul>
+<li>拦截器 采用 <code>责任链</code> 模式</li>
+</ul>
+<blockquote>
+<p>在责任链模式里，很多对象由每一个对象对其下家的引用而连接起来形成一条链</p>
+<p>责任链每一个节点，都可以继续调用下一个节点，也可以阻止流程继续执行</p>
+</blockquote>
+<ul>
+<li>在 struts2 中可以定义很多个拦截器，将多个拦截器按照特定顺序组成拦截器栈（顺序调用栈中的每一个拦截器 ）</li>
+</ul>
+<p><strong>Struts2 框架的核心是拦截器</strong></p>
+<h2 id="自定义拦截器和配置"><a href="#自定义拦截器和配置" class="headerlink" title="自定义拦截器和配置"></a>自定义拦截器和配置</h2><h3 id="编写拦截器"><a href="#编写拦截器" class="headerlink" title="编写拦截器"></a>编写拦截器</h3><p>需要实现 <code>Interceptor</code> 接口，实现接口中的三个方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">protected</span> String <span class="title">doIntercept</span><span class="params">(ActionInvocation invocation)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">    <span class="comment">// 获取session对象</span></div><div class="line">    User user = (User) ServletActionContext.getRequest().getSession().getAttribute(<span class="string">"existUser"</span>);</div><div class="line">    <span class="keyword">if</span>(user == <span class="keyword">null</span>)&#123;</div><div class="line">        <span class="comment">// 说明，没有登录，后面就不会执行了</span></div><div class="line">        <span class="keyword">return</span> <span class="string">"login"</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> invocation.invoke(); </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="配置拦截器"><a href="#配置拦截器" class="headerlink" title="配置拦截器"></a>配置拦截器</h3><p><strong>注意：</strong> <em>只要引用了自己的拦截器，Struts2 框架默认栈的拦截器就不执行了，必须要手动引入默认栈。</em></p>
+<p>需要在 <code>struts.xml</code> 中进行拦截器的配置，配置一共有两种方式</p>
+<h4 id="第一种方式：直接引入"><a href="#第一种方式：直接引入" class="headerlink" title="第一种方式：直接引入"></a>第一种方式：直接引入</h4><ul>
+<li>在 <code>&lt;package&gt;</code> 包中定义拦截器，出现在 <code>&lt;package&gt;</code> 包的上方</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">interceptors</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">interceptor</span> <span class="attr">name</span>=<span class="string">"DemoInterceptor"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.interceptor.DemoInterceptor"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">interceptors</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>在某个 <code>action</code> 中引入拦截器：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"userAction"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.demo3.UserAction"</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 只要是引用自己的拦截器，默认栈的拦截器就不执行了，必须要手动引入默认栈 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">"DemoInterceptor"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">"defaultStack"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="第二种方式：定义拦截器栈"><a href="#第二种方式：定义拦截器栈" class="headerlink" title="第二种方式：定义拦截器栈"></a>第二种方式：定义拦截器栈</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">interceptors</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">interceptor</span> <span class="attr">name</span>=<span class="string">"DemoInterceptor"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.interceptor.DemoInterceptor"</span>/&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 定义拦截器栈 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">interceptor-stack</span> <span class="attr">name</span>=<span class="string">"myStack"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">"DemoInterceptor"</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">"defaultStack"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">interceptor-stack</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">interceptors</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"userAction"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.demo3.UserAction"</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 只要是引用自己的拦截器，默认栈的拦截器就不执行了，必须要手动引入默认栈 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">"DemoInterceptor"</span>/&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">interceptor-ref</span> <span class="attr">name</span>=<span class="string">"defaultStack"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">--- The End&nbsp;&nbsp;<i class="fa fa-paw"></i>&nbsp;&nbsp;Thanks For Your Reading ---</div>
+    
+</div>
+  
+</div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文标题:</span><a href="/posts/JavaWeb/2018-07-22-JavaWeb-Struts202.html">JavaWeb 之 Struts2 中的 Servlet API、封装数据、拦截器</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 RenKai 的个人博客">RenKai</a></p>
+  <p><span>发布时间:</span>2018年07月22日 - 17:07</p>
+  <p><span>最后更新:</span>2018年07月22日 - 23:07</p>
+  <p><span>原始链接:</span><a href="/posts/JavaWeb/2018-07-22-JavaWeb-Struts202.html" title="JavaWeb 之 Struts2 中的 Servlet API、封装数据、拦截器">http://yoursite.com/posts/JavaWeb/2018-07-22-JavaWeb-Struts202.html</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/posts/JavaWeb/2018-07-22-JavaWeb-Struts202.html"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({   
+          title: "",   
+          text: '复制成功',   
+          html: false,
+          timer: 500,   
+          showConfirmButton: false
+        });
+      });
+    }));  
+</script>
+
+      
+</div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>宠辱不惊，看庭前花开花落；去留无意，望天上云卷云舒。　</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="RenKai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.png" alt="RenKai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaWeb/" rel="tag"><i class="fa fa-tag"></i> JavaWeb</a>
+          
+            <a href="/tags/Struts2/" rel="tag"><i class="fa fa-tag"></i> Struts2</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/JavaWeb/2018-06-27-JavaWeb-Struts201.html" rel="next" title="JavaWeb 之 Struts2 快速入门">
+                <i class="fa fa-chevron-left"></i> JavaWeb 之 Struts2 快速入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="RenKai" />
+          <p class="site-author-name" itemprop="name">RenKai</p>
+           
+              <p class="site-description motion-element" itemprop="description">一枚想成为技术控的菜鸟</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">34</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/renkaigis" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/renkai123" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/renkaigis" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-crosshairs"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/f44c72ff4b81/timeline" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-heartbeat"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:renkaigis@163.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友链
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.renkaigis.com/KeepCoding/" title="Plan - KeepCoding" target="_blank">Plan - KeepCoding</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.renkaigis.com/KeepEveryDay/" title="Plan - KeepEveryDay" target="_blank">Plan - KeepEveryDay</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://weijuanran.cn/" title="Weijuanran's Blog" target="_blank">Weijuanran's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://blog.jiangyayu.cn/" title="Alex's Blog" target="_blank">Alex's Blog</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=29999506&auto=1&height=66"></iframe>
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Struts2-框架中-Servlet-API-的使用"><span class="nav-number">1.</span> <span class="nav-text">Struts2 框架中 Servlet API 的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet-的-API"><span class="nav-number">1.1.</span> <span class="nav-text">Servlet 的 API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#完全解耦合的方式"><span class="nav-number">1.1.1.</span> <span class="nav-text">完全解耦合的方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#案例演示"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">案例演示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#案例结果："><span class="nav-number">1.1.1.2.</span> <span class="nav-text">案例结果：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用原生-Servlet-的-API-的方式"><span class="nav-number">1.1.2.</span> <span class="nav-text">使用原生 Servlet 的 API 的方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#案例演示-1"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">案例演示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#案例结果：-1"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">案例结果：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结果页面的跳转"><span class="nav-number">1.2.</span> <span class="nav-text">结果页面的跳转</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#全局结果页面"><span class="nav-number">1.2.1.</span> <span class="nav-text">全局结果页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#局部结果页面"><span class="nav-number">1.2.2.</span> <span class="nav-text">局部结果页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结果页面的类型"><span class="nav-number">1.2.3.</span> <span class="nav-text">结果页面的类型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Struts2-框架的数据封装"><span class="nav-number">2.</span> <span class="nav-text">Struts2 框架的数据封装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据的封装"><span class="nav-number">2.1.</span> <span class="nav-text">数据的封装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一种方式：属性驱动"><span class="nav-number">2.1.1.</span> <span class="nav-text">第一种方式：属性驱动</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#提供对应属性的-set-方法进行数据的封装。"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">提供对应属性的 set 方法进行数据的封装。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#属性驱动：把数据封装到-JavaBean-对象中"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">属性驱动：把数据封装到 JavaBean 对象中</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二种方式：模型驱动"><span class="nav-number">2.1.2.</span> <span class="nav-text">第二种方式：模型驱动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Struts2-把数据封装到集合中"><span class="nav-number">2.1.3.</span> <span class="nav-text">Struts2 把数据封装到集合中</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#把数据封装到-List-集合中"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">把数据封装到 List 集合中</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#把数据封装到-Ma-中"><span class="nav-number">2.1.3.2.</span> <span class="nav-text">把数据封装到 Ma 中</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Struts2-的拦截器技术"><span class="nav-number">3.</span> <span class="nav-text">Struts2 的拦截器技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#拦截器"><span class="nav-number">3.1.</span> <span class="nav-text">拦截器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#拦截器概述"><span class="nav-number">3.1.1.</span> <span class="nav-text">拦截器概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拦截器和过滤器的区别"><span class="nav-number">3.1.2.</span> <span class="nav-text">拦截器和过滤器的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义拦截器和配置"><span class="nav-number">3.2.</span> <span class="nav-text">自定义拦截器和配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编写拦截器"><span class="nav-number">3.2.1.</span> <span class="nav-text">编写拦截器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置拦截器"><span class="nav-number">3.2.2.</span> <span class="nav-text">配置拦截器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一种方式：直接引入"><span class="nav-number">3.2.2.1.</span> <span class="nav-text">第一种方式：直接引入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二种方式：定义拦截器栈"><span class="nav-number">3.2.2.2.</span> <span class="nav-text">第二种方式：定义拦截器栈</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <center>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+<div class="copyright" >
+  <span><a href="http://www.miitbeian.gov.cn/" target="_blank">陕ICP备17015858号</a></span>&nbsp;
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-flash"></i>
+  </span>Powered By - 
+  <span class="author" itemprop="copyrightHolder" ><a class="theme-link" href="http://renkaigis.com">RenKai</a></span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数：<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<div class="powered-by">
+<span class="site-pv">
+<i class="fa fa-eye"></i> 
+  访问次数：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+</div>
+
+
+
+<div class="theme-info">
+<i class="fa fa-pencil"></i> 
+  <span class="post-count">全站共 59.6k</span> 字
+</div>
+
+<center>
+
+<!--
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+-->
+
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytEYq24O';
+      var conf = 'f90a095569bba30e59cae713bab443cf';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (search_path.endsWith("json")) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("UmN2zDPRHzd28CBIusNcb55r-gzGzoHsz", "y8w2I87XXk00wTQhj8v8vxRD");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

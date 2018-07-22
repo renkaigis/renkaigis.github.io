@@ -4,12 +4,12 @@
 
     
   <url>
-    <loc>http://renkaigis.com/posts/JavaWeb/2018-06-27-JavaWeb-Struts201.html</loc>
-    <lastmod>2018-06-27T13:41:34.682Z</lastmod>
+    <loc>http://renkaigis.com/posts/JavaWeb/2018-07-22-JavaWeb-Struts202.html</loc>
+    <lastmod>2018-07-22T15:54:38.339Z</lastmod>
     <data>
         <display>
-        <title>JavaWeb 之 Struts2 快速入门</title>
-        <pubTime>2018-06-27T13:39:05.000Z</pubTime>
+        <title>JavaWeb 之 Struts2 中的 Servlet API、封装数据、拦截器</title>
+        <pubTime>2018-07-22T09:56:43.000Z</pubTime>
         
         <tag>JavaWeb</tag>
          
@@ -27,7 +27,7 @@
     
   <url>
     <loc>http://renkaigis.com/posts/Mine/2018-06-11-novel-nverqing.html</loc>
-    <lastmod>2018-06-12T09:46:13.422Z</lastmod>
+    <lastmod>2018-06-29T14:19:08.108Z</lastmod>
     <data>
         <display>
         <title>世间安得双全法，不负如来不负卿</title>
@@ -39,6 +39,28 @@
            
              
               <breadCrumb title="Mine" url="http://yoursite.com/categories/Mine/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://renkaigis.com/posts/JavaWeb/2018-06-27-JavaWeb-Struts201.html</loc>
+    <lastmod>2018-06-28T08:57:06.564Z</lastmod>
+    <data>
+        <display>
+        <title>JavaWeb 之 Struts2 快速入门</title>
+        <pubTime>2018-06-27T13:39:05.000Z</pubTime>
+        
+        <tag>JavaWeb</tag>
+         
+        <tag>Struts2</tag>
+         
+         
+           
+             
+              <breadCrumb title="JavaWeb" url="http://yoursite.com/categories/JavaWeb/"/>
           
         </display>
     </data>

@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/posts/Mine/2018-06-18-novel-nverqing.html</loc>
+    
+    <lastmod>2018-08-09T13:12:56.126Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/posts/JavaWeb/2018-05-28-JavaWeb-idea-new-web-project.html</loc>
     
-    <lastmod>2018-08-09T08:12:28.437Z</lastmod>
+    <lastmod>2018-08-09T08:18:51.070Z</lastmod>
     
   </url>
   
@@ -19,13 +26,6 @@
     <loc>http://yoursite.com/posts/JavaWeb/2018-07-22-JavaWeb-Struts202.html</loc>
     
     <lastmod>2018-08-06T06:34:20.299Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/posts/Mine/2018-06-11-novel-nverqing.html</loc>
-    
-    <lastmod>2018-06-29T14:19:08.108Z</lastmod>
     
   </url>
   

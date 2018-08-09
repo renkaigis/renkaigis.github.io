@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/posts/JavaWeb/2018-05-28-JavaWeb-idea-new-web-project.html</loc>
+    
+    <lastmod>2018-08-09T08:12:28.437Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/posts/JavaWeb/2018-08-05-JavaWeb-Struts203.html</loc>
+    
+    <lastmod>2018-08-09T07:55:45.252Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/posts/JavaWeb/2018-07-22-JavaWeb-Struts202.html</loc>
     
-    <lastmod>2018-07-22T15:54:38.339Z</lastmod>
+    <lastmod>2018-08-06T06:34:20.299Z</lastmod>
     
   </url>
   
@@ -61,13 +75,6 @@
     <loc>http://yoursite.com/posts/JavaWeb/2018-05-30-JavaWeb-Hibernate03.html</loc>
     
     <lastmod>2018-05-30T09:02:05.060Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/posts/JavaWeb/2018-05-28-JavaWeb-idea-new-web-project.html</loc>
-    
-    <lastmod>2018-05-30T08:35:51.229Z</lastmod>
     
   </url>
   

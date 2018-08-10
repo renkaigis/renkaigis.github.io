@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-08-09T07:55:45.252Z</updated>
+  <updated>2018-08-10T02:14:44.035Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,364 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>JavaWeb 之 Spring 快速入门</title>
+    <link href="http://yoursite.com/posts/JavaWeb/2018-08-03-JavaWeb-Spring01.html"/>
+    <id>http://yoursite.com/posts/JavaWeb/2018-08-03-JavaWeb-Spring01.html</id>
+    <published>2018-08-03T07:46:23.000Z</published>
+    <updated>2018-08-10T02:14:44.035Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/spring0100.png"></div>
+
+<p id="div-border-left-blue">Spring 快速入门。</p>
+
+<a id="more"></a>
+<h1 id="Spring-框架的概述和入门"><a href="#Spring-框架的概述和入门" class="headerlink" title="Spring 框架的概述和入门"></a>Spring 框架的概述和入门</h1><hr>
+<h2 id="什么是-Spring-框架"><a href="#什么是-Spring-框架" class="headerlink" title="什么是 Spring 框架"></a>什么是 Spring 框架</h2><h3 id="Spring-框架的概述"><a href="#Spring-框架的概述" class="headerlink" title="Spring 框架的概述"></a>Spring 框架的概述</h3><ul>
+<li><p>Spring 是一个开放源代码的设计层面框架，他解决的是 <code>业务逻辑层</code> 和其他各层的松耦合问题。</p>
+</li>
+<li><p>Spring 是于 2003 年兴起的一个轻量级的 Java 开发框架，由 Rod Johnson 在其著作 《Expert One-On-One J2EE Development and Design》 中阐述的部分理念和原型衍生而来。</p>
+</li>
+<li><p>它是为了解决企业应用开发的复杂性而创建的。框架的主要优势之一就是其分层架构，分层架构允许使用者选择使用哪一个组件，同时为 J2EE 应用程序开发提供集成的框架。</p>
+</li>
+<li><p>Spring 使用基本的 <code>JavaBean</code> 来完成以前只可能由 <code>EJB</code> 完成的事情。然而，Spring 的用途不仅限于服务器端的开发。从简单性、可测试性和松耦合的角度而言，任何 Java 应用都可以从 Spring 中受益。</p>
+</li>
+<li><p>Spring 的核心是 <code>控制反转（IoC）</code> 和 <code>面向切面（AOP）</code>。简单来说，Spring 是一个分层的 <code>JavaSE/EEfull-stack（一站式）</code> 轻量级开源框架。</p>
+</li>
+<li><p>Java EE 开发分成三层结构</p>
+<blockquote>
+<p>WEB层        – Spring MVC<br>业务层    – Bean管理：（IoC）<br>持久层    – Spring 的 JDBC 模板。ORM 模板用于整合其他的持久层框架。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="Spring-框架的特点"><a href="#Spring-框架的特点" class="headerlink" title="Spring 框架的特点"></a>Spring 框架的特点</h2><ul>
+<li><p>方便解耦，简化开发</p>
+<blockquote>
+<p>Spring 就是一个大工厂，可以将所有对象创建和依赖关系维护，交给 Spring 管理。</p>
+</blockquote>
+</li>
+<li><p>AOP 编程的支持</p>
+<blockquote>
+<p>Spring 提供面向切面编程，可以方便的实现对程序进行权限拦截、运行监控等功能。</p>
+</blockquote>
+</li>
+<li><p>声明式事务的支持</p>
+<blockquote>
+<p>只需要通过配置就可以完成对事务的管理，而无需手动编程。</p>
+</blockquote>
+</li>
+<li><p>方便程序的测试</p>
+<blockquote>
+<p>Spring 对 Junit4 支持，可以通过注解方便的测试 Spring 程序。</p>
+</blockquote>
+</li>
+<li><p>方便集成各种优秀框架</p>
+<blockquote>
+<p>Spring 不排斥各种优秀的开源框架，其内部提供了对各种优秀框架（如：Struts2、Hibernate、MyBatis、Quartz等）的直接支持。</p>
+</blockquote>
+</li>
+<li><p>降低 JavaEE API 的使用难度</p>
+<blockquote>
+<p>Spring 对 JavaEE 开发中非常难用的一些 API（JDBC、JavaMail、远程调用等），都提供了封装，使这些 API 应用难度大大降低。</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<p><strong>技术分析之Spring框架的IOC核心功能快速入门</strong></p>
+<pre><code>1. 什么是IOC的功能？
+    * IoC        -- Inverse of Control，控制反转，将对象的创建权反转给Spring！！
+    * 使用IOC可以解决的程序耦合性高的问题！！
+</code></pre><p><img src="./图片/01-IOC.bmp" alt="">    </p>
+<pre><code>2. 步骤一：下载Spring框架的开发包
+    * 官网：http://spring.io/
+    * 下载地址：http://repo.springsource.org/libs-release-local/org/springframework/spring解压:(Spring目录结构:)
+        * docs        -- API和开发规范
+        * libs        -- jar包和源码
+        * schema    -- 约束
+
+3. 步骤二：创建JavaWEB项目，引入Spring的开发包
+    * 引入Spring框架IOC核心功能需要的具体的jar包
+        * Spring框架的IOC的功能，那么根据Spring框架的体系结构图能看到，只需要引入如下的jar包
+            * Beans
+            * Core
+            * Context
+            * Expression Language
+
+        * Spring框架也需要引入日志相关的jar包
+            * 在spring-framework-3.0.2.RELEASE-dependencies/org.apache.commons/com.springsource.org.apache.commons.logging/1.1.1
+                * com.springsource.org.apache.commons.logging-1.1.1.jar
+
+            * 还需要引入log4j的jar包 spring-framework-3.0.2.RELEASE-dependencies\org.apache.log4j\com.springsource.org.apache.log4j\1.2.15
+                * com.springsource.org.apache.log4j-1.2.15.jar
+
+4. 步骤三：创建对应的包结构，编写Java的类，要注意：以后使用Spring框架做开发，都需要来编写接口与实现类！！
+    * com.itcast.demo1
+        * UserService            -- 接口
+        * UserServiceImpl        -- 具体的实现类
+
+5. 步骤四：想把UserServiceImpl实现类的创建交给Spring框架来管理，需要创建Spring框架的配置文件，完成配置
+    * 在src目录下创建applicationContext.xml的配置文件，名称是可以任意的，但是一般都会使用默认名称！！
+
+    * 引入spring的约束，需要先找到具体的约束头信息！！
+        * spring-framework-3.2.0.RELEASE\docs\spring-framework-reference\html\xsd-config.html
+        * 具体的约束如下：        
+            &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+                xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+                xsi:schemaLocation=&quot;
+                    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;
+            &lt;/beans&gt;
+
+    * 完成UserService的配置
+        &lt;!-- Spring的快速入门 --&gt;
+        &lt;bean id=&quot;userService&quot; class=&quot;com.itcast.demo1.UserServiceImpl&quot;/&gt;
+
+6. 步骤五：编写测试程序，采用Spring框架的工厂方式来获取到UserService接口的具体实现类！！
+    public void demo2(){
+        // 使用Spring的工厂:
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);
+        // 通过工厂获得类:
+        UserService userService = (UserService) applicationContext.getBean(&quot;userService&quot;);
+        userService.sayHello();
+    }
+</code></pre><hr>
+<p><strong>入门总结之Spring框架中的工厂（了解）</strong></p>
+<pre><code>1. ApplicationContext接口
+    * 使用ApplicationContext工厂的接口，使用该接口可以获取到具体的Bean对象
+    * 该接口下有两个具体的实现类
+        * ClassPathXmlApplicationContext            -- 加载类路径下的Spring配置文件
+        * FileSystemXmlApplicationContext            -- 加载本地磁盘下的Spring配置文件
+
+2. BeanFactory工厂（是Spring框架早期的创建Bean对象的工厂接口）
+    * 使用BeanFactory接口也可以获取到Bean对象
+        public void run(){
+            BeanFactory factory = new XmlBeanFactory(new ClassPathResource(&quot;applicationContext.xml&quot;));
+            UserService us = (UserService) factory.getBean(&quot;us&quot;);
+            us.sayHello();
+        }
+
+    * BeanFactory和ApplicationContext的区别
+        * BeanFactory                -- BeanFactory采取延迟加载，第一次getBean时才会初始化Bean
+        * ApplicationContext        -- 在加载applicationContext.xml时候就会创建具体的Bean对象的实例，还提供了一些其他的功能
+            * 事件传递
+            * Bean自动装配
+            * 各种不同应用层的Context实现
+</code></pre><hr>
+<p><strong>入门总结之配置Spring框架编写XML的提示</strong></p>
+<pre><code>1. 步骤一：先复制， http://www.springframework.org/schema/beans/spring-beans.xsd    
+2. 步骤二：搜索XML Catalog，点击Add按钮
+3. 步骤三：先选择Location的schema的约束地址
+    * E:\class\2016\JavaEE28\day35_Spring框架第一天\资料\spring-framework-4.2.4.RELEASE-schema\beans\spring-beans-4.2.xsd
+4. 步骤四：注意：Key type要选择：Schema location
+5. 步骤五：Key把http://www.springframework.org/schema/beans/spring-beans.xsd复制上
+</code></pre><hr>
+<h3 id="技术分析之Spring框架的Bean管理的配置文件方式"><a href="#技术分析之Spring框架的Bean管理的配置文件方式" class="headerlink" title="技术分析之Spring框架的Bean管理的配置文件方式"></a>技术分析之Spring框架的Bean管理的配置文件方式</h3><hr>
+<p><strong>技术分析之Spring框架中<bean>标签的配置</bean></strong></p>
+<pre><code>1. id属性和name属性的区别
+    * id        -- Bean起个名字，在约束中采用ID的约束，唯一
+        * 取值要求：必须以字母开始，可以使用字母、数字、连字符、下划线、句话、冒号    id:不能出现特殊字符
+
+    * name        -- Bean起个名字，没有采用ID的约束（了解）
+        * 取值要求：name:出现特殊字符.如果&lt;bean&gt;没有id的话 , name可以当做id使用
+        * Spring框架在整合Struts1的框架的时候，Struts1的框架的访问路径是以/开头的，例如：/bookAction
+
+2. class属性            -- Bean对象的全路径
+3. scope属性            -- scope属性代表Bean的作用范围
+    * singleton            -- 单例（默认值）
+    * prototype            -- 多例，在Spring框架整合Struts2框架的时候，Action类也需要交给Spring做管理，配置把Action类配置成多例！！
+    * request            -- 应用在Web项目中,每次HTTP请求都会创建一个新的Bean
+    * session            -- 应用在Web项目中,同一个HTTP Session 共享一个Bean
+    * globalsession        -- 应用在Web项目中,多服务器间的session
+
+4. Bean对象的创建和销毁的两个属性配置（了解）
+    * 说明：Spring初始化bean或销毁bean时，有时需要作一些处理工作，因此spring可以在创建和拆卸bean的时候调用bean的两个生命周期方法
+    * init-method        -- 当bean被载入到容器的时候调用init-method属性指定的方法
+    * destroy-method    -- 当bean从容器中删除的时候调用destroy-method属性指定的方法
+        * 想查看destroy-method的效果，有如下条件
+            * scope= singleton有效
+            * web容器中会自动调用，但是main函数或测试用例需要手动调用（需要使用ClassPathXmlApplicationContext的close()方法）
+</code></pre><hr>
+<p><strong>技术分析之依赖注入（DI）</strong></p>
+<pre><code>1. IOC和DI的概念
+    * IOC        -- Inverse of Control，控制反转，将对象的创建权反转给Spring！！
+    * DI        -- Dependency Injection，依赖注入，在Spring框架负责创建Bean对象时，动态的将依赖对象注入到Bean组件中！！
+
+2.  DI（依赖注入）
+    * 例如：如果UserServiceImpl的实现类中有一个属性，那么使用Spring框架的IOC功能时，可以通过依赖注入把该属性的值传入进来！！
+    * 具体的配置如下
+        &lt;bean id=&quot;us&quot; class=&quot;com.itheima.demo1.UserServiceImpl&quot;&gt;
+            &lt;property name=&quot;uname&quot; value=&quot;小风&quot;/&gt;
+        &lt;/bean&gt;
+</code></pre><hr>
+<p><strong>技术分析之Spring框架的属性注入</strong></p>
+<pre><code>1. 对于类成员变量，常用的注入方式有两种
+    * 构造函数注入
+    * 属性setter方法注入
+
+2. 在Spring框架中提供了前两种的属性注入的方式
+    1. 构造方法的注入方式，两步
+        * 编写Java的类，提供构造方法
+            public class Car {
+                private String name;
+                private double money;
+                public Car(String name, double money) {
+                    this.name = name;
+                    this.money = money;
+                }
+                @Override
+                public String toString() {
+                    return &quot;Car [name=&quot; + name + &quot;, money=&quot; + money + &quot;]&quot;;
+                }
+            }
+
+        * 编写配置文件
+            &lt;bean id=&quot;car&quot; class=&quot;com.itheima.demo4.Car&quot;&gt;
+                &lt;constructor-arg name=&quot;name&quot; value=&quot;大奔&quot;/&gt;
+                &lt;constructor-arg name=&quot;money&quot; value=&quot;100&quot;/&gt;
+            &lt;/bean&gt;
+
+    2. 属性的setter方法的注入方式
+        * 编写Java的类，提供属性和对应的set方法即可
+        * 编写配置文件
+
+    3. 如果Java类的属性是另一个Java的类，那么需要怎么来注入值呢？
+        * &lt;property name=&quot;name&quot; rel=&quot;具体的Bean的ID或者name的值&quot;/&gt;
+        * 例如：
+            &lt;bean id=&quot;person&quot; class=&quot;com.itheima.demo4.Person&quot;&gt;
+                &lt;property name=&quot;pname&quot; value=&quot;美美&quot;/&gt;
+                &lt;property name=&quot;car2&quot; ref=&quot;car2&quot;/&gt;
+            &lt;/bean&gt;
+</code></pre><hr>
+<p><strong>技术分析之Spring的2.5版本中提供了一种:p名称空间的注入（了解）</strong></p>
+<pre><code>1. 步骤一：需要先引入 p 名称空间
+    * 在schema的名称空间中加入该行：xmlns:p=&quot;http://www.springframework.org/schema/p&quot;
+
+2. 步骤二：使用p名称空间的语法
+    * p:属性名 = &quot;&quot;
+    * p:属性名-ref = &quot;&quot;
+
+3. 步骤三：测试
+    * &lt;bean id=&quot;person&quot; class=&quot;com.itheima.demo4.Person&quot; p:pname=&quot;老王&quot; p:car2-ref=&quot;car2&quot;/&gt;
+</code></pre><hr>
+<p><strong>技术分析之Spring的3.0提供了一种:SpEL注入方式（了解）</strong></p>
+<pre><code>1. SpEL：Spring Expression Language是Spring的表达式语言，有一些自己的语法
+2. 语法
+    * #{SpEL}
+
+3. 例如如下的代码
+    &lt;!-- SpEL的方式 --&gt;
+    &lt;bean id=&quot;person&quot; class=&quot;com.itheima.demo4.Person&quot;&gt;
+        &lt;property name=&quot;pname&quot; value=&quot;#{&apos;小风&apos;}&quot;/&gt;
+        &lt;property name=&quot;car2&quot; value=&quot;#{car2}&quot;/&gt;
+    &lt;/bean&gt;
+
+4. 还支持调用类中的属性或者方法
+    * 定义类和方法，例如
+        public class CarInfo {
+            public String getCarname(){
+                return &quot;奇瑞QQ&quot;;
+            }
+        }
+</code></pre><hr>
+<p><strong>技术分析之数组，集合(List,Set,Map)，Properties等的注入</strong></p>
+<pre><code>1. 如果是数组或者List集合，注入配置文件的方式是一样的
+    &lt;bean id=&quot;collectionBean&quot; class=&quot;com.itheima.demo5.CollectionBean&quot;&gt;
+        &lt;property name=&quot;arrs&quot;&gt;
+            &lt;list&gt;
+                &lt;value&gt;美美&lt;/value&gt;
+                &lt;value&gt;小风&lt;/value&gt;
+            &lt;/list&gt;
+        &lt;/property&gt;
+    &lt;/bean&gt;
+
+2. 如果是Set集合，注入的配置文件方式如下：
+    &lt;property name=&quot;sets&quot;&gt;
+        &lt;set&gt;
+            &lt;value&gt;哈哈&lt;/value&gt;
+            &lt;value&gt;呵呵&lt;/value&gt;
+        &lt;/set&gt;
+    &lt;/property&gt;
+
+3. 如果是Map集合，注入的配置方式如下：
+    &lt;property name=&quot;map&quot;&gt;
+        &lt;map&gt;
+            &lt;entry key=&quot;老王2&quot; value=&quot;38&quot;/&gt;
+            &lt;entry key=&quot;凤姐&quot; value=&quot;38&quot;/&gt;
+            &lt;entry key=&quot;如花&quot; value=&quot;29&quot;/&gt;
+        &lt;/map&gt;
+    &lt;/property&gt;
+
+4. 如果是properties属性文件的方式，注入的配置如下：
+    &lt;property name=&quot;pro&quot;&gt;
+        &lt;props&gt;
+            &lt;prop key=&quot;uname&quot;&gt;root&lt;/prop&gt;
+            &lt;prop key=&quot;pass&quot;&gt;123&lt;/prop&gt;
+        &lt;/props&gt;
+    &lt;/property&gt;
+</code></pre><hr>
+<p><strong>技术分析之Spring框架的配置文件分开管理（了解）</strong></p>
+<pre><code>1. 例如：在src的目录下又多创建了一个配置文件，现在是两个核心的配置文件，那么加载这两个配置文件的方式有两种！
+    * 主配置文件中包含其他的配置文件:
+        &lt;import resource=&quot;applicationContext2.xml&quot;/&gt;
+
+    * 工厂创建的时候直接加载多个配置文件:
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
+                    &quot;applicationContext.xml&quot;,&quot;applicationContext2.xml&quot;);
+</code></pre><hr>
+<h3 id="Spring框架整合WEB"><a href="#Spring框架整合WEB" class="headerlink" title="Spring框架整合WEB"></a>Spring框架整合WEB</h3><hr>
+<p><strong>Spring框架整合WEB（不是最终的方案）</strong></p>
+<pre><code>1. 创建JavaWEB项目，引入Spring的开发包。编写具体的类和方法。
+    * 环境搭建好后，启动服务器来测试项目，发送每访问一次都会加载一次配置文件，这样效率会非常非常慢！！
+
+2. 解决上面的问题
+    * 将工厂创建好了以后放入到ServletContext域中.使用工厂的时候,从ServletContext中获得.
+        * ServletContextListener:用来监听ServletContext对象的创建和销毁的监听器.
+        * 当ServletContext对象创建的时候:创建工厂 , 将工厂存入到ServletContext
+
+3. Spring整合Web项目
+    * 引入spring-web-4.2.4.RELEASE.jar包
+    * 配置监听器
+         &lt;!-- 配置Spring的核心监听器: --&gt;
+         &lt;listener&gt;
+             &lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;
+         &lt;/listener&gt;
+         &lt;context-param&gt;
+             &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
+             &lt;param-value&gt;classpath:applicationContext.xml&lt;/param-value&gt;
+         &lt;/context-param&gt;
+
+4. 修改servlet的代码
+    * 从ServletContext中获得工厂
+    * 具体代码如下
+        ServletContext servletContext = ServletActionContext.getServletContext();
+        // 需要使用WEB的工厂的方式
+        WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(servletContext);
+        CustomerService cs = (CustomerService) context.getBean(&quot;customerService&quot;);
+        cs.save();    
+</code></pre><hr>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/images/JavaWeb/spring0100.png&quot;&gt;&lt;/div&gt;
+
+&lt;p id=&quot;div-border-left-blue&quot;&gt;Spring 快速入门。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="JavaWeb" scheme="http://yoursite.com/categories/JavaWeb/"/>
+    
+    
+      <category term="JavaWeb" scheme="http://yoursite.com/tags/JavaWeb/"/>
+    
+      <category term="Spring" scheme="http://yoursite.com/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
     <title>JavaWeb 之 OGNL 表达式、Struts2 值栈与OGNL 特殊符号</title>
-    <link href="http://yoursite.com/posts/JavaWeb/2018-08-05-JavaWeb-Struts203.html"/>
-    <id>http://yoursite.com/posts/JavaWeb/2018-08-05-JavaWeb-Struts203.html</id>
-    <published>2018-08-05T01:32:15.000Z</published>
-    <updated>2018-08-09T07:55:45.252Z</updated>
+    <link href="http://yoursite.com/posts/JavaWeb/2018-08-01-JavaWeb-Struts203.html"/>
+    <id>http://yoursite.com/posts/JavaWeb/2018-08-01-JavaWeb-Struts203.html</id>
+    <published>2018-08-01T01:32:15.000Z</published>
+    <updated>2018-08-10T02:14:37.669Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/struts20300.png"></div>
 
@@ -795,7 +1148,7 @@
     <link href="http://yoursite.com/posts/Mine/2018-06-18-novel-nverqing.html"/>
     <id>http://yoursite.com/posts/Mine/2018-06-18-novel-nverqing.html</id>
     <published>2018-06-18T12:05:27.000Z</published>
-    <updated>2018-08-10T02:09:03.139Z</updated>
+    <updated>2018-08-10T02:30:23.169Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/novel/nverqing01.jpg"></div>
 
@@ -926,7 +1279,7 @@
 <p>女王不过是凡人，有七情六欲，也有生老病死。若说来生，谁还记得谁？</p>
 <p>这天，有属下来报，白马寺玄奘法师圆寂。</p>
 <p>如晴天霹雳般，女王瘫倒在塌，泪流满面。</p>
-<p>颤颤巍巍的她来到御花园，看着湖中鸳鸯戏水，想起和御弟哥哥的那一幕幕。</p>
+<p>颤颤巍巍的她来到御花园，看着湖中鸳鸯戏水，园中彩蝶翩翩，想起和御弟哥哥的那一幕幕。</p>
 <p>宫中议论纷纷，隐约可以听到有宫女说道：</p>
 <p>『 听说那唐朝和尚圆寂的时候，千佛诵经，万众朝宗，他走的时候只笑着留下一句：“好！” 』</p>
 <div align="center"><img src="http://image.renkaigis.com/novel/nverqing05.jpg"></div>
@@ -944,6 +1297,8 @@
 <p>佛不比前世的唐朝和尚，那时尚可动情，现在心止如死水。</p>
 <p>佛曰：人生有八苦：生，老，病，死，爱别离，怨长久，求不得，放不下。</p>
 <p>佛又曰：一切有为法，如梦幻泡影。如露亦如电，应作如是观。</p>
+<p>果真是生劫易渡，情劫难了。</p>
+<p>始于必经之劫，终于苍生大义。</p>
 <h2 id="（八）今生"><a href="#（八）今生" class="headerlink" title="（八）今生"></a>（八）今生</h2><p>2004 年《艺术人生》，西游记剧组再聚首。</p>
 <p>女儿国王扮演者朱琳，上场后深情凝视着徐少华：“自女儿国一别，至今已经二十载…御弟哥哥，别来无恙。”</p>
 <p>岁月的车轮驶过，美丽的女王脸上已现皱纹，但仍姿色不减当年。</p>
@@ -3352,53 +3707,6 @@ HttpServlet:抽象类
     
     
       <category term="living" scheme="http://yoursite.com/tags/living/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>秦时明月之风林火山集结</title>
-    <link href="http://yoursite.com/posts/Mine/2017-08-31-video-qsmoon-flhs.html"/>
-    <id>http://yoursite.com/posts/Mine/2017-08-31-video-qsmoon-flhs.html</id>
-    <published>2017-08-31T13:02:14.000Z</published>
-    <updated>2017-08-31T15:52:14.819Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><img src="http://image.renkaigis.com/images/living/qsmoon-flhs.jpg" title="风 林 火 山"></p>
-<a id="more"></a>
-<blockquote class="blockquote-center">楚虽三户，<br>亡秦必楚！</blockquote>
-
-<blockquote>
-<p>想要成就霸王之业</p>
-<p>你需要找到四个重要的人</p>
-<p>这四个人就是传承兵道的</p>
-<p><strong>风 林 火 山</strong></p>
-</blockquote>
-<p><br></p>
-<div align="center"><embed src="https://imgcache.qq.com/tencentvideo_v1/playerv3/TPout.swf?max_age=86400&v=20161117&vid=j0544kg1vvg&auto=0" allowfullscreen="true" quality="high" width="560" height="315" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash"></div>
-
-<p><br></p>
-<p><b>秦时明月视频纯剪辑</b></p>
-<ul>
-<li><p>素材：秦时明月之君临天下（第19集-楚之军魂、第68集-一血一脉）</p>
-</li>
-<li><p>软件：Corel VideoStudio X9</p>
-</li>
-<li><p>插件：Xvid</p>
-</li>
-<li><p>分辨率：1920 × 1080</p>
-</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;http://image.renkaigis.com/images/living/qsmoon-flhs.jpg&quot; title=&quot;风 林 火 山&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Mine" scheme="http://yoursite.com/categories/Mine/"/>
-    
-    
-      <category term="Video" scheme="http://yoursite.com/tags/Video/"/>
     
   </entry>
   

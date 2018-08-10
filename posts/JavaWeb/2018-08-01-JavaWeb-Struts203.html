@@ -1,0 +1,1715 @@
+<!doctype html>
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+    
+
+    
+  
+
+  
+    
+
+    
+  
+
+  
+    
+
+    
+  
+
+  
+    
+
+    
+  
+
+  
+    
+    
+    <link href="fonts.loli.net/css?family=Comic Sans MS:300,300italic,400,400italic,700,700italicPingFang SC:300,300italic,400,400italic,700,700italicComic Sans MS:300,300italic,400,400italic,700,700italicConsolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaWeb,Struts2," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="秋月春风等闲度" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="OGNL 表达式  &amp;amp;  Struts2 值栈  &amp;amp;  OGNL 特殊符号">
+<meta name="keywords" content="JavaWeb,Struts2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaWeb 之 OGNL 表达式、Struts2 值栈与OGNL 特殊符号">
+<meta property="og:url" content="http://yoursite.com/posts/JavaWeb/2018-08-01-JavaWeb-Struts203.html">
+<meta property="og:site_name" content="秋月春风等闲度">
+<meta property="og:description" content="OGNL 表达式  &amp;amp;  Struts2 值栈  &amp;amp;  OGNL 特殊符号">
+<meta property="og:image" content="http://image.renkaigis.com/images/JavaWeb/struts20300.png">
+<meta property="og:updated_time" content="2018-08-10T02:14:37.669Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaWeb 之 OGNL 表达式、Struts2 值栈与OGNL 特殊符号">
+<meta name="twitter:description" content="OGNL 表达式  &amp;amp;  Struts2 值栈  &amp;amp;  OGNL 特殊符号">
+<meta name="twitter:image" content="http://image.renkaigis.com/images/JavaWeb/struts20300.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/posts/JavaWeb/2018-08-01-JavaWeb-Struts203.html"/>
+
+
+
+
+
+  <title>JavaWeb 之 OGNL 表达式、Struts2 值栈与OGNL 特殊符号 | 秋月春风等闲度</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+ 
+   <a href="https://github.com/renkaigis"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">秋月春风等闲度</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">要有最朴素的生活，与最遥远的梦想。即使明日天寒地冻，路远马亡。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+    
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/posts/JavaWeb/2018-08-01-JavaWeb-Struts203.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RenKai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="秋月春风等闲度">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaWeb 之 OGNL 表达式、Struts2 值栈与OGNL 特殊符号</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-01T09:32:15+08:00">
+                2018-08-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaWeb/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaWeb</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/posts/JavaWeb/2018-08-01-JavaWeb-Struts203.html#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="posts/JavaWeb/2018-08-01-JavaWeb-Struts203.html" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/posts/JavaWeb/2018-08-01-JavaWeb-Struts203.html" class="leancloud_visitors" data-flag-title="JavaWeb 之 OGNL 表达式、Struts2 值栈与OGNL 特殊符号">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                                <span class="post-meta-divider">|</span>
+             </span>
+          
+
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">WordsCount</span>
+                
+                <span title="WordsCount">
+                  2,659
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/struts20300.png"></div>
+
+<p id="div-border-left-blue">OGNL 表达式  &amp;  Struts2 值栈  &amp;  OGNL 特殊符号<br></p>
+
+<a id="more"></a>
+<hr>
+<h1 id="OGNL表达式"><a href="#OGNL表达式" class="headerlink" title="OGNL表达式"></a>OGNL表达式</h1><hr>
+<h2 id="OGNL表达式概述（了解）"><a href="#OGNL表达式概述（了解）" class="headerlink" title="OGNL表达式概述（了解）"></a>OGNL表达式概述（了解）</h2><ul>
+<li><p>OGNL 是 <code>Object Graphic Navigation Language</code>（对象图导航语言）的缩写</p>
+<blockquote>
+<p>所谓对象图，即以任意一个对象为根，通过 OGNL 可以访问与这个对象关联的其它对象</p>
+<p>通过它简单一致的表达式语法，可以存取对象的任意属性，调用对象的方法，遍历整个对象的结构图，实现字段类型转化等功能。它使用相同的表达式去存取对象的属性。</p>
+</blockquote>
+</li>
+<li><p>Struts2 框架使用 <code>OGNL</code> 作为默认的表达式语言</p>
+<blockquote>
+<p><code>OGNL</code> 是一种比 <code>EL</code> 强大很多倍的语言<br><code>xwork</code> 提供 <code>OGNL</code> 表达式<br><code>ognl-3.0.5.jar</code></p>
+</blockquote>
+</li>
+<li><p>OGNL 提供五大类功能</p>
+<blockquote>
+<p>支持对象方法调用<br>支持类静态的方法调用和值访问<br>访问 OGNL 上下文（OGNLcontext）和 ActionContext<br>支持赋值操作和表达式串联<br>操作集合对象</p>
+</blockquote>
+</li>
+<li><p>测试的代码</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 访问对象的方法</span></div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run1</span><span class="params">()</span> <span class="keyword">throws</span> OgnlException</span>&#123;</div><div class="line">    OgnlContext context = <span class="keyword">new</span> OgnlContext();</div><div class="line">    <span class="comment">// 获取对象的方法</span></div><div class="line">    Object obj = Ognl.getValue(<span class="string">"'helloworld'.length()"</span>, context, context.getRoot());</div><div class="line">    System.out.println(obj);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 获取OGNL上下文件的对象</span></div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run3</span><span class="params">()</span> <span class="keyword">throws</span> OgnlException</span>&#123;</div><div class="line">    OgnlContext context = <span class="keyword">new</span> OgnlContext();</div><div class="line">    context.put(<span class="string">"name"</span>, <span class="string">"美美"</span>);</div><div class="line">    <span class="comment">// 获取对象的方法</span></div><div class="line">    Object obj = Ognl.getValue(<span class="string">"#name"</span>, context, context.getRoot());</div><div class="line">    System.out.println(obj);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 从root栈获取值</span></div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">demo3</span><span class="params">()</span> <span class="keyword">throws</span> OgnlException</span>&#123;</div><div class="line">    OgnlContext context = <span class="keyword">new</span> OgnlContext();</div><div class="line">    Customer c = <span class="keyword">new</span> Customer();</div><div class="line">    c.setCust_name(<span class="string">"haha"</span>);</div><div class="line">    context.setRoot(c);</div><div class="line">    String name = (String) Ognl.getValue(<span class="string">"cust_name"</span>, context, context.getRoot());</div><div class="line">    System.out.println(name);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>自己测试的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.renkaigis;</div><div class="line"></div><div class="line"><span class="keyword">import</span> ognl.Ognl;</div><div class="line"><span class="keyword">import</span> ognl.OgnlContext;</div><div class="line"><span class="keyword">import</span> ognl.OgnlException;</div><div class="line"><span class="keyword">import</span> org.junit.Test;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 演示 OGNL 表达式</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo1</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 测试</div><div class="line">     */</div><div class="line">    <span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run1</span><span class="params">()</span> <span class="keyword">throws</span> OgnlException </span>&#123;</div><div class="line">        <span class="comment">// 上下文对象</span></div><div class="line">        OgnlContext context = <span class="keyword">new</span> OgnlContext();</div><div class="line">        <span class="comment">// 获取到根对象</span></div><div class="line">        Object root = context.getRoot();</div><div class="line">        <span class="comment">// 存储数据</span></div><div class="line">        context.put(<span class="string">"name"</span>, <span class="string">"美美"</span>);</div><div class="line">        <span class="comment">// 获取值，注意表达式写法</span></div><div class="line">        Object value = Ognl.getValue(<span class="string">"#name"</span>, context, root);</div><div class="line">        <span class="comment">// 调用方法</span></div><div class="line">        <span class="comment">//Object value = Ognl.getValue("'haha'.length()", context, root);</span></div><div class="line">        System.out.println(value);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="在-Struts2-框架中使用-OGNL-表达式"><a href="#在-Struts2-框架中使用-OGNL-表达式" class="headerlink" title="在 Struts2 框架中使用 OGNL 表达式"></a>在 Struts2 框架中使用 OGNL 表达式</h2><p>1）. Struts2 引入了 <code>OGNL</code> 表达式，主要是在 <code>JSP</code> 页面中获取值栈中的值</p>
+<p>2）. 具体在 Struts2 中怎么使用呢？如下步骤</p>
+<blockquote>
+<p>需要先在 JSP 页面中引入 <code>Struts2</code> 的标签库</p>
+</blockquote>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;%@ taglib prefix=<span class="string">"s"</span> uri=<span class="string">"/struts-tags"</span> %&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>使用 <code>Struts2</code> 提供的标签中的标签</p>
+</blockquote>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;s:property value=<span class="string">"OGNL表达式"</span>/&gt;</div></pre></td></tr></table></figure>
+<p>3）. 在 JSP 页面使用 <code>OGNL</code> 表达式</p>
+<blockquote>
+<p>访问对象方法</p>
+</blockquote>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;s:property value=<span class="string">"'hello'.length()"</span>/&gt;</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="Struts2-框架的值栈"><a href="#Struts2-框架的值栈" class="headerlink" title="Struts2 框架的值栈"></a>Struts2 框架的值栈</h1><hr>
+<h2 id="值栈的概述"><a href="#值栈的概述" class="headerlink" title="值栈的概述"></a>值栈的概述</h2><ul>
+<li><p>值栈就相当于 <code>Struts2</code> 框架的数据的中转站，向值栈存入一些数据。从值栈中获取到数据。</p>
+</li>
+<li><p><code>ValueStack</code> 是 struts2 提供一个接口，实现类 <code>OgnlValueStack</code> —- 值栈对象 （<code>OGNL</code> 是从值栈中获取数据的 ）</p>
+</li>
+<li><p><code>Action</code> 是多例的，有一个请求，创建 <code>Action</code> 实例，创建一个 <code>ActionContext</code> 对象，代表的是 <code>Action</code> 的上下文对象，还会创建一个 <code>ValueStack</code> 对象。</p>
+</li>
+<li><p>每个 <code>Action</code> 实例都有一个 <code>ValueStack</code> 对象 （一个请求对应一个 <code>ValueStack</code> 对象 ）</p>
+</li>
+<li><p>在其中保存当前 <code>Action</code> 对象和其他相关对象</p>
+</li>
+<li><p>Struts 框架把 <code>ValueStack</code> 对象保存在名为 <code>“struts.valueStack”</code> 的请求属性中，<code>request</code> 中 （值栈对象是 <code>request</code> 一个属性）</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 不常用</span></div><div class="line">ValueStack vs = (ValueStack)request.getAttribute(<span class="string">"struts.valueStack"</span>);</div></pre></td></tr></table></figure>
+<h2 id="值栈的内部结构"><a href="#值栈的内部结构" class="headerlink" title="值栈的内部结构"></a>值栈的内部结构</h2><h3 id="值栈由两部分组成"><a href="#值栈由两部分组成" class="headerlink" title="值栈由两部分组成"></a>值栈由两部分组成</h3><ul>
+<li><p>值栈由以下两部分组成：</p>
+<blockquote>
+<p><strong>root</strong>  ———— Struts 把动作和相关对象压入 <code>ObjectStack</code> 中–<code>List</code><br><strong>context</strong>  ———— Struts 把各种各样的映射关系(一些 <code>Map</code> 类型的对象) 压入 <code>ContextMap</code> 中</p>
+</blockquote>
+</li>
+<li><p>Struts 会默认把下面这些映射压入 <code>ContextMap</code>（context）中</p>
+</li>
+<li><p>注意：<code>request</code> 代表的是 <code>Map</code> 集合的 <code>key</code> 值，<code>value</code> 的值其实也是一个 <code>Map</code> 集合。</p>
+<blockquote>
+<p><strong>parameters</strong>：该 Map 中包含当前请求的请求参数  ?name=xxx&amp;password=123<br><strong>request</strong>：该 Map 中包含当前 <code>request</code> 对象中的所有属性<br><strong>session</strong>：该 Map 中包含当前 <code>session</code> 对象中的所有属性<br><strong>application</strong>：该 Map 中包含当前 <code>application</code>  对象中的所有属性<br><strong>attr</strong>：该 Map 按如下顺序来检索某个属性: <code>request</code>, <code>session</code>, <code>application</code></p>
+</blockquote>
+</li>
+<li><p>ValueStack 中存在 <code>root</code> 属性 (CompoundRoot) 、 <code>context</code> 属性 （OgnlContext ）</p>
+<blockquote>
+<p><code>CompoundRoot</code> 就是 <code>ArrayList</code><br><code>OgnlContext</code> 就是 <code>Map</code></p>
+</blockquote>
+</li>
+<li><p>context 对应 Map 引入 root 对象 </p>
+<blockquote>
+<p>context 中还存在 request、 session、application、 attr、 parameters 对象引用 </p>
+</blockquote>
+</li>
+</ul>
+<p><strong><em>操作值栈默认指操作 root 元素</em></strong></p>
+<h3 id="OGNL-获取值"><a href="#OGNL-获取值" class="headerlink" title="OGNL 获取值"></a>OGNL 获取值</h3><p>如果从 <code>root</code> 栈中获取值，OGNL 表达式默认情况下不能写 <code>#</code> 号：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;s:property value=<span class="string">"表达式"</span>/&gt;</div></pre></td></tr></table></figure>
+<p>如果从 <code>context</code> 栈中获取值，OGNL 表达式默认需要加 <code>#</code> 号（访问 request、 session、application、 attr、 parameters 对象数据必须写）：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;s:property value=<span class="string">"#表达式"</span>/&gt;</div></pre></td></tr></table></figure>
+<h2 id="值栈的创建和-ActionContext-对象的关系"><a href="#值栈的创建和-ActionContext-对象的关系" class="headerlink" title="值栈的创建和 ActionContext 对象的关系"></a>值栈的创建和 ActionContext 对象的关系</h2><ul>
+<li><p>值栈对象是 <code>请求时创建</code> 的</p>
+</li>
+<li><p><code>ActionContext</code> 是绑定到当前的线程上，那么在每个拦截器或者 <code>Action</code> 中获取到的 <code>ActionContext</code> 是同一个。</p>
+</li>
+<li><p><code>ActionContext</code> 中存在一个 <code>Map</code> 集合，该 <code>Map</code> 集合和 <code>ValueStack</code> 的 <code>context</code> 是同一个地址。</p>
+</li>
+<li><p><code>ActionContext</code> 中可以获取到 <code>ValueStack</code> 的引用，以后再开发，使用 <code>ActionContext</code> 来获取到值栈对象</p>
+</li>
+</ul>
+<h2 id="获取值栈对象"><a href="#获取值栈对象" class="headerlink" title="获取值栈对象"></a>获取值栈对象</h2><ul>
+<li>获得值栈对象，有三种方法：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ValueStack vs1 = (ValueStack) ServletActionContext.getRequest().getAttribute(<span class="string">"struts.valueStack"</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ValueStack vs2 = (ValueStack) ServletActionContext.getRequest().getAttribute(ServletActionContext.STRUTS_VALUESTACK_KEY);</div></pre></td></tr></table></figure>
+<p><strong>★重要</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 获取值栈对象，首先要获取 ActionContext 对象</span></div><div class="line">ValueStack vs3 = ActionContext.getContext().getValueStack();</div></pre></td></tr></table></figure>
+<h2 id="向值栈中保存数据"><a href="#向值栈中保存数据" class="headerlink" title="向值栈中保存数据"></a>向值栈中保存数据</h2><p>向值栈保存数据 （主要针对 <code>root</code> 栈）</p>
+<h3 id="push-方法"><a href="#push-方法" class="headerlink" title="push 方法"></a>push 方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 向栈顶压入对象</span></div><div class="line">valueStack.push(Object obj);</div></pre></td></tr></table></figure>
+<ul>
+<li><code>push</code> 方法的底层调用 <code>root</code> 对象的 <code>push</code> 方法（把元素添加到 0 位置）</li>
+</ul>
+<h3 id="set-方法"><a href="#set-方法" class="headerlink" title="set 方法"></a>set 方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 向栈顶压入 map 集合，把 key 和 obj 存入到 map 集合中</span></div><div class="line">valueStack.set(String key, Object obj);</div></pre></td></tr></table></figure>
+<ul>
+<li>源码获取 <code>map</code> 集合（<code>map</code> 有可能是已经存在的，有可能是新创建的），把 <code>map</code> 集合压入到栈顶，再把数据存入到 <code>map</code> 集合中。</li>
+</ul>
+<blockquote>
+<p>在 jsp 中，通过 <code>&lt;s:debug/&gt;</code> 查看值栈的内容</p>
+</blockquote>
+<h2 id="从值栈中获取值"><a href="#从值栈中获取值" class="headerlink" title="从值栈中获取值"></a>从值栈中获取值</h2><h3 id="一些小细节"><a href="#一些小细节" class="headerlink" title="一些小细节"></a>一些小细节</h3><blockquote>
+<p>访问 <code>root</code> 中的数据不需要 <code>#</code><br>访问 <code>context</code> 中的对象数据，要加 <code>#</code><br>如果向 <code>root</code> 中存入对象的话，优先使用 <code>push</code> 方法。<br>如果向 <code>root</code> 中存入集合的话，优先要使用 <code>set</code> 方法。</p>
+</blockquote>
+<h3 id="在-OgnlContext-中获取数据"><a href="#在-OgnlContext-中获取数据" class="headerlink" title="在 OgnlContext 中获取数据"></a>在 OgnlContext 中获取数据</h3><figure class="highlight jsp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">request:&lt;s:property value=<span class="string">"#request.username"</span>/&gt;</div><div class="line">session:&lt;s:property value=<span class="string">"#session.username"</span>/&gt;</div><div class="line">application:&lt;s:property value=<span class="string">"#application.username"</span>/&gt;</div><div class="line">attr:&lt;s:property value=<span class="string">"#attr.username"</span>/&gt;</div><div class="line">parameters:&lt;s:property value=<span class="string">"#parameters.cid"</span>/&gt;</div></pre></td></tr></table></figure>
+<h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><p>前提 <code>struts.xml</code>：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">struts</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"demo2"</span> <span class="attr">namespace</span>=<span class="string">"/"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span>&gt;</span></div><div class="line">        <span class="comment">&lt;!--压栈和取值--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"save"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.demo2.ValueStack1Action"</span> <span class="attr">method</span>=<span class="string">"save"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"success"</span>&gt;</span>/demo2/vs.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">action</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">package</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">struts</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><em>注意：</em>jsp 中首先要引入标签库 <code>&lt;%@taglib prefix=&quot;s&quot; uri=&quot;/struts-tags&quot; %&gt;</code>，在 jsp 中使用 <code>&lt;s:debug&gt;&lt;/s:debug&gt;</code> 可以查看值栈的内容。</p>
+<p>以下代码演示 <code>压栈和取值</code>：</p>
+<h4 id="push-字符串"><a href="#push-字符串" class="headerlink" title="push 字符串"></a>push 字符串</h4><p><code>Action</code> 代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 获取值栈</span></div><div class="line">ValueStack vs = ActionContext.getContext().getValueStack();</div><div class="line"><span class="comment">// 压栈</span></div><div class="line">vs.push(<span class="string">"小灰"</span>);</div><div class="line"><span class="keyword">return</span> SUCCESS;</div></pre></td></tr></table></figure>
+<p><code>jsp</code> 代码：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;%--获取栈顶的值--%&gt;</div><div class="line">&lt;s:property value=<span class="string">"[0].top"</span>/&gt;</div></pre></td></tr></table></figure>
+<h4 id="set-字符串"><a href="#set-字符串" class="headerlink" title="set 字符串"></a>set 字符串</h4><p><code>Action</code> 代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vs.set(<span class="string">"msg"</span>, <span class="string">"小瓜"</span>);</div></pre></td></tr></table></figure>
+<p><code>jsp</code> 代码：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;%--栈顶是 map 集合，通过 key 来获取值--%&gt;</div><div class="line">&lt;s:property value=<span class="string">"[0].top.msg"</span>/&gt;</div></pre></td></tr></table></figure>
+<h4 id="获取对象（push）"><a href="#获取对象（push）" class="headerlink" title="获取对象（push）"></a>获取对象（push）</h4><p>首先需要创建一个 JavaBean：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.renkaigis.demo2;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> String username;</div><div class="line">    <span class="keyword">private</span> String password;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">()</span> </span>&#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(String username, String password)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.username = username;</div><div class="line">        <span class="keyword">this</span>.password = password;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUsername</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> username;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUsername</span><span class="params">(String username)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.username = username;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPassword</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> password;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPassword</span><span class="params">(String password)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.password = password;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>Action</code> 代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 创建 User 对象</span></div><div class="line">User user = <span class="keyword">new</span> User(<span class="string">"小雷"</span>, <span class="string">"123"</span>);</div><div class="line"><span class="comment">// 压栈</span></div><div class="line">vs.push(user);</div></pre></td></tr></table></figure>
+<p><code>jsp</code> 代码：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;%--栈顶放 user 对象--%&gt;</div><div class="line">&lt;s:property value=<span class="string">"[0].top.username"</span>/&gt;</div><div class="line">&lt;%--[<span class="number">0</span>].top 是可以省略的--%&gt;</div><div class="line">&lt;s:property value=<span class="string">"username"</span>/&gt;</div></pre></td></tr></table></figure>
+<h4 id="获取对象（set）"><a href="#获取对象（set）" class="headerlink" title="获取对象（set）"></a>获取对象（set）</h4><p><code>Action</code> 代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vs.set(<span class="string">"user"</span>, user);</div></pre></td></tr></table></figure>
+<p><code>jsp</code> 代码：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;s:property value=<span class="string">"[0].top.user.username"</span>/&gt;</div><div class="line">&lt;%--省略关键字--%&gt;</div><div class="line">&lt;s:property value=<span class="string">"user.username"</span>/&gt;</div></pre></td></tr></table></figure>
+<h4 id="List-集合（push）"><a href="#List-集合（push）" class="headerlink" title="List 集合（push）"></a>List 集合（push）</h4><p><code>Action</code> 代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ArrayList&lt;User&gt; ulist = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">ulist.add(<span class="keyword">new</span> User(<span class="string">"张三"</span>, <span class="string">"123"</span>));</div><div class="line">ulist.add(<span class="keyword">new</span> User(<span class="string">"李四"</span>, <span class="string">"456"</span>));</div><div class="line">ulist.add(<span class="keyword">new</span> User(<span class="string">"王五"</span>, <span class="string">"789"</span>));</div><div class="line"><span class="comment">// 把 ulist 压栈</span></div><div class="line">vs.push(ulist);</div></pre></td></tr></table></figure>
+<p><code>jsp</code> 代码：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;s:property value=<span class="string">"[0].top[0].username"</span>/&gt;</div><div class="line">&lt;s:property value=<span class="string">"[0].top[1].username"</span>/&gt;</div></pre></td></tr></table></figure>
+<h4 id="List-集合（set）"><a href="#List-集合（set）" class="headerlink" title="List 集合（set）"></a>List 集合（set）</h4><p><code>Action</code> 代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vs.set(<span class="string">"ulist"</span>, ulist);</div></pre></td></tr></table></figure>
+<p><code>jsp</code> 代码：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;s:property value="ulist[0].username"/&gt;</div><div class="line"></div><div class="line">&lt;%--迭代的标签</div><div class="line">    属性：</div><div class="line">        vaule   表示要迭代的集合，需要从值栈中获取</div><div class="line">        var     迭代过程中，遍历的对象（可写可不写）</div><div class="line">            * var 编写上，把迭代产生的对象默认压入到 context 栈中，取值要加 #</div><div class="line">            * var 不编写，默认把迭代产生的对象压入到 root 栈中</div><div class="line">--%&gt;</div><div class="line">&lt;s:iterator value="ulist" var="user"&gt;</div><div class="line">    &lt;s:property value="#user.username"/&gt;</div><div class="line">&lt;/s:iterator&gt;</div><div class="line"></div><div class="line">&lt;%--不编写 var--%&gt;</div><div class="line">&lt;s:iterator value="ulist"&gt;</div><div class="line">    &lt;s:property value="username"/&gt;</div><div class="line">&lt;/s:iterator&gt;</div></pre></td></tr></table></figure>
+<h4 id="从-context-栈中获取值"><a href="#从-context-栈中获取值" class="headerlink" title="从 context 栈中获取值"></a>从 context 栈中获取值</h4><p>底层已经封装了 request、session 等对象，操作的就是 map 集合</p>
+<h5 id="request"><a href="#request" class="headerlink" title="request"></a>request</h5><p><code>Action</code> 代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">HttpServletRequest request = ServletActionContext.getRequest();</div><div class="line">request.setAttribute(<span class="string">"msg"</span>, <span class="string">"小鬼"</span>);</div></pre></td></tr></table></figure>
+<p><code>jsp</code> 代码：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;s:property value=<span class="string">"#request.msg"</span>/&gt;</div></pre></td></tr></table></figure>
+<h5 id="session"><a href="#session" class="headerlink" title="session"></a>session</h5><p><code>Action</code> 代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">request.getSession().setAttribute(<span class="string">"msg"</span>, <span class="string">"小卡"</span>);</div></pre></td></tr></table></figure>
+<p><code>jsp</code> 代码：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;s:property value=<span class="string">"#session.msg"</span>/&gt;</div></pre></td></tr></table></figure>
+<h5 id="parameters"><a href="#parameters" class="headerlink" title="parameters"></a>parameters</h5><p>路径传值：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http:<span class="comment">//localhost:9090/save.action?id=10</span></div></pre></td></tr></table></figure>
+<p><code>jsp</code> 代码：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;s:property value=<span class="string">"#parameters.id"</span>/&gt;</div></pre></td></tr></table></figure>
+<h5 id="attr"><a href="#attr" class="headerlink" title="attr"></a>attr</h5><p>attr 从最小域开始找</p>
+<p><code>jsp</code> 代码：</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;s:property value=<span class="string">"#attr.msg"</span>/&gt;</div></pre></td></tr></table></figure>
+<h2 id="EL-表达式也能获取到值栈中的数据"><a href="#EL-表达式也能获取到值栈中的数据" class="headerlink" title="EL 表达式也能获取到值栈中的数据"></a>EL 表达式也能获取到值栈中的数据</h2><h3 id="EL-获取值栈的值"><a href="#EL-获取值栈的值" class="headerlink" title="EL 获取值栈的值"></a>EL 获取值栈的值</h3><p>获取上面的 ulist：</p>
+<ol>
+<li><p>首先导包：<code>jstl.jar</code>、<code>standard.jar</code></p>
+</li>
+<li><p>引标签库：<code>&lt;%@taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot; %&gt;</code></p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;%--在 jsp 页面上使用 EL 和 JSTL 标签库来取值--%&gt;</div><div class="line">&lt;c:forEach items=&quot;$&#123;ulist&#125;&quot; var=&quot;user&quot;&gt;</div><div class="line">    $&#123;user.username&#125; -- $&#123;user.password&#125;</div><div class="line">&lt;/c:forEach&gt;</div></pre></td></tr></table></figure>
+<h3 id="为什么-EL-也能访问值栈中的数据？"><a href="#为什么-EL-也能访问值栈中的数据？" class="headerlink" title="为什么 EL 也能访问值栈中的数据？"></a>为什么 EL 也能访问值栈中的数据？</h3><p>因为 Struts2 底层使用了装饰者模式，对 <code>getAttribute()</code> 方法进行了增强。</p>
+<p><code>StrutsPreparedAndExecuteFilter</code> 的 <code>doFilter</code> 代码中 <code>request = prepare.wrapRequest(request);</code></p>
+<blockquote>
+<p>对 <code>Request</code>对象进行了包装<br><code>StrutsRequestWrapper</code> 增强了 <code>request</code> 的 <code>getAttribute()</code> 方法</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Object attribute = <span class="keyword">super</span>.getAttribute(s);</div><div class="line"><span class="keyword">if</span> (attribute == <span class="keyword">null</span>) &#123;</div><div class="line">	attribute = stack.findValue(s);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>访问 <code>request</code> 范围的数据时，如果数据找不到，会去值栈中找<br><code>request</code> 对象具备访问值栈数据的能力（查找 <code>root</code> 的数据）</p>
+</blockquote>
+<hr>
+<h1 id="OGNL-表达式的特殊符号"><a href="#OGNL-表达式的特殊符号" class="headerlink" title="OGNL 表达式的特殊符号"></a>OGNL 表达式的特殊符号</h1><hr>
+<h2 id="符号的用法-★"><a href="#符号的用法-★" class="headerlink" title="# 符号的用法 ★"></a># 符号的用法 ★</h2><h3 id="获得-contextMap-中的数据"><a href="#获得-contextMap-中的数据" class="headerlink" title="获得 contextMap 中的数据"></a>获得 contextMap 中的数据</h3><figure class="highlight jsp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;s:property value=<span class="string">"#request.name"</span>/&gt;</div><div class="line">&lt;s:property value=<span class="string">"#session.name"</span>/&gt;</div><div class="line">&lt;s:property value=<span class="string">"#application.name"</span>/&gt;</div><div class="line">&lt;s:property value=<span class="string">"#attr.name"</span>/&gt;</div><div class="line">&lt;s:property value=<span class="string">"#parameters.id"</span>/&gt;</div><div class="line">&lt;s:property value=<span class="string">"#parameters.name"</span>/&gt;</div></pre></td></tr></table></figure>
+<h3 id="可以构建一个-map-集合"><a href="#可以构建一个-map-集合" class="headerlink" title="# 可以构建一个 map 集合"></a># 可以构建一个 map 集合</h3><p>以构建表单为例：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;h3&gt;编写表单&lt;/h3&gt;</div><div class="line">&lt;form action="" method="post"&gt;</div><div class="line">    性别：&lt;input type="radio" name="sex"/&gt;男&lt;input type="radio" name="sex"/&gt;女</div><div class="line">&lt;/form&gt;</div><div class="line"></div><div class="line">&lt;h3&gt;使用 Struts2 UI 标签方式&lt;/h3&gt;</div><div class="line">&lt;s:form action="" method="post"&gt;</div><div class="line">    性别：&lt;s:radio name="sex" list="&#123;'男','女'&#125;"/&gt;</div><div class="line">&lt;/s:form&gt;</div></pre></td></tr></table></figure>
+<p>使用 <code>#</code> 构建 map 集合：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;h3&gt;编写表单&lt;/h3&gt;</div><div class="line">&lt;form action="" method="post"&gt;</div><div class="line">    性别：&lt;input type="radio" name="sex" value="1"/&gt;男&lt;input type="radio" name="sex" value="2"/&gt;女</div><div class="line">&lt;/form&gt;</div><div class="line"></div><div class="line">&lt;h3&gt;使用 Struts2 UI 标签方式&lt;/h3&gt;</div><div class="line">&lt;s:form action="" method="post"&gt;</div><div class="line">    性别：&lt;s:radio name="sex" list="#&#123;'1':'男','2:':'女'&#125;"/&gt;</div><div class="line">&lt;/s:form&gt;</div></pre></td></tr></table></figure>
+<h2 id="符号的用法"><a href="#符号的用法" class="headerlink" title="% 符号的用法"></a>% 符号的用法</h2><h3 id="强制字符串解析成-OGNL-表达式"><a href="#强制字符串解析成-OGNL-表达式" class="headerlink" title="强制字符串解析成 OGNL 表达式"></a>强制字符串解析成 OGNL 表达式</h3><blockquote>
+<p>例如：在 <code>request</code> 域中存入值，然后在文本框（<code>&lt;s:textfield&gt;</code>）中取值，现在到 <code>value</code> 上。</p>
+</blockquote>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;s:textfield value=<span class="string">"%&#123;#request.msg&#125;"</span>/&gt;</div></pre></td></tr></table></figure>
+<h3 id="中的值用-‘’-引起来，此时不再是-ognl-表达式，而是普通的字符串"><a href="#中的值用-‘’-引起来，此时不再是-ognl-表达式，而是普通的字符串" class="headerlink" title="{ } 中的值用 ‘’ 引起来，此时不再是 ognl 表达式，而是普通的字符串"></a>{ } 中的值用 ‘’ 引起来，此时不再是 ognl 表达式，而是普通的字符串</h3><figure class="highlight jsp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;s:property value=<span class="string">"%&#123;'#request.msg'&#125;"</span>/&gt;</div></pre></td></tr></table></figure>
+<h2 id="符号的用法-1"><a href="#符号的用法-1" class="headerlink" title="$ 符号的用法"></a>$ 符号的用法</h2><ul>
+<li>在配置文件中可以使用 OGNL 表达式，例如：文件下载的配置文件。</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"download1"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.demo2.DownloadAction"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"success"</span> <span class="attr">type</span>=<span class="string">"stream"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"contentType"</span>&gt;</span>$&#123;contentType&#125;<span class="tag">&lt;/<span class="name">param</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"contentDisposition"</span>&gt;</span>attachment;filename=$&#123;downFilename&#125;<span class="tag">&lt;/<span class="name">param</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></div></pre></td></tr></table></figure>
+      
+    </div>
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">--- The End&nbsp;&nbsp;<i class="fa fa-paw"></i>&nbsp;&nbsp;Thanks For Your Reading ---</div>
+    
+</div>
+  
+</div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文标题:</span><a href="/posts/JavaWeb/2018-08-01-JavaWeb-Struts203.html">JavaWeb 之 OGNL 表达式、Struts2 值栈与OGNL 特殊符号</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 RenKai 的个人博客">RenKai</a></p>
+  <p><span>发布时间:</span>2018年08月01日 - 09:08</p>
+  <p><span>最后更新:</span>2018年08月10日 - 10:08</p>
+  <p><span>原始链接:</span><a href="/posts/JavaWeb/2018-08-01-JavaWeb-Struts203.html" title="JavaWeb 之 OGNL 表达式、Struts2 值栈与OGNL 特殊符号">http://yoursite.com/posts/JavaWeb/2018-08-01-JavaWeb-Struts203.html</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/posts/JavaWeb/2018-08-01-JavaWeb-Struts203.html"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({   
+          title: "",   
+          text: '复制成功',   
+          html: false,
+          timer: 500,   
+          showConfirmButton: false
+        });
+      });
+    }));  
+</script>
+
+      
+</div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>宠辱不惊，看庭前花开花落；去留无意，望天上云卷云舒。　</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="RenKai WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.png" alt="RenKai Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaWeb/" rel="tag"><i class="fa fa-tag"></i> JavaWeb</a>
+          
+            <a href="/tags/Struts2/" rel="tag"><i class="fa fa-tag"></i> Struts2</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/posts/JavaWeb/2018-07-22-JavaWeb-Struts202.html" rel="next" title="JavaWeb 之 Struts2 中的 Servlet API、封装数据、拦截器">
+                <i class="fa fa-chevron-left"></i> JavaWeb 之 Struts2 中的 Servlet API、封装数据、拦截器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/JavaWeb/2018-08-03-JavaWeb-Spring01.html" rel="prev" title="JavaWeb 之 Spring 快速入门">
+                JavaWeb 之 Spring 快速入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="RenKai" />
+          <p class="site-author-name" itemprop="name">RenKai</p>
+           
+              <p class="site-description motion-element" itemprop="description">一枚想成为技术控的菜鸟</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/renkaigis" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/renkai123" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/renkaigis" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-crosshairs"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/f44c72ff4b81/timeline" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-heartbeat"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:renkaigis@163.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友链
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.renkaigis.com/KeepCoding/" title="Plan - KeepCoding" target="_blank">Plan - KeepCoding</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.renkaigis.com/KeepEveryDay/" title="Plan - KeepEveryDay" target="_blank">Plan - KeepEveryDay</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://weijuanran.cn/" title="Weijuanran's Blog" target="_blank">Weijuanran's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://blog.jiangyayu.cn/" title="Alex's Blog" target="_blank">Alex's Blog</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=538980932&auto=1&height=66"></iframe>
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#OGNL表达式"><span class="nav-number">1.</span> <span class="nav-text">OGNL表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OGNL表达式概述（了解）"><span class="nav-number">1.1.</span> <span class="nav-text">OGNL表达式概述（了解）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在-Struts2-框架中使用-OGNL-表达式"><span class="nav-number">1.2.</span> <span class="nav-text">在 Struts2 框架中使用 OGNL 表达式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Struts2-框架的值栈"><span class="nav-number">2.</span> <span class="nav-text">Struts2 框架的值栈</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#值栈的概述"><span class="nav-number">2.1.</span> <span class="nav-text">值栈的概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#值栈的内部结构"><span class="nav-number">2.2.</span> <span class="nav-text">值栈的内部结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#值栈由两部分组成"><span class="nav-number">2.2.1.</span> <span class="nav-text">值栈由两部分组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OGNL-获取值"><span class="nav-number">2.2.2.</span> <span class="nav-text">OGNL 获取值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#值栈的创建和-ActionContext-对象的关系"><span class="nav-number">2.3.</span> <span class="nav-text">值栈的创建和 ActionContext 对象的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取值栈对象"><span class="nav-number">2.4.</span> <span class="nav-text">获取值栈对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向值栈中保存数据"><span class="nav-number">2.5.</span> <span class="nav-text">向值栈中保存数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#push-方法"><span class="nav-number">2.5.1.</span> <span class="nav-text">push 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set-方法"><span class="nav-number">2.5.2.</span> <span class="nav-text">set 方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从值栈中获取值"><span class="nav-number">2.6.</span> <span class="nav-text">从值栈中获取值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一些小细节"><span class="nav-number">2.6.1.</span> <span class="nav-text">一些小细节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在-OgnlContext-中获取数据"><span class="nav-number">2.6.2.</span> <span class="nav-text">在 OgnlContext 中获取数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码演示"><span class="nav-number">2.6.3.</span> <span class="nav-text">代码演示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#push-字符串"><span class="nav-number">2.6.3.1.</span> <span class="nav-text">push 字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set-字符串"><span class="nav-number">2.6.3.2.</span> <span class="nav-text">set 字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取对象（push）"><span class="nav-number">2.6.3.3.</span> <span class="nav-text">获取对象（push）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取对象（set）"><span class="nav-number">2.6.3.4.</span> <span class="nav-text">获取对象（set）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#List-集合（push）"><span class="nav-number">2.6.3.5.</span> <span class="nav-text">List 集合（push）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#List-集合（set）"><span class="nav-number">2.6.3.6.</span> <span class="nav-text">List 集合（set）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从-context-栈中获取值"><span class="nav-number">2.6.3.7.</span> <span class="nav-text">从 context 栈中获取值</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#request"><span class="nav-number">2.6.3.7.1.</span> <span class="nav-text">request</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#session"><span class="nav-number">2.6.3.7.2.</span> <span class="nav-text">session</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#parameters"><span class="nav-number">2.6.3.7.3.</span> <span class="nav-text">parameters</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#attr"><span class="nav-number">2.6.3.7.4.</span> <span class="nav-text">attr</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EL-表达式也能获取到值栈中的数据"><span class="nav-number">2.7.</span> <span class="nav-text">EL 表达式也能获取到值栈中的数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#EL-获取值栈的值"><span class="nav-number">2.7.1.</span> <span class="nav-text">EL 获取值栈的值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么-EL-也能访问值栈中的数据？"><span class="nav-number">2.7.2.</span> <span class="nav-text">为什么 EL 也能访问值栈中的数据？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#OGNL-表达式的特殊符号"><span class="nav-number">3.</span> <span class="nav-text">OGNL 表达式的特殊符号</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#符号的用法-★"><span class="nav-number">3.1.</span> <span class="nav-text"># 符号的用法 ★</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获得-contextMap-中的数据"><span class="nav-number">3.1.1.</span> <span class="nav-text">获得 contextMap 中的数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可以构建一个-map-集合"><span class="nav-number">3.1.2.</span> <span class="nav-text"># 可以构建一个 map 集合</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#符号的用法"><span class="nav-number">3.2.</span> <span class="nav-text">% 符号的用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#强制字符串解析成-OGNL-表达式"><span class="nav-number">3.2.1.</span> <span class="nav-text">强制字符串解析成 OGNL 表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中的值用-‘’-引起来，此时不再是-ognl-表达式，而是普通的字符串"><span class="nav-number">3.2.2.</span> <span class="nav-text">{ } 中的值用 ‘’ 引起来，此时不再是 ognl 表达式，而是普通的字符串</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#符号的用法-1"><span class="nav-number">3.3.</span> <span class="nav-text">$ 符号的用法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <center>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+<div class="copyright" >
+  <span><a href="http://www.miitbeian.gov.cn/" target="_blank">陕ICP备17015858号</a></span>&nbsp;
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-flash"></i>
+  </span>Powered By - 
+  <span class="author" itemprop="copyrightHolder" ><a class="theme-link" href="http://renkaigis.com">RenKai</a></span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数：<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<div class="powered-by">
+<span class="site-pv">
+<i class="fa fa-eye"></i> 
+  访问次数：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+</div>
+
+
+
+<div class="theme-info">
+<i class="fa fa-pencil"></i> 
+  <span class="post-count">全站共 66.4k</span> 字
+</div>
+
+<center>
+
+<!--
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+-->
+
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytEYq24O';
+      var conf = 'f90a095569bba30e59cae713bab443cf';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (search_path.endsWith("json")) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("UmN2zDPRHzd28CBIusNcb55r-gzGzoHsz", "y8w2I87XXk00wTQhj8v8vxRD");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

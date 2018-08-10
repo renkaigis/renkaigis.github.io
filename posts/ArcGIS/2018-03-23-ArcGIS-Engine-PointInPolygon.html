@@ -128,13 +128,13 @@
 <meta property="og:url" content="http://yoursite.com/posts/ArcGIS/2018-03-23-ArcGIS-Engine-PointInPolygon.html">
 <meta property="og:site_name" content="秋月春风等闲度">
 <meta property="og:description" content="做项目遇到的问题。寥寥几行代码轻松解决，记录一下。">
-<meta property="og:image" content="http://image.renkaigis.com/images/ArcGIS/PointInPolygon1.png">
-<meta property="og:image" content="http://image.renkaigis.com/images/ArcGIS/PointInPolygon2.png">
-<meta property="og:updated_time" content="2018-03-23T03:07:42.231Z">
+<meta property="og:image" content="http://image.renkaigis.com/arcgis/PointInPolygon1.png">
+<meta property="og:image" content="http://image.renkaigis.com/arcgis/PointInPolygon2.png">
+<meta property="og:updated_time" content="2018-08-10T06:49:31.245Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ArcGIS Engine 空间关系之判断点在面内">
 <meta name="twitter:description" content="做项目遇到的问题。寥寥几行代码轻松解决，记录一下。">
-<meta name="twitter:image" content="http://image.renkaigis.com/images/ArcGIS/PointInPolygon1.png">
+<meta name="twitter:image" content="http://image.renkaigis.com/arcgis/PointInPolygon1.png">
 
 
 
@@ -278,6 +278,26 @@
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-resume">
+          <a href="http://resume.renkaigis.com" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-address-card"></i> <br />
+            
+            Resume
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-photo">
+          <a href="http://photo.renkaigis.com" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-camera"></i> <br />
+            
+            Photo
           </a>
         </li>
       
@@ -530,8 +550,8 @@
 <p>我主要实现了 <strong>判断点在面内</strong> 的方法，核心代码如下：</p>
 <figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">pointInPolygonButton_Click</span>(<span class="params"><span class="keyword">object</span> sender, EventArgs e</span>)</span></div><div class="line">&#123;</div><div class="line">    <span class="comment">// 获得点图层</span></div><div class="line">    <span class="keyword">int</span> PointId = <span class="number">1</span>;</div><div class="line">    IFeatureLayer PointLayer = <span class="literal">null</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; axMapControl1.LayerCount; i++)</div><div class="line">    &#123;</div><div class="line">        PointLayer = axMapControl1.get_Layer(i) <span class="keyword">as</span> IFeatureLayer;</div><div class="line">        <span class="keyword">if</span> (PointLayer <span class="keyword">is</span> IFeatureLayer &amp;&amp; PointLayer.FeatureClass.ShapeType == esriGeometryType.esriGeometryPoint)</div><div class="line">        &#123;</div><div class="line">            PointId = i;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (PointId == <span class="number">-1</span>)</div><div class="line">    &#123;</div><div class="line">        MessageBox.Show(<span class="string">"找不到质点图层，请重新加载"</span>, <span class="string">"提示"</span>, MessageBoxButtons.OK, MessageBoxIcon.Error);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 获得面图层</span></div><div class="line">    <span class="keyword">int</span> PolygonId = <span class="number">-1</span>;</div><div class="line">    IFeatureLayer PolygonLayer = <span class="literal">null</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; axMapControl1.LayerCount; i++)</div><div class="line">    &#123;</div><div class="line">        PolygonLayer = axMapControl1.get_Layer(i) <span class="keyword">as</span> IFeatureLayer;</div><div class="line">        <span class="keyword">if</span> (PolygonLayer <span class="keyword">is</span> IFeatureLayer &amp;&amp; PolygonLayer.FeatureClass.ShapeType == esriGeometryType.esriGeometryPolygon)</div><div class="line">        &#123;</div><div class="line">            PolygonId = i;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (PolygonId == <span class="number">-1</span>)</div><div class="line">    &#123;</div><div class="line">        MessageBox.Show(<span class="string">"找不到边界图层，请重新加载"</span>, <span class="string">"提示"</span>, MessageBoxButtons.OK, MessageBoxIcon.Error);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    PointLayer = axMapControl1.get_Layer(PointId) <span class="keyword">as</span> IFeatureLayer;</div><div class="line">    PolygonLayer = axMapControl1.get_Layer(PolygonId) <span class="keyword">as</span> IFeatureLayer;</div><div class="line"></div><div class="line">    IFeatureCursor PointFeatureCursor = PointLayer.Search(<span class="literal">null</span>, <span class="literal">true</span>);</div><div class="line">    IFeature PointFeature = PointFeatureCursor.NextFeature();</div><div class="line"></div><div class="line">    IFeatureCursor PolygonFeatureCursor = PolygonLayer.Search(<span class="literal">null</span>, <span class="literal">true</span>);</div><div class="line">    IFeature PolygonFeature = PolygonFeatureCursor.NextFeature();</div><div class="line"></div><div class="line">    IRelationalOperator pRelationalOperator = PolygonFeature.Shape <span class="keyword">as</span> IRelationalOperator;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (pRelationalOperator.Contains(PointFeature.Shape))</div><div class="line">    &#123;</div><div class="line">        MessageBox.Show(<span class="string">"点在面内！"</span>, <span class="string">"恭喜你！"</span>, MessageBoxButtons.OK, MessageBoxIcon.Information);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        MessageBox.Show(<span class="string">"点在面外！"</span>, <span class="string">"很遗憾！"</span>, MessageBoxButtons.OK, MessageBoxIcon.Error);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><strong>运行结果：</strong></p>
-<p><img src="http://image.renkaigis.com/images/ArcGIS/PointInPolygon1.png"></p>
-<p><img src="http://image.renkaigis.com/images/ArcGIS/PointInPolygon2.png"></p>
+<p><img src="http://image.renkaigis.com/arcgis/PointInPolygon1.png"></p>
+<p><img src="http://image.renkaigis.com/arcgis/PointInPolygon2.png"></p>
 
       
     </div>
@@ -566,7 +586,7 @@
   <p><span>本文标题:</span><a href="/posts/ArcGIS/2018-03-23-ArcGIS-Engine-PointInPolygon.html">ArcGIS Engine 空间关系之判断点在面内</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 RenKai 的个人博客">RenKai</a></p>
   <p><span>发布时间:</span>2018年03月23日 - 10:03</p>
-  <p><span>最后更新:</span>2018年03月23日 - 11:03</p>
+  <p><span>最后更新:</span>2018年08月10日 - 14:08</p>
   <p><span>原始链接:</span><a href="/posts/ArcGIS/2018-03-23-ArcGIS-Engine-PointInPolygon.html" title="ArcGIS Engine 空间关系之判断点在面内">http://yoursite.com/posts/ArcGIS/2018-03-23-ArcGIS-Engine-PointInPolygon.html</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/posts/ArcGIS/2018-03-23-ArcGIS-Engine-PointInPolygon.html"  aria-label="复制成功！"></i></span>
   </p>
@@ -730,7 +750,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">37</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -921,7 +941,7 @@
 
 <div class="theme-info">
 <i class="fa fa-pencil"></i> 
-  <span class="post-count">全站共 66.4k</span> 字
+  <span class="post-count">全站共 66.9k</span> 字
 </div>
 
 <center>

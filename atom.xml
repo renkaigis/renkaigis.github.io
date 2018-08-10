@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-08-10T02:14:44.035Z</updated>
+  <updated>2018-08-10T06:46:43.888Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,156 +16,19 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>JavaWeb 之 Spring 快速入门</title>
-    <link href="http://yoursite.com/posts/JavaWeb/2018-08-03-JavaWeb-Spring01.html"/>
-    <id>http://yoursite.com/posts/JavaWeb/2018-08-03-JavaWeb-Spring01.html</id>
-    <published>2018-08-03T07:46:23.000Z</published>
-    <updated>2018-08-10T02:14:44.035Z</updated>
+    <title>JavaWeb 之 Spring IoC 控制反转及整合 JUnit 单元测试</title>
+    <link href="http://yoursite.com/posts/JavaWeb/2018-08-05-JavaWeb-Spring02.html"/>
+    <id>http://yoursite.com/posts/JavaWeb/2018-08-05-JavaWeb-Spring02.html</id>
+    <published>2018-08-05T02:27:56.000Z</published>
+    <updated>2018-08-10T06:46:43.888Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/spring0100.png"></div>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/javaweb/spring0200.png"></div>
 
-<p id="div-border-left-blue">Spring 快速入门。</p>
+<p id="div-border-left-blue">Spring IoC 控制反转 &amp; 整合 JUnit 单元测试。</p>
 
 <a id="more"></a>
-<h1 id="Spring-框架的概述和入门"><a href="#Spring-框架的概述和入门" class="headerlink" title="Spring 框架的概述和入门"></a>Spring 框架的概述和入门</h1><hr>
-<h2 id="什么是-Spring-框架"><a href="#什么是-Spring-框架" class="headerlink" title="什么是 Spring 框架"></a>什么是 Spring 框架</h2><h3 id="Spring-框架的概述"><a href="#Spring-框架的概述" class="headerlink" title="Spring 框架的概述"></a>Spring 框架的概述</h3><ul>
-<li><p>Spring 是一个开放源代码的设计层面框架，他解决的是 <code>业务逻辑层</code> 和其他各层的松耦合问题。</p>
-</li>
-<li><p>Spring 是于 2003 年兴起的一个轻量级的 Java 开发框架，由 Rod Johnson 在其著作 《Expert One-On-One J2EE Development and Design》 中阐述的部分理念和原型衍生而来。</p>
-</li>
-<li><p>它是为了解决企业应用开发的复杂性而创建的。框架的主要优势之一就是其分层架构，分层架构允许使用者选择使用哪一个组件，同时为 J2EE 应用程序开发提供集成的框架。</p>
-</li>
-<li><p>Spring 使用基本的 <code>JavaBean</code> 来完成以前只可能由 <code>EJB</code> 完成的事情。然而，Spring 的用途不仅限于服务器端的开发。从简单性、可测试性和松耦合的角度而言，任何 Java 应用都可以从 Spring 中受益。</p>
-</li>
-<li><p>Spring 的核心是 <code>控制反转（IoC）</code> 和 <code>面向切面（AOP）</code>。简单来说，Spring 是一个分层的 <code>JavaSE/EEfull-stack（一站式）</code> 轻量级开源框架。</p>
-</li>
-<li><p>Java EE 开发分成三层结构</p>
-<blockquote>
-<p>WEB层        – Spring MVC<br>业务层    – Bean管理：（IoC）<br>持久层    – Spring 的 JDBC 模板。ORM 模板用于整合其他的持久层框架。</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="Spring-框架的特点"><a href="#Spring-框架的特点" class="headerlink" title="Spring 框架的特点"></a>Spring 框架的特点</h2><ul>
-<li><p>方便解耦，简化开发</p>
-<blockquote>
-<p>Spring 就是一个大工厂，可以将所有对象创建和依赖关系维护，交给 Spring 管理。</p>
-</blockquote>
-</li>
-<li><p>AOP 编程的支持</p>
-<blockquote>
-<p>Spring 提供面向切面编程，可以方便的实现对程序进行权限拦截、运行监控等功能。</p>
-</blockquote>
-</li>
-<li><p>声明式事务的支持</p>
-<blockquote>
-<p>只需要通过配置就可以完成对事务的管理，而无需手动编程。</p>
-</blockquote>
-</li>
-<li><p>方便程序的测试</p>
-<blockquote>
-<p>Spring 对 Junit4 支持，可以通过注解方便的测试 Spring 程序。</p>
-</blockquote>
-</li>
-<li><p>方便集成各种优秀框架</p>
-<blockquote>
-<p>Spring 不排斥各种优秀的开源框架，其内部提供了对各种优秀框架（如：Struts2、Hibernate、MyBatis、Quartz等）的直接支持。</p>
-</blockquote>
-</li>
-<li><p>降低 JavaEE API 的使用难度</p>
-<blockquote>
-<p>Spring 对 JavaEE 开发中非常难用的一些 API（JDBC、JavaMail、远程调用等），都提供了封装，使这些 API 应用难度大大降低。</p>
-</blockquote>
-</li>
-</ul>
 <hr>
-<p><strong>技术分析之Spring框架的IOC核心功能快速入门</strong></p>
-<pre><code>1. 什么是IOC的功能？
-    * IoC        -- Inverse of Control，控制反转，将对象的创建权反转给Spring！！
-    * 使用IOC可以解决的程序耦合性高的问题！！
-</code></pre><p><img src="./图片/01-IOC.bmp" alt="">    </p>
-<pre><code>2. 步骤一：下载Spring框架的开发包
-    * 官网：http://spring.io/
-    * 下载地址：http://repo.springsource.org/libs-release-local/org/springframework/spring解压:(Spring目录结构:)
-        * docs        -- API和开发规范
-        * libs        -- jar包和源码
-        * schema    -- 约束
-
-3. 步骤二：创建JavaWEB项目，引入Spring的开发包
-    * 引入Spring框架IOC核心功能需要的具体的jar包
-        * Spring框架的IOC的功能，那么根据Spring框架的体系结构图能看到，只需要引入如下的jar包
-            * Beans
-            * Core
-            * Context
-            * Expression Language
-
-        * Spring框架也需要引入日志相关的jar包
-            * 在spring-framework-3.0.2.RELEASE-dependencies/org.apache.commons/com.springsource.org.apache.commons.logging/1.1.1
-                * com.springsource.org.apache.commons.logging-1.1.1.jar
-
-            * 还需要引入log4j的jar包 spring-framework-3.0.2.RELEASE-dependencies\org.apache.log4j\com.springsource.org.apache.log4j\1.2.15
-                * com.springsource.org.apache.log4j-1.2.15.jar
-
-4. 步骤三：创建对应的包结构，编写Java的类，要注意：以后使用Spring框架做开发，都需要来编写接口与实现类！！
-    * com.itcast.demo1
-        * UserService            -- 接口
-        * UserServiceImpl        -- 具体的实现类
-
-5. 步骤四：想把UserServiceImpl实现类的创建交给Spring框架来管理，需要创建Spring框架的配置文件，完成配置
-    * 在src目录下创建applicationContext.xml的配置文件，名称是可以任意的，但是一般都会使用默认名称！！
-
-    * 引入spring的约束，需要先找到具体的约束头信息！！
-        * spring-framework-3.2.0.RELEASE\docs\spring-framework-reference\html\xsd-config.html
-        * 具体的约束如下：        
-            &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
-                xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-                xsi:schemaLocation=&quot;
-                    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd&quot;&gt;
-            &lt;/beans&gt;
-
-    * 完成UserService的配置
-        &lt;!-- Spring的快速入门 --&gt;
-        &lt;bean id=&quot;userService&quot; class=&quot;com.itcast.demo1.UserServiceImpl&quot;/&gt;
-
-6. 步骤五：编写测试程序，采用Spring框架的工厂方式来获取到UserService接口的具体实现类！！
-    public void demo2(){
-        // 使用Spring的工厂:
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);
-        // 通过工厂获得类:
-        UserService userService = (UserService) applicationContext.getBean(&quot;userService&quot;);
-        userService.sayHello();
-    }
-</code></pre><hr>
-<p><strong>入门总结之Spring框架中的工厂（了解）</strong></p>
-<pre><code>1. ApplicationContext接口
-    * 使用ApplicationContext工厂的接口，使用该接口可以获取到具体的Bean对象
-    * 该接口下有两个具体的实现类
-        * ClassPathXmlApplicationContext            -- 加载类路径下的Spring配置文件
-        * FileSystemXmlApplicationContext            -- 加载本地磁盘下的Spring配置文件
-
-2. BeanFactory工厂（是Spring框架早期的创建Bean对象的工厂接口）
-    * 使用BeanFactory接口也可以获取到Bean对象
-        public void run(){
-            BeanFactory factory = new XmlBeanFactory(new ClassPathResource(&quot;applicationContext.xml&quot;));
-            UserService us = (UserService) factory.getBean(&quot;us&quot;);
-            us.sayHello();
-        }
-
-    * BeanFactory和ApplicationContext的区别
-        * BeanFactory                -- BeanFactory采取延迟加载，第一次getBean时才会初始化Bean
-        * ApplicationContext        -- 在加载applicationContext.xml时候就会创建具体的Bean对象的实例，还提供了一些其他的功能
-            * 事件传递
-            * Bean自动装配
-            * 各种不同应用层的Context实现
-</code></pre><hr>
-<p><strong>入门总结之配置Spring框架编写XML的提示</strong></p>
-<pre><code>1. 步骤一：先复制， http://www.springframework.org/schema/beans/spring-beans.xsd    
-2. 步骤二：搜索XML Catalog，点击Add按钮
-3. 步骤三：先选择Location的schema的约束地址
-    * E:\class\2016\JavaEE28\day35_Spring框架第一天\资料\spring-framework-4.2.4.RELEASE-schema\beans\spring-beans-4.2.xsd
-4. 步骤四：注意：Key type要选择：Schema location
-5. 步骤五：Key把http://www.springframework.org/schema/beans/spring-beans.xsd复制上
-</code></pre><hr>
-<h3 id="技术分析之Spring框架的Bean管理的配置文件方式"><a href="#技术分析之Spring框架的Bean管理的配置文件方式" class="headerlink" title="技术分析之Spring框架的Bean管理的配置文件方式"></a>技术分析之Spring框架的Bean管理的配置文件方式</h3><hr>
+<h1 id="Spring-框架-Bean-管理的配置文件方式"><a href="#Spring-框架-Bean-管理的配置文件方式" class="headerlink" title="Spring 框架 Bean 管理的配置文件方式"></a>Spring 框架 Bean 管理的配置文件方式</h1><hr>
 <p><strong>技术分析之Spring框架中<bean>标签的配置</bean></strong></p>
 <pre><code>1. id属性和name属性的区别
     * id        -- Bean起个名字，在约束中采用ID的约束，唯一
@@ -192,14 +55,14 @@
             * web容器中会自动调用，但是main函数或测试用例需要手动调用（需要使用ClassPathXmlApplicationContext的close()方法）
 </code></pre><hr>
 <p><strong>技术分析之依赖注入（DI）</strong></p>
-<pre><code>1. IOC和DI的概念
-    * IOC        -- Inverse of Control，控制反转，将对象的创建权反转给Spring！！
+<pre><code>1. IoC和DI的概念
+    * IoC        -- Inverse of Control，控制反转，将对象的创建权反转给Spring！！
     * DI        -- Dependency Injection，依赖注入，在Spring框架负责创建Bean对象时，动态的将依赖对象注入到Bean组件中！！
 
 2.  DI（依赖注入）
-    * 例如：如果UserServiceImpl的实现类中有一个属性，那么使用Spring框架的IOC功能时，可以通过依赖注入把该属性的值传入进来！！
+    * 例如：如果UserServiceImpl的实现类中有一个属性，那么使用Spring框架的IoC功能时，可以通过依赖注入把该属性的值传入进来！！
     * 具体的配置如下
-        &lt;bean id=&quot;us&quot; class=&quot;com.itheima.demo1.UserServiceImpl&quot;&gt;
+        &lt;bean id=&quot;us&quot; class=&quot;com.renkaigis.demo1.UserServiceImpl&quot;&gt;
             &lt;property name=&quot;uname&quot; value=&quot;小风&quot;/&gt;
         &lt;/bean&gt;
 </code></pre><hr>
@@ -225,7 +88,7 @@
             }
 
         * 编写配置文件
-            &lt;bean id=&quot;car&quot; class=&quot;com.itheima.demo4.Car&quot;&gt;
+            &lt;bean id=&quot;car&quot; class=&quot;com.renkaigis.demo4.Car&quot;&gt;
                 &lt;constructor-arg name=&quot;name&quot; value=&quot;大奔&quot;/&gt;
                 &lt;constructor-arg name=&quot;money&quot; value=&quot;100&quot;/&gt;
             &lt;/bean&gt;
@@ -237,7 +100,7 @@
     3. 如果Java类的属性是另一个Java的类，那么需要怎么来注入值呢？
         * &lt;property name=&quot;name&quot; rel=&quot;具体的Bean的ID或者name的值&quot;/&gt;
         * 例如：
-            &lt;bean id=&quot;person&quot; class=&quot;com.itheima.demo4.Person&quot;&gt;
+            &lt;bean id=&quot;person&quot; class=&quot;com.renkaigis.demo4.Person&quot;&gt;
                 &lt;property name=&quot;pname&quot; value=&quot;美美&quot;/&gt;
                 &lt;property name=&quot;car2&quot; ref=&quot;car2&quot;/&gt;
             &lt;/bean&gt;
@@ -251,7 +114,7 @@
     * p:属性名-ref = &quot;&quot;
 
 3. 步骤三：测试
-    * &lt;bean id=&quot;person&quot; class=&quot;com.itheima.demo4.Person&quot; p:pname=&quot;老王&quot; p:car2-ref=&quot;car2&quot;/&gt;
+    * &lt;bean id=&quot;person&quot; class=&quot;com.renkaigis.demo4.Person&quot; p:pname=&quot;老王&quot; p:car2-ref=&quot;car2&quot;/&gt;
 </code></pre><hr>
 <p><strong>技术分析之Spring的3.0提供了一种:SpEL注入方式（了解）</strong></p>
 <pre><code>1. SpEL：Spring Expression Language是Spring的表达式语言，有一些自己的语法
@@ -260,7 +123,7 @@
 
 3. 例如如下的代码
     &lt;!-- SpEL的方式 --&gt;
-    &lt;bean id=&quot;person&quot; class=&quot;com.itheima.demo4.Person&quot;&gt;
+    &lt;bean id=&quot;person&quot; class=&quot;com.renkaigis.demo4.Person&quot;&gt;
         &lt;property name=&quot;pname&quot; value=&quot;#{&apos;小风&apos;}&quot;/&gt;
         &lt;property name=&quot;car2&quot; value=&quot;#{car2}&quot;/&gt;
     &lt;/bean&gt;
@@ -275,7 +138,7 @@
 </code></pre><hr>
 <p><strong>技术分析之数组，集合(List,Set,Map)，Properties等的注入</strong></p>
 <pre><code>1. 如果是数组或者List集合，注入配置文件的方式是一样的
-    &lt;bean id=&quot;collectionBean&quot; class=&quot;com.itheima.demo5.CollectionBean&quot;&gt;
+    &lt;bean id=&quot;collectionBean&quot; class=&quot;com.renkaigis.demo5.CollectionBean&quot;&gt;
         &lt;property name=&quot;arrs&quot;&gt;
             &lt;list&gt;
                 &lt;value&gt;美美&lt;/value&gt;
@@ -318,42 +181,279 @@
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
                     &quot;applicationContext.xml&quot;,&quot;applicationContext2.xml&quot;);
 </code></pre><hr>
-<h3 id="Spring框架整合WEB"><a href="#Spring框架整合WEB" class="headerlink" title="Spring框架整合WEB"></a>Spring框架整合WEB</h3><hr>
-<p><strong>Spring框架整合WEB（不是最终的方案）</strong></p>
-<pre><code>1. 创建JavaWEB项目，引入Spring的开发包。编写具体的类和方法。
-    * 环境搭建好后，启动服务器来测试项目，发送每访问一次都会加载一次配置文件，这样效率会非常非常慢！！
+<h3 id="技术分析之Spring框架的IoC功能之注解的方式"><a href="#技术分析之Spring框架的IoC功能之注解的方式" class="headerlink" title="技术分析之Spring框架的IoC功能之注解的方式"></a>技术分析之Spring框架的IoC功能之注解的方式</h3><hr>
+<p><strong>Spring框架的IoC之注解方式的快速入门</strong></p>
+<pre><code>1. 步骤一：导入注解开发所有需要的jar包
+    * 引入IoC容器必须的6个jar包
+    * 多引入一个：Spring框架的AOP的jar包，spring-aop的jar包
 
-2. 解决上面的问题
-    * 将工厂创建好了以后放入到ServletContext域中.使用工厂的时候,从ServletContext中获得.
-        * ServletContextListener:用来监听ServletContext对象的创建和销毁的监听器.
-        * 当ServletContext对象创建的时候:创建工厂 , 将工厂存入到ServletContext
+2. 步骤二：创建对应的包结构，编写Java的类
+    * UserService            -- 接口
+    * UserServiceImpl        -- 具体的实现类
 
-3. Spring整合Web项目
-    * 引入spring-web-4.2.4.RELEASE.jar包
-    * 配置监听器
-         &lt;!-- 配置Spring的核心监听器: --&gt;
-         &lt;listener&gt;
-             &lt;listener-class&gt;org.springframework.web.context.ContextLoaderListener&lt;/listener-class&gt;
-         &lt;/listener&gt;
-         &lt;context-param&gt;
-             &lt;param-name&gt;contextConfigLocation&lt;/param-name&gt;
-             &lt;param-value&gt;classpath:applicationContext.xml&lt;/param-value&gt;
-         &lt;/context-param&gt;
+3. 步骤三：在src的目录下，创建applicationContext.xml的配置文件，然后引入约束。注意：因为现在想使用注解的方式，那么引入的约束发生了变化
+    * 需要引入context的约束，具体的约束如下
+        &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+            xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+            xmlns:context=&quot;http://www.springframework.org/schema/context&quot; xsi:schemaLocation=&quot;
+                http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd&quot;&gt; &lt;!-- bean definitions here --&gt;
 
-4. 修改servlet的代码
-    * 从ServletContext中获得工厂
-    * 具体代码如下
-        ServletContext servletContext = ServletActionContext.getServletContext();
-        // 需要使用WEB的工厂的方式
-        WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(servletContext);
-        CustomerService cs = (CustomerService) context.getBean(&quot;customerService&quot;);
-        cs.save();    
+        &lt;/beans&gt;
+
+4. 步骤四：在applicationContext.xml配置文件中开启组件扫描
+    * Spring的注解开发:组件扫描
+        &lt;context:component-scan base-package=&quot;com.renkaigis.demo1&quot;/&gt;
+
+    * 注意：可以采用如下配置
+        &lt;context:component-scan base-package=&quot;com.renkaigis&quot;/&gt; 这样是扫描com.renkaigis包下所有的内容
+
+5. 步骤五：在UserServiceImpl的实现类上添加注解
+    * @Component(value=&quot;userService&quot;)    -- 相当于在XML的配置方式中 &lt;bean id=&quot;userService&quot; class=&quot;...&quot;&gt;
+
+6. 步骤六：编写测试代码
+    public class SpringDemo1 {
+        @Test
+        public void run1(){
+            ApplicationContext ac = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);
+            UserService us = (UserService) ac.getBean(&quot;userService&quot;);
+            us.save();
+        }
+    }
+</code></pre><hr>
+<p><strong>Spring框架中Bean管理的常用注解</strong></p>
+<pre><code>1. @Component:组件.(作用在类上)
+
+2. Spring中提供@Component的三个衍生注解:(功能目前来讲是一致的)
+    * @Controller        -- 作用在WEB层
+    * @Service            -- 作用在业务层
+    * @Repository        -- 作用在持久层
+
+    * 说明：这三个注解是为了让标注类本身的用途清晰，Spring在后续版本会对其增强
+
+3. 属性注入的注解(说明：使用注解注入的方式,可以不用提供set方法)
+    * 如果是注入的普通类型，可以使用value注解
+        * @Value            -- 用于注入普通类型
+
+    * 如果注入的是对象类型，使用如下注解
+        * @Autowired        -- 默认按类型进行自动装配
+            * 如果想按名称注入
+            * @Qualifier    -- 强制使用名称注入
+
+    * @Resource                -- 相当于@Autowired和@Qualifier一起使用
+        * 强调：Java提供的注解
+        * 属性使用name属性
+</code></pre><hr>
+<p><strong>Bean的作用范围和生命周期的注解</strong></p>
+<pre><code>1. Bean的作用范围注解
+    * 注解为@Scope(value=&quot;prototype&quot;)，作用在类上。值如下：
+        * singleton        -- 单例，默认值
+        * prototype        -- 多例
+
+2. Bean的生命周期的配置（了解）
+    * 注解如下：
+        * @PostConstruct    -- 相当于init-method
+        * @PreDestroy        -- 相当于destroy-method
+</code></pre><hr>
+<p><strong>Spring框架整合JUnit单元测试</strong></p>
+<pre><code>1. 为了简化了JUnit的测试，使用Spring框架也可以整合测试
+2. 具体步骤
+    * 要求：必须先有JUnit的环境（即已经导入了JUnit4的开发环境）！！
+
+    * 步骤一：在程序中引入:spring-test.jar
+    * 步骤二：在具体的测试类上添加注解
+        @RunWith(SpringJUnit4ClassRunner.class)
+        @ContextConfiguration(&quot;classpath:applicationContext.xml&quot;)
+        public class SpringDemo1 {
+
+            @Resource(name=&quot;userService&quot;)
+            private UserService userService;
+
+            @Test
+            public void demo2(){
+                userService.save();
+            }
+        }
 </code></pre><hr>
 ]]></content>
     
     <summary type="html">
     
-      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/images/JavaWeb/spring0100.png&quot;&gt;&lt;/div&gt;
+      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/javaweb/spring0200.png&quot;&gt;&lt;/div&gt;
+
+&lt;p id=&quot;div-border-left-blue&quot;&gt;Spring IoC 控制反转 &amp;amp; 整合 JUnit 单元测试。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="JavaWeb" scheme="http://yoursite.com/categories/JavaWeb/"/>
+    
+    
+      <category term="JavaWeb" scheme="http://yoursite.com/tags/JavaWeb/"/>
+    
+      <category term="Spring" scheme="http://yoursite.com/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JavaWeb 之 Spring 快速入门</title>
+    <link href="http://yoursite.com/posts/JavaWeb/2018-08-03-JavaWeb-Spring01.html"/>
+    <id>http://yoursite.com/posts/JavaWeb/2018-08-03-JavaWeb-Spring01.html</id>
+    <published>2018-08-03T07:46:23.000Z</published>
+    <updated>2018-08-10T06:40:08.210Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/javaweb/spring0100.png"></div>
+
+<p id="div-border-left-blue">Spring 快速入门。</p>
+
+<a id="more"></a>
+<hr>
+<h1 id="Spring-框架的概述和入门"><a href="#Spring-框架的概述和入门" class="headerlink" title="Spring 框架的概述和入门"></a>Spring 框架的概述和入门</h1><hr>
+<h2 id="什么是-Spring-框架"><a href="#什么是-Spring-框架" class="headerlink" title="什么是 Spring 框架"></a>什么是 Spring 框架</h2><h3 id="Spring-框架的概述"><a href="#Spring-框架的概述" class="headerlink" title="Spring 框架的概述"></a>Spring 框架的概述</h3><ul>
+<li><p>Spring 是一个开放源代码的设计层面框架，他解决的是 <code>业务逻辑层</code> 和其他各层的松耦合问题。</p>
+</li>
+<li><p>Spring 是于 2003 年兴起的一个轻量级的 Java 开发框架，由 Rod Johnson 在其著作 《Expert One-On-One J2EE Development and Design》 中阐述的部分理念和原型衍生而来。</p>
+</li>
+<li><p>它是为了解决企业应用开发的复杂性而创建的。框架的主要优势之一就是其分层架构，分层架构允许使用者选择使用哪一个组件，同时为 J2EE 应用程序开发提供集成的框架。</p>
+</li>
+<li><p>Spring 使用基本的 <code>JavaBean</code> 来完成以前只可能由 <code>EJB</code> 完成的事情。然而，Spring 的用途不仅限于服务器端的开发。从简单性、可测试性和松耦合的角度而言，任何 Java 应用都可以从 Spring 中受益。</p>
+</li>
+<li><p>Spring 的核心是 <code>控制反转（IoC）</code> 和 <code>面向切面（AOP）</code>。简单来说，Spring 是一个分层的 <code>JavaSE/EEfull-stack（一站式）</code> 轻量级开源框架。</p>
+</li>
+<li><p>Java EE 开发分成三层结构</p>
+<blockquote>
+<p>WEB层        ———— Spring MVC<br>业务层    ———— Bean管理：（IoC）<br>持久层    ———— Spring 的 JDBC 模板。ORM 模板用于整合其他的持久层框架。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="Spring-框架的特点"><a href="#Spring-框架的特点" class="headerlink" title="Spring 框架的特点"></a>Spring 框架的特点</h2><ul>
+<li><p>方便解耦，简化开发</p>
+<blockquote>
+<p>Spring 就是一个大工厂，可以将所有对象创建和依赖关系维护，交给 Spring 管理。</p>
+</blockquote>
+</li>
+<li><p>AOP 编程的支持</p>
+<blockquote>
+<p>Spring 提供面向切面编程，可以方便的实现对程序进行权限拦截、运行监控等功能。</p>
+</blockquote>
+</li>
+<li><p>声明式事务的支持</p>
+<blockquote>
+<p>只需要通过配置就可以完成对事务的管理，而无需手动编程。</p>
+</blockquote>
+</li>
+<li><p>方便程序的测试</p>
+<blockquote>
+<p>Spring 对 Junit4 支持，可以通过注解方便的测试 Spring 程序。</p>
+</blockquote>
+</li>
+<li><p>方便集成各种优秀框架</p>
+<blockquote>
+<p>Spring 不排斥各种优秀的开源框架，其内部提供了对各种优秀框架（如：Struts2、Hibernate、MyBatis、Quartz等）的直接支持。</p>
+</blockquote>
+</li>
+<li><p>降低 JavaEE API 的使用难度</p>
+<blockquote>
+<p>Spring 对 JavaEE 开发中非常难用的一些 API（JDBC、JavaMail、远程调用等），都提供了封装，使这些 API 应用难度大大降低。</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h1 id="Spring-框架的-IoC-核心功能快速入门"><a href="#Spring-框架的-IoC-核心功能快速入门" class="headerlink" title="Spring 框架的 IoC 核心功能快速入门"></a>Spring 框架的 IoC 核心功能快速入门</h1><hr>
+<h2 id="IoC-的功能"><a href="#IoC-的功能" class="headerlink" title="IoC 的功能"></a>IoC 的功能</h2><ul>
+<li><p>IoC（Inverse of Control），<code>控制反转</code>，将对象的创建权反转给 Spring ！！</p>
+</li>
+<li><p>使用 IoC 可以解决的程序 <code>耦合性高</code> 的问题！！</p>
+</li>
+</ul>
+<h2 id="IoC-快速入门"><a href="#IoC-快速入门" class="headerlink" title="IoC 快速入门"></a>IoC 快速入门</h2><h3 id="步骤一：下载-Spring-框架的开发包"><a href="#步骤一：下载-Spring-框架的开发包" class="headerlink" title="步骤一：下载 Spring 框架的开发包"></a>步骤一：下载 Spring 框架的开发包</h3><ul>
+<li><p>官网：<a href="http://spring.io/" target="_blank" rel="external">http://spring.io/</a></p>
+</li>
+<li><p>下载地址：<a href="http://repo.springsource.org/libs-release-local/org/springframework/spring" target="_blank" rel="external">http://repo.springsource.org/libs-release-local/org/springframework/spring</a></p>
+</li>
+<li><p>解压：（Spring 目录结构）</p>
+<blockquote>
+<p><code>docs</code>        ———— API 和开发规范<br><code>libs</code>        ———— jar 包和源码<br><code>schema</code>    ———— 约束</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="步骤二：创建-JavaWEB-项目，引入-Spring-的开发包"><a href="#步骤二：创建-JavaWEB-项目，引入-Spring-的开发包" class="headerlink" title="步骤二：创建 JavaWEB 项目，引入 Spring 的开发包"></a>步骤二：创建 JavaWEB 项目，引入 Spring 的开发包</h3><h4 id="引入Spring框架IoC核心功能需要的具体的jar包"><a href="#引入Spring框架IoC核心功能需要的具体的jar包" class="headerlink" title="引入Spring框架IoC核心功能需要的具体的jar包"></a>引入Spring框架IoC核心功能需要的具体的jar包</h4><ul>
+<li>Spring 框架的 IoC 的功能，那么根据 Spring 框架的体系结构图能看到，只需要引入如下的 jar 包<blockquote>
+<p><code>Beans</code><br><code>Core</code><br><code>Context</code><br><code>Expression Language</code></p>
+</blockquote>
+</li>
+</ul>
+<h4 id="Spring-框架也需要引入日志相关的-jar-包"><a href="#Spring-框架也需要引入日志相关的-jar-包" class="headerlink" title="Spring 框架也需要引入日志相关的 jar 包"></a>Spring 框架也需要引入日志相关的 jar 包</h4><ul>
+<li>spring-framework-3.0.2.RELEASE-dependencies/org.apache.commons/com.springsource.org.apache.commons.logging/1.1.1</li>
+</ul>
+<blockquote>
+<p>com.springsource.org.apache.commons.logging-1.1.1.jar</p>
+</blockquote>
+<h4 id="引入-log4j-的jar包"><a href="#引入-log4j-的jar包" class="headerlink" title="引入 log4j 的jar包"></a>引入 log4j 的jar包</h4><ul>
+<li>spring-framework-3.0.2.RELEASE-dependencies\org.apache.log4j\com.springsource.org.apache.log4j\1.2.15</li>
+</ul>
+<blockquote>
+<p>com.springsource.org.apache.log4j-1.2.15.jar</p>
+</blockquote>
+<p><em>注意</em>：记得在 src 目录下导入 log4j 的属性文件 <code>log4j.properties</code></p>
+<h3 id="步骤三：编写-Java-类"><a href="#步骤三：编写-Java-类" class="headerlink" title="步骤三：编写 Java 类"></a>步骤三：编写 Java 类</h3><p>创建对应的包结构，编写 Java 的类。</p>
+<p><em>注意：</em>以后使用 Spring 框架做开发，都需要来编写接口与实现类！！</p>
+<ul>
+<li>com.renkaigis.demo1<blockquote>
+<p>UserService            ———— 接口<br>UserServiceImpl        ———— 具体的实现类</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="步骤四：编写配置文件-applicationContext-xml"><a href="#步骤四：编写配置文件-applicationContext-xml" class="headerlink" title="步骤四：编写配置文件 applicationContext.xml"></a>步骤四：编写配置文件 applicationContext.xml</h3><p>想把 UserServiceImpl 实现类的创建交给 <code>Spring</code> 框架来管理，需要创建 Spring 框架的配置文件，完成配置。</p>
+<ul>
+<li><p>在 src 目录下创建 <code>applicationContext.xml</code> 的配置文件，名称是可以任意的，但是一般都会使用默认名称！</p>
+</li>
+<li><p>引入 spring 的约束，需要先找到具体的约束头信息！</p>
+</li>
+<li><p>spring-framework-3.2.0.RELEASE\docs\spring-framework-reference\html\xsd-config.html</p>
+</li>
+<li><p>具体的约束如下：</p>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></div><div class="line">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></div><div class="line">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans </span></div><div class="line">	   http://www.springframework.org/schema/beans/spring-beans.xsd"&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>完成 UserService 的配置</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- Spring的快速入门 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"userService"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.demo1.UserServiceImpl"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="步骤五：编写测试程序"><a href="#步骤五：编写测试程序" class="headerlink" title="步骤五：编写测试程序"></a>步骤五：编写测试程序</h3><p>采用 Spring 框架的 <code>工厂方式</code> 来获取到 UserService 接口的具体实现类！！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.renkaigis.demo1;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.junit.Test;</div><div class="line"><span class="keyword">import</span> org.springframework.context.ApplicationContext;</div><div class="line"><span class="keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 测试 IoC 的程序</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo1</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 原来的方式</div><div class="line">     */</div><div class="line">    <span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run1</span><span class="params">()</span> </span>&#123;</div><div class="line">        UserService usi = <span class="keyword">new</span> UserServiceImpl();</div><div class="line">        usi.sayHello();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * 使用 Spring 框架的方式</div><div class="line">     */</div><div class="line">    <span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run2</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">// 创建工厂，加载核心配置文件</span></div><div class="line">        ApplicationContext ac = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"applicationContext.xml"</span>);</div><div class="line">        <span class="comment">// 从工厂中获取对象</span></div><div class="line">        UserService us = (UserService) ac.getBean(<span class="string">"userService"</span>);</div><div class="line">        <span class="comment">// 调用对象的方法执行</span></div><div class="line">        us.sayHello();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Spring-框架中的工厂（了解）"><a href="#Spring-框架中的工厂（了解）" class="headerlink" title="Spring 框架中的工厂（了解）"></a>Spring 框架中的工厂（了解）</h2><h3 id="ApplicationContext-接口"><a href="#ApplicationContext-接口" class="headerlink" title="ApplicationContext 接口"></a>ApplicationContext 接口</h3><ul>
+<li><p>使用 <code>ApplicationContext</code> 工厂的接口，使用该接口可以获取到具体的 <code>Bean</code> 对象。</p>
+</li>
+<li><p>启动服务器的时候即创建好了对象。</p>
+</li>
+<li><p>该接口下有两个具体的实现类：</p>
+<blockquote>
+<p>ClassPathXmlApplicationContext————加载<code>类路径</code>下的 Spring 配置文件<br>FileSystemXmlApplicationContext————加载本地磁盘下的 Spring 配置文件</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="BeanFactory工厂（过时）"><a href="#BeanFactory工厂（过时）" class="headerlink" title="BeanFactory工厂（过时）"></a>BeanFactory工厂（过时）</h3><p>（是Spring框架早期的创建Bean对象的工厂接口）</p>
+<ul>
+<li><p>启动服务器的时候不会创建对象，只有在第一次调用的时候才会创建。</p>
+</li>
+<li><p>使用 <code>BeanFactory</code> 接口也可以获取到 Bean 对象</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</div><div class="line">	BeanFactory factory = <span class="keyword">new</span> XmlBeanFactory(<span class="keyword">new</span> ClassPathResource(<span class="string">"applicationContext.xml"</span>));</div><div class="line">	UserService us = (UserService) factory.getBean(<span class="string">"userService"</span>);</div><div class="line">	us.sayHello();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="BeanFactory-和-ApplicationContext-的区别"><a href="#BeanFactory-和-ApplicationContext-的区别" class="headerlink" title="BeanFactory 和 ApplicationContext 的区别"></a><code>BeanFactory</code> 和 <code>ApplicationContext</code> 的区别</h3><ul>
+<li><p>BeanFactory————BeanFactory 采取延迟加载，第一次 <code>1getBean</code> 时才会初始化 Bean</p>
+</li>
+<li><p>ApplicationContext————在加载 <code>applicationContext.xml</code> 时候就会创建具体的 Bean 对象的实例，还提供了一些其他的功能：</p>
+<blockquote>
+<p>事件传递<br>Bean 自动装配<br>各种不同应用层的 Context 实现</p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/javaweb/spring0100.png&quot;&gt;&lt;/div&gt;
 
 &lt;p id=&quot;div-border-left-blue&quot;&gt;Spring 快速入门。&lt;/p&gt;
     
@@ -373,9 +473,9 @@
     <link href="http://yoursite.com/posts/JavaWeb/2018-08-01-JavaWeb-Struts203.html"/>
     <id>http://yoursite.com/posts/JavaWeb/2018-08-01-JavaWeb-Struts203.html</id>
     <published>2018-08-01T01:32:15.000Z</published>
-    <updated>2018-08-10T02:14:37.669Z</updated>
+    <updated>2018-08-10T06:46:27.972Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/struts20300.png"></div>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/javaweb/struts20300.png"></div>
 
 <p id="div-border-left-blue">OGNL 表达式  &amp;  Struts2 值栈  &amp;  OGNL 特殊符号<br></p>
 
@@ -581,7 +681,7 @@
     
     <summary type="html">
     
-      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/images/JavaWeb/struts20300.png&quot;&gt;&lt;/div&gt;
+      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/javaweb/struts20300.png&quot;&gt;&lt;/div&gt;
 
 &lt;p id=&quot;div-border-left-blue&quot;&gt;OGNL 表达式  &amp;amp;  Struts2 值栈  &amp;amp;  OGNL 特殊符号&lt;br&gt;&lt;/p&gt;
     
@@ -601,9 +701,9 @@
     <link href="http://yoursite.com/posts/JavaWeb/2018-07-22-JavaWeb-Struts202.html"/>
     <id>http://yoursite.com/posts/JavaWeb/2018-07-22-JavaWeb-Struts202.html</id>
     <published>2018-07-22T09:56:43.000Z</published>
-    <updated>2018-08-06T06:34:20.299Z</updated>
+    <updated>2018-08-10T06:46:25.453Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/struts20200.png"></div>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/javaweb/struts20200.png"></div>
 
 <p id="div-border-left-blue">Servlet API、封装数据、拦截器。</p>
 
@@ -630,9 +730,9 @@
 <p><code>struts.xml 配置文件：</code></p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"demo1"</span> <span class="attr">namespace</span>=<span class="string">"/"</span> <span class="attr">extends</span>=<span class="string">"struts-default"</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!--完全解耦合的方式--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"demo1Action"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.demo1.Demo1Action"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"success"</span>&gt;</span>/demo1/success.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">action</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">package</span>&gt;</span></div></pre></td></tr></table></figure>
 <h4 id="案例结果："><a href="#案例结果：" class="headerlink" title="案例结果："></a>案例结果：</h4><p>输入信息：</p>
-<p><img src="http://image.renkaigis.com/images/JavaWeb/struts20201.png"></p>
+<p><img src="http://image.renkaigis.com/javaweb/struts20201.png"></p>
 <p>跳转并取值：</p>
-<p><img src="http://image.renkaigis.com/images/JavaWeb/struts20202.png"></p>
+<p><img src="http://image.renkaigis.com/javaweb/struts20202.png"></p>
 <p>控制台输出结果：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">password:[12345]</div><div class="line">username:[renkai]</div></pre></td></tr></table></figure>
 <h3 id="使用原生-Servlet-的-API-的方式"><a href="#使用原生-Servlet-的-API-的方式" class="headerlink" title="使用原生 Servlet 的 API 的方式"></a>使用原生 Servlet 的 API 的方式</h3><p>直接访问 <code>Servlet API</code> 将使 <code>Action</code> 类与 <code>Servlet API</code> 耦合在一起，<code>Servlet API</code> 对象均由 <code>Servlet</code> 容器来构造，与这些对象绑定在一起，测试过程中就必须有 <code>Servlet</code> 容器，这样不便于 <code>Action</code> 类的测试，但有时候，确实需要访问这些对象，<code>Struts2</code> 同样提供了直接访问 <code>ServletAPI</code> 对象的方式。</p>
@@ -650,9 +750,9 @@
 <p><code>struts.xml 配置文件：</code></p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--原生 Servlet API 方式--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"demo2Action"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.demo1.Demo2Action"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"success"</span>&gt;</span>/demo1/success.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></div></pre></td></tr></table></figure>
 <h4 id="案例结果：-1"><a href="#案例结果：-1" class="headerlink" title="案例结果："></a>案例结果：</h4><p>输入信息：</p>
-<p><img src="http://image.renkaigis.com/images/JavaWeb/struts20203.png"></p>
+<p><img src="http://image.renkaigis.com/javaweb/struts20203.png"></p>
 <p>跳转并取值：</p>
-<p><img src="http://image.renkaigis.com/images/JavaWeb/struts20204.png"></p>
+<p><img src="http://image.renkaigis.com/javaweb/struts20204.png"></p>
 <hr>
 <h1 id="结果类型的跳转"><a href="#结果类型的跳转" class="headerlink" title="结果类型的跳转"></a>结果类型的跳转</h1><hr>
 <p>结果页面存在两种方式</p>
@@ -819,7 +919,7 @@
     
     <summary type="html">
     
-      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/images/JavaWeb/struts20200.png&quot;&gt;&lt;/div&gt;
+      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/javaweb/struts20200.png&quot;&gt;&lt;/div&gt;
 
 &lt;p id=&quot;div-border-left-blue&quot;&gt;Servlet API、封装数据、拦截器。&lt;/p&gt;
     
@@ -839,9 +939,9 @@
     <link href="http://yoursite.com/posts/JavaWeb/2018-06-27-JavaWeb-Struts201.html"/>
     <id>http://yoursite.com/posts/JavaWeb/2018-06-27-JavaWeb-Struts201.html</id>
     <published>2018-06-27T13:39:05.000Z</published>
-    <updated>2018-06-28T08:57:06.564Z</updated>
+    <updated>2018-08-10T06:46:13.237Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/struts20100.png"></div>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/javaweb/struts20100.png"></div>
 
 <p id="div-border-left-blue">Struts2 快速入门。</p>
 
@@ -1128,7 +1228,7 @@
     
     <summary type="html">
     
-      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/images/JavaWeb/struts20100.png&quot;&gt;&lt;/div&gt;
+      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/javaweb/struts20100.png&quot;&gt;&lt;/div&gt;
 
 &lt;p id=&quot;div-border-left-blue&quot;&gt;Struts2 快速入门。&lt;/p&gt;
     
@@ -1379,9 +1479,9 @@
     <link href="http://yoursite.com/posts/JavaWeb/2018-06-05-JavaWeb-Hibernate05.html"/>
     <id>http://yoursite.com/posts/JavaWeb/2018-06-05-JavaWeb-Hibernate05.html</id>
     <published>2018-06-05T07:21:45.000Z</published>
-    <updated>2018-06-11T02:52:57.674Z</updated>
+    <updated>2018-08-10T06:41:21.246Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/hibernate0500.png"></div>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/javaweb/hibernate0500.png"></div>
 
 <p id="div-border-left-green">Hibernate 查询方式与策略优化</p>
 
@@ -1710,7 +1810,7 @@
     
     <summary type="html">
     
-      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/images/JavaWeb/hibernate0500.png&quot;&gt;&lt;/div&gt;
+      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/javaweb/hibernate0500.png&quot;&gt;&lt;/div&gt;
 
 &lt;p id=&quot;div-border-left-green&quot;&gt;Hibernate 查询方式与策略优化&lt;/p&gt;
     
@@ -1730,9 +1830,9 @@
     <link href="http://yoursite.com/posts/JavaWeb/2018-06-01-JavaWeb-Hibernate04.html"/>
     <id>http://yoursite.com/posts/JavaWeb/2018-06-01-JavaWeb-Hibernate04.html</id>
     <published>2018-06-01T10:45:37.000Z</published>
-    <updated>2018-06-11T02:50:56.199Z</updated>
+    <updated>2018-08-10T06:41:12.377Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/hibernate0400.png"></div>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/javaweb/hibernate0400.png"></div>
 
 <p id="div-border-left-green">Hibernate 关联关系映射</p>
 
@@ -1885,7 +1985,7 @@
     
     <summary type="html">
     
-      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/images/JavaWeb/hibernate0400.png&quot;&gt;&lt;/div&gt;
+      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/javaweb/hibernate0400.png&quot;&gt;&lt;/div&gt;
 
 &lt;p id=&quot;div-border-left-green&quot;&gt;Hibernate 关联关系映射&lt;/p&gt;
     
@@ -1905,9 +2005,9 @@
     <link href="http://yoursite.com/posts/JavaWeb/2018-05-30-JavaWeb-Hibernate03.html"/>
     <id>http://yoursite.com/posts/JavaWeb/2018-05-30-JavaWeb-Hibernate03.html</id>
     <published>2018-05-30T08:43:19.000Z</published>
-    <updated>2018-05-30T09:02:05.060Z</updated>
+    <updated>2018-08-10T06:41:33.801Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/hibernate0300.png"></div>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/javaweb/hibernate0300.png"></div>
 
 <p id="div-border-left-green">Hibernate 持久化类、缓存与事务。</p>
 
@@ -2177,7 +2277,7 @@
     
     <summary type="html">
     
-      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/images/JavaWeb/hibernate0300.png&quot;&gt;&lt;/div&gt;
+      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/javaweb/hibernate0300.png&quot;&gt;&lt;/div&gt;
 
 &lt;p id=&quot;div-border-left-green&quot;&gt;Hibernate 持久化类、缓存与事务。&lt;/p&gt;
     
@@ -2197,9 +2297,9 @@
     <link href="http://yoursite.com/posts/JavaWeb/2018-05-30-JavaWeb-Hibernate02.html"/>
     <id>http://yoursite.com/posts/JavaWeb/2018-05-30-JavaWeb-Hibernate02.html</id>
     <published>2018-05-30T08:33:19.000Z</published>
-    <updated>2018-05-30T09:02:17.431Z</updated>
+    <updated>2018-08-10T06:41:30.064Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/hibernate0200.png"></div>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/javaweb/hibernate0200.png"></div>
 
 <p id="div-border-left-green">Hibernate 配置文件与接口方法。</p>
 
@@ -2415,7 +2515,7 @@
     
     <summary type="html">
     
-      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/images/JavaWeb/hibernate0200.png&quot;&gt;&lt;/div&gt;
+      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/javaweb/hibernate0200.png&quot;&gt;&lt;/div&gt;
 
 &lt;p id=&quot;div-border-left-green&quot;&gt;Hibernate 配置文件与接口方法。&lt;/p&gt;
     
@@ -2435,9 +2535,9 @@
     <link href="http://yoursite.com/posts/JavaWeb/2018-05-30-JavaWeb-Hibernate01.html"/>
     <id>http://yoursite.com/posts/JavaWeb/2018-05-30-JavaWeb-Hibernate01.html</id>
     <published>2018-05-30T08:23:19.000Z</published>
-    <updated>2018-05-30T09:02:24.518Z</updated>
+    <updated>2018-08-10T06:41:25.530Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/hibernate0100.png"></div>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/javaweb/hibernate0100.png"></div>
 
 <p id="div-border-left-green">Hibernate 快速入门。</p>
 
@@ -2570,7 +2670,7 @@
     
     <summary type="html">
     
-      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/images/JavaWeb/hibernate0100.png&quot;&gt;&lt;/div&gt;
+      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/javaweb/hibernate0100.png&quot;&gt;&lt;/div&gt;
 
 &lt;p id=&quot;div-border-left-green&quot;&gt;Hibernate 快速入门。&lt;/p&gt;
     
@@ -2590,16 +2690,16 @@
     <link href="http://yoursite.com/posts/JavaWeb/2018-05-28-JavaWeb-idea-new-web-project.html"/>
     <id>http://yoursite.com/posts/JavaWeb/2018-05-28-JavaWeb-idea-new-web-project.html</id>
     <published>2018-05-28T14:08:32.000Z</published>
-    <updated>2018-08-09T08:18:51.070Z</updated>
+    <updated>2018-08-10T06:42:26.509Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/idea.png" width="200px"></div>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/javaweb/idea.png" width="200px"></div>
 
 
 <p id="div-border-left-purple">习惯了 Eclipse ，想用用逼格高点的 idea 发现处处碰壁，终于搞好了，记录一下！</p>
 
 <a id="more"></a>
 <h2 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h2><p>新建项目 –&gt; Java EE –&gt; Web Application(<code>勾选 Create web.xml</code>)，点击 next，输入项目名和路径。</p>
-<div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/ideanewweb-01.png" title=""></div>
+<div align="center"><img src="http://image.renkaigis.com/javaweb/ideanewweb-01.png" title=""></div>
 
 <h2 id="建-classes-和-lib-文件夹"><a href="#建-classes-和-lib-文件夹" class="headerlink" title="建 classes 和 lib 文件夹"></a>建 classes 和 lib 文件夹</h2><p>在 WEB-INF 目录下创建两个文件夹 <code>classes</code>、<code>lib</code>：</p>
 <ul>
@@ -2609,26 +2709,26 @@
 </li>
 </ul>
 <h2 id="配置路径和-jar-包"><a href="#配置路径和-jar-包" class="headerlink" title="配置路径和 jar 包"></a>配置路径和 jar 包</h2><p>配置路径，File –&gt; Project Structure –&gt; Modules –&gt; Paths，选择 “Use module compile output path” -&gt; 将 Output path 和 Test output path 都选择刚刚创建的 classes 文件夹。</p>
-<div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/ideanewweb-02.png" title=""></div>
+<div align="center"><img src="http://image.renkaigis.com/javaweb/ideanewweb-02.png" title=""></div>
 
 <p>接着选择 Dependencies –&gt;  将 Module SDK 选择为自己电脑上的 jdk –&gt; 点击右边的“+”号  –&gt; 选择 “1 Jars or Directories” –&gt; 选择刚刚创建的 lib 文件夹 –&gt; 选择 jar directory，OK 就可以了。</p>
-<div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/ideanewweb-05.png" title=""></div>
+<div align="center"><img src="http://image.renkaigis.com/javaweb/ideanewweb-05.png" title=""></div>
 
-<div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/ideanewweb-03.png" title=""></div>
+<div align="center"><img src="http://image.renkaigis.com/javaweb/ideanewweb-03.png" title=""></div>
 
-<div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/ideanewweb-04.png" title=""></div>
+<div align="center"><img src="http://image.renkaigis.com/javaweb/ideanewweb-04.png" title=""></div>
 
 <h2 id="配置-Tomcat-服务器"><a href="#配置-Tomcat-服务器" class="headerlink" title="配置 Tomcat 服务器"></a>配置 Tomcat 服务器</h2><p>菜单 Run –&gt; Edit Configurations… –&gt; 点击 “+” 号 –&gt; 选择 “Tomcat Server” –&gt; 选择 “Local”，在如下界面输入自己的服务器名。</p>
-<div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/ideanewweb-06.png" title=""></div>
+<div align="center"><img src="http://image.renkaigis.com/javaweb/ideanewweb-06.png" title=""></div>
 
-<div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/ideanewweb-08.png" title=""></div>
+<div align="center"><img src="http://image.renkaigis.com/javaweb/ideanewweb-08.png" title=""></div>
 
 <p>点击 “Application server” 后面的 “Configure…”，弹出 Application Servers 窗口，选择本地安装的 Tomcat 目录 –&gt; OK；</p>
-<div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/ideanewweb-07.png" title=""></div>
+<div align="center"><img src="http://image.renkaigis.com/javaweb/ideanewweb-07.png" title=""></div>
 
 <p><code>HTTP port</code> 默认端口号是 8080，可以自己修改，也可以使用默认的。例如，我设为 <code>9090</code>，那么项目的访问路径就为：<code>http://localhost:9090</code></p>
 <p>左下角显示警告，是因为没有部署项目，点击右边的 <code>Fix</code> ，弹出下图，部署自己的项目，点击 ➕ 号，选择自己的 web 项目。右边可以输入项目的访问路径，可以默认，也可以自己定义。</p>
-<div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/ideanewweb-09.png" title=""></div>
+<div align="center"><img src="http://image.renkaigis.com/javaweb/ideanewweb-09.png" title=""></div>
 
 <ul>
 <li><p>若默认，则项目访问路径为：<code>http://localhost:9090</code>(我的9090端口)</p>
@@ -2637,13 +2737,13 @@
 </li>
 </ul>
 <h2 id="部署并运行项目"><a href="#部署并运行项目" class="headerlink" title="部署并运行项目"></a>部署并运行项目</h2><p>点击主界面上的 run 按钮，就可以启动服务器并运行自己的项目了。默认打开的是项目路径下的 <code>index.jsp</code>，可对他进行自定义编辑，看看自己的成果吧。</p>
-<div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/ideanewweb-10.png" title=""></div>
+<div align="center"><img src="http://image.renkaigis.com/javaweb/ideanewweb-10.png" title=""></div>
 
-<div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/ideanewweb-11.png" title=""></div>]]></content>
+<div align="center"><img src="http://image.renkaigis.com/javaweb/ideanewweb-11.png" title=""></div>]]></content>
     
     <summary type="html">
     
-      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/images/JavaWeb/idea.png&quot; width=&quot;200px&quot;&gt;&lt;/div&gt;
+      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/javaweb/idea.png&quot; width=&quot;200px&quot;&gt;&lt;/div&gt;
 
 
 &lt;p id=&quot;div-border-left-purple&quot;&gt;习惯了 Eclipse ，想用用逼格高点的 idea 发现处处碰壁，终于搞好了，记录一下！&lt;/p&gt;
@@ -2693,9 +2793,9 @@
     <link href="http://yoursite.com/posts/JavaWeb/2018-05-01-JavaWeb03-jsp.html"/>
     <id>http://yoursite.com/posts/JavaWeb/2018-05-01-JavaWeb03-jsp.html</id>
     <published>2018-05-01T14:08:57.000Z</published>
-    <updated>2018-05-01T15:18:51.807Z</updated>
+    <updated>2018-08-10T06:39:23.488Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/0300.png" title="JSP"></div>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/javaweb/0300.png" title="JSP"></div>
 
 <a id="more"></a>
 <h1 id="JSP-简介"><a href="#JSP-简介" class="headerlink" title="JSP 简介"></a>JSP 简介</h1><h2 id="JSP-概念"><a href="#JSP-概念" class="headerlink" title="JSP 概念"></a>JSP 概念</h2><p><code>JSP</code>（Java Server Pages），java 服务器页面，其根本是一个简化的 Servlet 设计，是一种动态网页技术标准。JSP 是在传统的网页 <code>HTML（标准通用标记语言的子集）文件(*.htm,*.html)</code>中插入 <code>Java 程序段</code>(Scriptlet)和 <code>JSP 标记</code>(tag)，从而形成 JSP 文件，后缀名为(<code>*.jsp</code>)。 用 JSP 开发的 Web 应用是跨平台的，既能在 Linux 下运行，也能在其他操作系统上运行。</p>
@@ -2723,7 +2823,7 @@
     
     <summary type="html">
     
-      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/images/JavaWeb/0300.png&quot; title=&quot;JSP&quot;&gt;&lt;/div&gt;
+      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/javaweb/0300.png&quot; title=&quot;JSP&quot;&gt;&lt;/div&gt;
     
     </summary>
     
@@ -2739,9 +2839,9 @@
     <link href="http://yoursite.com/posts/JavaWeb/2018-04-30-JavaWeb02-request-response.html"/>
     <id>http://yoursite.com/posts/JavaWeb/2018-04-30-JavaWeb02-request-response.html</id>
     <published>2018-04-30T13:24:06.000Z</published>
-    <updated>2018-05-01T10:42:20.863Z</updated>
+    <updated>2018-08-10T06:40:33.116Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/0200.png" title="Request & Response"></div>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/javaweb/0200.png" title="Request & Response"></div>
 
 <a id="more"></a>
 <h1 id="Response"><a href="#Response" class="headerlink" title="Response"></a>Response</h1><p><code>响应</code> 的作用是往浏览器写东西。包括响应行、响应头、响应体。</p>
@@ -2847,7 +2947,7 @@
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">changeImg</span>(<span class="params">obj</span>)</span>&#123;</div><div class="line">    <span class="comment">//操作src属性</span></div><div class="line">    obj.src=<span class="string">"/day10/code?i="</span>+<span class="built_in">Math</span>.random();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>结果如下图：</p>
-<p><img src="http://image.renkaigis.com/images/JavaWeb/0201.png"></p>
+<p><img src="http://image.renkaigis.com/javaweb/0201.png"></p>
 <h1 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h1><p><code>请求</code> 的作用是获取浏览器发送过来的数据。</p>
 <h2 id="操作-Request-对象"><a href="#操作-Request-对象" class="headerlink" title="操作 Request 对象"></a>操作 Request 对象</h2><h3 id="操作请求行"><a href="#操作请求行" class="headerlink" title="操作请求行"></a>操作请求行</h3><p>请求行的格式：请求方式  请求资源  协议/版本</p>
 <h4 id="常用方法：HttpServletRequest"><a href="#常用方法：HttpServletRequest" class="headerlink" title="常用方法：HttpServletRequest"></a>常用方法：HttpServletRequest</h4><ul>
@@ -2947,7 +3047,7 @@
     
     <summary type="html">
     
-      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/images/JavaWeb/0200.png&quot; title=&quot;Request &amp; Response&quot;&gt;&lt;/div&gt;
+      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/javaweb/0200.png&quot; title=&quot;Request &amp; Response&quot;&gt;&lt;/div&gt;
     
     </summary>
     
@@ -2963,9 +3063,9 @@
     <link href="http://yoursite.com/posts/JavaWeb/2018-03-27-JavaWeb01-http-servlet.html"/>
     <id>http://yoursite.com/posts/JavaWeb/2018-03-27-JavaWeb01-http-servlet.html</id>
     <published>2018-03-27T13:14:24.000Z</published>
-    <updated>2018-05-01T10:46:45.551Z</updated>
+    <updated>2018-08-10T07:02:44.778Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/images/JavaWeb/0100.jpg" title="Http & Servlet"></div>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/javaweb/0100.png" title="Http & Servlet"></div>
 
 <a id="more"></a>
 <h1 id="HTTP-协议"><a href="#HTTP-协议" class="headerlink" title="HTTP 协议"></a>HTTP 协议</h1><h2 id="HTTP-协议的概念"><a href="#HTTP-协议的概念" class="headerlink" title="HTTP 协议的概念"></a>HTTP 协议的概念</h2><p><code>超文本传输协议</code>（HTTP，HyperText Transfer Protocol)是互联网上应用最为广泛的一种网络协议。所有的 WWW 文件都必须遵守这个标准。</p>
@@ -3346,7 +3446,7 @@ HttpServlet:抽象类
     
     <summary type="html">
     
-      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/images/JavaWeb/0100.jpg&quot; title=&quot;Http &amp; Servlet&quot;&gt;&lt;/div&gt;
+      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/javaweb/0100.png&quot; title=&quot;Http &amp; Servlet&quot;&gt;&lt;/div&gt;
     
     </summary>
     
@@ -3362,7 +3462,7 @@ HttpServlet:抽象类
     <link href="http://yoursite.com/posts/ArcGIS/2018-03-23-ArcGIS-Engine-PointInPolygon.html"/>
     <id>http://yoursite.com/posts/ArcGIS/2018-03-23-ArcGIS-Engine-PointInPolygon.html</id>
     <published>2018-03-23T02:36:45.000Z</published>
-    <updated>2018-03-23T03:07:42.231Z</updated>
+    <updated>2018-08-10T06:49:31.245Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>做项目遇到的问题。寥寥几行代码轻松解决，记录一下。</p>
 <a id="more"></a>
@@ -3419,8 +3519,8 @@ HttpServlet:抽象类
 <p>我主要实现了 <strong>判断点在面内</strong> 的方法，核心代码如下：</p>
 <figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">pointInPolygonButton_Click</span>(<span class="params"><span class="keyword">object</span> sender, EventArgs e</span>)</span></div><div class="line">&#123;</div><div class="line">    <span class="comment">// 获得点图层</span></div><div class="line">    <span class="keyword">int</span> PointId = <span class="number">1</span>;</div><div class="line">    IFeatureLayer PointLayer = <span class="literal">null</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; axMapControl1.LayerCount; i++)</div><div class="line">    &#123;</div><div class="line">        PointLayer = axMapControl1.get_Layer(i) <span class="keyword">as</span> IFeatureLayer;</div><div class="line">        <span class="keyword">if</span> (PointLayer <span class="keyword">is</span> IFeatureLayer &amp;&amp; PointLayer.FeatureClass.ShapeType == esriGeometryType.esriGeometryPoint)</div><div class="line">        &#123;</div><div class="line">            PointId = i;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (PointId == <span class="number">-1</span>)</div><div class="line">    &#123;</div><div class="line">        MessageBox.Show(<span class="string">"找不到质点图层，请重新加载"</span>, <span class="string">"提示"</span>, MessageBoxButtons.OK, MessageBoxIcon.Error);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 获得面图层</span></div><div class="line">    <span class="keyword">int</span> PolygonId = <span class="number">-1</span>;</div><div class="line">    IFeatureLayer PolygonLayer = <span class="literal">null</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; axMapControl1.LayerCount; i++)</div><div class="line">    &#123;</div><div class="line">        PolygonLayer = axMapControl1.get_Layer(i) <span class="keyword">as</span> IFeatureLayer;</div><div class="line">        <span class="keyword">if</span> (PolygonLayer <span class="keyword">is</span> IFeatureLayer &amp;&amp; PolygonLayer.FeatureClass.ShapeType == esriGeometryType.esriGeometryPolygon)</div><div class="line">        &#123;</div><div class="line">            PolygonId = i;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (PolygonId == <span class="number">-1</span>)</div><div class="line">    &#123;</div><div class="line">        MessageBox.Show(<span class="string">"找不到边界图层，请重新加载"</span>, <span class="string">"提示"</span>, MessageBoxButtons.OK, MessageBoxIcon.Error);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    PointLayer = axMapControl1.get_Layer(PointId) <span class="keyword">as</span> IFeatureLayer;</div><div class="line">    PolygonLayer = axMapControl1.get_Layer(PolygonId) <span class="keyword">as</span> IFeatureLayer;</div><div class="line"></div><div class="line">    IFeatureCursor PointFeatureCursor = PointLayer.Search(<span class="literal">null</span>, <span class="literal">true</span>);</div><div class="line">    IFeature PointFeature = PointFeatureCursor.NextFeature();</div><div class="line"></div><div class="line">    IFeatureCursor PolygonFeatureCursor = PolygonLayer.Search(<span class="literal">null</span>, <span class="literal">true</span>);</div><div class="line">    IFeature PolygonFeature = PolygonFeatureCursor.NextFeature();</div><div class="line"></div><div class="line">    IRelationalOperator pRelationalOperator = PolygonFeature.Shape <span class="keyword">as</span> IRelationalOperator;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (pRelationalOperator.Contains(PointFeature.Shape))</div><div class="line">    &#123;</div><div class="line">        MessageBox.Show(<span class="string">"点在面内！"</span>, <span class="string">"恭喜你！"</span>, MessageBoxButtons.OK, MessageBoxIcon.Information);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span></div><div class="line">    &#123;</div><div class="line">        MessageBox.Show(<span class="string">"点在面外！"</span>, <span class="string">"很遗憾！"</span>, MessageBoxButtons.OK, MessageBoxIcon.Error);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><strong>运行结果：</strong></p>
-<p><img src="http://image.renkaigis.com/images/ArcGIS/PointInPolygon1.png"></p>
-<p><img src="http://image.renkaigis.com/images/ArcGIS/PointInPolygon2.png"></p>
+<p><img src="http://image.renkaigis.com/arcgis/PointInPolygon1.png"></p>
+<p><img src="http://image.renkaigis.com/arcgis/PointInPolygon2.png"></p>
 ]]></content>
     
     <summary type="html">
@@ -3443,13 +3543,13 @@ HttpServlet:抽象类
     <link href="http://yoursite.com/posts/ArcGIS/2018-03-21-ArcGIS-Engine-PointToRaster.html"/>
     <id>http://yoursite.com/posts/ArcGIS/2018-03-21-ArcGIS-Engine-PointToRaster.html</id>
     <published>2018-03-21T09:02:30.000Z</published>
-    <updated>2018-03-23T03:09:53.076Z</updated>
+    <updated>2018-08-10T06:49:37.421Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>做项目遇到需要将矢量数据转换成栅格数据的问题，走了很多弯路，后来发现使用 GP 工具很轻松就解决了，记录一下。</p>
 <a id="more"></a>
 <p>ArcGIS 软件中 <code>ArcToolbox</code> 中的工具几乎都可以使用 GP 工具来完成。矢量转栅格的工具主要在 <code>ArcToolbox --&gt; Conversion Tools --&gt; To Raster</code> 下，包括 <code>Feature to Raster</code>、<code>Point to Raster</code>、<code>Polygon to Raster</code> 和 <code>Polyline to Raster</code>。其中 <code>Feature to Raster</code> 与其他三种效果相同。</p>
 <p>ArcGIS 中 <code>Feature to Raster</code> 方法如下图所示：</p>
-<p><img src="http://image.renkaigis.com/images/ArcGIS/PointToRaster1.png"></p>
+<p><img src="http://image.renkaigis.com/arcgis/PointToRaster1.png"></p>
 <p>官方文档给出的工具语法如下：</p>
 <ul>
 <li>FeatureToRaster_conversion (in_features, field, out_raster, {cell_size})</li>
@@ -3491,11 +3591,11 @@ HttpServlet:抽象类
 <p>我主要实现了 <strong>点转栅格</strong> 的方法，核心代码如下：</p>
 <figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">toRaster_Click</span>(<span class="params"><span class="keyword">object</span> sender, EventArgs e</span>)</span></div><div class="line">&#123;</div><div class="line">    Geoprocessor gp = <span class="keyword">new</span> Geoprocessor();</div><div class="line">    gp.OverwriteOutput = <span class="literal">true</span>;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> pLayerId = <span class="number">-1</span>;</div><div class="line">    ILayer pLayer = <span class="literal">null</span>;</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; axMapControl1.LayerCount; i++)</div><div class="line">    &#123;</div><div class="line">        pLayer = axMapControl1.get_Layer(i);</div><div class="line">        <span class="comment">//if (pLayer is IFeatureLayer &amp;&amp; pLayer.Name == "质点")</span></div><div class="line">        <span class="keyword">if</span> (pLayer <span class="keyword">is</span> IFeatureLayer)</div><div class="line">        &#123;</div><div class="line">            pLayerId = i;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (pLayerId == <span class="number">-1</span>)</div><div class="line">    &#123;</div><div class="line">        MessageBox.Show(<span class="string">"找不到点图层，请重新加载"</span>, <span class="string">"提示"</span>, MessageBoxButtons.OK, MessageBoxIcon.Error);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line"></div><div class="line">    <span class="keyword">try</span></div><div class="line">    &#123;</div><div class="line">        ESRI.ArcGIS.ConversionTools.FeatureToRaster ptr = <span class="keyword">new</span> ESRI.ArcGIS.ConversionTools.FeatureToRaster();</div><div class="line"></div><div class="line">        <span class="comment">// 获得点图层</span></div><div class="line">        IFeatureLayer pfeatureLayer = axMapControl1.get_Layer(pLayerId) <span class="keyword">as</span> IFeatureLayer;</div><div class="line">        IFeatureClass feaureClass = pfeatureLayer.FeatureClass;</div><div class="line"></div><div class="line">        ptr.in_features = pfeatureLayer;</div><div class="line">        <span class="keyword">string</span> filepath = <span class="string">@"d:\gis\"</span>;</div><div class="line">        ptr.out_raster = filepath + pfeatureLayer.Name + <span class="string">".tif"</span>; <span class="comment">// 将转换结果保存为tif格式</span></div><div class="line">        ptr.field = <span class="string">"id"</span>; <span class="comment">// 设置根据那个字段进行转换</span></div><div class="line">        ptr.cell_size = <span class="number">64</span>; <span class="comment">// 设置转换后的栅格像元大小</span></div><div class="line">        gp.Execute(ptr, <span class="literal">null</span>); <span class="comment">// 执行 GP 工具</span></div><div class="line"></div><div class="line">        MessageBox.Show(<span class="string">"转换成功！"</span>, <span class="string">"恭喜你！"</span>, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);</div><div class="line"></div><div class="line">        <span class="comment">// 加载栅格</span></div><div class="line">        IWorkspaceFactory pWorkspaceFactory = <span class="keyword">new</span> RasterWorkspaceFactory();</div><div class="line">        IWorkspace pWorkspace = pWorkspaceFactory.OpenFromFile(filepath, <span class="number">0</span>);</div><div class="line">        IRasterWorkspace pRasterWorkspace = pWorkspace <span class="keyword">as</span> IRasterWorkspace;</div><div class="line">        IRasterDataset pRasterDataset = pRasterWorkspace.OpenRasterDataset(pfeatureLayer.Name + <span class="string">".tif"</span>);</div><div class="line">        IRaster pRaster= pRasterDataset.CreateDefaultRaster();</div><div class="line">        IRasterLayer pRasterLayer = <span class="keyword">new</span> RasterLayerClass();</div><div class="line">        pRasterLayer.CreateFromRaster(pRaster);</div><div class="line">        ILayer layer = pRasterLayer <span class="keyword">as</span> ILayer;</div><div class="line">        axMapControl1.AddLayer(layer, <span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">catch</span> (Exception ex)</div><div class="line">    &#123;</div><div class="line">        MessageBox.Show(<span class="string">"转换失败！"</span>, <span class="string">"很遗憾！"</span>, MessageBoxButtons.OK, MessageBoxIcon.Error);</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><strong>运行结果：</strong></p>
-<p><img src="http://image.renkaigis.com/images/ArcGIS/PointToRaster2.png"></p>
-<p><img src="http://image.renkaigis.com/images/ArcGIS/PointToRaster3.png"></p>
+<p><img src="http://image.renkaigis.com/arcgis/PointToRaster2.png"></p>
+<p><img src="http://image.renkaigis.com/arcgis/PointToRaster3.png"></p>
 <p>经测试，该代码同样适用与 <code>面数据转换栅格</code>：</p>
-<p><img src="http://image.renkaigis.com/images/ArcGIS/PointToRaster4.png"></p>
-<p><img src="http://image.renkaigis.com/images/ArcGIS/PointToRaster5.png"></p>
+<p><img src="http://image.renkaigis.com/arcgis/PointToRaster4.png"></p>
+<p><img src="http://image.renkaigis.com/arcgis/PointToRaster5.png"></p>
 ]]></content>
     
     <summary type="html">
@@ -3518,9 +3618,9 @@ HttpServlet:抽象类
     <link href="http://yoursite.com/posts/Mine/2017-12-31-2017-2018singledogsingledog.html"/>
     <id>http://yoursite.com/posts/Mine/2017-12-31-2017-2018singledogsingledog.html</id>
     <published>2017-12-31T09:37:34.000Z</published>
-    <updated>2018-04-15T05:05:02.843Z</updated>
+    <updated>2018-08-10T06:50:35.549Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/images/living/2017end.jpg" width="500" height="500"></div>
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/living/2017end.jpg" width="500" height="500"></div>
 
 <p><span id="inline-red">本想写个年终总结的。</span></p>
 <a id="more"></a>
@@ -3580,12 +3680,12 @@ HttpServlet:抽象类
 <p>2017 再见，抱歉虚度了你，有太多抱怨不解难过与孤独，但都自己一个人撑过来。若是我有做的不好的地方，还请你宽容我，请原谅我这一年的放纵不羁，原谅最后的我没有给你一个满意的答卷。若是 2018 对我不好，我还是会想你的。</p>
 <p>对于 2018 我不敢承诺什么，但是我还是要说：</p>
 <p><strong>2018，请你对这个傻逼好点！拜托啦！</strong></p>
-<div align="center"><br><img src="http://image.renkaigis.com/images/living/2017-2018.jpg"></div>
+<div align="center"><br><img src="http://image.renkaigis.com/living/2017-2018.jpg"></div>
 ]]></content>
     
     <summary type="html">
     
-      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/images/living/2017end.jpg&quot; width=&quot;500&quot; height=&quot;500&quot;&gt;&lt;/div&gt;
+      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/living/2017end.jpg&quot; width=&quot;500&quot; height=&quot;500&quot;&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;span id=&quot;inline-red&quot;&gt;本想写个年终总结的。&lt;/span&gt;&lt;/p&gt;
     
@@ -3635,78 +3735,6 @@ HttpServlet:抽象类
     
     
       <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>滇池实验——昆明之旅</title>
-    <link href="http://yoursite.com/posts/Mine/2017-11-20-experiment-in-Kunming-Dianchi.html"/>
-    <id>http://yoursite.com/posts/Mine/2017-11-20-experiment-in-Kunming-Dianchi.html</id>
-    <published>2017-11-20T02:02:56.000Z</published>
-    <updated>2017-11-20T08:51:58.661Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p><div align="center"><br>于我而言，对这趟“滇池实验”充满着期待…<br>第一次出差，<br>第一次去云南，<br>第一次坐飞机，<br>第一次冲上云霄，<br>……</div></p>
-<p><div align="center"><span id="inline-red">内含多图，流量慎点！</span></div><br><a id="more"></a></p>
-<p><div><p id="div-border-left-blue">讲真，从小到大第一次坐飞机，对一切都是陌生又期待的。<br>天生的贪玩属性，出差不仅要做好本职工作，还要好好地玩~</p></div></p>
-<h1 id="飞机篇"><a href="#飞机篇" class="headerlink" title="飞机篇"></a>飞机篇</h1><blockquote>
-<p>没坐过飞机的人看见什么都是充满新奇的~</p>
-</blockquote>
-<p><div align="center"><br><img src="http://image.renkaigis.com/images/living/kunming-fly (1).JPG"></div><br><img src="http://image.renkaigis.com/images/living/kunming-fly (2).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-fly (3).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-fly (4).JPG"></p>
-<h1 id="工作篇"><a href="#工作篇" class="headerlink" title="工作篇"></a>工作篇</h1><blockquote>
-<p>采水样，做实验，实地考察滇池，做汇报。工作先行，游玩次之~</p>
-</blockquote>
-<p><img src="http://image.renkaigis.com/images/living/kunming-work (1).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-work (2).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-work (3).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-work (4).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-work (5).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-work (6).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-work (8).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-work (9).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-work (10).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-work (11).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-work (12).JPG"></p>
-<h1 id="海鸥篇"><a href="#海鸥篇" class="headerlink" title="海鸥篇"></a>海鸥篇</h1><blockquote>
-<p>这么铺天盖地的海鸥还是第一次见，抑制不住的兴奋~</p>
-</blockquote>
-<p><img src="http://image.renkaigis.com/images/living/kunming-seagull (1).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-seagull (2).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-seagull (3).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-seagull (4).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-seagull (5).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-seagull (6).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-seagull (7).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-seagull (8).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-seagull (9).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-seagull (10).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-seagull (11).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-seagull (12).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-seagull (13).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-seagull (14).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-seagull (15).JPG"></p>
-<h1 id="滇池篇"><a href="#滇池篇" class="headerlink" title="滇池篇"></a>滇池篇</h1><blockquote>
-<p>讲真，滇池的水真的脏，真 · 青山绿水</p>
-</blockquote>
-<p><img src="http://image.renkaigis.com/images/living/kunming-dianchi (1).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-dianchi (2).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-dianchi (3).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-dianchi (4).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-dianchi (5).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-dianchi (6).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-dianchi (7).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-dianchi (8).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-dianchi (9).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-dianchi (10).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-dianchi (11).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-dianchi (12).JPG"></p>
-<h1 id="风景篇"><a href="#风景篇" class="headerlink" title="风景篇"></a>风景篇</h1><blockquote>
-<p>昆明的天气一直都那么好，随手一拍都是美美的照片</p>
-<p>蓝蓝的天，白白的云，太阳直射，暖洋洋</p>
-</blockquote>
-<p><img src="http://image.renkaigis.com/images/living/kunming-scenery (2).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-scenery (4).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-scenery (5).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-scenery (6).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-scenery (7).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-scenery (8).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-scenery (9).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-scenery (10).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-scenery (11).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-scenery (12).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-scenery (13).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-scenery (14).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-scenery (15).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-scenery (16).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-scenery (17).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-scenery (18).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-scenery (19).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-scenery (20).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-scenery (21).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-scenery (22).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-scenery (23).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-scenery (24).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-scenery (25).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-scenery (26).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-scenery (27).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-scenery (28).JPG"></p>
-<h1 id="文艺篇"><a href="#文艺篇" class="headerlink" title="文艺篇"></a>文艺篇</h1><blockquote>
-<p>找到了一家西西弗书店，灯光及装饰都给人温暖的感觉</p>
-<p>在矢量咖啡点上一杯咖啡，轻柔的音乐响起，无比惬意！</p>
-<p>还去了猫的天空之城概念书店、花生书店。这两家店都太小了，远不如西西弗书店大气。尤其是不消费还赶人！！！</p>
-</blockquote>
-<p><img src="http://image.renkaigis.com/images/living/kunming-literature (1).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-literature (2).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-literature (3).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-literature (4).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-literature (5).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-literature (6).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-literature (7).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-literature (8).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-literature (9).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-literature (10).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-literature (17).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-literature (11).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-literature (12).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-literature (14).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-literature (15).JPG"></p>
-<h1 id="美食篇"><a href="#美食篇" class="headerlink" title="美食篇"></a>美食篇</h1><blockquote>
-<p>云大附近的园西路，很多好吃的</p>
-<p>海埂公园附近的小吃一条街</p>
-<p>满足的两个吃货</p>
-</blockquote>
-<p><div align="center"><br><img src="http://image.renkaigis.com/images/living/kunming-foods (1).JPG"></div><br><img src="http://image.renkaigis.com/images/living/kunming-foods (2).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-foods (3).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-foods (4).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-foods (5).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-foods (6).JPG"></p>
-<h1 id="人物篇"><a href="#人物篇" class="headerlink" title="人物篇"></a>人物篇</h1><blockquote>
-<p>和师姐同游昆明，帮师姐拍了很多美美的照片</p>
-<p>我自己的照片很少，满屏幕都是师姐的照片</p>
-<p>哼😒等我瘦下来！</p>
-</blockquote>
-<p><div align="center"><br><img src="http://image.renkaigis.com/images/living/kunming-figure (1).JPG"></div></p>
-<p><div align="center"><br><img src="http://image.renkaigis.com/images/living/kunming-figure (2).JPG"></div></p>
-<p><div align="center"><br><img src="http://image.renkaigis.com/images/living/kunming-figure (3).JPG"></div></p>
-<p><div align="center"><br><img src="http://image.renkaigis.com/images/living/kunming-figure (4).JPG"></div></p>
-<p><div align="center"><br><img src="http://image.renkaigis.com/images/living/kunming-figure (5).JPG"></div><br><img src="http://image.renkaigis.com/images/living/kunming-figure (6).JPG"><br><img src="http://image.renkaigis.com/images/living/kunming-figure (7).JPG"></p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>昆明之旅很开心，很满足。</p>
-<p>最重要的是，看到了和别人的差距，自我感觉别人的 web 平台做的真的很好，而我们的单机版系统不仅从界面还是可视化都感觉很 low。</p>
-<p>后面滇池的项目得我接手了，继续学习，继续努力，远离农药，提高代码功底，像师姐学习！</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;div align=&quot;center&quot;&gt;&lt;br&gt;于我而言，对这趟“滇池实验”充满着期待…&lt;br&gt;第一次出差，&lt;br&gt;第一次去云南，&lt;br&gt;第一次坐飞机，&lt;br&gt;第一次冲上云霄，&lt;br&gt;……&lt;/div&gt;&lt;/p&gt;
-&lt;p&gt;&lt;div align=&quot;center&quot;&gt;&lt;span id=&quot;inline-red&quot;&gt;内含多图，流量慎点！&lt;/span&gt;&lt;/div&gt;&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Mine" scheme="http://yoursite.com/categories/Mine/"/>
-    
-    
-      <category term="living" scheme="http://yoursite.com/tags/living/"/>
     
   </entry>
   

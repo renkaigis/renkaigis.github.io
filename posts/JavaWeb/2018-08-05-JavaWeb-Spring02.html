@@ -129,7 +129,7 @@
 <meta property="og:site_name" content="秋月春风等闲度">
 <meta property="og:description" content="Spring IoC 控制反转 &amp;amp; 整合 JUnit 单元测试。">
 <meta property="og:image" content="http://image.renkaigis.com/javaweb/spring0200.png">
-<meta property="og:updated_time" content="2018-08-10T06:46:43.888Z">
+<meta property="og:updated_time" content="2018-08-11T02:18:30.631Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaWeb 之 Spring IoC 控制反转及整合 JUnit 单元测试">
 <meta name="twitter:description" content="Spring IoC 控制反转 &amp;amp; 整合 JUnit 单元测试。">
@@ -472,7 +472,7 @@
                   <span class="post-meta-item-text">WordsCount</span>
                 
                 <span title="WordsCount">
-                  2,096
+                  2,382
                 </span>
               
 
@@ -500,254 +500,209 @@
 
 <a id="more"></a>
 <hr>
-<h1 id="Spring-框架-Bean-管理的配置文件方式"><a href="#Spring-框架-Bean-管理的配置文件方式" class="headerlink" title="Spring 框架 Bean 管理的配置文件方式"></a>Spring 框架 Bean 管理的配置文件方式</h1><hr>
-<p><strong>技术分析之Spring框架中<bean>标签的配置</bean></strong></p>
-<pre><code>1. id属性和name属性的区别
-    * id        -- Bean起个名字，在约束中采用ID的约束，唯一
-        * 取值要求：必须以字母开始，可以使用字母、数字、连字符、下划线、句话、冒号    id:不能出现特殊字符
-
-    * name        -- Bean起个名字，没有采用ID的约束（了解）
-        * 取值要求：name:出现特殊字符.如果&lt;bean&gt;没有id的话 , name可以当做id使用
-        * Spring框架在整合Struts1的框架的时候，Struts1的框架的访问路径是以/开头的，例如：/bookAction
-
-2. class属性            -- Bean对象的全路径
-3. scope属性            -- scope属性代表Bean的作用范围
-    * singleton            -- 单例（默认值）
-    * prototype            -- 多例，在Spring框架整合Struts2框架的时候，Action类也需要交给Spring做管理，配置把Action类配置成多例！！
-    * request            -- 应用在Web项目中,每次HTTP请求都会创建一个新的Bean
-    * session            -- 应用在Web项目中,同一个HTTP Session 共享一个Bean
-    * globalsession        -- 应用在Web项目中,多服务器间的session
-
-4. Bean对象的创建和销毁的两个属性配置（了解）
-    * 说明：Spring初始化bean或销毁bean时，有时需要作一些处理工作，因此spring可以在创建和拆卸bean的时候调用bean的两个生命周期方法
-    * init-method        -- 当bean被载入到容器的时候调用init-method属性指定的方法
-    * destroy-method    -- 当bean从容器中删除的时候调用destroy-method属性指定的方法
-        * 想查看destroy-method的效果，有如下条件
-            * scope= singleton有效
-            * web容器中会自动调用，但是main函数或测试用例需要手动调用（需要使用ClassPathXmlApplicationContext的close()方法）
-</code></pre><hr>
-<p><strong>技术分析之依赖注入（DI）</strong></p>
-<pre><code>1. IoC和DI的概念
-    * IoC        -- Inverse of Control，控制反转，将对象的创建权反转给Spring！！
-    * DI        -- Dependency Injection，依赖注入，在Spring框架负责创建Bean对象时，动态的将依赖对象注入到Bean组件中！！
-
-2.  DI（依赖注入）
-    * 例如：如果UserServiceImpl的实现类中有一个属性，那么使用Spring框架的IoC功能时，可以通过依赖注入把该属性的值传入进来！！
-    * 具体的配置如下
-        &lt;bean id=&quot;us&quot; class=&quot;com.renkaigis.demo1.UserServiceImpl&quot;&gt;
-            &lt;property name=&quot;uname&quot; value=&quot;小风&quot;/&gt;
-        &lt;/bean&gt;
-</code></pre><hr>
-<p><strong>技术分析之Spring框架的属性注入</strong></p>
-<pre><code>1. 对于类成员变量，常用的注入方式有两种
-    * 构造函数注入
-    * 属性setter方法注入
-
-2. 在Spring框架中提供了前两种的属性注入的方式
-    1. 构造方法的注入方式，两步
-        * 编写Java的类，提供构造方法
-            public class Car {
-                private String name;
-                private double money;
-                public Car(String name, double money) {
-                    this.name = name;
-                    this.money = money;
-                }
-                @Override
-                public String toString() {
-                    return &quot;Car [name=&quot; + name + &quot;, money=&quot; + money + &quot;]&quot;;
-                }
-            }
-
-        * 编写配置文件
-            &lt;bean id=&quot;car&quot; class=&quot;com.renkaigis.demo4.Car&quot;&gt;
-                &lt;constructor-arg name=&quot;name&quot; value=&quot;大奔&quot;/&gt;
-                &lt;constructor-arg name=&quot;money&quot; value=&quot;100&quot;/&gt;
-            &lt;/bean&gt;
-
-    2. 属性的setter方法的注入方式
-        * 编写Java的类，提供属性和对应的set方法即可
-        * 编写配置文件
-
-    3. 如果Java类的属性是另一个Java的类，那么需要怎么来注入值呢？
-        * &lt;property name=&quot;name&quot; rel=&quot;具体的Bean的ID或者name的值&quot;/&gt;
-        * 例如：
-            &lt;bean id=&quot;person&quot; class=&quot;com.renkaigis.demo4.Person&quot;&gt;
-                &lt;property name=&quot;pname&quot; value=&quot;美美&quot;/&gt;
-                &lt;property name=&quot;car2&quot; ref=&quot;car2&quot;/&gt;
-            &lt;/bean&gt;
-</code></pre><hr>
-<p><strong>技术分析之Spring的2.5版本中提供了一种:p名称空间的注入（了解）</strong></p>
-<pre><code>1. 步骤一：需要先引入 p 名称空间
-    * 在schema的名称空间中加入该行：xmlns:p=&quot;http://www.springframework.org/schema/p&quot;
-
-2. 步骤二：使用p名称空间的语法
-    * p:属性名 = &quot;&quot;
-    * p:属性名-ref = &quot;&quot;
-
-3. 步骤三：测试
-    * &lt;bean id=&quot;person&quot; class=&quot;com.renkaigis.demo4.Person&quot; p:pname=&quot;老王&quot; p:car2-ref=&quot;car2&quot;/&gt;
-</code></pre><hr>
-<p><strong>技术分析之Spring的3.0提供了一种:SpEL注入方式（了解）</strong></p>
-<pre><code>1. SpEL：Spring Expression Language是Spring的表达式语言，有一些自己的语法
-2. 语法
-    * #{SpEL}
-
-3. 例如如下的代码
-    &lt;!-- SpEL的方式 --&gt;
-    &lt;bean id=&quot;person&quot; class=&quot;com.renkaigis.demo4.Person&quot;&gt;
-        &lt;property name=&quot;pname&quot; value=&quot;#{&apos;小风&apos;}&quot;/&gt;
-        &lt;property name=&quot;car2&quot; value=&quot;#{car2}&quot;/&gt;
-    &lt;/bean&gt;
-
-4. 还支持调用类中的属性或者方法
-    * 定义类和方法，例如
-        public class CarInfo {
-            public String getCarname(){
-                return &quot;奇瑞QQ&quot;;
-            }
-        }
-</code></pre><hr>
-<p><strong>技术分析之数组，集合(List,Set,Map)，Properties等的注入</strong></p>
-<pre><code>1. 如果是数组或者List集合，注入配置文件的方式是一样的
-    &lt;bean id=&quot;collectionBean&quot; class=&quot;com.renkaigis.demo5.CollectionBean&quot;&gt;
-        &lt;property name=&quot;arrs&quot;&gt;
-            &lt;list&gt;
-                &lt;value&gt;美美&lt;/value&gt;
-                &lt;value&gt;小风&lt;/value&gt;
-            &lt;/list&gt;
-        &lt;/property&gt;
-    &lt;/bean&gt;
-
-2. 如果是Set集合，注入的配置文件方式如下：
-    &lt;property name=&quot;sets&quot;&gt;
-        &lt;set&gt;
-            &lt;value&gt;哈哈&lt;/value&gt;
-            &lt;value&gt;呵呵&lt;/value&gt;
-        &lt;/set&gt;
-    &lt;/property&gt;
-
-3. 如果是Map集合，注入的配置方式如下：
-    &lt;property name=&quot;map&quot;&gt;
-        &lt;map&gt;
-            &lt;entry key=&quot;老王2&quot; value=&quot;38&quot;/&gt;
-            &lt;entry key=&quot;凤姐&quot; value=&quot;38&quot;/&gt;
-            &lt;entry key=&quot;如花&quot; value=&quot;29&quot;/&gt;
-        &lt;/map&gt;
-    &lt;/property&gt;
-
-4. 如果是properties属性文件的方式，注入的配置如下：
-    &lt;property name=&quot;pro&quot;&gt;
-        &lt;props&gt;
-            &lt;prop key=&quot;uname&quot;&gt;root&lt;/prop&gt;
-            &lt;prop key=&quot;pass&quot;&gt;123&lt;/prop&gt;
-        &lt;/props&gt;
-    &lt;/property&gt;
-</code></pre><hr>
-<p><strong>技术分析之Spring框架的配置文件分开管理（了解）</strong></p>
-<pre><code>1. 例如：在src的目录下又多创建了一个配置文件，现在是两个核心的配置文件，那么加载这两个配置文件的方式有两种！
-    * 主配置文件中包含其他的配置文件:
-        &lt;import resource=&quot;applicationContext2.xml&quot;/&gt;
-
-    * 工厂创建的时候直接加载多个配置文件:
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext(
-                    &quot;applicationContext.xml&quot;,&quot;applicationContext2.xml&quot;);
-</code></pre><hr>
-<h3 id="技术分析之Spring框架的IoC功能之注解的方式"><a href="#技术分析之Spring框架的IoC功能之注解的方式" class="headerlink" title="技术分析之Spring框架的IoC功能之注解的方式"></a>技术分析之Spring框架的IoC功能之注解的方式</h3><hr>
-<p><strong>Spring框架的IoC之注解方式的快速入门</strong></p>
-<pre><code>1. 步骤一：导入注解开发所有需要的jar包
-    * 引入IoC容器必须的6个jar包
-    * 多引入一个：Spring框架的AOP的jar包，spring-aop的jar包
-
-2. 步骤二：创建对应的包结构，编写Java的类
-    * UserService            -- 接口
-    * UserServiceImpl        -- 具体的实现类
-
-3. 步骤三：在src的目录下，创建applicationContext.xml的配置文件，然后引入约束。注意：因为现在想使用注解的方式，那么引入的约束发生了变化
-    * 需要引入context的约束，具体的约束如下
-        &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
-            xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-            xmlns:context=&quot;http://www.springframework.org/schema/context&quot; xsi:schemaLocation=&quot;
-                http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-                http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd&quot;&gt; &lt;!-- bean definitions here --&gt;
-
-        &lt;/beans&gt;
-
-4. 步骤四：在applicationContext.xml配置文件中开启组件扫描
-    * Spring的注解开发:组件扫描
-        &lt;context:component-scan base-package=&quot;com.renkaigis.demo1&quot;/&gt;
-
-    * 注意：可以采用如下配置
-        &lt;context:component-scan base-package=&quot;com.renkaigis&quot;/&gt; 这样是扫描com.renkaigis包下所有的内容
-
-5. 步骤五：在UserServiceImpl的实现类上添加注解
-    * @Component(value=&quot;userService&quot;)    -- 相当于在XML的配置方式中 &lt;bean id=&quot;userService&quot; class=&quot;...&quot;&gt;
-
-6. 步骤六：编写测试代码
-    public class SpringDemo1 {
-        @Test
-        public void run1(){
-            ApplicationContext ac = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);
-            UserService us = (UserService) ac.getBean(&quot;userService&quot;);
-            us.save();
-        }
-    }
-</code></pre><hr>
-<p><strong>Spring框架中Bean管理的常用注解</strong></p>
-<pre><code>1. @Component:组件.(作用在类上)
-
-2. Spring中提供@Component的三个衍生注解:(功能目前来讲是一致的)
-    * @Controller        -- 作用在WEB层
-    * @Service            -- 作用在业务层
-    * @Repository        -- 作用在持久层
-
-    * 说明：这三个注解是为了让标注类本身的用途清晰，Spring在后续版本会对其增强
-
-3. 属性注入的注解(说明：使用注解注入的方式,可以不用提供set方法)
-    * 如果是注入的普通类型，可以使用value注解
-        * @Value            -- 用于注入普通类型
-
-    * 如果注入的是对象类型，使用如下注解
-        * @Autowired        -- 默认按类型进行自动装配
-            * 如果想按名称注入
-            * @Qualifier    -- 强制使用名称注入
-
-    * @Resource                -- 相当于@Autowired和@Qualifier一起使用
-        * 强调：Java提供的注解
-        * 属性使用name属性
-</code></pre><hr>
-<p><strong>Bean的作用范围和生命周期的注解</strong></p>
-<pre><code>1. Bean的作用范围注解
-    * 注解为@Scope(value=&quot;prototype&quot;)，作用在类上。值如下：
-        * singleton        -- 单例，默认值
-        * prototype        -- 多例
-
-2. Bean的生命周期的配置（了解）
-    * 注解如下：
-        * @PostConstruct    -- 相当于init-method
-        * @PreDestroy        -- 相当于destroy-method
-</code></pre><hr>
-<p><strong>Spring框架整合JUnit单元测试</strong></p>
-<pre><code>1. 为了简化了JUnit的测试，使用Spring框架也可以整合测试
-2. 具体步骤
-    * 要求：必须先有JUnit的环境（即已经导入了JUnit4的开发环境）！！
-
-    * 步骤一：在程序中引入:spring-test.jar
-    * 步骤二：在具体的测试类上添加注解
-        @RunWith(SpringJUnit4ClassRunner.class)
-        @ContextConfiguration(&quot;classpath:applicationContext.xml&quot;)
-        public class SpringDemo1 {
-
-            @Resource(name=&quot;userService&quot;)
-            private UserService userService;
-
-            @Test
-            public void demo2(){
-                userService.save();
-            }
-        }
-</code></pre><hr>
-
+<h1 id="Spring-框架-IoC-功能之配置文件方式"><a href="#Spring-框架-IoC-功能之配置文件方式" class="headerlink" title="Spring 框架 IoC 功能之配置文件方式"></a>Spring 框架 IoC 功能之配置文件方式</h1><hr>
+<h2 id="Spring-框架中-lt-bean-gt-标签的配置"><a href="#Spring-框架中-lt-bean-gt-标签的配置" class="headerlink" title="Spring 框架中 &lt;bean&gt; 标签的配置"></a>Spring 框架中 <code>&lt;bean&gt;</code> 标签的配置</h2><h3 id="id-属性和-name-属性的区别"><a href="#id-属性和-name-属性的区别" class="headerlink" title="id 属性和 name 属性的区别"></a>id 属性和 name 属性的区别</h3><ul>
+<li><p><code>id</code>————Bean 起个名字，在约束中采用 ID 的约束，唯一</p>
+<blockquote>
+<p>取值要求：必须以字母开始，可以使用字母、数字、连字符、下划线、句话、冒号    id：不能出现特殊字符</p>
+</blockquote>
+</li>
+<li><p><code>name</code>————Bean 起个名字，没有采用 ID 的约束（了解）</p>
+<blockquote>
+<p>取值要求：name 允许出现特殊字符，如果 <code>&lt;bean&gt;</code> 没有 id 的话，name 可以当做 id 使用<br>Spring 框架在整合 <code>Struts1</code> 的框架的时候，<code>Struts1</code> 的框架的访问路径是以 <code>/</code> 开头的，例如：<code>/bookAction</code></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="class-属性"><a href="#class-属性" class="headerlink" title="class 属性"></a>class 属性</h3><p>Bean 对象的全路径：<code>com.renkaigis.demo1.UserServiceImpl</code></p>
+<h3 id="scope-属性"><a href="#scope-属性" class="headerlink" title="scope 属性"></a>scope 属性</h3><p>scope 属性代表 Bean 的作用范围</p>
+<blockquote>
+<p>singleton————单例（默认值）<br><code>prototype</code>————多例，在 Spring 框架整合 <code>Struts2</code> 框架的时候，Action 类也需要交给 Spring 做管理，配置把 <code>Action 类配置成多例</code>！！<br>request————应用在 Web 项目中，每次 HTTP 请求都会创建一个新的 Bean<br>session————应用在 Web 项目中，同一个 HTTP Session 共享一个 Bean<br>globalsession————应用在 Web 项目中，多服务器间的 session</p>
+</blockquote>
+<h3 id="Bean-对象的创建和销毁的两个属性配置（了解）"><a href="#Bean-对象的创建和销毁的两个属性配置（了解）" class="headerlink" title="Bean 对象的创建和销毁的两个属性配置（了解）"></a>Bean 对象的创建和销毁的两个属性配置（了解）</h3><p>Spring 初始化 bean 或销毁 bean 时，有时需要作一些处理工作，因此 spring 可以在创建和销毁 bean 的时候调用 bean 的两个生命周期方法</p>
+<ul>
+<li><p>init-method————当 bean 被载入到容器的时候调用 <code>init-method</code> 属性指定的方法</p>
+</li>
+<li><p>destroy-method————当bean从容器中删除的时候调用 <code>destroy-method</code> 属性指定的方法</p>
+</li>
+</ul>
+<p>想查看 destroy-method 的效果，有如下条件</p>
+<blockquote>
+<p>① <code>scope = &quot;singleton&quot;</code>有效<br>② web 容器中会自动调用，但是 main 函数或测试用例需要手动调用（需要使用 <code>ClassPathXmlApplicationContext</code> 的 <code>close()</code> 方法）</p>
+</blockquote>
+<h2 id="依赖注入（DI）"><a href="#依赖注入（DI）" class="headerlink" title="依赖注入（DI）"></a>依赖注入（DI）</h2><p><code>IoC</code> 和 <code>DI</code> 的概念</p>
+<ul>
+<li>IoC————Inverse of Control，控制反转，将对象的创建权反转给 Spring！！</li>
+<li>DI————Dependency Injection，依赖注入，在 Spring 框架负责创建 Bean 对象时，动态的将依赖对象注入到 Bean 组件中！！</li>
+</ul>
+<p><code>DI（依赖注入）</code>：</p>
+<ul>
+<li>例如：如果 <code>UserServiceImpl</code> 的实现类中有一个属性，那么使用 Spring 框架的 <code>IoC</code> 功能时，可以通过依赖注入把该属性的值传入进来！！</li>
+<li>具体的配置如下：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"userService"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.demo1.UserServiceImpl"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"小风"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="Spring-框架的属性注入"><a href="#Spring-框架的属性注入" class="headerlink" title="Spring 框架的属性注入"></a>Spring 框架的属性注入</h3><p>对于类成员变量，常用的注入方式有两种</p>
+<ul>
+<li>构造函数注入</li>
+<li>属性 <code>setter</code> 方法注入</li>
+</ul>
+<h4 id="构造方法的注入方式"><a href="#构造方法的注入方式" class="headerlink" title="构造方法的注入方式"></a>构造方法的注入方式</h4><ul>
+<li>编写 Java 类，提供构造方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Car1</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> String cname;</div><div class="line">    <span class="keyword">private</span> Double price;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Car1</span><span class="params">(String cname, Double price)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.cname = cname;</div><div class="line">        <span class="keyword">this</span>.price = price;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"Car1&#123;"</span> + <span class="string">"cname='"</span> + cname + <span class="string">'\''</span> + <span class="string">", price="</span> + price + <span class="string">'&#125;'</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>编写配置文件</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--演示构造方法注入的方式--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"car1"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.demo2.Car1"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">"cname"</span> <span class="attr">value</span>=<span class="string">"奇瑞QQ"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">"price"</span> <span class="attr">value</span>=<span class="string">"25000"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>测试：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run1</span><span class="params">()</span> </span>&#123;</div><div class="line">	ApplicationContext ac = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"applicationContext.xml"</span>);</div><div class="line">	Car1 c1 = (Car1) ac.getBean(<span class="string">"car1"</span>);</div><div class="line">	System.out.println(c1);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="setter-方法的注入方式"><a href="#setter-方法的注入方式" class="headerlink" title="setter 方法的注入方式"></a>setter 方法的注入方式</h4><ul>
+<li><p>编写 Java 的类，提供属性和对应的 set 方法即可</p>
+</li>
+<li><p>编写配置文件</p>
+</li>
+<li><p>如果 Java 类的属性是另一个 Java 的类，那么需要怎么来注入值呢？</p>
+<blockquote>
+<p><code>&lt;property name=&quot;name&quot; rel=&quot;具体的Bean的ID或者name的值&quot;/&gt;</code></p>
+</blockquote>
+</li>
+<li><p>例如：</p>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"person"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.demo2.Person"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"pname"</span> <span class="attr">value</span>=<span class="string">"美美"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"car2"</span> <span class="attr">ref</span>=<span class="string">"car2"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="Spring-2-5-版本：p-名称空间的注入（了解）"><a href="#Spring-2-5-版本：p-名称空间的注入（了解）" class="headerlink" title="Spring 2.5 版本：p 名称空间的注入（了解）"></a>Spring 2.5 版本：p 名称空间的注入（了解）</h3><h4 id="先引入-p-名称空间"><a href="#先引入-p-名称空间" class="headerlink" title="先引入 p 名称空间"></a>先引入 p 名称空间</h4><ul>
+<li>在 <code>schema</code> 的名称空间中加入该行：<code>xmlns:p=&quot;http://www.springframework.org/schema/p&quot;</code></li>
+</ul>
+<h4 id="使用-p-名称空间的语法"><a href="#使用-p-名称空间的语法" class="headerlink" title="使用 p 名称空间的语法"></a>使用 p 名称空间的语法</h4><ul>
+<li>p:属性名 = “”</li>
+<li>p:属性名-ref = “”</li>
+</ul>
+<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--采用 p 名称空间注入的方式--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"car1"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.demo2.Car1"</span> <span class="attr">p:cname</span>=<span class="string">"保时捷"</span> <span class="attr">p:price</span>=<span class="string">"1000000"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="Spring-3-0-版本：SpEL注入方式（了解）"><a href="#Spring-3-0-版本：SpEL注入方式（了解）" class="headerlink" title="Spring 3.0 版本：SpEL注入方式（了解）"></a>Spring 3.0 版本：SpEL注入方式（了解）</h3><p>SpEL：Spring Expression Language 是 Spring 的表达式语言，有一些自己的语法。</p>
+<ul>
+<li>语法</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#&#123;SpEL&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- SpEL的方式 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"person"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.demo4.Person"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"pname"</span> <span class="attr">value</span>=<span class="string">"#&#123;'小风'&#125;"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"car2"</span> <span class="attr">value</span>=<span class="string">"#&#123;car2&#125;"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="数组，集合（List-Set-Map），Properties-等的注入"><a href="#数组，集合（List-Set-Map），Properties-等的注入" class="headerlink" title="数组，集合（List,Set,Map），Properties 等的注入"></a>数组，集合（List,Set,Map），Properties 等的注入</h3><h4 id="数组和-List-集合"><a href="#数组和-List-集合" class="headerlink" title="数组和 List 集合"></a>数组和 List 集合</h4><p>如果是数组或者List集合，注入配置文件的方式是一样的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 演示集合注入的方式</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</div><div class="line">    <span class="comment">// 数组</span></div><div class="line">    <span class="keyword">private</span> String[] arrs;</div><div class="line">    <span class="comment">// 集合</span></div><div class="line">    <span class="keyword">private</span> List&lt;String&gt; list;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setList</span><span class="params">(List&lt;String&gt; list)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.list = list;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setArrs</span><span class="params">(String[] arrs)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.arrs = arrs;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"User&#123;"</span> + <span class="string">"arrs="</span> + Arrays.toString(arrs) + <span class="string">", list="</span> + list + <span class="string">'&#125;'</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"user"</span> <span class="attr">class</span>=<span class="string">"com.renkaigis.demo3.User"</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!--注入数组--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"arrs"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">list</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">value</span>&gt;</span>哈哈<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">value</span>&gt;</span>呵呵<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">value</span>&gt;</span>嘿嘿<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">list</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">	<span class="comment">&lt;!--注入集合--&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"list"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">list</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">value</span>&gt;</span>天哪<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">value</span>&gt;</span>god<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">list</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">	* 测试注入数组</div><div class="line">	*/</div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run1</span><span class="params">()</span> </span>&#123;</div><div class="line">	ApplicationContext ac = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"applicationContext.xml"</span>);</div><div class="line">	User user = (User) ac.getBean(<span class="string">"user"</span>);</div><div class="line">	System.out.println(user);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line">	* 测试注入集合</div><div class="line">	*/</div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run2</span><span class="params">()</span> </span>&#123;</div><div class="line">	ApplicationContext ac = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"applicationContext.xml"</span>);</div><div class="line">	User user = (User) ac.getBean(<span class="string">"user"</span>);</div><div class="line">	System.out.println(user);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="Set-集合"><a href="#Set-集合" class="headerlink" title="Set 集合"></a>Set 集合</h4><p>如果是 Set 集合，注入的配置文件方式如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--注入 set 集合--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sets"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">set</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>哈哈<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>呵呵<span class="tag">&lt;/<span class="name">value</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">set</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="Map-集合"><a href="#Map-集合" class="headerlink" title="Map 集合"></a>Map 集合</h4><p>如果是 Map 集合，注入的配置方式如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--注入 map--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"map"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">map</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"aaa"</span> <span class="attr">value</span>=<span class="string">"小瓜"</span>/&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"bbb"</span> <span class="attr">value</span>=<span class="string">"小宗"</span>/&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">map</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="properties-属性文件"><a href="#properties-属性文件" class="headerlink" title="properties 属性文件"></a>properties 属性文件</h4><p>如果是 <code>properties</code> 属性文件的方式，注入的配置如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--注入属性文件--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"pro"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">props</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"username"</span>&gt;</span>root<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"password"</span>&gt;</span>1234<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">props</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="Spring-配置文件分开管理（了解）"><a href="#Spring-配置文件分开管理（了解）" class="headerlink" title="Spring 配置文件分开管理（了解）"></a>Spring 配置文件分开管理（了解）</h2><p>例如：在 src 的目录下又多创建了一个配置文件，现在是两个核心的配置文件，那么加载这两个配置文件的方式有两种！</p>
+<ul>
+<li>主配置文件中引入其他的配置文件:</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 推荐使用 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">import</span> <span class="attr">resource</span>=<span class="string">"applicationContext2.xml"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>工厂创建的时候直接加载多个配置文件:</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ApplicationContext applicationContext = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"applicationContext.xml"</span>,<span class="string">"applicationContext2.xml"</span>);</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="Spring-框架-IoC-功能之注解方式"><a href="#Spring-框架-IoC-功能之注解方式" class="headerlink" title="Spring 框架 IoC 功能之注解方式"></a>Spring 框架 IoC 功能之注解方式</h1><hr>
+<h2 id="Spring框架-IoC-之注解方式快速入门"><a href="#Spring框架-IoC-之注解方式快速入门" class="headerlink" title="Spring框架 IoC 之注解方式快速入门"></a>Spring框架 IoC 之注解方式快速入门</h2><h3 id="步骤一：导入注解开发所有需要的-jar-包"><a href="#步骤一：导入注解开发所有需要的-jar-包" class="headerlink" title="步骤一：导入注解开发所有需要的 jar 包"></a>步骤一：导入注解开发所有需要的 jar 包</h3><ul>
+<li><p>引入IoC容器必须的6个jar包</p>
+<blockquote>
+<p>spring-beans-4.2.4.RELEASE.jar<br>spring-context-4.2.4.RELEASE.jar<br>spring-core-4.2.4.RELEASE.jar<br>spring-expression-4.2.4.RELEASE.jar<br>com.springsource.org.apache.commons.logging-1.1.1.jar<br>com.springsource.org.apache.log4j-1.2.15.jar</p>
+</blockquote>
+</li>
+<li><p>多引入一个：Spring框架的AOP的jar包，<code>spring-aop的jar包</code></p>
+</li>
+</ul>
+<h3 id="步骤二：创建对应的包结构，编写-Java-的类"><a href="#步骤二：创建对应的包结构，编写-Java-的类" class="headerlink" title="步骤二：创建对应的包结构，编写 Java 的类"></a>步骤二：创建对应的包结构，编写 Java 的类</h3><ul>
+<li>UserService————接口</li>
+<li>UserServiceImpl————具体的实现类</li>
+</ul>
+<h3 id="步骤三：引入约束"><a href="#步骤三：引入约束" class="headerlink" title="步骤三：引入约束"></a>步骤三：引入约束</h3><p>在 src 的目录下，创建 <code>applicationContext.xml</code> 的配置文件，然后<code>引入约束</code>。注意：因为现在想使用注解的方式，那么引入的约束发生了变化。</p>
+<ul>
+<li>需要引入context的约束，具体的约束如下：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></div><div class="line">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></div><div class="line">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span> <span class="attr">xsi:schemaLocation</span>=<span class="string">"</span></div><div class="line">	   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd</div><div class="line">	   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="步骤四：在-applicationContext-xml-配置文件中开启组件扫描"><a href="#步骤四：在-applicationContext-xml-配置文件中开启组件扫描" class="headerlink" title="步骤四：在 applicationContext.xml 配置文件中开启组件扫描"></a>步骤四：在 <code>applicationContext.xml</code> 配置文件中开启组件扫描</h3><ul>
+<li>Spring的注解开发：组件扫描</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--开启注解的扫描--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.renkaigis.demo1"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>注意：可以采用如下配置：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 这样是扫描com.renkaigis包下所有的内容 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.renkaigis"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="步骤五：在-UserServiceImpl-的实现类上添加注解"><a href="#步骤五：在-UserServiceImpl-的实现类上添加注解" class="headerlink" title="步骤五：在 UserServiceImpl 的实现类上添加注解"></a>步骤五：在 <code>UserServiceImpl</code> 的实现类上添加注解</h3><ul>
+<li>@Component(value=”userService”)    – 相当于在XML的配置方式中 <bean id="userService" class="..."></bean></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * <span class="doctag">@Component</span>(value = "userService")</div><div class="line"> * 等价于</div><div class="line"> * &lt;bean id="userService" class="com.renkaigis.demo1.UserServiceImpl"/&gt;</div><div class="line"> */</div><div class="line"><span class="meta">@Component</span>(value = <span class="string">"userService"</span>)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServiceImpl</span> <span class="keyword">implements</span> <span class="title">UserService</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"Hello Spring!"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="步骤六：编写测试代码"><a href="#步骤六：编写测试代码" class="headerlink" title="步骤六：编写测试代码"></a>步骤六：编写测试代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run1</span><span class="params">()</span> </span>&#123;</div><div class="line">	ApplicationContext ac = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">"applicationContext.xml"</span>);</div><div class="line">	UserService us = (UserService) ac.getBean(<span class="string">"userService"</span>);</div><div class="line">	us.sayHello();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Spring-框架中-Bean-管理的常用注解"><a href="#Spring-框架中-Bean-管理的常用注解" class="headerlink" title="Spring 框架中 Bean 管理的常用注解"></a>Spring 框架中 Bean 管理的常用注解</h2><h3 id="类注解"><a href="#类注解" class="headerlink" title="类注解"></a>类注解</h3><ul>
+<li><p><code>@Component</code>：组件。（作用在类上）</p>
+</li>
+<li><p>Spring 中提供 <code>@Component</code> 的三个衍生注解：（功能目前来讲是一致的）</p>
+<blockquote>
+<p><code>@Controller</code>————作用在WEB层<br><code>@Service</code>————作用在业务层<br><code>@Repository</code>————作用在持久层</p>
+</blockquote>
+</li>
+<li><p>说明：这三个注解是为了让标注类本身的用途清晰，Spring在后续版本会对其增强</p>
+</li>
+</ul>
+<h3 id="属性注解"><a href="#属性注解" class="headerlink" title="属性注解"></a>属性注解</h3><p>属性注入的注解（说明：使用注解注入的方式,可以不用提供 <code>set</code> 方法）</p>
+<ul>
+<li>如果是注入的普通类型，可以使用 value 注解<blockquote>
+<p><code>@Value</code>————用于注入普通类型</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Component</span>(value = <span class="string">"userService"</span>)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServiceImpl</span> <span class="keyword">implements</span> <span class="title">UserService</span> </span>&#123;</div><div class="line">    <span class="meta">@Value</span>(value = <span class="string">"小美"</span>)</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"Hello Spring!"</span> + name);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><p>如果注入的是对象类型，使用如下注解</p>
+<blockquote>
+<p><code>@Autowired</code>————默认按类型进行自动装配，寻找实现类。缺点：实现类多的话就出错了</p>
+</blockquote>
+</li>
+<li><p>如果想按名称注入</p>
+<blockquote>
+<p><code>@Qualifier</code>————强制使用名称注入</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Component</span>(value = <span class="string">"userService"</span>)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServiceImpl</span> <span class="keyword">implements</span> <span class="title">UserService</span> </span>&#123;</div><div class="line">    <span class="comment">// 按类型自动装配</span></div><div class="line">    <span class="meta">@Autowired</span></div><div class="line">    <span class="meta">@Qualifier</span>(value = <span class="string">"ud"</span>) <span class="comment">// 按名称注入</span></div><div class="line">    <span class="keyword">private</span> UserDao userDao;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sayHello</span><span class="params">()</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"Hello Spring!"</span>);</div><div class="line">        userDao.save();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>@Resource</code>————相当于 <code>@Autowired</code> 和 <code>@Qualifier</code> 一起使用<blockquote>
+<p>强调：<code>@Resource</code> 是 Java 提供的注解<br>属性使用 <code>name</code>属性</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Resource</span>(name = <span class="string">"ud"</span>)</div><div class="line"><span class="keyword">private</span> UserDao userDao;</div></pre></td></tr></table></figure>
+<h2 id="Bean-的作用范围和生命周期的注解"><a href="#Bean-的作用范围和生命周期的注解" class="headerlink" title="Bean 的作用范围和生命周期的注解"></a>Bean 的作用范围和生命周期的注解</h2><h3 id="Bean-的作用范围注解"><a href="#Bean-的作用范围注解" class="headerlink" title="Bean 的作用范围注解"></a>Bean 的作用范围注解</h3><ul>
+<li>注解为 <code>@Scope(value = &quot;prototype&quot;)</code>，作用在<code>类</code>上。值如下：<blockquote>
+<p><code>singleton</code>————单例，默认值<br><code>prototype</code>————多例</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="Bean-的生命周期的配置（了解）"><a href="#Bean-的生命周期的配置（了解）" class="headerlink" title="Bean 的生命周期的配置（了解）"></a>Bean 的生命周期的配置（了解）</h3><ul>
+<li>注解如下：<blockquote>
+<p><code>@PostConstruct</code>————相当于 <code>init-method</code><br><code>@PreDestroy</code>————相当于 <code>destroy-method</code></p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h1 id="Spring-框架整合-JUnit-单元测试"><a href="#Spring-框架整合-JUnit-单元测试" class="headerlink" title="Spring 框架整合 JUnit 单元测试"></a>Spring 框架整合 JUnit 单元测试</h1><hr>
+<p>为了简化了 <code>JUnit</code> 的测试，使用 Spring 框架也可以整合测试。</p>
+<h2 id="具体步骤"><a href="#具体步骤" class="headerlink" title="具体步骤"></a>具体步骤</h2><p>要求：必须先有 <code>JUnit</code> 的环境（即已经导入了 <code>JUnit4</code> 的开发环境）！！</p>
+<ul>
+<li><p>步骤一：在程序中引入：<code>spring-test.jar</code></p>
+</li>
+<li><p>步骤二：在具体的测试类上<code>添加注解</code></p>
+<blockquote>
+<p>@RunWith(SpringJUnit4ClassRunner.class)<br>@ContextConfiguration(“classpath:applicationContext.xml”)</p>
+</blockquote>
+</li>
+</ul>
+<p><em>以后不用再自己 new 工厂了，配置文件会自动加载：</em></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RunWith</span>(SpringJUnit4ClassRunner.class)</div><div class="line"><span class="meta">@ContextConfiguration</span>(<span class="string">"classpath:applicationContext.xml"</span>)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">demo2</span> </span>&#123;</div><div class="line">    <span class="meta">@Resource</span>(name = <span class="string">"userService"</span>)</div><div class="line">    <span class="keyword">private</span> UserService userService;</div><div class="line"></div><div class="line">    <span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run1</span><span class="params">()</span> </span>&#123;</div><div class="line">        userService.sayHello();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -781,7 +736,7 @@
   <p><span>本文标题:</span><a href="/posts/JavaWeb/2018-08-05-JavaWeb-Spring02.html">JavaWeb 之 Spring IoC 控制反转及整合 JUnit 单元测试</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 RenKai 的个人博客">RenKai</a></p>
   <p><span>发布时间:</span>2018年08月05日 - 10:08</p>
-  <p><span>最后更新:</span>2018年08月10日 - 14:08</p>
+  <p><span>最后更新:</span>2018年08月11日 - 10:08</p>
   <p><span>原始链接:</span><a href="/posts/JavaWeb/2018-08-05-JavaWeb-Spring02.html" title="JavaWeb 之 Spring IoC 控制反转及整合 JUnit 单元测试">http://yoursite.com/posts/JavaWeb/2018-08-05-JavaWeb-Spring02.html</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/posts/JavaWeb/2018-08-05-JavaWeb-Spring02.html"  aria-label="复制成功！"></i></span>
   </p>
@@ -1077,7 +1032,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-框架-Bean-管理的配置文件方式"><span class="nav-number">1.</span> <span class="nav-text">Spring 框架 Bean 管理的配置文件方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#技术分析之Spring框架的IoC功能之注解的方式"><span class="nav-number">1.0.1.</span> <span class="nav-text">技术分析之Spring框架的IoC功能之注解的方式</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-框架-IoC-功能之配置文件方式"><span class="nav-number">1.</span> <span class="nav-text">Spring 框架 IoC 功能之配置文件方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-框架中-lt-bean-gt-标签的配置"><span class="nav-number">1.1.</span> <span class="nav-text">Spring 框架中 <bean> 标签的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#id-属性和-name-属性的区别"><span class="nav-number">1.1.1.</span> <span class="nav-text">id 属性和 name 属性的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#class-属性"><span class="nav-number">1.1.2.</span> <span class="nav-text">class 属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#scope-属性"><span class="nav-number">1.1.3.</span> <span class="nav-text">scope 属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bean-对象的创建和销毁的两个属性配置（了解）"><span class="nav-number">1.1.4.</span> <span class="nav-text">Bean 对象的创建和销毁的两个属性配置（了解）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖注入（DI）"><span class="nav-number">1.2.</span> <span class="nav-text">依赖注入（DI）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-框架的属性注入"><span class="nav-number">1.2.1.</span> <span class="nav-text">Spring 框架的属性注入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#构造方法的注入方式"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">构造方法的注入方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#setter-方法的注入方式"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">setter 方法的注入方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-2-5-版本：p-名称空间的注入（了解）"><span class="nav-number">1.2.2.</span> <span class="nav-text">Spring 2.5 版本：p 名称空间的注入（了解）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#先引入-p-名称空间"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">先引入 p 名称空间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-p-名称空间的语法"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">使用 p 名称空间的语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-3-0-版本：SpEL注入方式（了解）"><span class="nav-number">1.2.3.</span> <span class="nav-text">Spring 3.0 版本：SpEL注入方式（了解）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组，集合（List-Set-Map），Properties-等的注入"><span class="nav-number">1.2.4.</span> <span class="nav-text">数组，集合（List,Set,Map），Properties 等的注入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数组和-List-集合"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">数组和 List 集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Set-集合"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">Set 集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Map-集合"><span class="nav-number">1.2.4.3.</span> <span class="nav-text">Map 集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#properties-属性文件"><span class="nav-number">1.2.4.4.</span> <span class="nav-text">properties 属性文件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-配置文件分开管理（了解）"><span class="nav-number">1.3.</span> <span class="nav-text">Spring 配置文件分开管理（了解）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-框架-IoC-功能之注解方式"><span class="nav-number">2.</span> <span class="nav-text">Spring 框架 IoC 功能之注解方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring框架-IoC-之注解方式快速入门"><span class="nav-number">2.1.</span> <span class="nav-text">Spring框架 IoC 之注解方式快速入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤一：导入注解开发所有需要的-jar-包"><span class="nav-number">2.1.1.</span> <span class="nav-text">步骤一：导入注解开发所有需要的 jar 包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤二：创建对应的包结构，编写-Java-的类"><span class="nav-number">2.1.2.</span> <span class="nav-text">步骤二：创建对应的包结构，编写 Java 的类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤三：引入约束"><span class="nav-number">2.1.3.</span> <span class="nav-text">步骤三：引入约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤四：在-applicationContext-xml-配置文件中开启组件扫描"><span class="nav-number">2.1.4.</span> <span class="nav-text">步骤四：在 applicationContext.xml 配置文件中开启组件扫描</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤五：在-UserServiceImpl-的实现类上添加注解"><span class="nav-number">2.1.5.</span> <span class="nav-text">步骤五：在 UserServiceImpl 的实现类上添加注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤六：编写测试代码"><span class="nav-number">2.1.6.</span> <span class="nav-text">步骤六：编写测试代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-框架中-Bean-管理的常用注解"><span class="nav-number">2.2.</span> <span class="nav-text">Spring 框架中 Bean 管理的常用注解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类注解"><span class="nav-number">2.2.1.</span> <span class="nav-text">类注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性注解"><span class="nav-number">2.2.2.</span> <span class="nav-text">属性注解</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bean-的作用范围和生命周期的注解"><span class="nav-number">2.3.</span> <span class="nav-text">Bean 的作用范围和生命周期的注解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Bean-的作用范围注解"><span class="nav-number">2.3.1.</span> <span class="nav-text">Bean 的作用范围注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bean-的生命周期的配置（了解）"><span class="nav-number">2.3.2.</span> <span class="nav-text">Bean 的生命周期的配置（了解）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-框架整合-JUnit-单元测试"><span class="nav-number">3.</span> <span class="nav-text">Spring 框架整合 JUnit 单元测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#具体步骤"><span class="nav-number">3.1.</span> <span class="nav-text">具体步骤</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1132,7 +1087,7 @@
 
 <div class="theme-info">
 <i class="fa fa-pencil"></i> 
-  <span class="post-count">全站共 66.9k</span> 字
+  <span class="post-count">全站共 67.2k</span> 字
 </div>
 
 <center>

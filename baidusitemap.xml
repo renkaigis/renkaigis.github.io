@@ -3,6 +3,28 @@
 
 
     
+  <url>
+    <loc>http://renkaigis.com/posts/JavaWeb/2018-08-05-JavaWeb-Spring02.html</loc>
+    <lastmod>2018-08-11T02:18:30.631Z</lastmod>
+    <data>
+        <display>
+        <title>JavaWeb 之 Spring IoC 控制反转及整合 JUnit 单元测试</title>
+        <pubTime>2018-08-05T02:27:56.000Z</pubTime>
+        
+        <tag>JavaWeb</tag>
+         
+        <tag>Spring</tag>
+         
+         
+           
+             
+              <breadCrumb title="JavaWeb" url="http://yoursite.com/categories/JavaWeb/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>http://renkaigis.com/posts/Mine/2013-08-03-view-of-muslim-funeral.html</loc>
@@ -222,28 +244,6 @@
            
              
               <breadCrumb title="ArcGIS" url="http://yoursite.com/categories/ArcGIS/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://renkaigis.com/posts/JavaWeb/2018-08-05-JavaWeb-Spring02.html</loc>
-    <lastmod>2018-08-10T06:46:43.888Z</lastmod>
-    <data>
-        <display>
-        <title>JavaWeb 之 Spring IoC 控制反转及整合 JUnit 单元测试</title>
-        <pubTime>2018-08-05T02:27:56.000Z</pubTime>
-        
-        <tag>JavaWeb</tag>
-         
-        <tag>Spring</tag>
-         
-         
-           
-             
-              <breadCrumb title="JavaWeb" url="http://yoursite.com/categories/JavaWeb/"/>
           
         </display>
     </data>

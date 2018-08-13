@@ -1945,7 +1945,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #42537a;
+  background: #f5d2ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3108,7 +3108,7 @@ strong {
   color: #f00;
 }
 blockquote {
-  border-left: 5px solid #48d1cc;
+  border-left: 5px solid #999;
 }
 body {
   color: #444;

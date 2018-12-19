@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/about/index.html</loc>
+    
+    <lastmod>2018-12-19T07:05:16.612Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/WebGIS-tomcat-arcgis_js_api49.html</loc>
     
     <lastmod>2018-10-10T08:42:29.522Z</lastmod>
@@ -47,13 +54,6 @@
     <loc>http://yoursite.com/JavaWeb-Spring02.html</loc>
     
     <lastmod>2018-08-11T02:18:30.631Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/about/index.html</loc>
-    
-    <lastmod>2018-08-10T07:34:00.354Z</lastmod>
     
   </url>
   

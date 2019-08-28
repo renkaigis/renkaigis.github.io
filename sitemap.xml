@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/SpringBoot-abc-start.html</loc>
+    <loc>http://yoursite.com/SpringBoot-config.html</loc>
     
-    <lastmod>2019-08-27T16:51:51.929Z</lastmod>
+    <lastmod>2019-08-28T06:22:25.521Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/SpringBoot-abc.html</loc>
+    
+    <lastmod>2019-08-28T01:46:09.267Z</lastmod>
     
   </url>
   

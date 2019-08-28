@@ -4,8 +4,30 @@
 
     
   <url>
-    <loc>http://renkaigis.com/SpringBoot-abc-start.html</loc>
-    <lastmod>2019-08-27T16:51:51.929Z</lastmod>
+    <loc>http://renkaigis.com/SpringBoot-config.html</loc>
+    <lastmod>2019-08-28T06:22:25.521Z</lastmod>
+    <data>
+        <display>
+        <title>Spring Boot 配置文件</title>
+        <pubTime>2019-08-17T02:56:19.000Z</pubTime>
+        
+        <tag>JavaWeb</tag>
+         
+        <tag>SpringBoot</tag>
+         
+         
+           
+             
+              <breadCrumb title="SpringBoot" url="http://yoursite.com/categories/SpringBoot/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://renkaigis.com/SpringBoot-abc.html</loc>
+    <lastmod>2019-08-28T01:46:09.267Z</lastmod>
     <data>
         <display>
         <title>Spring Boot 快速入门</title>

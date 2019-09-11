@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/novel-nverqing.html</loc>
+    
+    <lastmod>2019-09-04T11:39:12.609Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/SpringBoot-config.html</loc>
     
     <lastmod>2019-08-28T16:34:02.911Z</lastmod>
@@ -33,13 +40,6 @@
     <loc>http://yoursite.com/WebGIS-tomcat-arcgis_js_api49.html</loc>
     
     <lastmod>2018-10-10T08:42:29.522Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/novel-nverqing.html</loc>
-    
-    <lastmod>2018-08-17T08:25:15.068Z</lastmod>
     
   </url>
   

@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://renkaigis.com/novel-nverqing.html</loc>
+    <lastmod>2019-09-04T11:39:12.609Z</lastmod>
+    <data>
+        <display>
+        <title>世间安得双全法，不负如来不负卿</title>
+        <pubTime>2018-06-18T12:05:27.000Z</pubTime>
+        
+        <tag>Novel</tag>
+         
+         
+           
+             
+              <breadCrumb title="Mine" url="http://yoursite.com/categories/Mine/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://renkaigis.com/SpringBoot-config.html</loc>
     <lastmod>2019-08-28T16:34:02.911Z</lastmod>
     <data>
@@ -77,26 +97,6 @@
            
              
               <breadCrumb title="WebGIS" url="http://yoursite.com/categories/WebGIS/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://renkaigis.com/novel-nverqing.html</loc>
-    <lastmod>2018-08-17T08:25:15.068Z</lastmod>
-    <data>
-        <display>
-        <title>世间安得双全法，不负如来不负卿</title>
-        <pubTime>2018-06-18T12:05:27.000Z</pubTime>
-        
-        <tag>Novel</tag>
-         
-         
-           
-             
-              <breadCrumb title="Mine" url="http://yoursite.com/categories/Mine/"/>
           
         </display>
     </data>

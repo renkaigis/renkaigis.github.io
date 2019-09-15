@@ -1945,7 +1945,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #2a538e;
+  background: #f12;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3050,7 +3050,7 @@ hr {
   font-size: 35px;
   font-weight: bold;
   color: #000;
-  font-family: "华文行楷";
+  font-family: 'STXingkai';
 }
 a {
   color: rgba(0,0,0,0.8);

@@ -4,8 +4,32 @@
 
     
   <url>
+    <loc>http://renkaigis.com/SpringBoot-HttpClient1.html</loc>
+    <lastmod>2019-12-16T07:01:06.241Z</lastmod>
+    <data>
+        <display>
+        <title>SpringBoot 整合 HttpClient，后端调用远程接口</title>
+        <pubTime>2019-12-05T01:56:12.000Z</pubTime>
+        
+        <tag>JavaWeb</tag>
+         
+        <tag>SpringBoot</tag>
+         
+        <tag>HttpClient</tag>
+         
+         
+           
+             
+              <breadCrumb title="SpringBoot" url="http://yoursite.com/categories/SpringBoot/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://renkaigis.com/view-ordinary-world.html</loc>
-    <lastmod>2019-12-02T15:54:56.079Z</lastmod>
+    <lastmod>2019-12-03T00:59:03.877Z</lastmod>
     <data>
         <display>
         <title>只要平凡，却不甘平凡</title>

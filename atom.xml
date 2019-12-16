@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-12-02T15:54:56.079Z</updated>
+  <updated>2019-12-16T07:01:06.241Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,63 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>SpringBoot 整合 HttpClient，后端调用远程接口</title>
+    <link href="http://yoursite.com/SpringBoot-HttpClient1.html"/>
+    <id>http://yoursite.com/SpringBoot-HttpClient1.html</id>
+    <published>2019-12-05T01:56:12.000Z</published>
+    <updated>2019-12-16T07:01:06.241Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/springboot/springboot0400.png"></div>
+
+<p id="div-border-left-red">SpringBoot 整合 HttpClient</p>
+
+<a id="more"></a>
+<h1 id="添加-HttpClient-依赖"><a href="#添加-HttpClient-依赖" class="headerlink" title="添加 HttpClient 依赖"></a>添加 HttpClient 依赖</h1><p>在 <code>SpringBoot</code> 项目中的 <code>pom.xml</code> 文件中添加 <code>HttpClient</code> 的起步依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- HttpClient 起步依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.httpcomponents<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>httpclient<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="HttpClient-发送-GET-请求"><a href="#HttpClient-发送-GET-请求" class="headerlink" title="HttpClient 发送 GET 请求"></a>HttpClient 发送 GET 请求</h1><p>先尝试通过 <code>HttpClient</code> 发送 <code>GET</code> 请求：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HttpClientController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/testGet"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">httpClientTestGet</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        String result = <span class="string">""</span>;</span><br><span class="line">        <span class="comment">// 要请求的远程连接（此为我本地另开的一个服务，即：http://localhost:8082/queryUser）</span></span><br><span class="line">        String url = <span class="string">"http://172.20.10.2:8082/queryUser"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建httpclient对象</span></span><br><span class="line">        CloseableHttpClient httpClient = HttpClients.createDefault();</span><br><span class="line">        <span class="comment">// 创建GET方式请求对象</span></span><br><span class="line">        HttpGet httpGet = <span class="keyword">new</span> HttpGet(url);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置请求头信息</span></span><br><span class="line">        <span class="comment">// httpGet.setHeader("Cookie", "JSESSIONID=xxxxxxx");</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 执行请求操作，并拿到结果（同步阻塞）</span></span><br><span class="line">        CloseableHttpResponse response = httpClient.execute(httpGet);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获取结果实体</span></span><br><span class="line">        <span class="comment">// 判断网络连接状态码是否正常(0--200都数正常)</span></span><br><span class="line">        <span class="keyword">if</span> (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) &#123;</span><br><span class="line">            result = EntityUtils.toString(response.getEntity(), <span class="string">"utf-8"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 释放链接</span></span><br><span class="line">        response.close();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过访问：<code>http://localhost:8080/testGet</code> 测试该远程 <code>GET</code> 请求是否成功。</p>
+<p><img src="http://image.renkaigis.com/springboot/springboot0401.png"></p>
+<h1 id="HttpClient-发送-POST-请求"><a href="#HttpClient-发送-POST-请求" class="headerlink" title="HttpClient 发送 POST 请求"></a>HttpClient 发送 POST 请求</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping</span>(<span class="string">"/testPost"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">httpClientTestPost</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    String result = <span class="string">""</span>;</span><br><span class="line">    <span class="comment">// json数据：&#123;"username": "testPost","password": "1234","realname": "post 测试"&#125;</span></span><br><span class="line">    String json=<span class="string">"&#123;\"username\": \"testPost\",\"password\": \"1234\",\"realname\": \"post 测试\"&#125;"</span>;</span><br><span class="line">    <span class="comment">// 若传入的是个对象，可使用 fastjson 工具包将其转为json字符串</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 要请求的远程连接</span></span><br><span class="line">    String url = <span class="string">"http://172.20.10.2:8088/addUser"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建httpclient对象</span></span><br><span class="line">    CloseableHttpClient httpClient = HttpClients.createDefault();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建post方式请求对象</span></span><br><span class="line">    HttpPost httpPost = <span class="keyword">new</span> HttpPost(url);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置参数到请求对象中，这里内容类型设为json</span></span><br><span class="line">    StringEntity stringEntity = <span class="keyword">new</span> StringEntity(json, ContentType.APPLICATION_JSON);</span><br><span class="line">    stringEntity.setContentEncoding(<span class="string">"utf-8"</span>);</span><br><span class="line">    httpPost.setEntity(stringEntity);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 执行请求操作，并拿到结果（同步阻塞）</span></span><br><span class="line">    CloseableHttpResponse response = httpClient.execute(httpPost);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取结果实体</span></span><br><span class="line">    <span class="comment">// 判断网络连接状态码是否正常(0--200都属正常)</span></span><br><span class="line">    <span class="keyword">if</span> (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) &#123;</span><br><span class="line">        result = EntityUtils.toString(response.getEntity(), <span class="string">"utf-8"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println(response.getStatusLine().getStatusCode());</span><br><span class="line">    <span class="comment">// 释放链接</span></span><br><span class="line">    response.close();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过访问：<code>http://localhost:8080/testGet</code> 测试该远程 <code>POST</code> 请求是否成功。</p>
+<p><img src="http://image.renkaigis.com/springboot/springboot0402.png"></p>
+<p>查询数据库，添加成功。</p>
+<p><img src="http://image.renkaigis.com/springboot/springboot0403.png"></p>
+<p><strong>PUT</strong> 和 <strong>DELETE</strong> 同理可以这样进行请求，不一一赘述。</p>
+<p>下面将这常用的四个请求方法整合为一个工具类，以使得大部分的请求都能直接调用工具类中的方法实现。</p>
+<h1 id="整合-HttpClient-请求方法"><a href="#整合-HttpClient-请求方法" class="headerlink" title="整合 HttpClient 请求方法"></a>整合 HttpClient 请求方法</h1><p>编写 <code>CommonMethod.java</code> 工具类，该类为静态类，可直接通过类名调用里面的方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.rk.utils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.http.HttpStatus;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.client.methods.*;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.entity.ContentType;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.entity.StringEntity;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.impl.client.CloseableHttpClient;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.impl.client.HttpClients;</span><br><span class="line"><span class="keyword">import</span> org.apache.http.util.EntityUtils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CommonMethod</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// GET 请求</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">commonGet</span><span class="params">(String url)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        String result = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">        CloseableHttpClient httpClient = HttpClients.createDefault();</span><br><span class="line"></span><br><span class="line">        HttpGet httpGet = <span class="keyword">new</span> HttpGet(url);</span><br><span class="line"></span><br><span class="line">        CloseableHttpResponse response = httpClient.execute(httpGet);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) &#123;</span><br><span class="line">            result = EntityUtils.toString(response.getEntity(), <span class="string">"utf-8"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// POST 请求</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">commonPost</span><span class="params">(String url, String json)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        String result = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">        CloseableHttpClient httpClient = HttpClients.createDefault();</span><br><span class="line"></span><br><span class="line">        HttpPost httpPost = <span class="keyword">new</span> HttpPost(url);</span><br><span class="line"></span><br><span class="line">        StringEntity stringEntity = <span class="keyword">new</span> StringEntity(json, ContentType.APPLICATION_JSON);</span><br><span class="line">        stringEntity.setContentEncoding(<span class="string">"utf-8"</span>);</span><br><span class="line"></span><br><span class="line">        httpPost.setEntity(stringEntity);</span><br><span class="line"></span><br><span class="line">        CloseableHttpResponse response = httpClient.execute(httpPost);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) &#123;</span><br><span class="line">            result = EntityUtils.toString(response.getEntity(), <span class="string">"utf-8"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// PUT 请求</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">commonPut</span><span class="params">(String url, String json)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        String result = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">        CloseableHttpClient httpClient = HttpClients.createDefault();</span><br><span class="line"></span><br><span class="line">        HttpPut httpPut = <span class="keyword">new</span> HttpPut(url);</span><br><span class="line"></span><br><span class="line">        StringEntity stringEntity = <span class="keyword">new</span> StringEntity(json, ContentType.APPLICATION_JSON);</span><br><span class="line">        stringEntity.setContentEncoding(<span class="string">"utf-8"</span>);</span><br><span class="line"></span><br><span class="line">        httpPut.setEntity(stringEntity);</span><br><span class="line"></span><br><span class="line">        CloseableHttpResponse response = httpClient.execute(httpPut);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) &#123;</span><br><span class="line">            result = EntityUtils.toString(response.getEntity(), <span class="string">"utf-8"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// DELETE 请求</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">commonDelete</span><span class="params">(String url)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        String result = <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">        CloseableHttpClient httpClient = HttpClients.createDefault();</span><br><span class="line"></span><br><span class="line">        HttpDelete httpDelete = <span class="keyword">new</span> HttpDelete(url);</span><br><span class="line"></span><br><span class="line">        CloseableHttpResponse response = httpClient.execute(httpDelete);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) &#123;</span><br><span class="line">            result = EntityUtils.toString(response.getEntity(), <span class="string">"utf-8"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该工具类的调用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 调用 GET</span></span><br><span class="line">CommonMethod.commonGet(url);</span><br><span class="line"><span class="comment">// 调用 POST</span></span><br><span class="line">CommonMethod.commonPost(url, json);</span><br><span class="line"><span class="comment">// 调用 PUT</span></span><br><span class="line">CommonMethod.commonPut(url, json);</span><br><span class="line"><span class="comment">// 调用 DELETE</span></span><br><span class="line">CommonMethod.commonDelete(url);</span><br></pre></td></tr></table></figure>
+<p>常用的请求是 <code>GET</code>、<code>POTS</code>、<code>PUT</code> 和 <code>DELETE</code> 这四个请求方法。其中 <code>GET</code> 和 <code>DELETE</code> 一般只需要传入请求路径 <code>url</code> 就可完成调用，简单的 <code>POST</code> 和 <code>PUT</code> 方法也只需传入 <code>url</code> 和 <code>body</code> 数据就可调用成功。</p>
+<p>这是学习工作中整理的，有参考网上别人的教程。只是简单的远程调用接口，复杂的可以设置请求头参数，POST 的时候传入 Map 或者 form 表单数据等。这些我暂时用不到，暂不深究。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/springboot/springboot0400.png&quot;&gt;&lt;/div&gt;
+
+&lt;p id=&quot;div-border-left-red&quot;&gt;SpringBoot 整合 HttpClient&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="SpringBoot" scheme="http://yoursite.com/categories/SpringBoot/"/>
+    
+    
+      <category term="JavaWeb" scheme="http://yoursite.com/tags/JavaWeb/"/>
+    
+      <category term="SpringBoot" scheme="http://yoursite.com/tags/SpringBoot/"/>
+    
+      <category term="HttpClient" scheme="http://yoursite.com/tags/HttpClient/"/>
+    
+  </entry>
+  
+  <entry>
     <title>只要平凡，却不甘平凡</title>
     <link href="http://yoursite.com/view-ordinary-world.html"/>
     <id>http://yoursite.com/view-ordinary-world.html</id>
     <published>2019-12-01T09:35:21.000Z</published>
-    <updated>2019-12-02T15:54:56.079Z</updated>
+    <updated>2019-12-03T00:59:03.877Z</updated>
     
     <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p id="div-border-left-yellow">一个平平常常的日子，细蒙蒙的雨丝，夹着一星半点的雪花，正纷纷淋淋地向大地飘洒着。时令已快到惊蛰，雪当然再不会存留，往往还没等落地，就已经消失得无踪无影了。黄土高原严寒而漫长的冬天，看来就要过去，但那真正温暖的春天，还远远地没有到来……</p>
 
@@ -49,8 +101,8 @@
 <p>剧版似乎淡化了少平的主角，反观少安更像这部剧的主角。也许这与演员的演技和张力有关，王雷的少安深入人心，但袁弘的少平总觉得缺少点什么。</p>
 <p>虽然我不是生长在黄土高原上的，但对剧中出现的一些民风民俗还是倍感亲切的。</p>
 <p><code>“我们原是自由飞翔的鸟，飞去吧！飞到那乌云背后明媚的山峦，飞到那里，到那蓝色的海角。只有风在欢舞，还有我作伴。”</code> 这是晓霞在铁轨上念给少平的诗歌，是对自由的渴望，对外面世界的追求，更是对少平的爱慕。他们的爱情充满了浪漫和现实主义，他们的交流是心灵与心灵的沟通。她爱他那掏碳的男人，他们相约会在古塔山后的杜梨树下见面，她要他带自己回村子里，以少平未婚妻的名义回去。</p>
-<p>然而善良的她为救一个小女孩被洪水卷走了，抗洪指挥部的老父亲田福军一夜白头，只留下一句：<code>“她是我女儿”</code>。晓霞的离去配上凄凉的信天游，连老天都在哭泣，晓霞变成了一个自由飞翔的鸟，飞向了她一直追求的那一方天地。作者何其忍心写死晓霞，我多么希望电视剧对这里进行改编，她其实没有死，她在洪水的下游城市被人救了。</p>
-<p>秀莲依旧是那么可爱和贤惠，在穷苦的家里任劳任怨。一心一意爱着这个庄稼汉，她给少安捞稠的饭，给少安拿奶奶吃的白面馍，她苦口婆心央求少安箍个新窑，然后却只得到了少安的回复：“额捶你啊…”看到这里，连弹幕都笑了，这么好的媳妇，天天喊“捶”的。如今不懂得珍惜，待到失去的时候后悔莫及啊。</p>
+<p>然而善良的她为救一个小女孩被洪水卷走了，抗洪指挥部的老父亲田福军一夜白头，只留下一句：<code>“她是我女儿”</code>。晓霞的离去配上凄凉的信天游，连老天都在哭泣，晓霞变成了一只自由飞翔的鸟，飞向了她一直追求的那一方天地。作者何其忍心写死晓霞，我多么希望电视剧对这里进行改编，她其实没有死，她在洪水的下游城市被人救了。</p>
+<p>秀莲依旧是那么可爱和贤惠，在穷苦的家里任劳任怨。一心一意爱着这个庄稼汉，她给少安捞稠的饭，给少安拿奶奶吃的白面馍，她苦口婆心央求少安箍个新窑，然后却只得到了少安的回复：“额捶你啊…”看到这里，连弹幕都笑了，这么好的媳妇，打着灯笼都找不到，天天喊“捶”。如今不懂得珍惜，待到失去的时候后悔莫及啊。</p>
 <p>最感动的是秀莲说，“少安哥，<code>你命短，我给你延上</code>。只要你愿意娶我，我就心甘情愿地跟你走，只要是我秀莲愿意，我不嫌穷，谁也不能说啥，这再说了，这穷怕什么，这穷又扎不下跟，将来我来帮你家过光景”。她包容他，嫁过去的第一天就说过：“<code>你笑，我陪你笑，你流啥泪，我都替你抹</code>”。她用自己的一生，在践行这句话。</p>
 <p>感谢电视剧在最后一集留下了一个看似“完美”的结局，全村上下沉浸在临近过年的喜气洋洋的氛围中，以喜衬哀、笑中带泪的表现手法运用的淋漓尽致。最后桥上的那一段秀莲闭上眼后又缓缓苏醒看哭了我个男儿，他们的幸福生活来之不易，他们受了多少苦难和艰辛。时代在缓慢进步，人民生活在逐步变好，正是源于这一批勤劳的劳动人民和像田福军一样的改革先驱者的共同努力。</p>
 <p>如尾声时的旁白所言，“双水村沉浸在一片欢腾和喜悦中，天真的孩子们欢快地笑着，有的大人却悄悄抹泪，<code>哭、笑都是因为欢乐，哭的人知道，而笑的人不知道。</code>”</p>
@@ -3536,244 +3588,6 @@
       &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/javaweb/hibernate0300.png&quot;&gt;&lt;/div&gt;
 
 &lt;p id=&quot;div-border-left-green&quot;&gt;Hibernate 持久化类、缓存与事务。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="JavaWeb" scheme="http://yoursite.com/categories/JavaWeb/"/>
-    
-    
-      <category term="JavaWeb" scheme="http://yoursite.com/tags/JavaWeb/"/>
-    
-      <category term="Hibernate" scheme="http://yoursite.com/tags/Hibernate/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JavaWeb 之 Hibernate 配置及接口</title>
-    <link href="http://yoursite.com/JavaWeb-Hibernate02.html"/>
-    <id>http://yoursite.com/JavaWeb-Hibernate02.html</id>
-    <published>2018-05-30T08:33:19.000Z</published>
-    <updated>2018-08-10T06:41:30.064Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/javaweb/hibernate0200.png"></div>
-
-<p id="div-border-left-green">Hibernate 配置文件与接口方法。</p>
-
-<a id="more"></a>
-<hr>
-<h1 id="映射配置文件"><a href="#映射配置文件" class="headerlink" title="映射配置文件"></a>映射配置文件</h1><hr>
-<p>映射文件，即类与表的映射配置文件，假设是 <code>Customer.hbm.xml</code></p>
-<h2 id="lt-class-gt-标签"><a href="#lt-class-gt-标签" class="headerlink" title="&lt;class&gt;标签"></a><code>&lt;class&gt;标签</code></h2><table>
-<thead>
-<tr>
-<th style="text-align:center">&lt;class&gt; 标签</th>
-<th>用来将类与数据库表建立映射关系</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">name</td>
-<td>类的全路径</td>
-</tr>
-<tr>
-<td style="text-align:center">table</td>
-<td>表名.(类名与表名一致,那么table属性也可以省略)</td>
-</tr>
-<tr>
-<td style="text-align:center">catalog</td>
-<td>数据库的名称，基本上都会省略不写</td>
-</tr>
-</tbody>
-</table>
-<h2 id="lt-id-gt-标签"><a href="#lt-id-gt-标签" class="headerlink" title="&lt;id&gt;标签"></a><code>&lt;id&gt;标签</code></h2><table>
-<thead>
-<tr>
-<th style="text-align:center">&lt;id&gt; 标签</th>
-<th>用来将类中的属性与表中的主键建立映射，id 标签就是用来配置主键的</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">name</td>
-<td>类中属性名</td>
-</tr>
-<tr>
-<td style="text-align:center">column</td>
-<td>表中的字段名。（如果类中的属性名与表中的字段名一致,那么 column 可以省略。）</td>
-</tr>
-<tr>
-<td style="text-align:center">length</td>
-<td>字段的程度，如果数据库已经创建好了，那么 length 可以不写。如果没有创建好，生成表结构时，length 最好指定。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="lt-property-gt-标签"><a href="#lt-property-gt-标签" class="headerlink" title="&lt;property&gt;标签"></a><code>&lt;property&gt;标签</code></h2><table>
-<thead>
-<tr>
-<th style="text-align:center">&lt;property&gt; 标签</th>
-<th>用来将类中的普通属性与表中的字段建立映射</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">name</td>
-<td>类中属性名</td>
-</tr>
-<tr>
-<td style="text-align:center">column</td>
-<td>表中的字段名（如果类中的属性名与表中的字段名一致,那么column可以省略。）</td>
-</tr>
-<tr>
-<td style="text-align:center">length</td>
-<td>数据长度</td>
-</tr>
-<tr>
-<td style="text-align:center">type</td>
-<td>数据类型（一般都不需要编写，如果写需要按着规则来编写）<br>Hibernate 的数据类型    type=”string”<br>Java 的数据类型        type=”java.lang.String”<br> 数据库字段的数据类型    &lt;column name=”name” sql-type=”varchar”/&gt;</td>
-</tr>
-</tbody>
-</table>
-<p><strong>注：</strong> 配置不需要那么麻烦，一般默认的就可以了。</p>
-<hr>
-<h1 id="核心配置文件"><a href="#核心配置文件" class="headerlink" title="核心配置文件"></a>核心配置文件</h1><hr>
-<h2 id="核心配置文件的两种方式"><a href="#核心配置文件的两种方式" class="headerlink" title="核心配置文件的两种方式"></a>核心配置文件的两种方式</h2><h3 id="属性文件"><a href="#属性文件" class="headerlink" title="属性文件"></a>属性文件</h3><p>第一种方式是属性文件的形式，即 properties 的配置文件</p>
-<p><code>hibernate.properties</code> 里面的编写规则如下：（key=value）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hibernate.connection.driver_class=com.mysql.jdbc.Driver</span><br></pre></td></tr></table></figure>
-<p>缺点：不能加载映射的配置文件，需要手动编写代码去加载</p>
-<h3 id="xml-文件（★）"><a href="#xml-文件（★）" class="headerlink" title="xml 文件（★）"></a>xml 文件（<strong>★</strong>）</h3><p>第二种方式是 XML 文件的形式，开发基本都会选择这种方式（<strong>★</strong>）</p>
-<p><code>hibernate.cfg.xml</code></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.connection.driver_class"</span> &gt;</span>com.mysql.jdbc.Driver<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong>优点</strong></p>
-<ul>
-<li>格式比较清晰</li>
-<li>编写有提示</li>
-<li>可以在该配置文件中加载映射的配置文件（最主要的）</li>
-</ul>
-<h2 id="hibernate-cfg-xml-的配置文件详解"><a href="#hibernate-cfg-xml-的配置文件详解" class="headerlink" title="hibernate.cfg.xml 的配置文件详解"></a><code>hibernate.cfg.xml</code> 的配置文件详解</h2><h3 id="必须有的配置"><a href="#必须有的配置" class="headerlink" title="必须有的配置"></a>必须有的配置</h3><ul>
-<li>数据库连接信息:</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hibernate.connection.driver_class       -- 连接数据库驱动程序</span><br><span class="line">hibernate.connection.url        -- 连接数据库 URL</span><br><span class="line">hibernate.connection.username       -- 数据库用户名</span><br><span class="line">hibernate.connection.password       -- 数据库密码</span><br></pre></td></tr></table></figure>
-<ul>
-<li>方言:</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hibernate.dialect       -- 操作数据库方言</span><br></pre></td></tr></table></figure>
-<h3 id="可选的配置"><a href="#可选的配置" class="headerlink" title="可选的配置"></a>可选的配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">* hibernate.show_sql        -- 显示 SQL，控制台输出 SQL 语句</span><br><span class="line">* hibernate.format_sql      -- 格式化控制台输出的 SQL 语句</span><br><span class="line"></span><br><span class="line">* hibernate.hbm2ddl.auto        -- 通过映射转成DDL语句</span><br><span class="line">    * create            -- 每次都会创建一个新的表。 ---测试的时候使用</span><br><span class="line">    * create-drop       -- 每次都会创建一个新的表，当执行结束之后，将创建的这个表删除。   ---测试的时候使用</span><br><span class="line">    * update★            -- 如果有表，使用原来的表。没有表，创建一个新的表。同时更新表结构。</span><br><span class="line">    * validate          -- 如果有表，使用原来的表。同时校验映射文件与表中字段是否一致如果不一致就会报错。</span><br></pre></td></tr></table></figure>
-<h3 id="加载映射"><a href="#加载映射" class="headerlink" title="加载映射"></a>加载映射</h3><ul>
-<li>如果是 XML 方式：</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mapping</span> <span class="attr">resource</span>=<span class="string">"com/renkaigis/domain/Customer.hbm.xml"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="单表最基本的-Hibernate-配置文件"><a href="#单表最基本的-Hibernate-配置文件" class="headerlink" title="单表最基本的 Hibernate 配置文件"></a>单表最基本的 Hibernate 配置文件</h2><p><code>hibernate.cfg.xml</code></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE hibernate-configuration PUBLIC</span></span><br><span class="line"><span class="meta">        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"</span></span><br><span class="line"><span class="meta">        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd"&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">hibernate-configuration</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--记住：先配置 SessionFactory 标签，一个数据库对应一个 SessionFactory 标签--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">session-factory</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--必须配置的参数有 5 个，4 大参数和数据库的方言--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.connection.driver_class"</span>&gt;</span>com.mysql.jdbc.Driver<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.connection.url"</span>&gt;</span>jdbc:mysql:///hibernate_01<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.connection.username"</span>&gt;</span>root<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.connection.password"</span>&gt;</span>123456<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--数据库的方言--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.dialect"</span>&gt;</span>org.hibernate.dialect.MySQLDialect<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!--可选配置--&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--控制台显示 SQL 语句--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"show_sql"</span>&gt;</span>true<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--格式化显示的 SQL 语句--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"format_sql"</span>&gt;</span>true<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--生成数据库表结构--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"hibernate.hbm2ddl.auto"</span>&gt;</span>update<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!--映射配置文件，需要引入映射的配置文件--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mapping</span> <span class="attr">resource</span>=<span class="string">"com/renkaigis/domain/Customer.hbm.xml"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">session-factory</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">hibernate-configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<hr>
-<h1 id="Hibernate-常用的接口和类"><a href="#Hibernate-常用的接口和类" class="headerlink" title="Hibernate 常用的接口和类"></a>Hibernate 常用的接口和类</h1><hr>
-<h2 id="Configuration-类和作用"><a href="#Configuration-类和作用" class="headerlink" title="Configuration 类和作用"></a>Configuration 类和作用</h2><h3 id="Configuration类"><a href="#Configuration类" class="headerlink" title="Configuration类"></a>Configuration类</h3><ul>
-<li><p>Configuration 对象用于配置并且启动 Hibernate。</p>
-</li>
-<li><p>Hibernate 应用通过该对象来获得 <code>对象-关系映射</code> 文件中的元数据，以及动态配置 Hibernate 的属性，然后创建 SessionFactory 对象。</p>
-</li>
-</ul>
-<p>简而言之：加载 Hibernate 的配置文件，可以获取 SessionFactory 对象。</p>
-<h3 id="Configuration类的其他应用（了解）"><a href="#Configuration类的其他应用（了解）" class="headerlink" title="Configuration类的其他应用（了解）"></a>Configuration类的其他应用（了解）</h3><p>加载配置文件的种类，Hibernate 支持 xml 和 properties 类型的配置文件，在开发中基本都使用 XML 配置文件的方式。</p>
-<ul>
-<li>如果采用的是 properties 的配置文件，那么通过下面语句可以加载配置文件</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Configuration configuration = <span class="keyword">new</span> Configuration();</span><br></pre></td></tr></table></figure>
-<p>但是需要自己手动加载映射文件</p>
-<p>例如：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config.addResource(<span class="string">"cn/itcast/domain/Student.hbm.xml"</span>);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>如果采用的 XML 的配置文件，通过下面语句可直接加载配置文件和映射文件。</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Configuration configuration = <span class="keyword">new</span> Configuration().configure();</span><br></pre></td></tr></table></figure>
-<h2 id="SessionFactory-类-★"><a href="#SessionFactory-类-★" class="headerlink" title="SessionFactory 类 ★"></a>SessionFactory 类 ★</h2><p>SessionFactory 是工厂类，负责初始化 Hibernate，充当数据存储源，并负责创建 Session 对象。</p>
-<h3 id="SessionFactory-类的特点"><a href="#SessionFactory-类的特点" class="headerlink" title="SessionFactory 类的特点"></a>SessionFactory 类的特点</h3><ul>
-<li><p>由Configuration 通过加载配置文件创建该对象。</p>
-</li>
-<li><p>SessionFactory 对象中保存了当前的数据库配置信息和所有映射关系以及预定义的 SQL 语句。同时，SessionFactory 还负责维护 Hibernate 的二级缓存。</p>
-</li>
-<li><ul>
-<li>预定义 SQL 语句</li>
-</ul>
-</li>
-<li><ul>
-<li><ul>
-<li>使用 Configuration 类创建了 SessionFactory 对象时，已经在 SessionFacotry 对象中缓存了一些 SQL 语句；</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><ul>
-<li><ul>
-<li>常见的SQL语句是增删改查（通过主键来查询）；</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><ul>
-<li><ul>
-<li>这样做的目的是效率更高。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>一个 SessionFactory 实例对应一个数据库，应用从该对象中获得 Session 实例。</p>
-</li>
-<li>SessionFactory 是 <code>线程安全</code> 的，意味着它的一个实例可以被应用的多个线程共享。</li>
-<li>SessionFactory 是 <code>重量级</code> 的，意味着不能随意创建或销毁它的实例。如果只访问一个数据库，只需要创建一个 SessionFactory 实例，且在应用初始化的时候完成。</li>
-<li>SessionFactory 需要一个较大的缓存，用来存放预定义的SQL语句及实体的映射信息。另外可以配置一个缓存插件，这个插件被称之为 Hibernate 的二级缓存，被多线程所共享。</li>
-</ul>
-<p>总之，一般应用使用一个 SessionFactory，最好是应用启动时就完成初始化。</p>
-<h3 id="编写-HibernateUtils-的工具类"><a href="#编写-HibernateUtils-的工具类" class="headerlink" title="编写 HibernateUtils 的工具类"></a>编写 HibernateUtils 的工具类</h3><p>简化获取 Session 的方法，在服务器启动时就完成了初始化，加载了配置文件和映射文件。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HibernateUtils</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Configuration cfg;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> SessionFactory factory;</span><br><span class="line">    <span class="keyword">static</span>&#123;</span><br><span class="line">        <span class="comment">// 给常量赋值 </span></span><br><span class="line">        <span class="comment">// 加载配置文件</span></span><br><span class="line">        cfg = <span class="keyword">new</span> Configuration().configure();</span><br><span class="line">        <span class="comment">// 生成factory对象</span></span><br><span class="line">        factory = cfg.buildSessionFactory();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 获取Session对象</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Session <span class="title">openSession</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> factory.openSession();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>测试：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 测试工具类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSave2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 通过工具类获取 session 对象</span></span><br><span class="line">    Session session = HibernateUtils.getSession();</span><br><span class="line">    Transaction tr = session.beginTransaction();</span><br><span class="line">    Customer c=<span class="keyword">new</span> Customer();</span><br><span class="line">    c.setCust_name(<span class="string">"小明"</span>);</span><br><span class="line">    session.save(c);</span><br><span class="line"></span><br><span class="line">    tr.commit();</span><br><span class="line">    session.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Session-接口"><a href="#Session-接口" class="headerlink" title="Session 接口"></a>Session 接口</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ul>
-<li>Session 是在 Hibernate 中使用最频繁的接口。也被称之为 <code>持久化管理器</code>。它提供了和持久化有关的操作，比如添加、修改、删除、加载和查询实体对象；</li>
-<li>Session 是应用程序与数据库之间交互操作的一个单线程对象，是 Hibernate 运作的中心；</li>
-<li>Session 是线程不安全的；</li>
-<li>所有持久化对象必须在 session 的管理下才可以进行持久化操作；</li>
-<li>Session 对象有一个一级缓存，显式执行 flush 之前，所有的持久化操作的数据都缓存在 session 对象处；</li>
-<li>持久化类与 Session 关联起来后就具有了持久化的能力。</li>
-</ul>
-<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
-<li><code>不是线程安全</code> 的。应避免多个线程使用同一个 Session 实例；</li>
-<li>Session 是 <code>轻量级</code> 的，它的创建和销毁不会消耗太多的资源。应为每次客户请求分配独立的 Session 实例；</li>
-<li>Session 有一个缓存，被称之为 Hibernate 的一级缓存。每个 Session 实例都有自己的缓存。</li>
-</ul>
-<h3 id="常用的方法"><a href="#常用的方法" class="headerlink" title="常用的方法"></a>常用的方法</h3><ul>
-<li>save(obj)</li>
-<li>delete(obj)</li>
-<li>get(Class,id)</li>
-<li>update(obj)</li>
-<li>saveOrUpdate(obj)                    – 保存或者修改（如果没有数据，保存数据。如果有，修改数据）</li>
-<li>createQuery()                     – HQL语句的查询的方式</li>
-</ul>
-<h4 id="get-Class-id"><a href="#get-Class-id" class="headerlink" title="get(Class,id)"></a>get(Class,id)</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 测试 get() 方法，获取查询，通过主键来查询一条记录</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testGet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 通过工具类获取 session 对象</span></span><br><span class="line">    Session session = HibernateUtils.getSession();</span><br><span class="line">    Transaction tr = session.beginTransaction();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 两个参数：JavaBean 的 class 对象，主键的值</span></span><br><span class="line">    Customer c = session.get(Customer.class, <span class="number">94L</span>);</span><br><span class="line">    System.out.println(c);</span><br><span class="line"></span><br><span class="line">    tr.commit();</span><br><span class="line">    session.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Customer&#123;cust_id=94, cust_name=&apos;测试&apos;, cust_user_id=null, cust_create_id=null, cust_source=&apos;null&apos;, cust_industry=&apos;null&apos;, cust_level=&apos;2&apos;, cust_linkman=&apos;null&apos;, cust_phone=&apos;110&apos;, cust_mobile=&apos;null&apos;&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="delete-obj"><a href="#delete-obj" class="headerlink" title="delete(obj)"></a>delete(obj)</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 测试 delete() 方法</span></span><br><span class="line"><span class="comment"> * 注意：删除或者修改，都要先查询在删除或者修改</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testDel</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 通过工具类获取 session 对象</span></span><br><span class="line">    Session session = HibernateUtils.getSession();</span><br><span class="line">    Transaction tr = session.beginTransaction();</span><br><span class="line"></span><br><span class="line">    Customer c = session.get(Customer.class, <span class="number">94L</span>);</span><br><span class="line">    <span class="comment">// 删除客户</span></span><br><span class="line">    session.delete(c);</span><br><span class="line"></span><br><span class="line">    tr.commit();</span><br><span class="line">    session.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出 SQL 语句：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Hibernate: </span><br><span class="line">    <span class="keyword">select</span></span><br><span class="line">        customer0_.cust_id <span class="keyword">as</span> cust_id1_0_0_,</span><br><span class="line">        customer0_.cust_name <span class="keyword">as</span> cust_nam2_0_0_,</span><br><span class="line">        customer0_.cust_user_id <span class="keyword">as</span> cust_use3_0_0_,</span><br><span class="line">        customer0_.cust_create_id <span class="keyword">as</span> cust_cre4_0_0_,</span><br><span class="line">        customer0_.cust_source <span class="keyword">as</span> cust_sou5_0_0_,</span><br><span class="line">        customer0_.cust_industry <span class="keyword">as</span> cust_ind6_0_0_,</span><br><span class="line">        customer0_.cust_level <span class="keyword">as</span> cust_lev7_0_0_,</span><br><span class="line">        customer0_.cust_linkman <span class="keyword">as</span> cust_lin8_0_0_,</span><br><span class="line">        customer0_.cust_phone <span class="keyword">as</span> cust_pho9_0_0_,</span><br><span class="line">        customer0_.cust_mobile <span class="keyword">as</span> cust_mo10_0_0_ </span><br><span class="line">    <span class="keyword">from</span></span><br><span class="line">        cst_customer customer0_ </span><br><span class="line">    <span class="keyword">where</span></span><br><span class="line">        customer0_.cust_id=?</span><br><span class="line">Hibernate: </span><br><span class="line">    <span class="keyword">delete</span> </span><br><span class="line">    <span class="keyword">from</span></span><br><span class="line">        cst_customer </span><br><span class="line">    <span class="keyword">where</span></span><br><span class="line">        cust_id=?</span><br></pre></td></tr></table></figure>
-<h4 id="update-obj"><a href="#update-obj" class="headerlink" title="update(obj)"></a>update(obj)</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 测试 update() 方法</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testUpdate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 通过工具类获取 session 对象</span></span><br><span class="line">    Session session = HibernateUtils.getSession();</span><br><span class="line">    Transaction tr = session.beginTransaction();</span><br><span class="line">    <span class="comment">// 查询客户</span></span><br><span class="line">    Customer c = session.get(Customer.class, <span class="number">1L</span>);</span><br><span class="line">    <span class="comment">// 设置客户信息</span></span><br><span class="line">    c.setCust_level(<span class="string">"中级"</span>);</span><br><span class="line">    c.setCust_name(<span class="string">"小徐"</span>);</span><br><span class="line">    <span class="comment">// 修改</span></span><br><span class="line">    session.update(c);</span><br><span class="line"></span><br><span class="line">    tr.commit();</span><br><span class="line">    session.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="saveOrUpdate-obj"><a href="#saveOrUpdate-obj" class="headerlink" title="saveOrUpdate(obj)"></a>saveOrUpdate(obj)</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 测试 SaveOrUpdate() 方法</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSaveOrUpdate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 通过工具类获取 session 对象</span></span><br><span class="line">    Session session = HibernateUtils.getSession();</span><br><span class="line">    Transaction tr = session.beginTransaction();</span><br><span class="line">    <span class="comment">// 查询客户</span></span><br><span class="line">    Customer c = session.get(Customer.class, <span class="number">1L</span>);</span><br><span class="line">    <span class="comment">// 设置客户信息</span></span><br><span class="line">    <span class="comment">// c.setCust_id(7L); // 千万不能修改 id 值</span></span><br><span class="line">    c.setCust_name(<span class="string">"小天"</span>);</span><br><span class="line">    <span class="comment">// 修改</span></span><br><span class="line">    session.saveOrUpdate(c);</span><br><span class="line"></span><br><span class="line">    tr.commit();</span><br><span class="line">    session.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="createQuery"><a href="#createQuery" class="headerlink" title="createQuery()"></a>createQuery()</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 测试 creatQuery() 方法</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSel</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Session session = HibernateUtils.getSession();</span><br><span class="line">    Transaction tr = session.beginTransaction();</span><br><span class="line">    <span class="comment">// 创建查询的接口</span></span><br><span class="line">    Query query = session.createQuery(<span class="string">"from Customer"</span>);</span><br><span class="line">    <span class="comment">// 查询所有的数据 select * from 表</span></span><br><span class="line">    List&lt;Customer&gt; list = query.list();</span><br><span class="line">    <span class="keyword">for</span> (Customer customer :</span><br><span class="line">            list) &#123;</span><br><span class="line">        System.out.println(customer);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    tr.commit();</span><br><span class="line">    session.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Transaction-接口"><a href="#Transaction-接口" class="headerlink" title="Transaction 接口"></a>Transaction 接口</h2><p>Transaction 是事务的接口。</p>
-<h3 id="常用的方法-1"><a href="#常用的方法-1" class="headerlink" title="常用的方法"></a>常用的方法</h3><ul>
-<li>commit()                – 提交事务</li>
-<li>rollback()            – 回滚事务</li>
-</ul>
-<h3 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h3><ul>
-<li>Hibernate 框架默认情况下事务不自动提交.需要手动提交事务</li>
-<li>如果没有开启事务，那么每个 Session 的操作，都相当于一个独立的事务</li>
-</ul>
-<h3 id="测试事务"><a href="#测试事务" class="headerlink" title="测试事务"></a>测试事务</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 测试事务</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSave3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Session session = <span class="keyword">null</span>;</span><br><span class="line">    Transaction tr = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        session = HibernateUtils.getSession();</span><br><span class="line">        <span class="comment">// 开启事务</span></span><br><span class="line">        tr = session.beginTransaction();</span><br><span class="line">        Customer c = <span class="keyword">new</span> Customer();</span><br><span class="line">        <span class="comment">// int a=10/0;</span></span><br><span class="line">        c.setCust_name(<span class="string">"嘿嘿"</span>);</span><br><span class="line">        session.save(c);</span><br><span class="line">        tr.commit();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        <span class="comment">// 回滚事务</span></span><br><span class="line">        tr.rollback();</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="comment">// 释放资源</span></span><br><span class="line">        session.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;http://image.renkaigis.com/javaweb/hibernate0200.png&quot;&gt;&lt;/div&gt;
-
-&lt;p id=&quot;div-border-left-green&quot;&gt;Hibernate 配置文件与接口方法。&lt;/p&gt;
     
     </summary>
     

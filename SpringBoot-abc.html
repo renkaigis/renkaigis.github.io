@@ -1,0 +1,1300 @@
+<!doctype html>
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+    
+
+    
+  
+
+  
+    
+
+    
+  
+
+  
+    
+
+    
+  
+
+  
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.gmirror.org/css?family=Comic Sans MS:300,300italic,400,400italic,700,700italicPingFang SC:300,300italic,400,400italic,700,700italicComic Sans MS:300,300italic,400,400italic,700,700italicConsolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="JavaWeb,SpringBoot,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="秋月春风等闲度" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png?v=5.1.1">
+
+
+
+
+
+
+<meta name="description" content="Spring Boot 快速入门">
+<meta name="keywords" content="JavaWeb,SpringBoot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Boot 快速入门">
+<meta property="og:url" content="http://yoursite.com/SpringBoot-abc.html">
+<meta property="og:site_name" content="秋月春风等闲度">
+<meta property="og:description" content="Spring Boot 快速入门">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://image.renkaigis.com/springboot/springboot0100.png">
+<meta property="og:image" content="http://image.renkaigis.com/springboot/springboot0101.png">
+<meta property="og:updated_time" content="2019-08-28T01:46:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring Boot 快速入门">
+<meta name="twitter:description" content="Spring Boot 快速入门">
+<meta name="twitter:image" content="http://image.renkaigis.com/springboot/springboot0100.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/SpringBoot-abc.html">
+
+
+
+
+
+  <title>Spring Boot 快速入门 | 秋月春风等闲度</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+ 
+   <a href="https://github.com/renkaigis"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">秋月春风等闲度</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">要有最朴素的生活，与最遥远的梦想。即使明日天寒地冻，路远马亡。</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-resume">
+          <a href="http://resume.renkaigis.com" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-address-card"></i> <br>
+            
+            Resume
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-photo">
+          <a href="http://photo.renkaigis.com" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-camera"></i> <br>
+            
+            Photo
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+    
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/SpringBoot-abc.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="RenKai">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="秋月春风等闲度">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Spring Boot 快速入门</h1>
+        
+
+        <div class="post-meta">
+                  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-14T18:34:21+08:00">
+                2019-08-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SpringBoot/" itemprop="url" rel="index">
+                    <span itemprop="name">SpringBoot</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/SpringBoot-abc.html#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="SpringBoot-abc.html" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/SpringBoot-abc.html" class="leancloud_visitors" data-flag-title="Spring Boot 快速入门">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+                                <span class="post-meta-divider">|</span>
+             </span>
+          
+
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">WordsCount</span>
+                
+                <span title="WordsCount">
+                  1,705
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </span></div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/springboot/springboot0100.png"></div>
+
+<p id="div-border-left-red">Spring Boot 快速入门</p>
+
+<a id="more"></a>
+<hr>
+<h1 id="SpringBoot-简介"><a href="#SpringBoot-简介" class="headerlink" title="SpringBoot 简介"></a>SpringBoot 简介</h1><hr>
+<blockquote>
+<p>简化 <code>Spring</code> 应用开发的一个框架；</p>
+<p>整个 <code>Spring</code> 技术栈的一个大整合；</p>
+<p><code>J2EE</code> 开发的一站式解决方案；</p>
+</blockquote>
+<p><strong>优点：</strong></p>
+<ul>
+<li><p>快速创建独立运行的 <code>Spring</code> 项目以及与主流框架集成</p>
+</li>
+<li><p>使用嵌入式的 <code>Servlet</code> 容器，应用无需打成 <code>war</code> 包</p>
+</li>
+<li><p><code>starters</code> 自动依赖与版本控制</p>
+</li>
+<li><p>大量的自动配置，简化开发，也可修改默认值</p>
+</li>
+<li><p>无需配置 <code>XML</code>，无代码生成，开箱即用</p>
+</li>
+<li><p>准生产环境的运行时应用监控</p>
+</li>
+<li><p>与云计算的天然集成</p>
+</li>
+</ul>
+<hr>
+<h1 id="微服务"><a href="#微服务" class="headerlink" title="微服务"></a>微服务</h1><hr>
+<p>2014 年，martin fowler 发表了一篇关于微服务的文章。</p>
+<p>微服务：是一种架构风格（服务微化）</p>
+<p>一个应用应该是一组小型服务；可以通过 <code>HTTP</code> 的方式进行互通；</p>
+<p>单体应用：ALL IN ONE</p>
+<p>微服务：每一个功能元素最终都是一个可独立替换和独立升级的软件单元。</p>
+<p><a href="https://martinfowler.com/articles/microservices.html#MicroservicesAndSoa" target="_blank" rel="noopener">详细参照微服务文档</a></p>
+<hr>
+<h1 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h1><hr>
+<h2 id="环境约束："><a href="#环境约束：" class="headerlink" title="环境约束："></a>环境约束：</h2><ul>
+<li><p><code>jdk1.8</code>：Spring Boot 推荐jdk1.7及以上；java version “1.8.0_131”</p>
+</li>
+<li><p><code>maven3.x</code>：maven 3.3以上版本；Apache Maven 3.6.1</p>
+</li>
+<li><p><code>IntelliJ IDEA 2018</code>：IntelliJ IDEA 2018.3.6 x64</p>
+</li>
+<li><p><code>SpringBoot 2.1.7.RELEASE</code>：2.1.7；</p>
+</li>
+</ul>
+<h2 id="统一环境；"><a href="#统一环境；" class="headerlink" title="统一环境；"></a>统一环境；</h2><h3 id="1、MAVEN设置；"><a href="#1、MAVEN设置；" class="headerlink" title="1、MAVEN设置；"></a>1、MAVEN设置；</h3><p>给 maven 的 <code>settings.xml</code> 配置文件的 <code>profiles</code> 标签添加</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">profile</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">id</span>&gt;</span>jdk-1.8<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">activation</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">activeByDefault</span>&gt;</span>true<span class="tag">&lt;/<span class="name">activeByDefault</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">jdk</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">jdk</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">activation</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maven.compiler.compilerVersion</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.compilerVersion</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">profile</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="2、IDEA设置"><a href="#2、IDEA设置" class="headerlink" title="2、IDEA设置"></a>2、IDEA设置</h3><p>整合 <code>maven</code> 进来；</p>
+<div align="center"><img src="http://image.renkaigis.com/springboot/springboot0101.png" title>idea 设置</div>
+
+<h1 id="4、Spring-Boot-入门程序（HelloWorld）"><a href="#4、Spring-Boot-入门程序（HelloWorld）" class="headerlink" title="4、Spring Boot 入门程序（HelloWorld）"></a>4、Spring Boot 入门程序（HelloWorld）</h1><p>一个功能：</p>
+<p>浏览器发送 <code>hello</code> 请求，服务器接受请求并处理，响应 <code>Hello World</code> 字符串；</p>
+<h2 id="1、创建一个maven工程；（jar）"><a href="#1、创建一个maven工程；（jar）" class="headerlink" title="1、创建一个maven工程；（jar）"></a>1、创建一个maven工程；（jar）</h2><h2 id="2、导入-spring-boot-相关的依赖"><a href="#2、导入-spring-boot-相关的依赖" class="headerlink" title="2、导入 spring boot 相关的依赖"></a>2、导入 spring boot 相关的依赖</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.7.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="3、编写一个主程序；启动-Spring-Boot-应用"><a href="#3、编写一个主程序；启动-Spring-Boot-应用" class="headerlink" title="3、编写一个主程序；启动 Spring Boot 应用"></a>3、编写一个主程序；启动 Spring Boot 应用</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  <span class="doctag">@SpringBootApplication</span> 来标注一个主程序类，说明这是一个 Spring Boot 应用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorldMainApplication</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Spring应用启动起来</span></span><br><span class="line">        SpringApplication.run(HelloWorldMainApplication.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="4、编写相关的-Controller、Service"><a href="#4、编写相关的-Controller、Service" class="headerlink" title="4、编写相关的 Controller、Service"></a>4、编写相关的 Controller、Service</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/hello"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hello World!"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="5、运行主程序测试"><a href="#5、运行主程序测试" class="headerlink" title="5、运行主程序测试"></a>5、运行主程序测试</h2><h2 id="6、简化部署"><a href="#6、简化部署" class="headerlink" title="6、简化部署"></a>6、简化部署</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">&lt;!-- 这个插件，可以将应用打包成一个可执行的jar包；--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>将这个应用打成 <code>jar</code> 包，直接使用 <code>java -jar</code> 的命令进行执行；</p>
+<hr>
+<h1 id="Hello-World-探究"><a href="#Hello-World-探究" class="headerlink" title="Hello World 探究"></a>Hello World 探究</h1><hr>
+<h2 id="POM-文件"><a href="#POM-文件" class="headerlink" title="POM 文件"></a>POM 文件</h2><h3 id="父项目"><a href="#父项目" class="headerlink" title="父项目"></a>父项目</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.7.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 他的父项目是 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-dependencies<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.7.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">relativePath</span>&gt;</span>../../spring-boot-dependencies<span class="tag">&lt;/<span class="name">relativePath</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 他来真正管理 Spring Boot 应用里面的所有依赖版本；--&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Spring Boot 的版本仲裁中心；</p>
+<p>以后我们导入依赖默认是不需要写版本；（<strong><em>没有在 dependencies 里面管理的依赖自然需要声明版本号</em></strong>）</p>
+<h3 id="启动器"><a href="#启动器" class="headerlink" title="启动器"></a>启动器</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>spring-boot-starter</strong>-<code>web</code>：</p>
+<p><code>spring-boot-starter</code>：spring-boot 场景启动器；帮我们导入了 web 模块正常运行所依赖的组件；</p>
+<p>Spring Boot 将所有的功能场景都抽取出来，做成一个个的 <code>starters</code> （启动器），只需要在项目里面引入这些 starter 相关场景的所有依赖都会导入进来。要用什么功能就导入什么场景的启动器。</p>
+<h2 id="主程序类，主入口类"><a href="#主程序类，主入口类" class="headerlink" title="主程序类，主入口类"></a>主程序类，主入口类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *  <span class="doctag">@SpringBootApplication</span> 来标注一个主程序类，说明这是一个Spring Boot应用</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorldMainApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Spring应用启动起来</span></span><br><span class="line">        SpringApplication.run(HelloWorldMainApplication.class,args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>@<strong>SpringBootApplication</strong>: Spring Boot 应用标注在某个类上说明这个类是 Spring Boot 的主配置类，Spring Boot 就应该运行这个类的 <code>main</code> 方法来启动 Spring Boot 应用；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target</span>(ElementType.TYPE)</span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="meta">@SpringBootConfiguration</span></span><br><span class="line"><span class="meta">@EnableAutoConfiguration</span></span><br><span class="line"><span class="meta">@ComponentScan</span>(excludeFilters = &#123;</span><br><span class="line">      <span class="meta">@Filter</span>(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),</span><br><span class="line">      <span class="meta">@Filter</span>(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) &#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> SpringBootApplication &#123;</span><br></pre></td></tr></table></figure>
+<p>@<strong>SpringBootConfiguration</strong>: Spring Boot 的配置类；</p>
+<ul>
+<li><p>标注在某个类上，表示这是一个 Spring Boot 的配置类；</p>
+</li>
+<li><p>@<strong>Configuration</strong>:配置类上来标注这个注解；</p>
+</li>
+<li><p>配置类 —–  配置文件；配置类也是容器中的一个组件；<code>@Component</code></p>
+</li>
+</ul>
+<p>@<strong>EnableAutoConfiguration</strong>：开启自动配置功能；</p>
+<p>以前我们需要配置的东西，Spring Boot 会帮我们自动配置；@<strong>EnableAutoConfiguration</strong>告诉 SpringBoot 开启自动配置功能；这样自动配置才能生效；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@AutoConfigurationPackage</span></span><br><span class="line"><span class="meta">@Import</span>(EnableAutoConfigurationImportSelector.class)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> EnableAutoConfiguration &#123;</span><br></pre></td></tr></table></figure>
+<p>​@<strong>AutoConfigurationPackage</strong>：自动配置包</p>
+<p>​@<strong>Import</strong>(AutoConfigurationPackages.Registrar.class)：</p>
+<p>​Spring 的底层注解 <code>@Import</code>，给容器中导入一个组件；导入的组件由 <code>AutoConfigurationPackages.Registrar.class</code>；</p>
+<p><code>将主配置类（@SpringBootApplication 标注的类）的所在包及下面所有子包里面的所有组件扫描到Spring容器；</code></p>
+<p>​@<strong>Import</strong>(EnableAutoConfigurationImportSelector.class)；</p>
+<p>​给容器中导入组件？</p>
+<p>​<strong>EnableAutoConfigurationImportSelector</strong>：导入哪些组件的选择器；</p>
+<p>​将所有需要导入的组件以全类名的方式返回；这些组件就会被添加到容器中；</p>
+<p>​会给容器中导入非常多的自动配置类（<code>xxxAutoConfiguration</code>）；就是给容器中导入这个场景需要的所有组件，并配置好这些组件；</p>
+<p>有了自动配置类，免去了我们手动编写配置注入功能组件等的工作；</p>
+<p><code>​SpringFactoriesLoader.loadFactoryNames(EnableAutoConfiguration.class,classLoader)；</code></p>
+<p><code>Spring Boot在启动的时候从类路径下的 META-INF/spring.factories 中获取 EnableAutoConfiguration 指定的值，将这些值作为自动配置类导入到容器中，自动配置类就生效，帮我们进行自动配置工作；</code>以前我们需要自己配置的东西，自动配置类都帮我们配置了；</p>
+<p><code>J2EE</code> 的整体整合解决方案和自动配置都在 <code>spring-boot-autoconfigure-2.1.7.RELEASE.jar</code>；</p>
+<hr>
+<h1 id="使用-Spring-Initializer-快速创建Spring-Boot项目"><a href="#使用-Spring-Initializer-快速创建Spring-Boot项目" class="headerlink" title="使用 Spring Initializer 快速创建Spring Boot项目"></a>使用 Spring Initializer 快速创建Spring Boot项目</h1><hr>
+<h2 id="IDEA：使用-Spring-Initializer快速创建项目"><a href="#IDEA：使用-Spring-Initializer快速创建项目" class="headerlink" title="IDEA：使用 Spring Initializer快速创建项目"></a>IDEA：使用 Spring Initializer快速创建项目</h2><p>IDE 都支持使用 Spring 的项目创建向导快速创建一个 Spring Boot 项目；</p>
+<p>选择我们需要的模块；向导会联网创建 Spring Boot 项目；</p>
+<p>默认生成的 Spring Boot 项目；</p>
+<ul>
+<li><p>主程序已经生成好了，我们只需要编写自己的业务逻辑就行了</p>
+</li>
+<li><p>resources 文件夹中目录结构</p>
+<ul>
+<li><code>static</code>：保存所有的静态资源； <code>js css  images</code>；</li>
+<li><code>templates</code>：保存所有的模板页面；（Spring Boot 默认 jar 包使用嵌入式的 Tomcat，默认<code>不支持 JSP 页面</code>）；可以使用模板引擎（<code>freemarker</code>、<code>thymeleaf</code>）；</li>
+<li><code>application.properties</code>：Spring Boot 应用的<code>配置文件</code>；可以修改一些默认设置；</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">--- The End&nbsp;&nbsp;<i class="fa fa-paw"></i>&nbsp;&nbsp;Thanks For Your Reading ---</div>
+    
+</div>
+  
+</div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+  
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文标题:</span><a href="/SpringBoot-abc.html">Spring Boot 快速入门</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 RenKai 的个人博客">RenKai</a></p>
+  <p><span>发布时间:</span>2019年08月14日 - 18:08</p>
+  <p><span>最后更新:</span>2019年08月28日 - 09:08</p>
+  <p><span>原始链接:</span><a href="/SpringBoot-abc.html" title="Spring Boot 快速入门">http://yoursite.com/SpringBoot-abc.html</a>
+    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/SpringBoot-abc.html" aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({   
+          title: "",   
+          text: '复制成功',   
+          html: false,
+          timer: 500,   
+          showConfirmButton: false
+        });
+      });
+    }));  
+</script>
+
+      
+</div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>宠辱不惊，看庭前花开花落；去留无意，望天上云卷云舒。　</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="RenKai WeChat Pay">
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay-reward-image.png" alt="RenKai Alipay">
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaWeb/" rel="tag"><i class="fa fa-tag"></i> JavaWeb</a>
+          
+            <a href="/tags/SpringBoot/" rel="tag"><i class="fa fa-tag"></i> SpringBoot</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/notice.html" rel="next" title="欢迎来到任凯的个人博客~">
+                <i class="fa fa-chevron-left"></i> 欢迎来到任凯的个人博客~
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/SpringBoot-config.html" rel="prev" title="Spring Boot 配置文件">
+                Spring Boot 配置文件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="RenKai">
+          <p class="site-author-name" itemprop="name">RenKai</p>
+           
+              <p class="site-description motion-element" itemprop="description">一枚想成为技术控的菜鸟</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">49</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/renkaigis" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/renkai123" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/renkaigis" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-crosshairs"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/f44c72ff4b81/timeline" target="_blank" title="简书">
+                  
+                    <i class="fa fa-fw fa-heartbeat"></i>
+                  
+                  简书
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:renkaigis@163.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友链
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.renkaigis.com/KeepCoding/" title="Plan - KeepCoding" target="_blank">Plan - KeepCoding</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.renkaigis.com/KeepEveryDay/" title="Plan - KeepEveryDay" target="_blank">Plan - KeepEveryDay</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://weijuanran.cn/" title="Weijuanran's Blog" target="_blank">Weijuanran's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://blog.jiangyayu.cn/" title="Alex's Blog" target="_blank">Alex's Blog</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=538980932&auto=1&height=66"></iframe>
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SpringBoot-简介"><span class="nav-number">1.</span> <span class="nav-text">SpringBoot 简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#微服务"><span class="nav-number">2.</span> <span class="nav-text">微服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#环境准备"><span class="nav-number">3.</span> <span class="nav-text">环境准备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境约束："><span class="nav-number">3.1.</span> <span class="nav-text">环境约束：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#统一环境；"><span class="nav-number">3.2.</span> <span class="nav-text">统一环境；</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、MAVEN设置；"><span class="nav-number">3.2.1.</span> <span class="nav-text">1、MAVEN设置；</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、IDEA设置"><span class="nav-number">3.2.2.</span> <span class="nav-text">2、IDEA设置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4、Spring-Boot-入门程序（HelloWorld）"><span class="nav-number">4.</span> <span class="nav-text">4、Spring Boot 入门程序（HelloWorld）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、创建一个maven工程；（jar）"><span class="nav-number">4.1.</span> <span class="nav-text">1、创建一个maven工程；（jar）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、导入-spring-boot-相关的依赖"><span class="nav-number">4.2.</span> <span class="nav-text">2、导入 spring boot 相关的依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、编写一个主程序；启动-Spring-Boot-应用"><span class="nav-number">4.3.</span> <span class="nav-text">3、编写一个主程序；启动 Spring Boot 应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、编写相关的-Controller、Service"><span class="nav-number">4.4.</span> <span class="nav-text">4、编写相关的 Controller、Service</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、运行主程序测试"><span class="nav-number">4.5.</span> <span class="nav-text">5、运行主程序测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、简化部署"><span class="nav-number">4.6.</span> <span class="nav-text">6、简化部署</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hello-World-探究"><span class="nav-number">5.</span> <span class="nav-text">Hello World 探究</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#POM-文件"><span class="nav-number">5.1.</span> <span class="nav-text">POM 文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#父项目"><span class="nav-number">5.1.1.</span> <span class="nav-text">父项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动器"><span class="nav-number">5.1.2.</span> <span class="nav-text">启动器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主程序类，主入口类"><span class="nav-number">5.2.</span> <span class="nav-text">主程序类，主入口类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用-Spring-Initializer-快速创建Spring-Boot项目"><span class="nav-number">6.</span> <span class="nav-text">使用 Spring Initializer 快速创建Spring Boot项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IDEA：使用-Spring-Initializer快速创建项目"><span class="nav-number">6.1.</span> <span class="nav-text">IDEA：使用 Spring Initializer快速创建项目</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <center>
+
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+<div class="copyright">
+  <span><a href="http://www.beian.miit.gov.cn/" target="_blank">陕ICP备17015858号</a></span>&nbsp;
+  
+  &copy; 2017-
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-flash"></i>
+  </span>Powered By - 
+  <span class="author" itemprop="copyrightHolder"><a class="theme-link" href="http://renkaigis.com">RenKai</a></span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数：<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<div class="powered-by">
+<span class="site-pv">
+<i class="fa fa-eye"></i> 
+  访问次数：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+</span></div>
+
+
+
+<div class="theme-info">
+<i class="fa fa-pencil"></i> 
+  <span class="post-count">全站共 93.5k</span> 字
+</div>
+
+<center>
+
+<!--
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+-->
+
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+        
+
+        
+      </center></center></div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+
+
+  
+    <script type="text/javascript">
+    (function(){
+      var appid = 'cytEYq24O';
+      var conf = 'f90a095569bba30e59cae713bab443cf';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+        window.changyan.api.config({appid:appid,conf:conf})});
+      }
+    })();
+    </script>
+    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("UmN2zDPRHzd28CBIusNcb55r-gzGzoHsz", "y8w2I87XXk00wTQhj8v8vxRD");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+
+  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":true,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":90,"height":180},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script>
+
+</body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

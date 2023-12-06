@@ -1,469 +1,254 @@
-<!doctype html>
-
-
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.0.0">
 
-<script>
-    (function(){
-        if(''){
-            if (prompt('请输入文章密码') !== ''){
-                alert('密码错误！');
-                history.back();
-            }
-        }
-    })();
-</script>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/favicon.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.cn","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-  
-  
-  
-  
-
-  
-
-  
-    
-
-    
-  
-
-  
-    
-
-    
-  
-
-  
-    
-
-    
-  
-
-  
-    
-
-    
-  
-
-  
-    
-    
-    <link href="//fonts.gmirror.org/css?family=Comic Sans MS:300,300italic,400,400italic,700,700italicPingFang SC:300,300italic,400,400italic,700,700italicComic Sans MS:300,300italic,400,400italic,700,700italicConsolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="Java,">
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="秋月春风等闲度" type="application/atom+xml">
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png?v=5.1.1">
-
-
-
-
-
-
-<meta name="description" content="从 Java 5 之后，Java 引入了 “参数化类型（parameterized type）” 的概念，允许程序在创建集合时指定集合元素的类型。例如 List&amp;lt;String&amp;gt; ，这表明该 List 只能保存字符串类型的对象。Java 的参数化类型被称为 泛型（Generic）。  看了很多的泛型，T、K、V、E 的字眼层出不穷，却不知道是什么意思。网上查了一些资料，学习了！">
-<meta name="keywords" content="Java">
+    <meta name="description" content="从 Java 5 之后，Java 引入了 “&#96;参数化类型（parameterized type）&#96;” 的概念，允许程序在创建集合时指定集合元素的类型。例如 &#96;List&#96; ，这表明该 &#96;List&#96; 只能保存字符串类型的对象。Java 的参数化类型被称为 &#96;泛型（Generic）&#96;。  看了很多的泛型，T、K、V、E 的字眼层出不穷，却不知道是什么意思。网上查了一些资料，学习了！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java 泛型：T&#x2F;K&#x2F;V&#x2F;E含义">
-<meta property="og:url" content="http://yoursite.com/java-generic-means-TKVE.html">
+<meta property="og:url" content="https://yoursite.cn/java-generic-means-TKVE.html">
 <meta property="og:site_name" content="秋月春风等闲度">
-<meta property="og:description" content="从 Java 5 之后，Java 引入了 “参数化类型（parameterized type）” 的概念，允许程序在创建集合时指定集合元素的类型。例如 List&amp;lt;String&amp;gt; ，这表明该 List 只能保存字符串类型的对象。Java 的参数化类型被称为 泛型（Generic）。  看了很多的泛型，T、K、V、E 的字眼层出不穷，却不知道是什么意思。网上查了一些资料，学习了！">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-12-02T12:32:05.000Z">
+<meta property="og:description" content="从 Java 5 之后，Java 引入了 “&#96;参数化类型（parameterized type）&#96;” 的概念，允许程序在创建集合时指定集合元素的类型。例如 &#96;List&#96; ，这表明该 &#96;List&#96; 只能保存字符串类型的对象。Java 的参数化类型被称为 &#96;泛型（Generic）&#96;。  看了很多的泛型，T、K、V、E 的字眼层出不穷，却不知道是什么意思。网上查了一些资料，学习了！">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-12-02T11:54:51.000Z">
+<meta property="article:modified_time" content="2017-12-02T12:32:05.000Z">
+<meta property="article:author" content="Kai Ren">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java 泛型：T&#x2F;K&#x2F;V&#x2F;E含义">
-<meta name="twitter:description" content="从 Java 5 之后，Java 引入了 “参数化类型（parameterized type）” 的概念，允许程序在创建集合时指定集合元素的类型。例如 List&amp;lt;String&amp;gt; ，这表明该 List 只能保存字符串类型的对象。Java 的参数化类型被称为 泛型（Generic）。  看了很多的泛型，T、K、V、E 的字眼层出不穷，却不知道是什么意思。网上查了一些资料，学习了！">
+
+
+<link rel="canonical" href="https://yoursite.cn/java-generic-means-TKVE.html">
 
 
 
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://yoursite.cn/java-generic-means-TKVE.html","path":"java-generic-means-TKVE.html","title":"Java 泛型：T/K/V/E含义"}</script>
 
-
-
-  <link rel="canonical" href="http://yoursite.com/java-generic-means-TKVE.html">
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Java 泛型：T/K/V/E含义 | 秋月春风等闲度</title>
+  
 
 
 
 
 
-  <title>Java 泛型：T/K/V/E含义 | 秋月春风等闲度</title>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="秋月春风等闲度" type="application/atom+xml">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
- 
-   <a href="https://github.com/renkaigis"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">秋月春风等闲度</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-      
-        <p class="site-subtitle">要有最朴素的生活，与最遥远的梦想。即使明日天寒地冻，路远马亡。</p>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">秋月春风等闲度</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">要有最朴素的生活，与最遥远的梦想。即使明日天寒地冻，路远马亡。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
   </div>
 </div>
 
+
+
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            Archives
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            Categories
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Tags
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            About
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-resume">
-          <a href="http://resume.renkaigis.com" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-address-card"></i> <br>
-            
-            Resume
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-photo">
-          <a href="http://photo.renkaigis.com" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-camera"></i> <br>
-            
-            Photo
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
 </nav>
 
 
 
- </div>
-    </header>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-%E6%B3%9B%E5%9E%8B%E4%B8%AD%E7%9A%84%E6%A0%87%E8%AE%B0%E7%AC%A6%E5%90%AB%E4%B9%89%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">Java 泛型中的标记符含义：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-%E8%B7%9F%E8%BF%99%E4%BA%9B%E6%A0%87%E8%AE%B0%E7%AC%A6%E4%BB%A3%E8%A1%A8%E7%9A%84-java-%E7%B1%BB%E5%9E%8B%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E5%91%A2%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">Object 跟这些标记符代表的 java 类型有什么区别呢？</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kai Ren"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Kai Ren</p>
+  <div class="site-description" itemprop="description">一枚想成为技术控的菜鸟</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/renkaigis" title="Github → https:&#x2F;&#x2F;github.com&#x2F;renkaigis" rel="noopener me" target="_blank">Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/renkaigis" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;renkaigis" rel="noopener me" target="_blank">Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://blog.csdn.net/renkaigis" title="Linkedin → http:&#x2F;&#x2F;blog.csdn.net&#x2F;renkaigis" rel="noopener me" target="_blank">Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:renkaigis@gmail.com" title="Email → mailto:renkaigis@gmail.com" rel="noopener me" target="_blank">Email</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
     
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          Links
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://yongzesong.com/" title="https:&#x2F;&#x2F;yongzesong.com" rel="noopener" target="_blank">Dr. Yongze Song</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
 
-  <div id="posts" class="posts-expand">
-    
+    </div>
+
+    <div class="main-inner post posts-expand">
+
 
   
 
-  
+
+<div class="post-block">
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/java-generic-means-TKVE.html">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://yoursite.cn/java-generic-means-TKVE.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="RenKai">
-      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Kai Ren">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="秋月春风等闲度">
+      <meta itemprop="description" content="一枚想成为技术控的菜鸟">
     </span>
 
-    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Java 泛型：T/K/V/E含义 | 秋月春风等闲度">
+      <meta itemprop="description" content="">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java 泛型：T/K/V/E含义
+        </h1>
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">Java 泛型：T/K/V/E含义</h1>
-        
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
 
-        <div class="post-meta">
-                  
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-02T19:54:51+08:00">
-                2017-12-02
-              </time>
-            
+      <time title="Created: 2017-12-02 19:54:51 / Modified: 20:32:05" itemprop="dateCreated datePublished" datetime="2017-12-02T19:54:51+08:00">2017-12-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
 
-            
+  
+</div>
 
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/java-generic-means-TKVE.html#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="java-generic-means-TKVE.html" itemprop="commentsCount"></span>
-                </a>
-              
-            
-          
-
-          
-          
-             <span id="/java-generic-means-TKVE.html" class="leancloud_visitors" data-flag-title="Java 泛型：T/K/V/E含义">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                                <span class="post-meta-divider">|</span>
-             </span>
-          
-
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">WordsCount</span>
-                
-                <span title="WordsCount">
-                  728
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </span></div>
+        </div>
       </header>
+
     
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p id="div-border-left-red">从 Java 5 之后，Java 引入了 “<code>参数化类型（parameterized type）</code>” 的概念，允许程序在创建集合时指定集合元素的类型。例如 <code>List&lt;String&gt;</code> ，这表明该 <code>List</code> 只能保存字符串类型的对象。Java 的参数化类型被称为 <code>泛型（Generic）</code>。</p>
+    
+    
+    <div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p id="div-border-left-red">从 Java 5 之后，Java 引入了 “`参数化类型（parameterized type）`” 的概念，允许程序在创建集合时指定集合元素的类型。例如 `List<String>` ，这表明该 `List` 只能保存字符串类型的对象。Java 的参数化类型被称为 `泛型（Generic）`。</p>
 
 <p>看了很多的泛型，T、K、V、E 的字眼层出不穷，却不知道是什么意思。网上查了一些资料，学习了！</p>
-<a id="more"></a>
+<span id="more"></span>
+
 <h2 id="Java-泛型中的标记符含义："><a href="#Java-泛型中的标记符含义：" class="headerlink" title="Java 泛型中的标记符含义："></a>Java 泛型中的标记符含义：</h2><blockquote>
 <p><code>？</code>：表示不确定的 java 类型。</p>
 <p><code>T</code>：表示 java 类型。</p>
@@ -474,520 +259,111 @@
 <p> jdk 中的 K，V，T，E 等泛型名称很多人以为是固定写法，其实这些名称是可以改的，比如改成 zhangsan，lisi 都可以，jdk 为了容易看懂，所以用 K 表示键，V 表示值，T 表示 type 类型，E 表示 enum 枚举，其实<strong>这四个都只是符号，都是表示泛型名称</strong>，T 全部可以换成 E，也可以换成 K，V，zhangsan，都没关系。 </p>
 <h2 id="Object-跟这些标记符代表的-java-类型有什么区别呢？"><a href="#Object-跟这些标记符代表的-java-类型有什么区别呢？" class="headerlink" title="Object 跟这些标记符代表的 java 类型有什么区别呢？"></a>Object 跟这些标记符代表的 java 类型有什么区别呢？</h2><p>Object 是所有类的根类，任何类的对象都可以设置给该 Object 引用变量，使用的时候可能需要类型强制转换，但是用使用了泛型 T、E 等这些标识符后，在实际用之前类型就已经确定了，不需要再进行类型强制转换。</p>
 <p> <strong>代码摘自网络：</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="comment">//T1,T2都是随便定义的东西，注意1:他们不会关联到其他类，只是在本类中通用，只是告诉我们new的时候要加入泛型</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span>&lt;<span class="title">T1</span>, <span class="title">T2</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="keyword">new</span> Test().getaa());</span><br><span class="line">        <span class="keyword">new</span> Test&lt;String, String&gt; ().getbb(<span class="string">""</span>);</span><br><span class="line">        <span class="keyword">new</span> Test().getcc(Test.class);</span><br><span class="line">        <span class="comment">//注意下6:面这个HashMap的括号里面不能是T,E,T1,T2等不确定的东西,但可以是?</span></span><br><span class="line">        HashMap&lt;Object, String&gt; map = <span class="keyword">new</span> HashMap&lt;Object, String&gt;();</span><br><span class="line">        List&lt;?&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">T2 <span class="title">getaa</span><span class="params">()</span> </span>&#123;    </span><br><span class="line">        <span class="comment">//注意2:T2将自动转型为String,这个不需要去担心</span></span><br><span class="line">        <span class="keyword">return</span> (T2) <span class="string">"few"</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">getbb</span><span class="params">(T x)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//注意3:Class&lt;T&gt;前面缺少&lt;T&gt;将编译错误</span></span><br><span class="line">        System.out.println(x.getClass().getName());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; Class&lt;?&gt;  getcc(Class&lt;T&gt; a) &#123;</span><br><span class="line">        <span class="comment">//getcc前面的Class&lt;T&gt;前面缺少&lt;T&gt;将编译错误,注意4:Class&lt;?&gt;里面的问号可以换成T</span></span><br><span class="line">        System.out.println(a.getClass().getName());    </span><br><span class="line">        <span class="comment">//注意5:参数里面的Class&lt;T&gt;最大的好处是如果方法里面定义了泛型，可以自动获取类型值，比如如下的List&lt;T&gt;可以自动获取到a的类型，不必强调死</span></span><br><span class="line">        List&lt;T&gt; aa=<span class="keyword">new</span> ArrayList&lt;T&gt;();</span><br><span class="line">        System.out.println(aa);</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="comment">//T1,T2都是随便定义的东西，注意1:他们不会关联到其他类，只是在本类中通用，只是告诉我们new的时候要加入泛型</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&lt;T1, T2&gt; &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(<span class="keyword">new</span> <span class="title class_">Test</span>().getaa());</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">Test</span>&lt;String, String&gt; ().getbb(<span class="string">&quot;&quot;</span>);</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">Test</span>().getcc(Test.class);</span><br><span class="line">        <span class="comment">//注意下6:面这个HashMap的括号里面不能是T,E,T1,T2等不确定的东西,但可以是?</span></span><br><span class="line">        HashMap&lt;Object, String&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;Object, String&gt;();</span><br><span class="line">        List&lt;?&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    T2 <span class="title function_">getaa</span><span class="params">()</span> &#123;    </span><br><span class="line">        <span class="comment">//注意2:T2将自动转型为String,这个不需要去担心</span></span><br><span class="line">        <span class="keyword">return</span> (T2) <span class="string">&quot;few&quot;</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; <span class="keyword">void</span> <span class="title function_">getbb</span><span class="params">(T x)</span> &#123;</span><br><span class="line">        <span class="comment">//注意3:Class&lt;T&gt;前面缺少&lt;T&gt;将编译错误</span></span><br><span class="line">        System.out.println(x.getClass().getName());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; Class&lt;?&gt;  getcc(Class&lt;T&gt; a) &#123;</span><br><span class="line">        <span class="comment">//getcc前面的Class&lt;T&gt;前面缺少&lt;T&gt;将编译错误,注意4:Class&lt;?&gt;里面的问号可以换成T</span></span><br><span class="line">        System.out.println(a.getClass().getName());    </span><br><span class="line">        <span class="comment">//注意5:参数里面的Class&lt;T&gt;最大的好处是如果方法里面定义了泛型，可以自动获取类型值，比如如下的List&lt;T&gt;可以自动获取到a的类型，不必强调死</span></span><br><span class="line">        List&lt;T&gt; aa=<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;T&gt;();</span><br><span class="line">        System.out.println(aa);</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p><strong>运行结果：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">few</span><br><span class="line">java.lang.String</span><br><span class="line">java.lang.Class</span><br><span class="line">[]</span><br></pre></td></tr></table></figure>
-      
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">few</span><br><span class="line">java.lang.String</span><br><span class="line">java.lang.Class</span><br><span class="line">[]</span><br></pre></td></tr></table></figure>
     </div>
 
-<div>
-  
-    <div>
     
-        <div style="text-align:center;color: #ccc;font-size:14px;">--- The End&nbsp;&nbsp;<i class="fa fa-paw"></i>&nbsp;&nbsp;Thanks For Your Reading ---</div>
     
-</div>
-  
-</div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-<div class="my_post_copyright">
-  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
-  
-  <!-- JS库 sweetalert 可修改路径 -->
-  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
-  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
-  <p><span>本文标题:</span><a href="/java-generic-means-TKVE.html">Java 泛型：T/K/V/E含义</a></p>
-  <p><span>文章作者:</span><a href="/" title="访问 RenKai 的个人博客">RenKai</a></p>
-  <p><span>发布时间:</span>2017年12月02日 - 19:12</p>
-  <p><span>最后更新:</span>2017年12月02日 - 20:12</p>
-  <p><span>原始链接:</span><a href="/java-generic-means-TKVE.html" title="Java 泛型：T/K/V/E含义">http://yoursite.com/java-generic-means-TKVE.html</a>
-    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/java-generic-means-TKVE.html" aria-label="复制成功！"></i></span>
-  </p>
-  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
-</div>
-<script> 
-    var clipboard = new Clipboard('.fa-clipboard');
-    clipboard.on('success', $(function(){
-      $(".fa-clipboard").click(function(){
-        swal({   
-          title: "",   
-          text: '复制成功',   
-          html: false,
-          timer: 500,   
-          showConfirmButton: false
-        });
-      });
-    }));  
-</script>
-
-      
-</div>
-
-    <div>
-      
-        
-  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-    <div>宠辱不惊，看庭前花开花落；去留无意，望天上云卷云舒。　</div>
-    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-      <span>赏</span>
-    </button>
-    <div id="QR" style="display: none;">
-      
-        <div id="wechat" style="display: inline-block">
-          <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="RenKai WeChat Pay">
-          <p>微信打赏</p>
-        </div>
-      
-      
-        <div id="alipay" style="display: inline-block">
-          <img id="alipay_qr" src="/images/alipay-reward-image.png" alt="RenKai Alipay">
-          <p>支付宝打赏</p>
-        </div>
-      
-    </div>
-  </div>
-
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
+    
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
-          
-        </div>
-      
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat-reward-image.png" alt="Kai Ren WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay-reward-image.png" alt="Kai Ren Alipay">
+        <span>Alipay</span>
+      </div>
+      <div>
+        <img src="/%E5%AE%A0%E8%BE%B1%E4%B8%8D%E6%83%8A%EF%BC%8C%E7%9C%8B%E5%BA%AD%E5%89%8D%E8%8A%B1%E5%BC%80%E8%8A%B1%E8%90%BD%EF%BC%9B%E5%8E%BB%E7%95%99%E6%97%A0%E6%84%8F%EF%BC%8C%E6%9C%9B%E5%A4%A9%E4%B8%8A%E4%BA%91%E5%8D%B7%E4%BA%91%E8%88%92%E3%80%82" alt="Kai Ren reward_comment">
+        <span>reward_comment</span>
+      </div>
 
-      
-      
-      
+  </div>
+</div>
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/experiment-in-Kunming-Dianchi.html" rel="next" title="滇池实验——昆明之旅">
-                <i class="fa fa-chevron-left"></i> 滇池实验——昆明之旅
-              </a>
-            
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
           </div>
 
-          <span class="post-nav-divider"></span>
+        
 
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017-2018singledogsingledog.html" rel="prev" title="2018 要酷酷的">
-                2018 要酷酷的 <i class="fa fa-chevron-right"></i>
-              </a>
-            
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/experiment-in-Kunming-Dianchi.html" rel="prev" title="滇池实验——昆明之旅">
+                  <i class="fa fa-angle-left"></i> 滇池实验——昆明之旅
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017-2018singledogsingledog.html" rel="next" title="2018 要酷酷的">
+                  2018 要酷酷的 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
           </div>
-        </div>
-      
-
-      
-      
     </footer>
   </article>
+</div>
 
 
 
-    <div class="post-spread">
-      
-    </div>
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2017 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ture</span>
   </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
-    
-      <div id="SOHUCS"></div>
-    
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="RenKai">
-          <p class="site-author-name" itemprop="name">RenKai</p>
-           
-              <p class="site-description motion-element" itemprop="description">一枚想成为技术控的菜鸟</p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">49</span>
-                <span class="site-state-item-name">posts</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">10</span>
-                <span class="site-state-item-name">categories</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">25</span>
-                <span class="site-state-item-name">tags</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/renkaigis" target="_blank" title="Github">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  Github
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/renkai123" target="_blank" title="Weibo">
-                  
-                    <i class="fa fa-fw fa-weibo"></i>
-                  
-                  Weibo
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://blog.csdn.net/renkaigis" target="_blank" title="CSDN">
-                  
-                    <i class="fa fa-fw fa-crosshairs"></i>
-                  
-                  CSDN
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://www.jianshu.com/users/f44c72ff4b81/timeline" target="_blank" title="简书">
-                  
-                    <i class="fa fa-fw fa-heartbeat"></i>
-                  
-                  简书
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:renkaigis@163.com" target="_blank" title="Email">
-                  
-                    <i class="fa fa-fw fa-envelope"></i>
-                  
-                  Email
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              友链
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://blog.renkaigis.com/KeepCoding/" title="Plan - KeepCoding" target="_blank">Plan - KeepCoding</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://blog.renkaigis.com/KeepEveryDay/" title="Plan - KeepEveryDay" target="_blank">Plan - KeepEveryDay</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://weijuanran.cn/" title="Weijuanran's Blog" target="_blank">Weijuanran's Blog</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://blog.jiangyayu.cn/" title="Alex's Blog" target="_blank">Alex's Blog</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=538980932&auto=1&height=66"></iframe>
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-泛型中的标记符含义："><span class="nav-number">1.</span> <span class="nav-text">Java 泛型中的标记符含义：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-跟这些标记符代表的-java-类型有什么区别呢？"><span class="nav-number">2.</span> <span class="nav-text">Object 跟这些标记符代表的 java 类型有什么区别呢？</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
 
     </div>
-  </aside>
+  </footer>
 
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <center>
-
-<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-
-
-
-<div class="copyright">
-  <span><a href="http://www.beian.miit.gov.cn/" target="_blank">陕ICP备17015858号</a></span>&nbsp;
   
-  &copy; 2017-
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-flash"></i>
-  </span>Powered By - 
-  <span class="author" itemprop="copyrightHolder"><a class="theme-link" href="http://renkaigis.com">RenKai</a></span>
-</div>
-
-<div class="powered-by">
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  本站访客数：<span id="busuanzi_value_site_uv"></span>
-</span>
-</div>
-
-<div class="powered-by">
-<span class="site-pv">
-<i class="fa fa-eye"></i> 
-  访问次数：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-</span></div>
-
-
-
-<div class="theme-info">
-<i class="fa fa-pencil"></i> 
-  <span class="post-count">全站共 93.5k</span> 字
-</div>
-
-<center>
-
-<!--
-<div class="theme-info">
-  Theme -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
--->
-
-
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
-        
-
-        
-      </center></center></div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
   </div>
 
-  
+  <a href="https://github.com/renkaigis" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 
   
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js" integrity="sha256-tc4b48P1MPGS4PJXHRlChGCW1mEZy62jS/3JEsSHPzU=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
 
 
 
@@ -998,200 +374,6 @@
 
 
 
-
-  
-
-
-
-
-  
-
-
-  
-    <script type="text/javascript">
-    (function(){
-      var appid = 'cytEYq24O';
-      var conf = 'f90a095569bba30e59cae713bab443cf';
-      var width = window.innerWidth || document.documentElement.clientWidth;
-      if (width < 960) {
-      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
-        window.changyan.api.config({appid:appid,conf:conf})});
-      }
-    })();
-    </script>
-    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
-  
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("UmN2zDPRHzd28CBIusNcb55r-gzGzoHsz", "y8w2I87XXk00wTQhj8v8vxRD");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
-
-  
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
-
-  
-
-  
-
-
-  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":true,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":90,"height":180},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script>
 
 </body>
 </html>
-
-<!-- 页面点击小红心 -->
-<script type="text/javascript" src="/js/src/love.js"></script>

@@ -1,491 +1,285 @@
-<!doctype html>
-
-
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="en">
-<head><meta name="generator" content="Hexo 3.9.0">
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.0.0">
 
-<script>
-    (function(){
-        if(''){
-            if (prompt('请输入文章密码') !== ''){
-                alert('密码错误！');
-                history.back();
-            }
-        }
-    })();
-</script>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/favicon.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.cn","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.19.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
-
-
-
-
-  
-  
-  
-  
-
-  
-
-  
-    
-
-    
-  
-
-  
-    
-
-    
-  
-
-  
-    
-
-    
-  
-
-  
-    
-
-    
-  
-
-  
-    
-    
-    <link href="//fonts.gmirror.org/css?family=Comic Sans MS:300,300italic,400,400italic,700,700italicPingFang SC:300,300italic,400,400italic,700,700italicComic Sans MS:300,300italic,400,400italic,700,700italicConsolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
-
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
-
-
-  <meta name="keywords" content="JavaWeb,Hibernate,">
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="秋月春风等闲度" type="application/atom+xml">
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png?v=5.1.1">
-
-
-
-
-
-
-<meta name="description" content="Hibernate 查询方式与策略优化">
-<meta name="keywords" content="JavaWeb,Hibernate">
+    <meta name="description" content="Hibernate 查询方式与策略优化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaWeb 之 Hibernate 查询方式与策略优化">
-<meta property="og:url" content="http://yoursite.com/JavaWeb-Hibernate05.html">
+<meta property="og:url" content="https://yoursite.cn/JavaWeb-Hibernate05.html">
 <meta property="og:site_name" content="秋月春风等闲度">
 <meta property="og:description" content="Hibernate 查询方式与策略优化">
-<meta property="og:locale" content="en">
+<meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://image.renkaigis.com/javaweb/hibernate0500.png">
-<meta property="og:updated_time" content="2018-08-10T06:41:21.000Z">
+<meta property="article:published_time" content="2018-06-05T07:21:45.000Z">
+<meta property="article:modified_time" content="2018-08-10T06:41:21.000Z">
+<meta property="article:author" content="Kai Ren">
+<meta property="article:tag" content="JavaWeb">
+<meta property="article:tag" content="Hibernate">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaWeb 之 Hibernate 查询方式与策略优化">
-<meta name="twitter:description" content="Hibernate 查询方式与策略优化">
 <meta name="twitter:image" content="http://image.renkaigis.com/javaweb/hibernate0500.png">
 
 
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
+<link rel="canonical" href="https://yoursite.cn/JavaWeb-Hibernate05.html">
 
 
 
-  <link rel="canonical" href="http://yoursite.com/JavaWeb-Hibernate05.html">
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://yoursite.cn/JavaWeb-Hibernate05.html","path":"JavaWeb-Hibernate05.html","title":"JavaWeb 之 Hibernate 查询方式与策略优化"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>JavaWeb 之 Hibernate 查询方式与策略优化 | 秋月春风等闲度</title>
+  
 
 
 
 
 
-  <title>JavaWeb 之 Hibernate 查询方式与策略优化 | 秋月春风等闲度</title>
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="秋月春风等闲度" type="application/atom+xml">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
- 
-   <a href="https://github.com/renkaigis"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">秋月春风等闲度</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-      
-        <p class="site-subtitle">要有最朴素的生活，与最遥远的梦想。即使明日天寒地冻，路远马亡。</p>
-      
   </div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">秋月春风等闲度</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">要有最朴素的生活，与最遥远的梦想。即使明日天寒地冻，路远马亡。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
   </div>
 </div>
 
+
+
 <nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
-            
-            Home
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
-            
-            Archives
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
-            
-            Categories
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            Tags
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            About
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-resume">
-          <a href="http://resume.renkaigis.com" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-address-card"></i> <br>
-            
-            Resume
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-photo">
-          <a href="http://photo.renkaigis.com" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-camera"></i> <br>
-            
-            Photo
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  </ul>
 </nav>
 
 
 
- </div>
-    </header>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hibernate-%E6%A1%86%E6%9E%B6%E7%9A%84%E6%9F%A5%E8%AF%A2%E6%96%B9%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">Hibernate 框架的查询方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HQL-%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.1.</span> <span class="nav-text">HQL 查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HQL-%E6%A6%82%E8%BF%B0"><span class="nav-number">1.1.1.</span> <span class="nav-text">HQL 概述**</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HQL-%E7%9A%84%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">HQL 的介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HQL-%E4%B8%8E-SQL-%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">HQL 与 SQL 的关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HQL-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.1.2.</span> <span class="nav-text">HQL 的基本查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HQL-%E5%9F%BA%E6%9C%AC%E7%9A%84%E6%9F%A5%E8%AF%A2%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">HQL 基本的查询格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%88%AB%E5%90%8D%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">使用别名的方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">排序查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">分页查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.1.2.5.</span> <span class="nav-text">条件查询</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HQL-%E7%9A%84%E6%8A%95%E5%BD%B1%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.1.3.</span> <span class="nav-text">HQL 的投影查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.1.4.</span> <span class="nav-text">聚合函数查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E6%80%BB%E7%9A%84%E8%AE%B0%E5%BD%95%E6%95%B0"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">获取总的记录数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E6%9F%90%E4%B8%80%E5%88%97%E6%95%B0%E6%8D%AE%E7%9A%84%E5%92%8C"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">获取某一列数据的和</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HQL-%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.1.5.</span> <span class="nav-text">HQL 多表查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E8%A1%A8%E7%9A%84%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">多表的查询</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%86%85%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.1.5.1.1.</span> <span class="nav-text">内连接查询</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A4%96%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.1.5.1.2.</span> <span class="nav-text">外连接查询</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%AB%E5%88%87%E5%92%8C%E9%9D%9E%E8%BF%AB%E5%88%87"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">迫切和非迫切</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2-1"><span class="nav-number">1.1.5.3.</span> <span class="nav-text">内连接查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B7%A6%E5%A4%96%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.1.5.4.</span> <span class="nav-text">左外连接查询</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QBC-%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.2.</span> <span class="nav-text">QBC 查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.2.1.</span> <span class="nav-text">简单查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F%E6%9F%A5%E8%AF%A2-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">排序查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">分页查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">条件查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0%E6%9F%A5%E8%AF%A2-1"><span class="nav-number">1.2.5.</span> <span class="nav-text">聚合函数查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A6%BB%E7%BA%BF%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.2.6.</span> <span class="nav-text">离线条件查询</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL-%E6%9F%A5%E8%AF%A2%E6%96%B9%E5%BC%8F%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">SQL 查询方式（了解）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E5%8A%9F%E8%83%BD%E4%BC%98%E5%8C%96"><span class="nav-number">2.</span> <span class="nav-text">查询功能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD"><span class="nav-number">2.1.</span> <span class="nav-text">延迟加载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E7%BA%A7%E5%88%AB%E7%9A%84%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD"><span class="nav-number">2.1.1.</span> <span class="nav-text">类级别的延迟加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E8%81%94%E7%BA%A7%E5%88%AB%E7%9A%84%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD"><span class="nav-number">2.1.2.</span> <span class="nav-text">关联级别的延迟加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E8%81%94%E7%BA%A7%E5%88%AB%E5%BB%B6%E8%BF%9F%E5%8A%A0%E8%BD%BD%E7%9A%84%E7%AD%96%E7%95%A5"><span class="nav-number">2.1.3.</span> <span class="nav-text">关联级别延迟加载的策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E7%9A%84%E6%97%B6%E6%9C%BA"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">查询的时机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2%E7%9A%84%E8%AF%AD%E5%8F%A5%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.1.3.2.</span> <span class="nav-text">查询的语句格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set-%E6%A0%87%E7%AD%BE%E9%85%8D%E7%BD%AE%E7%AD%96%E7%95%A5"><span class="nav-number">2.1.3.3.</span> <span class="nav-text">set 标签配置策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#many-to-one-%E6%A0%87%E7%AD%BE%E9%85%8D%E7%BD%AE%E7%AD%96%E7%95%A5"><span class="nav-number">2.1.3.4.</span> <span class="nav-text">many-to-one 标签配置策略</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kai Ren"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Kai Ren</p>
+  <div class="site-description" itemprop="description">一枚想成为技术控的菜鸟</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/renkaigis" title="Github → https:&#x2F;&#x2F;github.com&#x2F;renkaigis" rel="noopener me" target="_blank">Github</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/renkaigis" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;renkaigis" rel="noopener me" target="_blank">Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://blog.csdn.net/renkaigis" title="Linkedin → http:&#x2F;&#x2F;blog.csdn.net&#x2F;renkaigis" rel="noopener me" target="_blank">Linkedin</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:renkaigis@gmail.com" title="Email → mailto:renkaigis@gmail.com" rel="noopener me" target="_blank">Email</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
     
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          Links
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://yongzesong.com/" title="https:&#x2F;&#x2F;yongzesong.com" rel="noopener" target="_blank">Dr. Yongze Song</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
 
-  <div id="posts" class="posts-expand">
-    
+    </div>
+
+    <div class="main-inner post posts-expand">
+
 
   
 
-  
+
+<div class="post-block">
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/JavaWeb-Hibernate05.html">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://yoursite.cn/JavaWeb-Hibernate05.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="RenKai">
-      <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Kai Ren">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="秋月春风等闲度">
+      <meta itemprop="description" content="一枚想成为技术控的菜鸟">
     </span>
 
-    
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="JavaWeb 之 Hibernate 查询方式与策略优化 | 秋月春风等闲度">
+      <meta itemprop="description" content="">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JavaWeb 之 Hibernate 查询方式与策略优化
+        </h1>
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">JavaWeb 之 Hibernate 查询方式与策略优化</h1>
-        
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-        <div class="post-meta">
-                  
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-05T15:21:45+08:00">
-                2018-06-05
-              </time>
-            
+      <time title="Created: 2018-06-05 15:21:45" itemprop="dateCreated datePublished" datetime="2018-06-05T15:21:45+08:00">2018-06-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2018-08-10 14:41:21" itemprop="dateModified" datetime="2018-08-10T14:41:21+08:00">2018-08-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/JavaWeb/" itemprop="url" rel="index"><span itemprop="name">JavaWeb</span></a>
+        </span>
+    </span>
 
-            
+  
+</div>
 
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaWeb/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaWeb</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/JavaWeb-Hibernate05.html#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="JavaWeb-Hibernate05.html" itemprop="commentsCount"></span>
-                </a>
-              
-            
-          
-
-          
-          
-             <span id="/JavaWeb-Hibernate05.html" class="leancloud_visitors" data-flag-title="JavaWeb 之 Hibernate 查询方式与策略优化">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Visitors </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-                                <span class="post-meta-divider">|</span>
-             </span>
-          
-
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">WordsCount</span>
-                
-                <span title="WordsCount">
-                  3,319
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </span></div>
+        </div>
       </header>
+
     
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/javaweb/hibernate0500.png"></div>
+    
+    
+    <div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/javaweb/hibernate0500.png"></div>
 
 <p id="div-border-left-green">Hibernate 查询方式与策略优化</p>
 
-<a id="more"></a>
+<span id="more"></span>
+
 <hr>
 <h1 id="Hibernate-框架的查询方式"><a href="#Hibernate-框架的查询方式" class="headerlink" title="Hibernate 框架的查询方式"></a>Hibernate 框架的查询方式</h1><hr>
 <ul>
 <li>唯一标识 OID 的检索方式</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">session.get(对象.class,OID);</span><br><span class="line"><span class="comment">// 例如：</span></span><br><span class="line">Customer customer = session.get(Customer.class, <span class="number">1L</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">session.get(对象.class,OID);</span><br><span class="line"><span class="comment">// 例如：</span></span><br><span class="line"><span class="type">Customer</span> <span class="variable">customer</span> <span class="operator">=</span> session.get(Customer.class, <span class="number">1L</span>);</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>对象的导航的方式</li>
 </ul>
 <p>比如，查询客户下的联系人：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Customer.getLinkmans();</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>HQL 的检索方式</li>
 </ul>
-<p>（Hibernate Query Language）        – Hibernate 的查询语言</p>
+<p>（Hibernate Query Language）	    – Hibernate 的查询语言</p>
 <ul>
 <li>QBC 的检索方式</li>
 </ul>
-<p>（Query By Criteria）        – 条件查询</p>
+<p>（Query By Criteria）	    – 条件查询</p>
 <ul>
 <li>SQL 检索方式（了解）</li>
 </ul>
@@ -505,32 +299,38 @@
 <li><p>简单的代码如下</p>
 </li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session.createQuery(<span class="string">"from Customer"</span>).list();</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 基本查询的演示</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Session session = HibernateUtils.getCurrentSession();</span><br><span class="line">    Transaction tr = session.beginTransaction();</span><br><span class="line"></span><br><span class="line">    Query query = session.createQuery(<span class="string">"from Customer"</span>);</span><br><span class="line">    List&lt;Customer&gt; list = query.list();</span><br><span class="line">    <span class="keyword">for</span> (Customer customer : list) &#123;</span><br><span class="line">        System.out.println(customer);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    tr.commit();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session.createQuery(<span class="string">&quot;from Customer&quot;</span>).list();</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 基本查询的演示</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run1</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Session</span> <span class="variable">session</span> <span class="operator">=</span> HibernateUtils.getCurrentSession();</span><br><span class="line">    <span class="type">Transaction</span> <span class="variable">tr</span> <span class="operator">=</span> session.beginTransaction();</span><br><span class="line"></span><br><span class="line">    <span class="type">Query</span> <span class="variable">query</span> <span class="operator">=</span> session.createQuery(<span class="string">&quot;from Customer&quot;</span>);</span><br><span class="line">    List&lt;Customer&gt; list = query.list();</span><br><span class="line">    <span class="keyword">for</span> (Customer customer : list) &#123;</span><br><span class="line">        System.out.println(customer);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    tr.commit();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="使用别名的方式"><a href="#使用别名的方式" class="headerlink" title="使用别名的方式"></a>使用别名的方式</h4><ul>
 <li>可以使用别名的方式</li>
 </ul>
 <p>不能出现 <code>*</code>，即不能 <code>select * from Customer c</code> <strong>✖</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">session.createQuery(<span class="string">"from Customer c"</span>).list();</span><br><span class="line">session.createQuery(<span class="string">"select c from Customer c"</span>).list();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">session.createQuery(<span class="string">&quot;from Customer c&quot;</span>).list();</span><br><span class="line">session.createQuery(<span class="string">&quot;select c from Customer c&quot;</span>).list();</span><br></pre></td></tr></table></figure>
+
 <h4 id="排序查询"><a href="#排序查询" class="headerlink" title="排序查询"></a>排序查询</h4><p>排序查询和 SQL 语句中的排序的语法是一样的：</p>
 <ul>
 <li>升序</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session.createQuery(<span class="string">"from Customer order by cust_id"</span>).list();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session.createQuery(<span class="string">&quot;from Customer order by cust_id&quot;</span>).list();</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>降序</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session.createQuery(<span class="string">"from Customer order by cust_id desc"</span>).list();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session.createQuery(<span class="string">&quot;from Customer order by cust_id desc&quot;</span>).list();</span><br></pre></td></tr></table></figure>
+
 <h4 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h4><p>不论使用的是 MySQL 还是 Oracle，都可以使用 Hibernate 框架提供的分页方法。</p>
 <ul>
 <li>两个方法如下：</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">setFirstResult(a);        <span class="comment">// 从哪条记录开始，如果查询是从第一条开始，值是 0</span></span><br><span class="line">setMaxResults(b);     <span class="comment">// 每页查询的记录条数</span></span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>演示代码如下</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;LinkMan&gt; list = session.createQuery(<span class="string">"from LinkMan"</span>).setFirstResult(<span class="number">0</span>).setMaxResults().list();</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 分页查询</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Session session = HibernateUtils.getCurrentSession();</span><br><span class="line">    Transaction tr = session.beginTransaction();</span><br><span class="line">    <span class="comment">// 查询联系人</span></span><br><span class="line">    Query query = session.createQuery(<span class="string">"from Linkman l order by l.lkm_id"</span>);</span><br><span class="line">    <span class="comment">// 分页查询，调用方法，查询第一页的数据 1-3 条</span></span><br><span class="line">    query.setFirstResult(<span class="number">0</span>);</span><br><span class="line">    query.setMaxResults(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">    List&lt;Linkman&gt; list = query.list();</span><br><span class="line">    <span class="keyword">for</span>(Linkman linkman:list)&#123;</span><br><span class="line">        System.out.println(linkman);</span><br><span class="line">    &#125;</span><br><span class="line">    tr.commit();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;LinkMan&gt; list = session.createQuery(<span class="string">&quot;from LinkMan&quot;</span>).setFirstResult(<span class="number">0</span>).setMaxResults().list();</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 分页查询</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run2</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Session</span> <span class="variable">session</span> <span class="operator">=</span> HibernateUtils.getCurrentSession();</span><br><span class="line">    <span class="type">Transaction</span> <span class="variable">tr</span> <span class="operator">=</span> session.beginTransaction();</span><br><span class="line">    <span class="comment">// 查询联系人</span></span><br><span class="line">    <span class="type">Query</span> <span class="variable">query</span> <span class="operator">=</span> session.createQuery(<span class="string">&quot;from Linkman l order by l.lkm_id&quot;</span>);</span><br><span class="line">    <span class="comment">// 分页查询，调用方法，查询第一页的数据 1-3 条</span></span><br><span class="line">    query.setFirstResult(<span class="number">0</span>);</span><br><span class="line">    query.setMaxResults(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">    List&lt;Linkman&gt; list = query.list();</span><br><span class="line">    <span class="keyword">for</span>(Linkman linkman:list)&#123;</span><br><span class="line">        System.out.println(linkman);</span><br><span class="line">    &#125;</span><br><span class="line">    tr.commit();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h4><ul>
 <li><p><code>setParameter(&quot;?号的位置，默认从0开始&quot;,&quot;参数的值&quot;);</code> 不用考虑参数的具体类型</p>
 </li>
@@ -540,40 +340,49 @@
 </li>
 </ul>
 <p>例如代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 按条件查询</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Session session = HibernateUtils.getCurrentSession();</span><br><span class="line">    Transaction tr = session.beginTransaction();</span><br><span class="line">    <span class="comment">// 查询联系人</span></span><br><span class="line">    Query query = session.createQuery(<span class="string">"from Linkman l where l.lkm_gender = ?"</span>);</span><br><span class="line">    <span class="comment">// 传入值</span></span><br><span class="line">    <span class="comment">// query.setString(0, "男");</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Query query = session.createQuery("from Linkman l where l.lkm_id &gt; 2");</span></span><br><span class="line">    <span class="comment">// query.setLong(0, 2L);</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 通用的方法，不用判断具体的类型</span></span><br><span class="line">    query.setParameter(<span class="number">0</span>, <span class="string">"男"</span>);</span><br><span class="line">    List&lt;Linkman&gt; list = query.list();</span><br><span class="line">    <span class="keyword">for</span> (Linkman linkman : list) &#123;</span><br><span class="line">        System.out.println(linkman);</span><br><span class="line">    &#125;</span><br><span class="line">    tr.commit();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 按条件查询</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run3</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Session</span> <span class="variable">session</span> <span class="operator">=</span> HibernateUtils.getCurrentSession();</span><br><span class="line">    <span class="type">Transaction</span> <span class="variable">tr</span> <span class="operator">=</span> session.beginTransaction();</span><br><span class="line">    <span class="comment">// 查询联系人</span></span><br><span class="line">    <span class="type">Query</span> <span class="variable">query</span> <span class="operator">=</span> session.createQuery(<span class="string">&quot;from Linkman l where l.lkm_gender = ?&quot;</span>);</span><br><span class="line">    <span class="comment">// 传入值</span></span><br><span class="line">    <span class="comment">// query.setString(0, &quot;男&quot;);</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Query query = session.createQuery(&quot;from Linkman l where l.lkm_id &gt; 2&quot;);</span></span><br><span class="line">    <span class="comment">// query.setLong(0, 2L);</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 通用的方法，不用判断具体的类型</span></span><br><span class="line">    query.setParameter(<span class="number">0</span>, <span class="string">&quot;男&quot;</span>);</span><br><span class="line">    List&lt;Linkman&gt; list = query.list();</span><br><span class="line">    <span class="keyword">for</span> (Linkman linkman : list) &#123;</span><br><span class="line">        System.out.println(linkman);</span><br><span class="line">    &#125;</span><br><span class="line">    tr.commit();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h3 id="HQL-的投影查询"><a href="#HQL-的投影查询" class="headerlink" title="HQL 的投影查询"></a>HQL 的投影查询</h3><p>投影查询就是想查询某一字段的值或者某几个字段的值。</p>
 <p>投影查询的案例：</p>
 <ul>
 <li>如果查询多个字段，例如下面这种方式</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Object[]&gt; list = session.createQuery(<span class="string">"select c.cust_name,c.cust_level from Customer c"</span>).list();</span><br><span class="line"><span class="keyword">for</span> (Object[] objects : list) &#123;</span><br><span class="line">    System.out.println(Arrays.toString(objects));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Object[]&gt; list = session.createQuery(<span class="string">&quot;select c.cust_name,c.cust_level from Customer c&quot;</span>).list();</span><br><span class="line"><span class="keyword">for</span> (Object[] objects : list) &#123;</span><br><span class="line">    System.out.println(Arrays.toString(objects));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>如果查询两个字段，也可以把这两个字段封装到对象中</li>
 </ul>
 <blockquote>
 <p>先在持久化类中 <code>提供对应字段的构造方法</code>（不要忘了空的构造方法）<br>语句也要像下面一样发生改变</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Customer&gt; list = session.createQuery(<span class="string">"select new Customer(c.cust_name,c.cust_level) from Customer c"</span>).list();</span><br><span class="line"><span class="keyword">for</span> (Customer customer : list) &#123;</span><br><span class="line">    System.out.println(customer);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Customer&gt; list = session.createQuery(<span class="string">&quot;select new Customer(c.cust_name,c.cust_level) from Customer c&quot;</span>).list();</span><br><span class="line"><span class="keyword">for</span> (Customer customer : list) &#123;</span><br><span class="line">    System.out.println(customer);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h3 id="聚合函数查询"><a href="#聚合函数查询" class="headerlink" title="聚合函数查询"></a>聚合函数查询</h3><p><code>count()</code>、<code>sum()</code>、<code>avg()</code>、<code>max()</code>、<code>min()</code>等。</p>
-<h4 id="获取总的记录数"><a href="#获取总的记录数" class="headerlink" title="获取总的记录数"></a>获取总的记录数</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Session session = HibernateUtils.getCurrentSession();</span><br><span class="line">Transaction tr = session.beginTransaction();</span><br><span class="line"><span class="comment">// 也可以是 select count(*) from Customer</span></span><br><span class="line">List&lt;Number&gt; list = session.createQuery(<span class="string">"select count(c) from Customer c"</span>).list();</span><br><span class="line"><span class="comment">// 通过下标取值</span></span><br><span class="line">Long count = list.get(<span class="number">0</span>).longValue();</span><br><span class="line">System.out.println(count);</span><br><span class="line">tr.commit();</span><br></pre></td></tr></table></figure>
-<h4 id="获取某一列数据的和"><a href="#获取某一列数据的和" class="headerlink" title="获取某一列数据的和"></a>获取某一列数据的和</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Session session = HibernateUtils.getCurrentSession();</span><br><span class="line">Transaction tr = session.beginTransaction();</span><br><span class="line">List&lt;Number&gt; list = session.createQuery(<span class="string">"select sum(c.cust_id) from Customer c"</span>).list();</span><br><span class="line">Long count = list.get(<span class="number">0</span>).longValue();</span><br><span class="line">System.out.println(count);</span><br><span class="line">tr.commit();</span><br></pre></td></tr></table></figure>
+<h4 id="获取总的记录数"><a href="#获取总的记录数" class="headerlink" title="获取总的记录数"></a>获取总的记录数</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Session</span> <span class="variable">session</span> <span class="operator">=</span> HibernateUtils.getCurrentSession();</span><br><span class="line"><span class="type">Transaction</span> <span class="variable">tr</span> <span class="operator">=</span> session.beginTransaction();</span><br><span class="line"><span class="comment">// 也可以是 select count(*) from Customer</span></span><br><span class="line">List&lt;Number&gt; list = session.createQuery(<span class="string">&quot;select count(c) from Customer c&quot;</span>).list();</span><br><span class="line"><span class="comment">// 通过下标取值</span></span><br><span class="line"><span class="type">Long</span> <span class="variable">count</span> <span class="operator">=</span> list.get(<span class="number">0</span>).longValue();</span><br><span class="line">System.out.println(count);</span><br><span class="line">tr.commit();</span><br></pre></td></tr></table></figure>
+
+<h4 id="获取某一列数据的和"><a href="#获取某一列数据的和" class="headerlink" title="获取某一列数据的和"></a>获取某一列数据的和</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Session</span> <span class="variable">session</span> <span class="operator">=</span> HibernateUtils.getCurrentSession();</span><br><span class="line"><span class="type">Transaction</span> <span class="variable">tr</span> <span class="operator">=</span> session.beginTransaction();</span><br><span class="line">List&lt;Number&gt; list = session.createQuery(<span class="string">&quot;select sum(c.cust_id) from Customer c&quot;</span>).list();</span><br><span class="line"><span class="type">Long</span> <span class="variable">count</span> <span class="operator">=</span> list.get(<span class="number">0</span>).longValue();</span><br><span class="line">System.out.println(count);</span><br><span class="line">tr.commit();</span><br></pre></td></tr></table></figure>
+
 <h3 id="HQL-多表查询"><a href="#HQL-多表查询" class="headerlink" title="HQL 多表查询"></a>HQL 多表查询</h3><h4 id="多表的查询"><a href="#多表的查询" class="headerlink" title="多表的查询"></a>多表的查询</h4><p>HQL 语句和 SQL 语句的查询语法比较类似。</p>
 <h5 id="内连接查询"><a href="#内连接查询" class="headerlink" title="内连接查询"></a>内连接查询</h5><ul>
 <li>显示内连接</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> customers c <span class="keyword">inner</span> <span class="keyword">join</span> orders o <span class="keyword">on</span> c.cid = o.cno;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> customers c <span class="keyword">inner</span> <span class="keyword">join</span> orders o <span class="keyword">on</span> c.cid <span class="operator">=</span> o.cno;</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>隐式内连接</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> customers c,orders o <span class="keyword">where</span> c.cid = o.cno;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> customers c,orders o <span class="keyword">where</span> c.cid <span class="operator">=</span> o.cno;</span><br></pre></td></tr></table></figure>
+
 <h5 id="外连接查询"><a href="#外连接查询" class="headerlink" title="外连接查询"></a>外连接查询</h5><ul>
 <li>左外连接</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> customers c <span class="keyword">left</span> <span class="keyword">join</span> orders o <span class="keyword">on</span> c.cid = o.cno;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> customers c <span class="keyword">left</span> <span class="keyword">join</span> orders o <span class="keyword">on</span> c.cid <span class="operator">=</span> o.cno;</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>右外连接</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> customers c <span class="keyword">right</span> <span class="keyword">join</span> orders o <span class="keyword">on</span> c.cid = o.cno;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> customers c <span class="keyword">right</span> <span class="keyword">join</span> orders o <span class="keyword">on</span> c.cid <span class="operator">=</span> o.cno;</span><br></pre></td></tr></table></figure>
+
 <h4 id="迫切和非迫切"><a href="#迫切和非迫切" class="headerlink" title="迫切和非迫切"></a>迫切和非迫切</h4><ul>
 <li><p>非迫切返回结果是 <code>Object[]</code></p>
 </li>
@@ -583,20 +392,24 @@
 <h4 id="内连接查询-1"><a href="#内连接查询-1" class="headerlink" title="内连接查询"></a>内连接查询</h4><ul>
 <li>内连接使用 <code>inner join</code> ，默认返回的是 <code>Object</code> 数组</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 内连接，数据默认返回的是数组</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Session session = HibernateUtils.getCurrentSession();</span><br><span class="line">	Transaction tr = session.beginTransaction();</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 默认返回数组</span></span><br><span class="line">	Query query = session.createQuery(<span class="string">"from Customer c inner join c.linkmans"</span>);</span><br><span class="line">	List&lt;Object[]&gt; list = query.list();</span><br><span class="line">	<span class="keyword">for</span> (Object[] objects : list) &#123;</span><br><span class="line">		System.out.println(Arrays.toString(objects));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	tr.commit();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 内连接，数据默认返回的是数组</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run1</span><span class="params">()</span> &#123;</span><br><span class="line">	<span class="type">Session</span> <span class="variable">session</span> <span class="operator">=</span> HibernateUtils.getCurrentSession();</span><br><span class="line">	<span class="type">Transaction</span> <span class="variable">tr</span> <span class="operator">=</span> session.beginTransaction();</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 默认返回数组</span></span><br><span class="line">	<span class="type">Query</span> <span class="variable">query</span> <span class="operator">=</span> session.createQuery(<span class="string">&quot;from Customer c inner join c.linkmans&quot;</span>);</span><br><span class="line">	List&lt;Object[]&gt; list = query.list();</span><br><span class="line">	<span class="keyword">for</span> (Object[] objects : list) &#123;</span><br><span class="line">		System.out.println(Arrays.toString(objects));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	tr.commit();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>迫切内连接: <code>inner join fetch</code> ，返回的是实体对象</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 内连接，数据默认返回的是数组</span></span><br><span class="line"><span class="comment"> * 把数据封装到对象中</span></span><br><span class="line"><span class="comment"> * 使用关键字：fetch 迫切连接，这样就会把数据封装到对象中</span></span><br><span class="line"><span class="comment"> * 此时数据会重复</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Session session = HibernateUtils.getCurrentSession();</span><br><span class="line">	Transaction tr = session.beginTransaction();</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 使用 fetch 迫切连接，封装数据</span></span><br><span class="line">	Query query = session.createQuery(<span class="string">"from Customer c inner join fetch c.linkmans"</span>);</span><br><span class="line">	List&lt;Customer&gt; list = query.list();</span><br><span class="line">	<span class="keyword">for</span> (Customer customer : list) &#123;</span><br><span class="line">		System.out.println(customer);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	tr.commit();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 内连接，数据默认返回的是数组</span></span><br><span class="line"><span class="comment"> * 把数据封装到对象中</span></span><br><span class="line"><span class="comment"> * 使用关键字：fetch 迫切连接，这样就会把数据封装到对象中</span></span><br><span class="line"><span class="comment"> * 此时数据会重复</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run1</span><span class="params">()</span> &#123;</span><br><span class="line">	<span class="type">Session</span> <span class="variable">session</span> <span class="operator">=</span> HibernateUtils.getCurrentSession();</span><br><span class="line">	<span class="type">Transaction</span> <span class="variable">tr</span> <span class="operator">=</span> session.beginTransaction();</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 使用 fetch 迫切连接，封装数据</span></span><br><span class="line">	<span class="type">Query</span> <span class="variable">query</span> <span class="operator">=</span> session.createQuery(<span class="string">&quot;from Customer c inner join fetch c.linkmans&quot;</span>);</span><br><span class="line">	List&lt;Customer&gt; list = query.list();</span><br><span class="line">	<span class="keyword">for</span> (Customer customer : list) &#123;</span><br><span class="line">		System.out.println(customer);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	tr.commit();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>解决数据重复：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 解决数据的重复问题</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	Session session = HibernateUtils.getCurrentSession();</span><br><span class="line">	Transaction tr = session.beginTransaction();</span><br><span class="line"></span><br><span class="line">	Query query = session.createQuery(<span class="string">"from Customer c inner join fetch c.linkmans"</span>);</span><br><span class="line">	List&lt;Customer&gt; list = query.list();</span><br><span class="line">	<span class="comment">// 手动解决数据重复问题，编程中都使用这种方式来解决重复的问题</span></span><br><span class="line">	Set&lt;Customer&gt; set=<span class="keyword">new</span> HashSet&lt;&gt;(list);</span><br><span class="line">	<span class="keyword">for</span> (Customer customer : set) &#123;</span><br><span class="line">		System.out.println(customer);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	tr.commit();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 解决数据的重复问题</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run2</span><span class="params">()</span> &#123;</span><br><span class="line">	<span class="type">Session</span> <span class="variable">session</span> <span class="operator">=</span> HibernateUtils.getCurrentSession();</span><br><span class="line">	<span class="type">Transaction</span> <span class="variable">tr</span> <span class="operator">=</span> session.beginTransaction();</span><br><span class="line"></span><br><span class="line">	<span class="type">Query</span> <span class="variable">query</span> <span class="operator">=</span> session.createQuery(<span class="string">&quot;from Customer c inner join fetch c.linkmans&quot;</span>);</span><br><span class="line">	List&lt;Customer&gt; list = query.list();</span><br><span class="line">	<span class="comment">// 手动解决数据重复问题，编程中都使用这种方式来解决重复的问题</span></span><br><span class="line">	Set&lt;Customer&gt; set=<span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;(list);</span><br><span class="line">	<span class="keyword">for</span> (Customer customer : set) &#123;</span><br><span class="line">		System.out.println(customer);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	tr.commit();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h4 id="左外连接查询"><a href="#左外连接查询" class="headerlink" title="左外连接查询"></a>左外连接查询</h4><ul>
-<li><p>左外连接:    封装成 <code>List&lt;Object[]&gt;</code></p>
+<li><p>左外连接:	封装成 <code>List&lt;Object[]&gt;</code></p>
 </li>
 <li><p>迫切左外连接</p>
 </li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Session session = HibernateUtils.getCurrentSession();</span><br><span class="line">Transaction tr = session.beginTransaction();</span><br><span class="line">List&lt;Customer&gt; list = session.createQuery(<span class="string">"from Customer c left join fetch c.linkmans"</span>).list();</span><br><span class="line">Set&lt;Customer&gt; set = <span class="keyword">new</span> HashSet&lt;Customer&gt;(list);</span><br><span class="line"><span class="keyword">for</span> (Customer customer : set) &#123;</span><br><span class="line">	System.out.println(customer);</span><br><span class="line">&#125;</span><br><span class="line">tr.commit();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Session</span> <span class="variable">session</span> <span class="operator">=</span> HibernateUtils.getCurrentSession();</span><br><span class="line"><span class="type">Transaction</span> <span class="variable">tr</span> <span class="operator">=</span> session.beginTransaction();</span><br><span class="line">List&lt;Customer&gt; list = session.createQuery(<span class="string">&quot;from Customer c left join fetch c.linkmans&quot;</span>).list();</span><br><span class="line">Set&lt;Customer&gt; set = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;Customer&gt;(list);</span><br><span class="line"><span class="keyword">for</span> (Customer customer : set) &#123;</span><br><span class="line">	System.out.println(customer);</span><br><span class="line">&#125;</span><br><span class="line">tr.commit();</span><br></pre></td></tr></table></figure>
+
 <h2 id="QBC-查询"><a href="#QBC-查询" class="headerlink" title="QBC 查询"></a>QBC 查询</h2><p>QBC：<code>Query By Criteria</code>，按条件进行查询。</p>
 <ul>
 <li><p><code>Criteria</code>：代表一次查询；</p>
@@ -614,16 +427,18 @@
 <li><p>具体代码如下：</p>
 </li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Session session = HibernateUtils.getCurrentSession();</span><br><span class="line">Transaction tr = session.beginTransaction();</span><br><span class="line">Criteria criteria = session.createCriteria(Linkman.class);</span><br><span class="line"><span class="comment">// 设置排序</span></span><br><span class="line"><span class="comment">// criteria.addOrder(Order.asc("lkm_id"));</span></span><br><span class="line">criteria.addOrder(Order.desc(<span class="string">"lkm_id"</span>));</span><br><span class="line">List&lt;Linkman&gt; list = criteria.list();</span><br><span class="line"><span class="keyword">for</span> (Linkman linkman : list) &#123;</span><br><span class="line">    System.out.println(linkman);</span><br><span class="line">&#125;</span><br><span class="line">tr.commit();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Session</span> <span class="variable">session</span> <span class="operator">=</span> HibernateUtils.getCurrentSession();</span><br><span class="line"><span class="type">Transaction</span> <span class="variable">tr</span> <span class="operator">=</span> session.beginTransaction();</span><br><span class="line"><span class="type">Criteria</span> <span class="variable">criteria</span> <span class="operator">=</span> session.createCriteria(Linkman.class);</span><br><span class="line"><span class="comment">// 设置排序</span></span><br><span class="line"><span class="comment">// criteria.addOrder(Order.asc(&quot;lkm_id&quot;));</span></span><br><span class="line">criteria.addOrder(Order.desc(<span class="string">&quot;lkm_id&quot;</span>));</span><br><span class="line">List&lt;Linkman&gt; list = criteria.list();</span><br><span class="line"><span class="keyword">for</span> (Linkman linkman : list) &#123;</span><br><span class="line">    System.out.println(linkman);</span><br><span class="line">&#125;</span><br><span class="line">tr.commit();</span><br></pre></td></tr></table></figure>
 <h3 id="分页查询-1"><a href="#分页查询-1" class="headerlink" title="分页查询"></a>分页查询</h3><p><code>QBC</code> 的分页查询也是使用两个方法:</p>
 <ul>
-<li>setFirstResult();</li>
+<li><p>setFirstResult();</p>
+</li>
 <li><p>setMaxResults();</p>
 </li>
 <li><p>代码如下;</p>
 </li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Session session = HibernateUtils.getCurrentSession();</span><br><span class="line">Transaction tr = session.beginTransaction();</span><br><span class="line">Criteria criteria = session.createCriteria(Linkman.class);</span><br><span class="line"><span class="comment">// 设置排序</span></span><br><span class="line">criteria.addOrder(Order.desc(<span class="string">"lkm_id"</span>));</span><br><span class="line">criteria.setFirstResult(<span class="number">0</span>);</span><br><span class="line">criteria.setMaxResults(<span class="number">3</span>);</span><br><span class="line">List&lt;Linkman&gt; list = criteria.list();</span><br><span class="line"><span class="keyword">for</span> (Linkman linkman : list) &#123;</span><br><span class="line">    System.out.println(linkman);</span><br><span class="line">&#125;</span><br><span class="line">tr.commit();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Session</span> <span class="variable">session</span> <span class="operator">=</span> HibernateUtils.getCurrentSession();</span><br><span class="line"><span class="type">Transaction</span> <span class="variable">tr</span> <span class="operator">=</span> session.beginTransaction();</span><br><span class="line"><span class="type">Criteria</span> <span class="variable">criteria</span> <span class="operator">=</span> session.createCriteria(Linkman.class);</span><br><span class="line"><span class="comment">// 设置排序</span></span><br><span class="line">criteria.addOrder(Order.desc(<span class="string">&quot;lkm_id&quot;</span>));</span><br><span class="line">criteria.setFirstResult(<span class="number">0</span>);</span><br><span class="line">criteria.setMaxResults(<span class="number">3</span>);</span><br><span class="line">List&lt;Linkman&gt; list = criteria.list();</span><br><span class="line"><span class="keyword">for</span> (Linkman linkman : list) &#123;</span><br><span class="line">    System.out.println(linkman);</span><br><span class="line">&#125;</span><br><span class="line">tr.commit();</span><br></pre></td></tr></table></figure>
+
 <h3 id="条件查询-1"><a href="#条件查询-1" class="headerlink" title="条件查询"></a>条件查询</h3><p><code>Criterion</code> 是查询条件的接口，<code>Restrictions</code> 类是 Hibernate 框架提供的工具类，使用该工具类来设置查询条件。</p>
 <ul>
 <li><p>条件查询使用 Criteria 接口的 <code>add</code> 方法，用来传入条件。</p>
@@ -635,60 +450,59 @@
 <thead>
 <tr>
 <th>方法</th>
-<th style="text-align:center">含义</th>
+<th align="center">含义</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>Restrictions.eq</td>
-<td style="text-align:center">相等</td>
+<td align="center">相等</td>
 </tr>
 <tr>
 <td>Restrictions.gt</td>
-<td style="text-align:center">大于号</td>
+<td align="center">大于号</td>
 </tr>
 <tr>
 <td>Restrictions.ge</td>
-<td style="text-align:center">大于等于</td>
+<td align="center">大于等于</td>
 </tr>
 <tr>
 <td>Restrictions.lt</td>
-<td style="text-align:center">小于</td>
+<td align="center">小于</td>
 </tr>
 <tr>
 <td>Restrictions.le</td>
-<td style="text-align:center">小于等于</td>
+<td align="center">小于等于</td>
 </tr>
 <tr>
 <td>Restrictions.between</td>
-<td style="text-align:center">在之间</td>
+<td align="center">在之间</td>
 </tr>
 <tr>
 <td>Restrictions.like</td>
-<td style="text-align:center">模糊查询</td>
+<td align="center">模糊查询</td>
 </tr>
 <tr>
 <td>Restrictions.in</td>
-<td style="text-align:center">范围</td>
+<td align="center">范围</td>
 </tr>
 <tr>
 <td>Restrictions.and</td>
-<td style="text-align:center">并且</td>
+<td align="center">并且</td>
 </tr>
 <tr>
 <td>Restrictions.or</td>
-<td style="text-align:center">或者</td>
+<td align="center">或者</td>
 </tr>
 <tr>
 <td>Restrictions.isNull</td>
-<td style="text-align:center">查询某属性为空的值</td>
+<td align="center">查询某属性为空的值</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <ul>
 <li>测试代码如下</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Session session = HibernateUtils.getCurrentSession();</span><br><span class="line">Transaction tr = session.beginTransaction();</span><br><span class="line">Criteria criteria = session.createCriteria(Linkman.class);</span><br><span class="line"><span class="comment">// 设置排序</span></span><br><span class="line">criteria.addOrder(Order.desc(<span class="string">"lkm_id"</span>));</span><br><span class="line"><span class="comment">// 设置查询条件</span></span><br><span class="line"><span class="comment">// Restrictions 提供静态的方法，拼接查询的条件</span></span><br><span class="line">criteria.add(Restrictions.or(Restrictions.eq(<span class="string">"lkm_gender"</span>, <span class="string">"男"</span>), Restrictions.gt(<span class="string">"lkm_id"</span>, <span class="number">3L</span>)));</span><br><span class="line">List&lt;Linkman&gt; list = criteria.list();</span><br><span class="line"><span class="keyword">for</span> (Linkman linkman : list) &#123;</span><br><span class="line">    System.out.println(linkman);</span><br><span class="line">&#125;</span><br><span class="line">tr.commit();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Session</span> <span class="variable">session</span> <span class="operator">=</span> HibernateUtils.getCurrentSession();</span><br><span class="line"><span class="type">Transaction</span> <span class="variable">tr</span> <span class="operator">=</span> session.beginTransaction();</span><br><span class="line"><span class="type">Criteria</span> <span class="variable">criteria</span> <span class="operator">=</span> session.createCriteria(Linkman.class);</span><br><span class="line"><span class="comment">// 设置排序</span></span><br><span class="line">criteria.addOrder(Order.desc(<span class="string">&quot;lkm_id&quot;</span>));</span><br><span class="line"><span class="comment">// 设置查询条件</span></span><br><span class="line"><span class="comment">// Restrictions 提供静态的方法，拼接查询的条件</span></span><br><span class="line">criteria.add(Restrictions.or(Restrictions.eq(<span class="string">&quot;lkm_gender&quot;</span>, <span class="string">&quot;男&quot;</span>), Restrictions.gt(<span class="string">&quot;lkm_id&quot;</span>, <span class="number">3L</span>)));</span><br><span class="line">List&lt;Linkman&gt; list = criteria.list();</span><br><span class="line"><span class="keyword">for</span> (Linkman linkman : list) &#123;</span><br><span class="line">    System.out.println(linkman);</span><br><span class="line">&#125;</span><br><span class="line">tr.commit();</span><br></pre></td></tr></table></figure>
+
 <h3 id="聚合函数查询-1"><a href="#聚合函数查询-1" class="headerlink" title="聚合函数查询"></a>聚合函数查询</h3><p><code>Projection</code> 的聚合函数的接口，而 <code>Projections</code> 是 Hibernate 提供的工具类，使用该工具类设置聚合函数查询。</p>
 <ul>
 <li><p>使用 QBC 的聚合函数查询，需要使用 <code>criteria.setProjection()</code> 方法</p>
@@ -696,20 +510,24 @@
 <li><p>具体的代码如下：</p>
 </li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Session session = HibernateUtils.getCurrentSession();</span><br><span class="line">Transaction tr = session.beginTransaction();</span><br><span class="line">Criteria criteria = session.createCriteria(Linkman.class);</span><br><span class="line">criteria.setProjection(Projections.rowCount());</span><br><span class="line">List&lt;Number&gt; list = criteria.list();</span><br><span class="line">Long count = list.get(<span class="number">0</span>).longValue();</span><br><span class="line">System.out.println(count);</span><br><span class="line">tr.commit();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Session</span> <span class="variable">session</span> <span class="operator">=</span> HibernateUtils.getCurrentSession();</span><br><span class="line"><span class="type">Transaction</span> <span class="variable">tr</span> <span class="operator">=</span> session.beginTransaction();</span><br><span class="line"><span class="type">Criteria</span> <span class="variable">criteria</span> <span class="operator">=</span> session.createCriteria(Linkman.class);</span><br><span class="line">criteria.setProjection(Projections.rowCount());</span><br><span class="line">List&lt;Number&gt; list = criteria.list();</span><br><span class="line"><span class="type">Long</span> <span class="variable">count</span> <span class="operator">=</span> list.get(<span class="number">0</span>).longValue();</span><br><span class="line">System.out.println(count);</span><br><span class="line">tr.commit();</span><br></pre></td></tr></table></figure>
+
 <h3 id="离线条件查询"><a href="#离线条件查询" class="headerlink" title="离线条件查询"></a>离线条件查询</h3><p><strong>脱离 session，可以不使用 session 来创建。而是在 web 层创建对象。</strong></p>
 <p>离线条件查询使用的是 <code>DetachedCriteria</code> 接口进行查询，离线条件查询对象在创建的时候，不需要使用 <code>Session</code> 对象，只是在查询的时候使用 <code>Session</code> 对象即可。</p>
 <ul>
 <li>创建离线条件查询对象</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DetachedCriteria criteria = DetachedCriteria.forClass(Linkman.class);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">DetachedCriteria</span> <span class="variable">criteria</span> <span class="operator">=</span> DetachedCriteria.forClass(Linkman.class);</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>具体的代码如下</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Session session = HibernateUtils.getCurrentSession();</span><br><span class="line">Transaction tr = session.beginTransaction();</span><br><span class="line"></span><br><span class="line">DetachedCriteria criteria = DetachedCriteria.forClass(Linkman.class);</span><br><span class="line"><span class="comment">// 设置查询条件</span></span><br><span class="line">criteria.add(Restrictions.eq(<span class="string">"lkm_gender"</span>, <span class="string">"男"</span>));</span><br><span class="line"><span class="comment">// 查询数据</span></span><br><span class="line">List&lt;Linkman&gt; list = criteria.getExecutableCriteria(session).list();</span><br><span class="line"><span class="keyword">for</span> (Linkman linkman : list) &#123;</span><br><span class="line">    System.out.println(linkman);</span><br><span class="line">&#125;</span><br><span class="line">tr.commit();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Session</span> <span class="variable">session</span> <span class="operator">=</span> HibernateUtils.getCurrentSession();</span><br><span class="line"><span class="type">Transaction</span> <span class="variable">tr</span> <span class="operator">=</span> session.beginTransaction();</span><br><span class="line"></span><br><span class="line"><span class="type">DetachedCriteria</span> <span class="variable">criteria</span> <span class="operator">=</span> DetachedCriteria.forClass(Linkman.class);</span><br><span class="line"><span class="comment">// 设置查询条件</span></span><br><span class="line">criteria.add(Restrictions.eq(<span class="string">&quot;lkm_gender&quot;</span>, <span class="string">&quot;男&quot;</span>));</span><br><span class="line"><span class="comment">// 查询数据</span></span><br><span class="line">List&lt;Linkman&gt; list = criteria.getExecutableCriteria(session).list();</span><br><span class="line"><span class="keyword">for</span> (Linkman linkman : list) &#123;</span><br><span class="line">    System.out.println(linkman);</span><br><span class="line">&#125;</span><br><span class="line">tr.commit();</span><br></pre></td></tr></table></figure>
+
 <h2 id="SQL-查询方式（了解）"><a href="#SQL-查询方式（了解）" class="headerlink" title="SQL 查询方式（了解）"></a>SQL 查询方式（了解）</h2><p>使用 Hibernate 框架一般不会使用 SQL 查询。</p>
 <p>基本语法：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Session session = HibernateUtils.getCurrentSession();</span><br><span class="line">Transaction tr = session.beginTransaction();</span><br><span class="line"></span><br><span class="line">SQLQuery sqlQuery = session.createSQLQuery(<span class="string">"select * from cst_linkman where lkm_gender = ?"</span>);</span><br><span class="line">sqlQuery.setParameter(<span class="number">0</span>,<span class="string">"男"</span>);</span><br><span class="line"><span class="comment">// 通过方法设置，封装数据</span></span><br><span class="line">sqlQuery.addEntity(Linkman.class);</span><br><span class="line">List&lt;Linkman&gt; list = sqlQuery.list();</span><br><span class="line">System.out.println(list);</span><br><span class="line">tr.commit();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Session</span> <span class="variable">session</span> <span class="operator">=</span> HibernateUtils.getCurrentSession();</span><br><span class="line"><span class="type">Transaction</span> <span class="variable">tr</span> <span class="operator">=</span> session.beginTransaction();</span><br><span class="line"></span><br><span class="line"><span class="type">SQLQuery</span> <span class="variable">sqlQuery</span> <span class="operator">=</span> session.createSQLQuery(<span class="string">&quot;select * from cst_linkman where lkm_gender = ?&quot;</span>);</span><br><span class="line">sqlQuery.setParameter(<span class="number">0</span>,<span class="string">&quot;男&quot;</span>);</span><br><span class="line"><span class="comment">// 通过方法设置，封装数据</span></span><br><span class="line">sqlQuery.addEntity(Linkman.class);</span><br><span class="line">List&lt;Linkman&gt; list = sqlQuery.list();</span><br><span class="line">System.out.println(list);</span><br><span class="line">tr.commit();</span><br></pre></td></tr></table></figure>
+
 <hr>
 <h1 id="查询功能优化"><a href="#查询功能优化" class="headerlink" title="查询功能优化"></a>查询功能优化</h1><hr>
 <p>没有好与坏之分，只有适合不适合，可根据需求自行优化。但一般都会使用默认的，除非有特殊需求。</p>
@@ -731,54 +549,58 @@
 <li><code>Hibernate.initialize(Object proxy);</code> 把对象先初始化一下。</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hibernate.initialize(c1);</span><br></pre></td></tr></table></figure>
+
 <h3 id="关联级别的延迟加载"><a href="#关联级别的延迟加载" class="headerlink" title="关联级别的延迟加载"></a>关联级别的延迟加载</h3><p>（查询某个客户，当查看该客户下的所有联系人是否是延迟加载）</p>
 <ul>
 <li>默认是延迟加载</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Session session = HibernateUtils.getCurrentSession();</span><br><span class="line">Transaction tr = session.beginTransaction();</span><br><span class="line">Customer c = session.get(Customer.class, <span class="number">1L</span>);</span><br><span class="line">System.out.println(<span class="string">"============="</span>);</span><br><span class="line">System.out.println(c.getLinkmans().size()); <span class="comment">// 当查询客户下的联系人的时候才发送语句进行查询</span></span><br><span class="line">tr.commit();</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Session</span> <span class="variable">session</span> <span class="operator">=</span> HibernateUtils.getCurrentSession();</span><br><span class="line"><span class="type">Transaction</span> <span class="variable">tr</span> <span class="operator">=</span> session.beginTransaction();</span><br><span class="line"><span class="type">Customer</span> <span class="variable">c</span> <span class="operator">=</span> session.get(Customer.class, <span class="number">1L</span>);</span><br><span class="line">System.out.println(<span class="string">&quot;=============&quot;</span>);</span><br><span class="line">System.out.println(c.getLinkmans().size()); <span class="comment">// 当查询客户下的联系人的时候才发送语句进行查询</span></span><br><span class="line">tr.commit();</span><br></pre></td></tr></table></figure>
+
 <h3 id="关联级别延迟加载的策略"><a href="#关联级别延迟加载的策略" class="headerlink" title="关联级别延迟加载的策略"></a>关联级别延迟加载的策略</h3><p>查询策略：使用 Hibernate 查询一个对象的时候，查询其关联对象，应该如何查询，是 Hibernate 的一种优化手段！！</p>
 <p>Hibernate 框架的检索策略解决的问题</p>
-<h4 id="查询的时机"><a href="#查询的时机" class="headerlink" title="查询的时机"></a>查询的时机</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Customer c1 = (Customer) session.get(Customer.class, <span class="number">1</span>);</span><br><span class="line">System.out.println(c1.getLinkmans().size());</span><br></pre></td></tr></table></figure>
+<h4 id="查询的时机"><a href="#查询的时机" class="headerlink" title="查询的时机"></a>查询的时机</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Customer</span> <span class="variable">c1</span> <span class="operator">=</span> (Customer) session.get(Customer.class, <span class="number">1</span>);</span><br><span class="line">System.out.println(c1.getLinkmans().size());</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li><code>lazy</code> 属性解决查询的时机的问题，需要配置 <code>是否采用延迟加载</code>！！</li>
 </ul>
-<h4 id="查询的语句格式"><a href="#查询的语句格式" class="headerlink" title="查询的语句格式"></a>查询的语句格式</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Customer&gt; list = session.createQuery(<span class="string">"from Customer"</span>).list();</span><br><span class="line"><span class="keyword">for</span>(Customer c : list)&#123;</span><br><span class="line">	System.out.println(c.getLinkmans());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="查询的语句格式"><a href="#查询的语句格式" class="headerlink" title="查询的语句格式"></a>查询的语句格式</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Customer&gt; list = session.createQuery(<span class="string">&quot;from Customer&quot;</span>).list();</span><br><span class="line"><span class="keyword">for</span>(Customer c : list)&#123;</span><br><span class="line">	System.out.println(c.getLinkmans());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li><code>fetch</code> 属性就可以解决 <code>查询语句的格式</code> 的问题！！</li>
 </ul>
 <h4 id="set-标签配置策略"><a href="#set-标签配置策略" class="headerlink" title="set 标签配置策略"></a>set 标签配置策略</h4><p>在 <code>&lt;set&gt;</code> 标签上使用 <code>fetch</code> 和 <code>lazy</code> 属性：</p>
 <ul>
-<li><code>fetch</code> 的取值                – 控制 SQL 语句生成的格式</li>
+<li><code>fetch</code> 的取值				– 控制 SQL 语句生成的格式</li>
 </ul>
 <blockquote>
-<p><code>select</code>                – 默认值。发送查询语句</p>
-<p><code>join</code>                    – 连接查询。发送的是一条迫切左外连接！配置了 join，lazy 就失效了</p>
-<p><code>subselect</code>                – 子查询。发送一条子查询查询其关联对象。（需要使用 <code>list()</code> 方法进行测试）</p>
+<p><code>select</code>				– 默认值。发送查询语句</p>
+<p><code>join</code>					– 连接查询。发送的是一条迫切左外连接！配置了 join，lazy 就失效了</p>
+<p><code>subselect</code>				– 子查询。发送一条子查询查询其关联对象。（需要使用 <code>list()</code> 方法进行测试）</p>
 </blockquote>
 <ul>
-<li><code>lazy</code> 的取值                – 查找关联对象的时候是否采用延迟!</li>
+<li><code>lazy</code> 的取值				– 查找关联对象的时候是否采用延迟!</li>
 </ul>
 <blockquote>
-<p><code>true</code>                    – 默认。延迟</p>
-<p><code>false</code>                    – 不延迟</p>
-<p><code>extra</code>                    – 及其懒惰</p>
+<p><code>true</code>					– 默认。延迟</p>
+<p><code>false</code>					– 不延迟</p>
+<p><code>extra</code>					– 及其懒惰</p>
 </blockquote>
 <p><code>set</code> 标签上的默认值是 <code>fetch=&quot;select&quot;</code> 和 <code>lazy=&quot;true&quot;</code></p>
 <p><strong>总结：</strong>Hibernate 框架都采用了默认值，开发中基本上使用的都是默认值。特殊情况再进行设置。</p>
 <h4 id="many-to-one-标签配置策略"><a href="#many-to-one-标签配置策略" class="headerlink" title="many-to-one 标签配置策略"></a>many-to-one 标签配置策略</h4><p>在 <code>&lt;many-to-one&gt;</code> 标签上使用 <code>fetch</code> 和 <code>lazy</code> 属性</p>
 <ul>
-<li>fetch的取值        – 控制SQL的格式.</li>
+<li>fetch的取值		– 控制SQL的格式.</li>
 </ul>
 <blockquote>
-<p>select        – 默认。发送基本select语句查询</p>
-<p>join            – 发送迫切左外连接查询</p>
+<p>select		– 默认。发送基本select语句查询</p>
+<p>join			– 发送迫切左外连接查询</p>
 </blockquote>
 <ul>
-<li>lazy的取值        – 控制加载关联对象是否采用延迟</li>
+<li>lazy的取值		– 控制加载关联对象是否采用延迟</li>
 </ul>
 <blockquote>
-<p>false            – 不采用延迟加载。</p>
-<p>proxy            – 默认值。代理。现在是否采用延迟</p>
+<p>false			– 不采用延迟加载。</p>
+<p>proxy			– 默认值。代理。现在是否采用延迟</p>
 </blockquote>
 <ul>
 <li><p>由另一端的 <code>&lt;class&gt;</code> 上的 <code>lazy</code> 确定.如果这端的 <code>class</code> 上的 <code>lazy=&quot;true&quot;</code>。<code>proxy</code> 的值就是 <code>true</code>(延迟加载)。</p>
@@ -788,519 +610,108 @@
 </ul>
 <p>在 <code>&lt;many-to-one&gt;</code> 标签上的默认值是 <code>fetch=&quot;select&quot;</code> 和 <code>proxy</code></p>
 
-      
     </div>
 
-<div>
-  
-    <div>
     
-        <div style="text-align:center;color: #ccc;font-size:14px;">--- The End&nbsp;&nbsp;<i class="fa fa-paw"></i>&nbsp;&nbsp;Thanks For Your Reading ---</div>
     
-</div>
-  
-</div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-<div class="my_post_copyright">
-  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
-  
-  <!-- JS库 sweetalert 可修改路径 -->
-  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
-  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
-  <p><span>本文标题:</span><a href="/JavaWeb-Hibernate05.html">JavaWeb 之 Hibernate 查询方式与策略优化</a></p>
-  <p><span>文章作者:</span><a href="/" title="访问 RenKai 的个人博客">RenKai</a></p>
-  <p><span>发布时间:</span>2018年06月05日 - 15:06</p>
-  <p><span>最后更新:</span>2018年08月10日 - 14:08</p>
-  <p><span>原始链接:</span><a href="/JavaWeb-Hibernate05.html" title="JavaWeb 之 Hibernate 查询方式与策略优化">http://yoursite.com/JavaWeb-Hibernate05.html</a>
-    <span class="copy-path" title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/JavaWeb-Hibernate05.html" aria-label="复制成功！"></i></span>
-  </p>
-  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
-</div>
-<script> 
-    var clipboard = new Clipboard('.fa-clipboard');
-    clipboard.on('success', $(function(){
-      $(".fa-clipboard").click(function(){
-        swal({   
-          title: "",   
-          text: '复制成功',   
-          html: false,
-          timer: 500,   
-          showConfirmButton: false
-        });
-      });
-    }));  
-</script>
-
-      
-</div>
-
-    <div>
-      
-        
-  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-    <div>宠辱不惊，看庭前花开花落；去留无意，望天上云卷云舒。　</div>
-    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-      <span>赏</span>
-    </button>
-    <div id="QR" style="display: none;">
-      
-        <div id="wechat" style="display: inline-block">
-          <img id="wechat_qr" src="/images/wechat-reward-image.png" alt="RenKai WeChat Pay">
-          <p>微信打赏</p>
-        </div>
-      
-      
-        <div id="alipay" style="display: inline-block">
-          <img id="alipay_qr" src="/images/alipay-reward-image.png" alt="RenKai Alipay">
-          <p>支付宝打赏</p>
-        </div>
-      
-    </div>
-  </div>
-
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
+    
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/JavaWeb/" rel="tag"><i class="fa fa-tag"></i> JavaWeb</a>
-          
-            <a href="/tags/Hibernate/" rel="tag"><i class="fa fa-tag"></i> Hibernate</a>
-          
-        </div>
-      
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat-reward-image.png" alt="Kai Ren WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay-reward-image.png" alt="Kai Ren Alipay">
+        <span>Alipay</span>
+      </div>
+      <div>
+        <img src="/%E5%AE%A0%E8%BE%B1%E4%B8%8D%E6%83%8A%EF%BC%8C%E7%9C%8B%E5%BA%AD%E5%89%8D%E8%8A%B1%E5%BC%80%E8%8A%B1%E8%90%BD%EF%BC%9B%E5%8E%BB%E7%95%99%E6%97%A0%E6%84%8F%EF%BC%8C%E6%9C%9B%E5%A4%A9%E4%B8%8A%E4%BA%91%E5%8D%B7%E4%BA%91%E8%88%92%E3%80%82" alt="Kai Ren reward_comment">
+        <span>reward_comment</span>
+      </div>
 
-      
-      
-      
+  </div>
+</div>
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/JavaWeb-Hibernate04.html" rel="next" title="JavaWeb 之 Hibernate 关联关系映射">
-                <i class="fa fa-chevron-left"></i> JavaWeb 之 Hibernate 关联关系映射
-              </a>
-            
+          <div class="post-tags">
+              <a href="/tags/JavaWeb/" rel="tag"># JavaWeb</a>
+              <a href="/tags/Hibernate/" rel="tag"># Hibernate</a>
           </div>
 
-          <span class="post-nav-divider"></span>
+        
 
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/novel-nverqing.html" rel="prev" title="世间安得双全法，不负如来不负卿">
-                世间安得双全法，不负如来不负卿 <i class="fa fa-chevron-right"></i>
-              </a>
-            
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/JavaWeb-Hibernate04.html" rel="prev" title="JavaWeb 之 Hibernate 关联关系映射">
+                  <i class="fa fa-angle-left"></i> JavaWeb 之 Hibernate 关联关系映射
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/novel-nverqing.html" rel="next" title="世间安得双全法，不负如来不负卿">
+                  世间安得双全法，不负如来不负卿 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
           </div>
-        </div>
-      
-
-      
-      
     </footer>
   </article>
+</div>
 
 
 
-    <div class="post-spread">
-      
-    </div>
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2017 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ture</span>
   </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
-    
-      <div id="SOHUCS"></div>
-    
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
   </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="RenKai">
-          <p class="site-author-name" itemprop="name">RenKai</p>
-           
-              <p class="site-description motion-element" itemprop="description">一枚想成为技术控的菜鸟</p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">49</span>
-                <span class="site-state-item-name">posts</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">10</span>
-                <span class="site-state-item-name">categories</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">25</span>
-                <span class="site-state-item-name">tags</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/renkaigis" target="_blank" title="Github">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  Github
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/renkai123" target="_blank" title="Weibo">
-                  
-                    <i class="fa fa-fw fa-weibo"></i>
-                  
-                  Weibo
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://blog.csdn.net/renkaigis" target="_blank" title="CSDN">
-                  
-                    <i class="fa fa-fw fa-crosshairs"></i>
-                  
-                  CSDN
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://www.jianshu.com/users/f44c72ff4b81/timeline" target="_blank" title="简书">
-                  
-                    <i class="fa fa-fw fa-heartbeat"></i>
-                  
-                  简书
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="mailto:renkaigis@163.com" target="_blank" title="Email">
-                  
-                    <i class="fa fa-fw fa-envelope"></i>
-                  
-                  Email
-                </a>
-              </span>
-            
-          
-        </div>
-
-        
-        
-
-        
-        
-          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-            <div class="links-of-blogroll-title">
-              <i class="fa  fa-fw fa-globe"></i>
-              友链
-            </div>
-            <ul class="links-of-blogroll-list">
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://blog.renkaigis.com/KeepCoding/" title="Plan - KeepCoding" target="_blank">Plan - KeepCoding</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://blog.renkaigis.com/KeepEveryDay/" title="Plan - KeepEveryDay" target="_blank">Plan - KeepEveryDay</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="http://weijuanran.cn/" title="Weijuanran's Blog" target="_blank">Weijuanran's Blog</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
-                  <a href="https://blog.jiangyayu.cn/" title="Alex's Blog" target="_blank">Alex's Blog</a>
-                </li>
-              
-            </ul>
-          </div>
-        
-
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=538980932&auto=1&height=66"></iframe>
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hibernate-框架的查询方式"><span class="nav-number">1.</span> <span class="nav-text">Hibernate 框架的查询方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HQL-查询"><span class="nav-number">1.1.</span> <span class="nav-text">HQL 查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HQL-概述"><span class="nav-number">1.1.1.</span> <span class="nav-text">HQL 概述**</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HQL-的介绍"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">HQL 的介绍</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HQL-与-SQL-的关系"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">HQL 与 SQL 的关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HQL-的基本查询"><span class="nav-number">1.1.2.</span> <span class="nav-text">HQL 的基本查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HQL-基本的查询格式"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">HQL 基本的查询格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用别名的方式"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">使用别名的方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#排序查询"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">排序查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分页查询"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">分页查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#条件查询"><span class="nav-number">1.1.2.5.</span> <span class="nav-text">条件查询</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HQL-的投影查询"><span class="nav-number">1.1.3.</span> <span class="nav-text">HQL 的投影查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#聚合函数查询"><span class="nav-number">1.1.4.</span> <span class="nav-text">聚合函数查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取总的记录数"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">获取总的记录数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取某一列数据的和"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">获取某一列数据的和</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HQL-多表查询"><span class="nav-number">1.1.5.</span> <span class="nav-text">HQL 多表查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#多表的查询"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">多表的查询</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#内连接查询"><span class="nav-number">1.1.5.1.1.</span> <span class="nav-text">内连接查询</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#外连接查询"><span class="nav-number">1.1.5.1.2.</span> <span class="nav-text">外连接查询</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#迫切和非迫切"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">迫切和非迫切</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内连接查询-1"><span class="nav-number">1.1.5.3.</span> <span class="nav-text">内连接查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#左外连接查询"><span class="nav-number">1.1.5.4.</span> <span class="nav-text">左外连接查询</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QBC-查询"><span class="nav-number">1.2.</span> <span class="nav-text">QBC 查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单查询"><span class="nav-number">1.2.1.</span> <span class="nav-text">简单查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排序查询-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">排序查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分页查询-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">分页查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条件查询-1"><span class="nav-number">1.2.4.</span> <span class="nav-text">条件查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#聚合函数查询-1"><span class="nav-number">1.2.5.</span> <span class="nav-text">聚合函数查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#离线条件查询"><span class="nav-number">1.2.6.</span> <span class="nav-text">离线条件查询</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL-查询方式（了解）"><span class="nav-number">1.3.</span> <span class="nav-text">SQL 查询方式（了解）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查询功能优化"><span class="nav-number">2.</span> <span class="nav-text">查询功能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#延迟加载"><span class="nav-number">2.1.</span> <span class="nav-text">延迟加载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类级别的延迟加载"><span class="nav-number">2.1.1.</span> <span class="nav-text">类级别的延迟加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关联级别的延迟加载"><span class="nav-number">2.1.2.</span> <span class="nav-text">关联级别的延迟加载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关联级别延迟加载的策略"><span class="nav-number">2.1.3.</span> <span class="nav-text">关联级别延迟加载的策略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查询的时机"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">查询的时机</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询的语句格式"><span class="nav-number">2.1.3.2.</span> <span class="nav-text">查询的语句格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set-标签配置策略"><span class="nav-number">2.1.3.3.</span> <span class="nav-text">set 标签配置策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#many-to-one-标签配置策略"><span class="nav-number">2.1.3.4.</span> <span class="nav-text">many-to-one 标签配置策略</span></a></li></ol></li></ol></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
 
     </div>
-  </aside>
+  </footer>
 
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <center>
-
-<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-
-
-
-<div class="copyright">
-  <span><a href="http://www.beian.miit.gov.cn/" target="_blank">陕ICP备17015858号</a></span>&nbsp;
   
-  &copy; 2017-
-  <span itemprop="copyrightYear">2022</span>
-  <span class="with-love">
-    <i class="fa fa-flash"></i>
-  </span>Powered By - 
-  <span class="author" itemprop="copyrightHolder"><a class="theme-link" href="http://renkaigis.com">RenKai</a></span>
-</div>
-
-<div class="powered-by">
-<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-  本站访客数：<span id="busuanzi_value_site_uv"></span>
-</span>
-</div>
-
-<div class="powered-by">
-<span class="site-pv">
-<i class="fa fa-eye"></i> 
-  访问次数：<span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-</span></div>
-
-
-
-<div class="theme-info">
-<i class="fa fa-pencil"></i> 
-  <span class="post-count">全站共 93.5k</span> 字
-</div>
-
-<center>
-
-<!--
-<div class="theme-info">
-  Theme -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
--->
-
-
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
-        
-
-        
-      </center></center></div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
   </div>
 
-  
+  <a href="https://github.com/renkaigis" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 
   
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js" integrity="sha256-tc4b48P1MPGS4PJXHRlChGCW1mEZy62jS/3JEsSHPzU=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
 
 
 
@@ -1311,200 +722,6 @@
 
 
 
-
-  
-
-
-
-
-  
-
-
-  
-    <script type="text/javascript">
-    (function(){
-      var appid = 'cytEYq24O';
-      var conf = 'f90a095569bba30e59cae713bab443cf';
-      var width = window.innerWidth || document.documentElement.clientWidth;
-      if (width < 960) {
-      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
-        window.changyan.api.config({appid:appid,conf:conf})});
-      }
-    })();
-    </script>
-    <script type="text/javascript" src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
-  
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
-  <script>AV.initialize("UmN2zDPRHzd28CBIusNcb55r-gzGzoHsz", "y8w2I87XXk00wTQhj8v8vxRD");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
-
-  
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
-
-  
-
-  
-
-
-  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"tagMode":true,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":90,"height":180},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script>
 
 </body>
 </html>
-
-<!-- 页面点击小红心 -->
-<script type="text/javascript" src="/js/src/love.js"></script>

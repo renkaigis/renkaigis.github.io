@@ -527,20 +527,6 @@
   </url>
   
   <url>
-    <loc>https://yoursite.cn/tags/JavaWeb/</loc>
-    <lastmod>2023-12-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yoursite.cn/tags/Hibernate/</loc>
-    <lastmod>2023-12-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://yoursite.cn/tags/Hexo/</loc>
     <lastmod>2023-12-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -562,7 +548,14 @@
   </url>
   
   <url>
-    <loc>https://yoursite.cn/tags/SSH/</loc>
+    <loc>https://yoursite.cn/tags/JavaWeb/</loc>
+    <lastmod>2023-12-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yoursite.cn/tags/Hibernate/</loc>
     <lastmod>2023-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -570,6 +563,13 @@
   
   <url>
     <loc>https://yoursite.cn/tags/Spring/</loc>
+    <lastmod>2023-12-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://yoursite.cn/tags/SSH/</loc>
     <lastmod>2023-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -625,6 +625,13 @@
   </url>
   
   <url>
+    <loc>https://yoursite.cn/tags/HTML/</loc>
+    <lastmod>2023-12-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://yoursite.cn/tags/Java/</loc>
     <lastmod>2023-12-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -640,13 +647,6 @@
   
   <url>
     <loc>https://yoursite.cn/tags/XX-Net/</loc>
-    <lastmod>2023-12-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://yoursite.cn/tags/HTML/</loc>
     <lastmod>2023-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -697,14 +697,14 @@
   </url>
   
   <url>
-    <loc>https://yoursite.cn/categories/JavaWeb/</loc>
+    <loc>https://yoursite.cn/categories/Github/</loc>
     <lastmod>2023-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://yoursite.cn/categories/Github/</loc>
+    <loc>https://yoursite.cn/categories/JavaWeb/</loc>
     <lastmod>2023-12-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

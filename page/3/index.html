@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.0.0">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.0.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
@@ -12,12 +13,14 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic%7CComic+Sans+MS:300,300italic,400,400italic,700,700italic%7CPingFang+SC:300,300italic,400,400italic,700,700italic%7CConsolas:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha256-yIDrPSXHZdOZhAqiBP7CKzIwMQmRCJ8UeB8Jo17YC4o=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.cn","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.19.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yoursite.cn","root":"/","images":"/images","scheme":"Mist","darkmode":"ture","version":"8.19.1","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="一枚想成为技术控的菜鸟">
 <meta property="og:type" content="website">
@@ -86,7 +89,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-resume"><a href="https://resume.renkaigis.cn/" rel="section" target="_blank"><i class="fa fa-address-card fa-fw"></i>Resume</a></li><li class="menu-item menu-item-photo"><a href="https://photo.renkaigis.cn/" rel="section" target="_blank"><i class="fa fa-camera fa-fw"></i>Photo</a></li>
   </ul>
 </nav>
 
@@ -143,16 +146,16 @@
 </div>
   <div class="links-of-author animated">
       <span class="links-of-author-item">
-        <a href="https://github.com/renkaigis" title="Github → https:&#x2F;&#x2F;github.com&#x2F;renkaigis" rel="noopener me" target="_blank">Github</a>
+        <a href="https://github.com/renkaigis" title="Github → https:&#x2F;&#x2F;github.com&#x2F;renkaigis" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>Github</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://twitter.com/renkaigis" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;renkaigis" rel="noopener me" target="_blank">Twitter</a>
+        <a href="https://twitter.com/renkaigis" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;renkaigis" rel="noopener me" target="_blank"><i class="fa-brands fa-x-twitter fa-fw"></i>Twitter</a>
       </span>
       <span class="links-of-author-item">
-        <a href="http://blog.csdn.net/renkaigis" title="Linkedin → http:&#x2F;&#x2F;blog.csdn.net&#x2F;renkaigis" rel="noopener me" target="_blank">Linkedin</a>
+        <a href="https://www.linkedin.com/in/renkaigis/" title="Linkedin → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;renkaigis&#x2F;" rel="noopener me" target="_blank"><i class="fa-brands fa-linkedin fa-fw"></i>Linkedin</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:renkaigis@gmail.com" title="Email → mailto:renkaigis@gmail.com" rel="noopener me" target="_blank">Email</a>
+        <a href="mailto:renkaigis@gmail.com" title="Email → mailto:renkaigis@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>Email</a>
       </span>
   </div>
 
@@ -680,7 +683,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2018-08-10 14:39:23" itemprop="dateModified" datetime="2018-08-10T14:39:23+08:00">2018-08-10</time>
+      <time title="Modified: 2023-12-06 14:50:10" itemprop="dateModified" datetime="2023-12-06T14:50:10+08:00">2023-12-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -702,32 +705,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/javaweb/0300.png" title="JSP"></div>
-
-<!---more--->
-
-<h1 id="JSP-简介"><a href="#JSP-简介" class="headerlink" title="JSP 简介"></a>JSP 简介</h1><h2 id="JSP-概念"><a href="#JSP-概念" class="headerlink" title="JSP 概念"></a>JSP 概念</h2><p><code>JSP</code>（Java Server Pages），java 服务器页面，其根本是一个简化的 Servlet 设计，是一种动态网页技术标准。JSP 是在传统的网页 <code>HTML（标准通用标记语言的子集）文件(*.htm,*.html)</code>中插入 <code>Java 程序段</code>(Scriptlet)和 <code>JSP 标记</code>(tag)，从而形成 JSP 文件，后缀名为(<code>*.jsp</code>)。 用 JSP 开发的 Web 应用是跨平台的，既能在 Linux 下运行，也能在其他操作系统上运行。</p>
-<p><code>JSP</code> 运行在服务器端，处理请求，生成动态的内容。对应的 java 和 class 文件在 tomcat 目录下的 work 目录下。</p>
-<h2 id="JSP-执行流程"><a href="#JSP-执行流程" class="headerlink" title="JSP 执行流程"></a>JSP 执行流程</h2><ol>
-<li>浏览器发送请求，访问 <code>jsp</code> 页面；</li>
-<li>服务器接受请求，<code>jspSerlvet</code> 会帮我们查找对应的 <code>jsp</code> 文件；</li>
-<li>服务器将 <code>jsp</code> 页面翻译成 <code>java</code> 文件；</li>
-<li><code>jvm</code> 会将 <code>java</code> 编译成 <code>.class</code> 文件；</li>
-<li>服务器运行 <code>class</code> 文件，生成动态的内容；</li>
-<li>将内容发送给服务器；</li>
-<li>服务器组成响应信息，发送给浏览器；</li>
-<li>浏览器接受数据，解析展示。</li>
-</ol>
-<h2 id="JSP-脚本"><a href="#JSP-脚本" class="headerlink" title="JSP 脚本"></a>JSP 脚本</h2><ul>
-<li><p>&lt;%   %&gt;：java 程序片段，生成在 jsp 的 service 方法中</p>
-</li>
-<li><p>&lt;%&#x3D;  %&gt;：输出表达式，生成在 jsp 的 service 方法中，相当于 java 中调用 out.print(..)</p>
-</li>
-<li><p>&lt;%!  %&gt;：声明成员，翻译成 servlet 内部的内容。</p>
-</li>
-</ul>
-<h2 id="JSP-注释"><a href="#JSP-注释" class="headerlink" title="JSP 注释"></a>JSP 注释</h2><p>JSP 支持三种注释：<code>HTML</code> 注释、<code>Java</code> 注释、<code>JSP</code> 注释:</p>
-<h1 id="JSP-指令"><a href="#JSP-指令" class="headerlink" title="JSP 指令"></a>JSP 指令</h1><h1 id="EL-表达式"><a href="#EL-表达式" class="headerlink" title="EL 表达式"></a>EL 表达式</h1><h1 id="JSP-标注标签库（JSTL）"><a href="#JSP-标注标签库（JSTL）" class="headerlink" title="JSP 标注标签库（JSTL）"></a>JSP 标注标签库（JSTL）</h1>
+          <div align="center"><img src="http://image.renkaigis.com/javaweb/0300.png" title="JSP"></div>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/JavaWeb03-jsp.html#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -789,7 +775,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2018-08-10 14:40:33" itemprop="dateModified" datetime="2018-08-10T14:40:33+08:00">2018-08-10</time>
+      <time title="Modified: 2023-12-06 14:50:13" itemprop="dateModified" datetime="2023-12-06T14:50:13+08:00">2023-12-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -811,244 +797,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/javaweb/0200.png" title="Request & Response"></div>
-
-<!---more--->
-
-<h1 id="Response"><a href="#Response" class="headerlink" title="Response"></a>Response</h1><p><code>响应</code> 的作用是往浏览器写东西。包括响应行、响应头、响应体。</p>
-<h2 id="操作-Response-对象"><a href="#操作-Response-对象" class="headerlink" title="操作 Response 对象"></a>操作 Response 对象</h2><h3 id="操作响应行"><a href="#操作响应行" class="headerlink" title="操作响应行"></a>操作响应行</h3><p>响应行的格式：协议&#x2F;版本  状态码  状态码说明</p>
-<table>
-<thead>
-<tr>
-<th align="center">状态码</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">1xx</td>
-<td>已发送请求</td>
-</tr>
-<tr>
-<td align="center">2xx</td>
-<td>已完成响应<br>200：正常响应</td>
-</tr>
-<tr>
-<td align="center">3xx</td>
-<td>还需浏览器进一步操作<br>302：重定向，配合响应头location<br>304：读缓存</td>
-</tr>
-<tr>
-<td align="center">4xx</td>
-<td>用户操作错误<br>404：用户操作错误<br>访问的方法不存在</td>
-</tr>
-<tr>
-<td align="center">5xx</td>
-<td>服务器错误<br>500：内部异常</td>
-</tr>
-</tbody></table>
-<h4 id="设置状态码："><a href="#设置状态码：" class="headerlink" title="设置状态码："></a>设置状态码：</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//仅针对于上表的 1xx、2xx、3xx</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">setStatus</span><span class="params">(<span class="type">int</span> 状态码)</span>:Sets the status code <span class="keyword">for</span> <span class="built_in">this</span> response. </span><br><span class="line"></span><br><span class="line"><span class="comment">//针对于 4xx 和 5xx【了解】</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">sendError</span><span class="params">(<span class="type">int</span> 状态码)</span>:Sends an error response to the client using the specified status code and clearing the buffer.</span><br></pre></td></tr></table></figure>
-
-<h3 id="操作响应头"><a href="#操作响应头" class="headerlink" title="操作响应头"></a>操作响应头</h3><p>格式：key&#x2F;value（value 可以是多个值）</p>
-<h4 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">setHeader(String key,String value):设置字符串形式的响应头</span><br><span class="line">【了解】setIntHeader(String key,<span class="type">int</span> value):设值整型的响应头</span><br><span class="line">【了解】setDateHeader(String key,<span class="type">long</span> value):设值时间的响应头</span><br><span class="line"></span><br><span class="line">addHeader(String key,String value):添加字符串形式的响应头，之前设置过则追加，若没有设置过则设置</span><br><span class="line">【了解】addIntHeader(String key,<span class="type">int</span> value):添加整型的响应头</span><br><span class="line">【了解】addDateHeader(String key,<span class="type">long</span> value):添加时间的响应头</span><br></pre></td></tr></table></figure>
-
-<h4 id="常用的响应头"><a href="#常用的响应头" class="headerlink" title="常用的响应头"></a>常用的响应头</h4><ul>
-<li><p>location：重定向</p>
-</li>
-<li><p>refresh：定时刷新</p>
-</li>
-<li><p>content-type：设置文件的 mime 类型，设置响应流的编码及告诉浏览器用什么编码打开</p>
-</li>
-<li><p>content-disposition：文件下载</p>
-</li>
-</ul>
-<h4 id="重定向与定时刷新"><a href="#重定向与定时刷新" class="headerlink" title="重定向与定时刷新"></a>重定向与定时刷新</h4><h5 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h5><ul>
-<li>方式1：<strong>★★</strong></li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.sendRedirect(<span class="string">&quot;/javaweb/test1&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>方式2：</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">response.setStatus(<span class="number">302</span>);</span><br><span class="line">respooen.setHeader(<span class="string">&quot;location&quot;</span>,<span class="string">&quot;/day10/loc2&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<h5 id="定时刷新"><a href="#定时刷新" class="headerlink" title="定时刷新"></a>定时刷新</h5><ul>
-<li>方式1：</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置头 refresh</span></span><br><span class="line">response.setHeader(<span class="string">&quot;refresh&quot;</span>,<span class="string">&quot;秒数;url=跳转的路径&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>方式2：</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;--! 设置html的meta标签 --&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;refresh&quot;</span> <span class="attr">content</span>=<span class="string">&quot;3;url=/javaweb/test1.html&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="操作响应体"><a href="#操作响应体" class="headerlink" title="操作响应体"></a>操作响应体</h3><p>响应体即页面上要展示的内容。</p>
-<h4 id="常用方法-1"><a href="#常用方法-1" class="headerlink" title="常用方法"></a>常用方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Writer <span class="title function_">getWriter</span><span class="params">()</span>:字符流</span><br><span class="line">ServletOutputStream <span class="title function_">getOutputStream</span><span class="params">()</span>:字节流</span><br></pre></td></tr></table></figure>
-
-<p><strong>注：</strong>自己写的东西用字符流,其他一概用字节流.</p>
-<h4 id="处理响应中文乱码"><a href="#处理响应中文乱码" class="headerlink" title="处理响应中文乱码"></a>处理响应中文乱码</h4><ul>
-<li>方式1：<strong>★</strong></li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.setContentType(<span class="string">&quot;text/html;charset=utf-8&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>方式2：理解</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.setHeader(<span class="string">&quot;content-type&quot;</span>, <span class="string">&quot;text/html;charset=utf-8&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<p><em>详细的介绍如下：</em></p>
-<h5 id="处理字节流"><a href="#处理字节流" class="headerlink" title="处理字节流"></a>处理字节流</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置浏览器默认打开编码</span></span><br><span class="line">response.setHeader(<span class="string">&quot;Content-Type&quot;</span>, <span class="string">&quot;text/html;charset=UTF-8&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//中文转成字节数组编码</span></span><br><span class="line">response.getOutputStream().write(<span class="string">&quot;上山打老虎&quot;</span>.getBytes(<span class="string">&quot;UTF-8&quot;</span>));</span><br></pre></td></tr></table></figure>
-
-<h5 id="处理字符流"><a href="#处理字符流" class="headerlink" title="处理字符流"></a>处理字符流</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置response的缓冲区的编码</span></span><br><span class="line">response.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line"><span class="comment">//设置浏览器默认打开的编码.</span></span><br><span class="line">response.setHeader(<span class="string">&quot;Content-Type&quot;</span>, <span class="string">&quot;text/html;charset=UTF-8&quot;</span>);</span><br><span class="line"></span><br><span class="line">response.setContentType(<span class="string">&quot;text/html;charset=UTF-8&quot;</span>);<span class="comment">//相当于上面两句</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>注意:</strong></p>
-<ul>
-<li>两个流互斥</li>
-<li>当响应完成之后，服务器会判断一下流是否已经关闭，若没有关闭，服务器会帮我们关闭。（底层使用的缓冲流）</li>
-</ul>
-<h2 id="扩展-文件下载"><a href="#扩展-文件下载" class="headerlink" title="扩展-文件下载"></a>扩展-文件下载</h2><h3 id="超链接方式"><a href="#超链接方式" class="headerlink" title="超链接方式"></a>超链接方式</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;/javaweb/download/Notes.txt&quot;</span>&gt;</span>下载 Notes.txt<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>若浏览器能解析该资源的mime类型，则打开；若不能解析，则下载。</p>
-<h3 id="手动编码方式"><a href="#手动编码方式" class="headerlink" title="手动编码方式"></a>手动编码方式</h3><p>通过 <code>servlet</code> 完成。</p>
-<h4 id="a-设置文件的-mime-类型"><a href="#a-设置文件的-mime-类型" class="headerlink" title="a.设置文件的 mime 类型"></a>a.设置文件的 mime 类型</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String mimeType=context.getMimeType(文件名);</span><br><span class="line">response.setContentType(mimeType);</span><br></pre></td></tr></table></figure>
-
-<h4 id="b-设置下载头信息"><a href="#b-设置下载头信息" class="headerlink" title="b.设置下载头信息"></a>b.设置下载头信息</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.setHeader(<span class="string">&quot;content-disposition&quot;</span>, <span class="string">&quot;attachment;filename=&quot;</span>+文件名称);</span><br></pre></td></tr></table></figure>
-
-<h4 id="c-提供流"><a href="#c-提供流" class="headerlink" title="c.提供流"></a>c.提供流</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.getOutputStream();</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>扩展-使用commons-io工具类，对拷流：</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IOUtils.copy(is,os);</span><br></pre></td></tr></table></figure>
-
-<h4 id="案例-文件下载"><a href="#案例-文件下载" class="headerlink" title="案例-文件下载"></a>案例-文件下载</h4><h5 id="1-在页面中提供一组下载的链接"><a href="#1-在页面中提供一组下载的链接" class="headerlink" title="1.在页面中提供一组下载的链接"></a>1.在页面中提供一组下载的链接</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">response.getWriter().println(<span class="string">&quot;&lt;h2&gt;手动编码方式下载&lt;/h2&gt;&quot;</span>);</span><br><span class="line">response.getWriter().println(<span class="string">&quot;&lt;a href=&#x27;/WEB10/downloadServlet?filename=a.bmp&#x27;&gt;a.bmp&lt;/a&gt;&lt;br/&gt;&quot;</span>);</span><br><span class="line">response.getWriter().println(<span class="string">&quot;&lt;a href=&#x27;/WEB10/downloadServlet?filename=WEB01.zip&#x27;&gt;WEB01.zip&lt;/a&gt;&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<h5 id="2-编写-DownloadServlet"><a href="#2-编写-DownloadServlet" class="headerlink" title="2.编写 DownloadServlet"></a>2.编写 <code>DownloadServlet</code></h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取下载文件的名称</span></span><br><span class="line"><span class="type">String</span> <span class="variable">filename</span> <span class="operator">=</span> request.getParameter(<span class="string">&quot;name&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//注意中文乱码:</span></span><br><span class="line">filename = <span class="keyword">new</span> <span class="title class_">String</span>(filename.getBytes(<span class="string">&quot;iso8859-1&quot;</span>), <span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="type">ServletContext</span> <span class="variable">context</span> <span class="operator">=</span> <span class="built_in">this</span>.getServletContext();</span><br><span class="line"><span class="comment">//文件下载</span></span><br><span class="line"><span class="comment">//1.设置文件的mimeType</span></span><br><span class="line"><span class="type">String</span> <span class="variable">mimeType</span> <span class="operator">=</span> context.getMimeType(filename);</span><br><span class="line">response.setContentType(mimeType);</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.设置下载的头信息</span></span><br><span class="line"><span class="comment">//原始的</span></span><br><span class="line"><span class="comment">//response.setHeader(&quot;content-disposition&quot;, &quot;attachment;filename=&quot;+filename);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//常见的浏览器将文件名称使用utf-8 不推荐 不兼容火狐</span></span><br><span class="line"><span class="comment">//response.setHeader(&quot;content-disposition&quot;, &quot;attachment;filename=&quot;+URLEncoder.encode(filename, &quot;utf-8&quot;));</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//方式1:通过 DownLoadUtils 工具类编码</span></span><br><span class="line"><span class="comment">//String _filename=DownLoadUtils.getName(request.getHeader(&quot;user-agent&quot;), filename);</span></span><br><span class="line"><span class="comment">//response.setHeader(&quot;content-disposition&quot;, &quot;attachment;filename=&quot;+_filename);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//方式2:网络上的方式 (8成好使)</span></span><br><span class="line">response.setHeader(<span class="string">&quot;content-disposition&quot;</span>, <span class="string">&quot;attachment;filename=&quot;</span> + <span class="keyword">new</span> <span class="title class_">String</span>(filename.getBytes(<span class="string">&quot;gbk&quot;</span>), <span class="string">&quot;iso8859-1&quot;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">//3.对拷流</span></span><br><span class="line"><span class="comment">//获取输入流</span></span><br><span class="line"><span class="type">InputStream</span> <span class="variable">is</span> <span class="operator">=</span> context.getResourceAsStream(<span class="string">&quot;/download/&quot;</span> + filename);</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取输出流</span></span><br><span class="line"><span class="type">ServletOutputStream</span> <span class="variable">os</span> <span class="operator">=</span> response.getOutputStream();</span><br><span class="line"></span><br><span class="line"><span class="comment">/*int len = -1;</span></span><br><span class="line"><span class="comment">byte[] b = new byte[1024];</span></span><br><span class="line"><span class="comment">while((len = is.read(b))!=-1)&#123;</span></span><br><span class="line"><span class="comment">    os.write(b, 0, len);</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">is.close();*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//使用commons-io工具类对拷流</span></span><br><span class="line">IOUtils.copy(is, os);</span><br><span class="line"></span><br><span class="line">os.close();</span><br><span class="line">is.close();</span><br></pre></td></tr></table></figure>
-
-<p>其中，<code>DownLoadUtils</code> 如下进行封装：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DownLoadUtils</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">getName</span><span class="params">(String agent, String filename)</span> <span class="keyword">throws</span> UnsupportedEncodingException &#123;</span><br><span class="line">		<span class="keyword">if</span> (agent.contains(<span class="string">&quot;MSIE&quot;</span>)) &#123;</span><br><span class="line">			<span class="comment">// IE浏览器</span></span><br><span class="line">			filename = URLEncoder.encode(filename, <span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">			filename = filename.replace(<span class="string">&quot;+&quot;</span>, <span class="string">&quot; &quot;</span>);</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (agent.contains(<span class="string">&quot;Firefox&quot;</span>)) &#123;</span><br><span class="line">			<span class="comment">// 火狐浏览器</span></span><br><span class="line">			<span class="type">BASE64Encoder</span> <span class="variable">base64Encoder</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BASE64Encoder</span>();</span><br><span class="line">			filename = <span class="string">&quot;=?utf-8?B?&quot;</span> + base64Encoder.encode(filename.getBytes(<span class="string">&quot;utf-8&quot;</span>)) + <span class="string">&quot;?=&quot;</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="comment">// 其它浏览器</span></span><br><span class="line">			filename = URLEncoder.encode(filename, <span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> filename;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="扩展-生成验证码"><a href="#扩展-生成验证码" class="headerlink" title="扩展-生成验证码"></a>扩展-生成验证码</h2><ul>
-<li>编写 <code>CodeServlet</code>:</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用java图形界面技术绘制一张图片</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="variable">charNum</span> <span class="operator">=</span> <span class="number">4</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">width</span> <span class="operator">=</span> <span class="number">30</span> * <span class="number">4</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">height</span> <span class="operator">=</span> <span class="number">30</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1. 创建一张内存图片</span></span><br><span class="line"><span class="type">BufferedImage</span> <span class="variable">bufferedImage</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedImage</span>(width, height, BufferedImage.TYPE_INT_RGB);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.获得绘图对象</span></span><br><span class="line"><span class="type">Graphics</span> <span class="variable">graphics</span> <span class="operator">=</span> bufferedImage.getGraphics();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3、绘制背景颜色</span></span><br><span class="line">graphics.setColor(Color.YELLOW);</span><br><span class="line">graphics.fillRect(<span class="number">0</span>, <span class="number">0</span>, width, height);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4、绘制图片边框</span></span><br><span class="line">graphics.setColor(Color.BLUE);</span><br><span class="line">graphics.drawRect(<span class="number">0</span>, <span class="number">0</span>, width - <span class="number">1</span>, height - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 5、输出验证码内容</span></span><br><span class="line">graphics.setColor(Color.RED);</span><br><span class="line">graphics.setFont(<span class="keyword">new</span> <span class="title class_">Font</span>(<span class="string">&quot;宋体&quot;</span>, Font.BOLD, <span class="number">20</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 随机输出4个字符</span></span><br><span class="line"><span class="type">Graphics2D</span> <span class="variable">graphics2d</span> <span class="operator">=</span> (Graphics2D) graphics;</span><br><span class="line"><span class="type">String</span> <span class="variable">s</span> <span class="operator">=</span> <span class="string">&quot;ABCDEFGHGKLMNPQRSTUVWXYZ23456789&quot;</span>;</span><br><span class="line"><span class="type">Random</span> <span class="variable">random</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Random</span>();</span><br><span class="line"><span class="comment">// session中要用到</span></span><br><span class="line"><span class="type">String</span> <span class="variable">msg</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> <span class="number">5</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">4</span>; i++) &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> random.nextInt(<span class="number">32</span>);</span><br><span class="line">    <span class="type">String</span> <span class="variable">content</span> <span class="operator">=</span> String.valueOf(s.charAt(index));</span><br><span class="line">    msg += content;</span><br><span class="line">    <span class="type">double</span> <span class="variable">theta</span> <span class="operator">=</span> random.nextInt(<span class="number">45</span>) * Math.PI / <span class="number">180</span>;</span><br><span class="line">    <span class="comment">// 让字体扭曲</span></span><br><span class="line">    graphics2d.rotate(theta, x, <span class="number">18</span>);</span><br><span class="line">    graphics2d.drawString(content, x, <span class="number">18</span>);</span><br><span class="line">    graphics2d.rotate(-theta, x, <span class="number">18</span>);</span><br><span class="line">    x += <span class="number">30</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 6、绘制干扰线</span></span><br><span class="line">graphics.setColor(Color.GRAY);</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">x1</span> <span class="operator">=</span> random.nextInt(width);</span><br><span class="line">    <span class="type">int</span> <span class="variable">x2</span> <span class="operator">=</span> random.nextInt(width);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> <span class="variable">y1</span> <span class="operator">=</span> random.nextInt(height);</span><br><span class="line">    <span class="type">int</span> <span class="variable">y2</span> <span class="operator">=</span> random.nextInt(height);</span><br><span class="line">    graphics.drawLine(x1, y1, x2, y2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 释放资源</span></span><br><span class="line">graphics.dispose();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 图片输出 ImageIO</span></span><br><span class="line">ImageIO.write(bufferedImage, <span class="string">&quot;jpg&quot;</span>, response.getOutputStream());</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>点击换一张验证码的 <code>js</code> 代码:</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">changeImg</span>(<span class="params">obj</span>)&#123;</span><br><span class="line">    <span class="comment">//操作src属性</span></span><br><span class="line">    obj.<span class="property">src</span>=<span class="string">&quot;/day10/code?i=&quot;</span>+<span class="title class_">Math</span>.<span class="title function_">random</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>结果如下图：</p>
-<img src="http://image.renkaigis.com/javaweb/0201.png">
-
-<h1 id="Request"><a href="#Request" class="headerlink" title="Request"></a>Request</h1><p><code>请求</code> 的作用是获取浏览器发送过来的数据。</p>
-<h2 id="操作-Request-对象"><a href="#操作-Request-对象" class="headerlink" title="操作 Request 对象"></a>操作 Request 对象</h2><h3 id="操作请求行"><a href="#操作请求行" class="headerlink" title="操作请求行"></a>操作请求行</h3><p>请求行的格式：请求方式  请求资源  协议&#x2F;版本</p>
-<h4 id="常用方法：HttpServletRequest"><a href="#常用方法：HttpServletRequest" class="headerlink" title="常用方法：HttpServletRequest"></a>常用方法：HttpServletRequest</h4><ul>
-<li>【掌握】<strong>★</strong></li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String <span class="title function_">getMethod</span><span class="params">()</span> <span class="comment">//获取请求方式</span></span><br><span class="line">String <span class="title function_">getRemoteAddr</span><span class="params">()</span> <span class="comment">//获取ip地址</span></span><br><span class="line">String <span class="title function_">getContextPath</span><span class="params">()</span> <span class="comment">//在 java 中获取项目名称  (/javaweb)</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>【了解】</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">getRequestURI() <span class="comment">//获取的是 从项目名到参数之前的内容  /javaweb/regist</span></span><br><span class="line">getRequestURL() <span class="comment">//获取的带协议的完整路径   http://localhost/javaweb/regist</span></span><br><span class="line">String <span class="title function_">getQueryString</span><span class="params">()</span> <span class="comment">//get请求的所有参数   username=tom&amp;password=123</span></span><br><span class="line">String <span class="title function_">getProtocol</span><span class="params">()</span> <span class="comment">//获取协议和版本</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>例如：请求行</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET  /day10/row?username=tom&amp;password=<span class="number">123</span>  HTTP/<span class="number">1.1</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="操作请求头"><a href="#操作请求头" class="headerlink" title="操作请求头"></a>操作请求头</h3><p>格式：key&#x2F;value（value 可以是多个值）</p>
-<h4 id="常用方法-2"><a href="#常用方法-2" class="headerlink" title="常用方法"></a>常用方法</h4><ul>
-<li>【掌握】<strong>★</strong></li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String <span class="title function_">getHeader</span><span class="params">(String key)</span> <span class="comment">//通过key获取指定的value(一个)</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>【了解】</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Enumeration <span class="title function_">getHeaders</span><span class="params">(String name)</span> <span class="comment">//通过key获取指定的value(多个)</span></span><br><span class="line">Enumeration <span class="title function_">getHeaderNames</span><span class="params">()</span> <span class="comment">//获取所有的请求头的名称</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">getIntHeader</span><span class="params">(String key)</span> <span class="comment">//获取整型的请求头</span></span><br><span class="line"><span class="type">long</span> <span class="title function_">getDateHeader</span><span class="params">(String key)</span> <span class="comment">//获取时间的请求头</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>重要的请求头:</li>
-</ul>
-<blockquote>
-<p>user-agent：浏览器内核 msie firefox chrome<br>referer：页面从那里来 防盗链</p>
-</blockquote>
-<h3 id="操作请求参数"><a href="#操作请求参数" class="headerlink" title="操作请求参数"></a>操作请求参数</h3><p>请求参数：username&#x3D;tom&amp;password&#x3D;123&amp;hobby&#x3D;drink&amp;hobby&#x3D;sleep</p>
-<h4 id="常用方法-3"><a href="#常用方法-3" class="headerlink" title="常用方法"></a>常用方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String <span class="title function_">getParameter</span><span class="params">(String key)</span> <span class="comment">//获取一个值</span></span><br><span class="line">String[] getParameterValues(String key) <span class="comment">//通过一个key获取多个值</span></span><br><span class="line">Map&lt;String,String[]&gt; getParameterMap() <span class="comment">//获取所有的参数名称和值</span></span><br></pre></td></tr></table></figure>
-
-<p>例如：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//value</span></span><br><span class="line">username:tom</span><br><span class="line"></span><br><span class="line"><span class="comment">//values</span></span><br><span class="line">hobby:[drink, sleep]</span><br><span class="line"></span><br><span class="line"><span class="comment">//map</span></span><br><span class="line">username::[tom]</span><br><span class="line">password::[<span class="number">123</span>]</span><br><span class="line">hobby::[drink, sleep]</span><br></pre></td></tr></table></figure>
-
-<h3 id="请求的中文乱码"><a href="#请求的中文乱码" class="headerlink" title="请求的中文乱码"></a>请求的中文乱码</h3><ul>
-<li><p>对于 <code>get</code> 请求：参数追加到地址栏，会使用 <code>utf-8</code> 编码，服务器（tomcat7）接受到请求之后，使用 <code>iso-8859-1</code> 解码，所以会出现乱码。</p>
-</li>
-<li><p>对于 <code>post</code> 请求：参数是放在请求体中，服务器获取请求体的时候使用 <code>iso-8859-1</code> 解码，也会出现乱码。</p>
-</li>
-</ul>
-<p>通用的方法：缺点是需要一个一个设置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">String</span>(参数.getBytes(<span class="string">&quot;iso-8859-1&quot;</span>),<span class="string">&quot;utf-8&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>针对于 <code>post</code> 请求的方法：只需要将请求流的编码设置成 <code>utf-8</code> 即可。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.setCharacterEncoding(<span class="string">&quot;utf-8&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="域对象-request"><a href="#域对象-request" class="headerlink" title="域对象 request"></a>域对象 request</h2><table>
-<thead>
-<tr>
-<th align="center">request 域</th>
-<th>生命周期</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">创建</td>
-<td>一次请求来的时候</td>
-</tr>
-<tr>
-<td align="center">销毁</td>
-<td>响应生成的时候</td>
-</tr>
-<tr>
-<td align="center">作用</td>
-<td>存放一次请求里面的数据</td>
-</tr>
-</tbody></table>
-<ul>
-<li>请求转发（也叫请求链、请求串）</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.getRequestDispatcher(<span class="string">&quot;内部路径&quot;</span>).forward(request,response);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>作为域对象存取值</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="title function_">setAttribute</span><span class="params">(String name, Object o)</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">removeAttribute</span><span class="params">(String name)</span></span><br><span class="line">Object <span class="title function_">getAttribute</span><span class="params">(String name)</span></span><br></pre></td></tr></table></figure>
-
-<p>例如：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">request.setAttribute(<span class="string">&quot;username&quot;</span>,<span class="string">&quot;tom&quot;</span>);</span><br><span class="line"></span><br><span class="line">request.getAttribute(<span class="string">&quot;username&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<h2 id="请求转发与重定向"><a href="#请求转发与重定向" class="headerlink" title="请求转发与重定向"></a>请求转发与重定向</h2><ul>
-<li>重定向</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.sendRedirect(String path);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>请求转发</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.getRequestDispatcher(String path).forward(request,response);</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>重定向发送两次请求，请求转发一次请求</p>
-<p>重定向地址栏发生改变，请求转发不变</p>
-<p>重定向是从浏览器发送，请求转发是服务器内部</p>
-<p>重定向不存在 <code>request</code> 域对象，请求转发可以使用 <code>request</code> 域对象</p>
-<p>重定向是 <code>response</code> 的方法，请求转发是 <code>request</code> 的方法</p>
-<p>重定向可以请求站外资源，请求转发不可以</p>
-</blockquote>
-<h2 id="扩展-编码解码"><a href="#扩展-编码解码" class="headerlink" title="扩展-编码解码"></a>扩展-编码解码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">URLEncoder.encode(String s, <span class="string">&quot;utf-8&quot;</span>); <span class="comment">//指定编码</span></span><br><span class="line">URLDecoder.decode(String s8, <span class="string">&quot;iso8859-1&quot;</span>); <span class="comment">//指定解码</span></span><br></pre></td></tr></table></figure>
-
-<p>例如：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    String s=<span class="string">&quot;天下&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用 utf-8 进行编码</span></span><br><span class="line">    String s8=URLEncoder.encode(s, <span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//System.out.println(s8);</span></span><br><span class="line">    <span class="comment">//对utf-8的字符串通过iso8859-1进行解码，则会出现乱码</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">so</span> <span class="operator">=</span> URLDecoder.decode(s8, <span class="string">&quot;iso8859-1&quot;</span>);</span><br><span class="line">    System.out.println(so); <span class="comment">//乱码</span></span><br><span class="line">    </span><br><span class="line">    <span class="type">byte</span>[] b = so.getBytes(<span class="string">&quot;iso-8859-1&quot;</span>);</span><br><span class="line">    <span class="type">String</span> <span class="variable">_s</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(b, <span class="string">&quot;utf-8&quot;</span>);</span><br><span class="line">    <span class="comment">//上面的两句简写为：String _s=new String(so.getBytes(&quot;iso8859-1&quot;),&quot;utf-8&quot;);</span></span><br><span class="line">    System.out.println(_s);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>整理的也许不全面，就这样吧！</strong></p>
-
+          <div align="center"><img src="http://image.renkaigis.com/javaweb/0200.png" title="Request & Response"></div>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/JavaWeb02-request-response.html#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1110,7 +867,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2018-08-10 15:02:44" itemprop="dateModified" datetime="2018-08-10T15:02:44+08:00">2018-08-10</time>
+      <time title="Modified: 2023-12-06 14:50:16" itemprop="dateModified" datetime="2023-12-06T14:50:16+08:00">2023-12-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1132,386 +889,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><div align="center"><img src="http://image.renkaigis.com/javaweb/0100.png" title="Http & Servlet"></div>
-
-<!---more--->
-
-<h1 id="HTTP-协议"><a href="#HTTP-协议" class="headerlink" title="HTTP 协议"></a>HTTP 协议</h1><h2 id="HTTP-协议的概念"><a href="#HTTP-协议的概念" class="headerlink" title="HTTP 协议的概念"></a>HTTP 协议的概念</h2><p><code>超文本传输协议</code>（HTTP，HyperText Transfer Protocol)是互联网上应用最为广泛的一种网络协议。所有的 WWW 文件都必须遵守这个标准。</p>
-<p><strong>规定被约束的对象要遵守的规则！</strong></p>
-<h2 id="HTTP-协议-1"><a href="#HTTP-协议-1" class="headerlink" title="HTTP 协议"></a>HTTP 协议</h2><p>HTTP 协议规定：浏览器（客户端）向服务器发送何种格式的数据，服务器会处理数据，向浏览器（客户端）作出响应。（向客户端发送何种格式的数据）</p>
-<p>HTTP 协议的特点:</p>
-<ul>
-<li><p>HTTP 协议遵守一个请求响应模型；</p>
-</li>
-<li><p>请求和响应必须成对出现；</p>
-</li>
-<li><p>必须先有请求后有响应；</p>
-</li>
-<li><p>HTTP 协议默认的端口：80</p>
-</li>
-</ul>
-<h2 id="HTTP-协议的请求部分（Request）"><a href="#HTTP-协议的请求部分（Request）" class="headerlink" title="HTTP 协议的请求部分（Request）"></a>HTTP 协议的请求部分（Request）</h2><p>组成部分：<code>请求行</code>、<code>请求头</code>、<code>请求体</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//get 请求方式的抓包：</span><br><span class="line">GET /WEB09/demo1/subSucc.html?username=aaa&amp;password=123 HTTP/1.1</span><br><span class="line">Accept: text/html, application/xhtml+xml, */*</span><br><span class="line">X-HttpWatch-RID: 63397-10023</span><br><span class="line">Referer: http://localhost:8080/WEB09/demo1/demo1.html</span><br><span class="line">Accept-Language: zh-Hans-CN,zh-Hans;q=0.5</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; rv:11.0) like Gecko</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Host: localhost:8080</span><br><span class="line">Connection: Keep-Alive</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//post 请求方式的抓包：</span><br><span class="line">POST /WEB09/demo1/subSucc.html HTTP/1.1</span><br><span class="line">Accept: text/html, application/xhtml+xml, */*</span><br><span class="line">X-HttpWatch-RID: 63397-10049</span><br><span class="line">Referer: http://localhost:8080/WEB09/demo1/demo1.html</span><br><span class="line">Accept-Language: zh-Hans-CN,zh-Hans;q=0.5</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; rv:11.0) like Gecko</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Host: localhost:8080</span><br><span class="line">Content-Length: 25</span><br><span class="line">Connection: Keep-Alive</span><br><span class="line">Cache-Control: no-cache</span><br><span class="line"></span><br><span class="line">username=aaa&amp;password=123</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="请求行"><a href="#请求行" class="headerlink" title="请求行"></a>请求行</h3><p>请求行：请求信息的第一行，包含：<code>请求方式</code>、<code>请求路径</code>、<code>协议版本</code>。</p>
-<p>例如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /WEB09/demo1/subSucc.html?username=aaa&amp;password=123 HTTP/1.1</span><br></pre></td></tr></table></figure>
-
-<p>请求方式：请求方式有很多种，常用的是 <code>GET</code> 和 <code>POST</code>。</p>
-<p>GET 和 POST 区别：</p>
-<ul>
-<li>GET：请求参数会显示到地址栏；GET方式有大小的限制；GET方式没有请求体。</li>
-<li>POST：请求参数不会显示到地址栏；在请求体中，POST没有大小限制；POST方式有请求体。</li>
-</ul>
-<p>只有表单设置为 <code>method=&quot;post&quot;</code> 才是 post 请求，其他的都是 get 请求</p>
-<h3 id="请求头"><a href="#请求头" class="headerlink" title="请求头"></a>请求头</h3><p>请求头：请求信息的第二行到空行结束。</p>
-<p>格式：key：value（value可以是多个值）</p>
-<p>常见的请求头:</p>
-<table>
-<thead>
-<tr>
-<th>请求头</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Accept: text&#x2F;html,image&#x2F;bmp</td>
-<td>支持数据类型<br>text&#x2F;html text&#x2F;css text&#x2F;javascript 大类型&#x2F;小类型 mime类型</td>
-</tr>
-<tr>
-<td>Accept-Charset: ISO-8859-1</td>
-<td>字符集</td>
-</tr>
-<tr>
-<td>Accept-Encoding: gzip</td>
-<td>支持压缩</td>
-</tr>
-<tr>
-<td>Accept-Language:zh-cn</td>
-<td>语言环境</td>
-</tr>
-<tr>
-<td>Host: <a target="_blank" rel="noopener" href="http://www.renkaigis.com/">www.renkaigis.com:80</a></td>
-<td>访问主机</td>
-</tr>
-<tr>
-<td>★ If-Modified-Since: Tue, 11 Jul 2000 18:23:51 GMT</td>
-<td>缓存文件的最后修改时间，和响应中一个头一起使用，完成本地缓存的查找</td>
-</tr>
-<tr>
-<td>★ Referer: <a target="_blank" rel="noopener" href="http://www.renkaigis.com/index.jsp">http://www.renkaigis.com/index.jsp</a></td>
-<td>来自哪个页面、防盗链</td>
-</tr>
-<tr>
-<td>★ User-Agent: Mozilla&#x2F;4.0 (compatible; MSIE 5.5; Windows NT 5.0)</td>
-<td>获得客户端浏览器的信息。（文件下载：IE：URL编码，火狐：Base64）</td>
-</tr>
-<tr>
-<td>Connection:Keep-Alive</td>
-<td>链接状态</td>
-</tr>
-</tbody></table>
-<h3 id="请求体"><a href="#请求体" class="headerlink" title="请求体"></a>请求体</h3><p>请求体：空行以下的内容。</p>
-<p>只有post才有请求体，获取请求参数：<a target="_blank" rel="noopener" href="http://xxxx/?username=tom&password=123">http://xxxx?username=tom&amp;password=123</a></p>
-<p>格式：username&#x3D;tom&amp;password&#x3D;123</p>
-<h2 id="HTTP-协议的响应部分（Response）"><a href="#HTTP-协议的响应部分（Response）" class="headerlink" title="HTTP 协议的响应部分（Response）"></a>HTTP 协议的响应部分（Response）</h2><p>组成部分：<code>响应行</code>、<code>响应头</code>、<code>响应体</code></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Server: Apache-Coyote/1.1</span><br><span class="line">Accept-Ranges: bytes</span><br><span class="line">ETag: W/&quot;147-1455670867735&quot;</span><br><span class="line">Last-Modified: Wed, 17 Feb 2016 01:01:07 GMT</span><br><span class="line">Content-Type: text/html</span><br><span class="line">Content-Length: 147</span><br><span class="line">Date: Wed, 17 Feb 2016 01:17:06 GMT</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">&lt;title&gt;Java&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h1&gt;Java学习&lt;/h1&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="响应行"><a href="#响应行" class="headerlink" title="响应行"></a>响应行</h3><p>响应行：响应信息的第一行。</p>
-<p>格式：协议&#x2F;版本 状态码 状态码说明</p>
-<p>例如：HTTP&#x2F;1.1 200 OK</p>
-<p>状态码：</p>
-<ul>
-<li>200 正常响应成功</li>
-<li>302 重定向</li>
-<li>304 读缓存</li>
-<li>404 用户操作资源不存在</li>
-<li>500 服务器内部异常</li>
-</ul>
-<h3 id="响应头"><a href="#响应头" class="headerlink" title="响应头"></a>响应头</h3><p>响应头：从响应信息的第二行到空行结束。</p>
-<p>格式:key：value(value可以是多个值)</p>
-<p>常见的响应头：</p>
-<table>
-<thead>
-<tr>
-<th>响应头</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>★ Location: <a target="_blank" rel="noopener" href="http://www.it315.org/index.jsp">http://www.it315.org/index.jsp</a></td>
-<td>跳转方向 和302一起使用的</td>
-</tr>
-<tr>
-<td>Server:apache tomcat</td>
-<td>服务器型号</td>
-</tr>
-<tr>
-<td>Content-Encoding: gzip</td>
-<td>数据压缩</td>
-</tr>
-<tr>
-<td>Content-Length: 80</td>
-<td>数据长度</td>
-</tr>
-<tr>
-<td>Content-Language: zh-cn</td>
-<td>语言环境</td>
-</tr>
-<tr>
-<td>★ Content-Type: text&#x2F;html; charset&#x3D;GB2312</td>
-<td>数据类型</td>
-</tr>
-<tr>
-<td>★ Last-Modified: Tue, 11 Jul 2000 18:23:51 GMT</td>
-<td>最后的修改文件的事件.与 If-Modified-Since 一起使用</td>
-</tr>
-<tr>
-<td>★ Refresh: 1;url&#x3D;<a target="_blank" rel="noopener" href="http://www.it315.org/">http://www.it315.org</a></td>
-<td>定时刷新</td>
-</tr>
-<tr>
-<td>★ Content-Disposition: attachment; filename&#x3D;aaa.zip</td>
-<td>下载</td>
-</tr>
-<tr>
-<td>★ Set-Cookie:SS&#x3D;Q0&#x3D;5Lb_nQ;</td>
-<td>path&#x3D;&#x2F;search</td>
-</tr>
-<tr>
-<td>Expires: -1</td>
-<td>缓存</td>
-</tr>
-<tr>
-<td>Cache-Control: no-cache</td>
-<td>缓存</td>
-</tr>
-<tr>
-<td>Pragma: no-cache</td>
-<td>缓存</td>
-</tr>
-<tr>
-<td>Connection: Keep-Alive</td>
-<td>连接</td>
-</tr>
-</tbody></table>
-<h3 id="响应体"><a href="#响应体" class="headerlink" title="响应体"></a>响应体</h3><p>响应体：页面上展示的内容。</p>
-<h1 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p><code>Servlet</code> 是运行在服务器端的一个 Java 小程序，动态的 web 开发技术，主要功能在于交互式地浏览和修改数据，生成动态 web 内容。</p>
-<p><code>Servlet = Service + Applet</code></p>
-<h2 id="Servlet-实现过程"><a href="#Servlet-实现过程" class="headerlink" title="Servlet 实现过程"></a>Servlet 实现过程</h2><ul>
-<li><p>客户端发送请求至服务器端；</p>
-</li>
-<li><p>服务器将请求信息发送至 Servlet；</p>
-</li>
-<li><p>Servlet 生成响应内容并将其传给服务器。响应内容动态生成，通常取决于客户端的请求；</p>
-</li>
-<li><p>服务器将响应返回给客户端。</p>
-</li>
-</ul>
-<h2 id="编写一个-Servlet-步骤"><a href="#编写一个-Servlet-步骤" class="headerlink" title="编写一个 Servlet 步骤"></a>编写一个 Servlet 步骤</h2><p>1、编写一个类:</p>
-<ul>
-<li><p>a. 继承 HttpServlet，</p>
-</li>
-<li><p>b. 重写 doGet 或者 doPost 方法；</p>
-</li>
-</ul>
-<p>2、编写配置文件（<code>web-inf/web.xml</code>）:</p>
-<ul>
-<li><p>a. 注册 Servlet;</p>
-</li>
-<li><p>b. 绑定路径</p>
-</li>
-</ul>
-<p>3、访问：<code>http://主机:端口号/项目名/路径</code></p>
-<h3 id="接收参数"><a href="#接收参数" class="headerlink" title="接收参数"></a>接收参数</h3><p>格式:key&#x3D;value</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Sting value=request.getParameter(<span class="string">&quot;key&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>例如: <a target="_blank" rel="noopener" href="http://localhost/day09/hello?username=tom">http://localhost/day09/hello?username=tom</a></p>
-<ul>
-<li>request.getParameter(“username”) 就可以获取 tom 值</li>
-</ul>
-<h3 id="回写内容"><a href="#回写内容" class="headerlink" title="回写内容"></a>回写内容</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.getWriter().print(<span class="string">&quot;success&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<p>处理响应数据中文乱码:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.setContentType(<span class="string">&quot;text/html;charset=utf-8&quot;</span>); <span class="comment">//建议放在方法中的第一行</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="编写配置文件"><a href="#编写配置文件" class="headerlink" title="编写配置文件"></a>编写配置文件</h3><p>配置文件路径：<code>web-inf/web.xml</code></p>
-<ul>
-<li>配置 Servlet 到 WEB 服务器。</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置Servlet --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- Servlet的名称 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>DemoServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- Servlet的类的全路径 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.servlet.demo1.DemoServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 配置Servlet的映射 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- Servlet的名称 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>DemoServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- Servlet的访问路径 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/servletDemo1<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>url-pattern的配置: <strong>★</strong></p>
-<ul>
-<li><p>方式1：完全匹配  必须以<code>&quot;/&quot;</code>开始 例如: <code>/hello /a/b/c</code></p>
-</li>
-<li><p>方式2：目录匹配  必须<code>&quot;/&quot;</code>开始  以<code>&quot;*&quot;</code>结束   例如: <code>/a/*  /*</code></p>
-</li>
-<li><p>方式3：后缀名匹配 以<code>&quot;*&quot;</code>开始 以字符结尾 例如: <code>*.jsp  *.do  *.action</code></p>
-</li>
-</ul>
-<p>优先级:</p>
-<ul>
-<li>完全匹配 &gt; 目录匹配 &gt; 后缀名匹配</li>
-</ul>
-<p>练习:</p>
-<pre><code>有如下的一些映射关系：
-
-    Servlet1 映射到 /abc/* 
-
-    Servlet2 映射到 /*
-
-    Servlet3 映射到 /abc 
-
-    Servlet4 映射到 *.do 
-
-问题:
-
-当请求URL为“/abc/a.html”，“/abc/*”和“/*”都匹配，哪个servlet响应
-
-    Servlet引擎将调用Servlet1。
-
-当请求URL为“/abc”时，“/*”和“/abc”都匹配，哪个servlet响应
-
-    Servlet引擎将调用Servlet3。
-    
-当请求URL为“/abc/a.do”时，“/abc/*”和“*.do”都匹配，哪个servlet响应
-
-    Servlet引擎将调用Servlet1。
-
-当请求URL为“/a.do”时，“/*”和“*.do”都匹配，哪个servlet响应
-
-    Servlet引擎将调用Servlet2.
-
-当请求URL为“/xxx/yyy/a.do”时，“/*”和“*.do”都匹配，哪个servlet响应
-
-    Servlet引擎将调用Servlet2。
-</code></pre>
-<h3 id="配置-Servlet-的启动时加载"><a href="#配置-Servlet-的启动时加载" class="headerlink" title="配置 Servlet 的启动时加载"></a>配置 Servlet 的启动时加载</h3><p>在 web.xml 中 <code>&lt;servlet&gt;</code> 标签中配置</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>2<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>作用：用来修改 servlet 的初始化时机</p>
-<p>取值：正整数，值越大优先级越低</p>
-<p>当我们的配置文件里面没有指定配置的话，会查找 tomcat 的 web.xml，若请求我们自己的项目处理不了,tomcat 的默认的 servlet 会帮我们处理信息。</p>
-<h3 id="路径的写法"><a href="#路径的写法" class="headerlink" title="路径的写法"></a>路径的写法</h3><p>相对路径：</p>
-<ul>
-<li><p>当前路径    .&#x2F; 或者 什么都不写</p>
-</li>
-<li><p>上一级路径 ..&#x2F;</p>
-</li>
-</ul>
-<p>绝对路径：(我们使用)</p>
-<ul>
-<li><p>带主机和协议的绝对路径（访问站外资源）</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://www.itheima.com/xxxx">http://www.itheima.com/xxxx</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://localhost/day09/hello">http://localhost:80/day09/hello</a></p>
-</li>
-<li><p>不带主机和协议的绝对路径</p>
-</li>
-<li><p>&#x2F;day09&#x2F;hello（经常使用）</p>
-</li>
-</ul>
-<h2 id="Servlet-结构与方法"><a href="#Servlet-结构与方法" class="headerlink" title="Servlet 结构与方法"></a>Servlet 结构与方法</h2><h3 id="servlet的体系结构"><a href="#servlet的体系结构" class="headerlink" title="servlet的体系结构:"></a>servlet的体系结构:</h3><pre><code>Servlet:接口
-    |
-GenericServlet:抽象类
-    |
-HttpServlet:抽象类
-    |
-自定义servlet
-</code></pre>
-<h3 id="Servlet-常用方法"><a href="#Servlet-常用方法" class="headerlink" title="Servlet 常用方法:"></a>Servlet 常用方法:</h3><ul>
-<li><p><code>void init(ServletConfig config)</code>:初始化</p>
-</li>
-<li><p><code>void service(ServletRequest request,ServletResponse response)</code>:服务 处理业务逻辑</p>
-</li>
-<li><p><code>void destroy()</code>:销毁</p>
-</li>
-<li><p><code>ServletConfig getServletConfig()</code>:获取当前 servlet 的配置对象</p>
-</li>
-</ul>
-<h3 id="GenericServlet-常用方法"><a href="#GenericServlet-常用方法" class="headerlink" title="GenericServlet 常用方法:"></a>GenericServlet 常用方法:</h3><p>除了 service 方法没有显示，其他都实现了</p>
-<p>空参的 init()，若我们自己想对 servlet 进行初始化操作，重写这个 init() 方法即可</p>
-<h3 id="HttpServlet-常用方法："><a href="#HttpServlet-常用方法：" class="headerlink" title="HttpServlet 常用方法："></a>HttpServlet 常用方法：</h3><p>service 做了实现，把参数强转，调用了重载的 service 方法</p>
-<p>重载的 service 方法获取请求的方式，根据请求方式的不同调用相应 <code>doXxx()</code> 方法</p>
-<p>doGet 和 doPost 方法</p>
-<h2 id="Servlet-的生命周期"><a href="#Servlet-的生命周期" class="headerlink" title="Servlet 的生命周期"></a>Servlet 的生命周期</h2><p>生命周期指的是一个对象从创建到销毁的过程。</p>
-<p>Servlet 的生命周期，指的是 Servlet 对象从创建到销毁的过程。</p>
-<p><code>void init(ServletConfig config)</code>:初始化<br>     * 初始化方法<br>     * 执行者:服务器<br>     * 执行次数:一次<br>     * 执行时机:默认第一次访问的时候<br><code>void service(ServletRequest request,ServletResponse response)</code>:服务 处理业务逻辑<br>     * 服务<br>     * 执行者:服务器<br>     * 执行次数:请求一次执行一次<br>     * 执行时机:请求来的时候<br><code>void destroy()</code>:销毁<br>     * 销毁<br>     * 执行者:服务器<br>     * 执行次数:只执行一次<br>     * 执行时机:当servlet被移除的时候或者服务器正常关闭的时候</p>
-<p>Serlvet是单实例多线程</p>
-<blockquote>
-<p>默认客户端第一次访问 Servlet 的时候，服务器创建一个 Servlet 对象，并调用 init 实现初始化操作。并调用一次 service 方法，每当请求来的时候，服务器创建一个线程，调用 service 方法执行自己的业务逻辑。当 Servlet 被移除的时候或者服务器正常关闭的时候，Servlet 对象就会被销毁，服务器调用 Servlet 的 destroy 方法实现销毁操作。</p>
-</blockquote>
-<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><h2 id="常见的响应头——refresh"><a href="#常见的响应头——refresh" class="headerlink" title="常见的响应头——refresh"></a>常见的响应头——refresh</h2><p>refresh（定时刷新）</p>
-<p>响应头格式:</p>
-<p><code>refresh:秒数;url=跳转的路径</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置响应头：</span></span><br><span class="line"><span class="comment">//设置字符串形式的响应头</span></span><br><span class="line">response.setHeader(String key,String value);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//追加响应头，若之前设置过这个头，则追加；若没有设置过，则设置</span></span><br><span class="line">response.addHeader(String key,String value);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置定时刷新：</span></span><br><span class="line">response.setHeader(<span class="string">&quot;refresh&quot;</span>,<span class="string">&quot;3;url=/day0901/login.htm&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<p><strong>另：</strong> 可以通过html页面中的一个标签设置头信息 <code>&lt;meta&gt;</code> 标签，跳转到指定路径。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;Refresh&quot;</span> <span class="attr">content</span>=<span class="string">&quot;5;url=/WEB09/succ.html&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="ServletContext"><a href="#ServletContext" class="headerlink" title="ServletContext"></a>ServletContext</h2><p><code>ServletContext</code> ：全局管理者（上下文），是一个项目的引用，代表了当前项目。</p>
-<p>当项目启动的时候，服务器会为每一个 web 项目创建一个 servletContext 对象。</p>
-<p>当项目被移除的时候或者服务器关闭的时候 servletContext 销毁。</p>
-<p>servletContext 接口是 Servlet 中最大的一个接口，呈现了 web 应用的 Servlet 视图。 ServletContext 实例是通过 getServletContext() 方法获得的，由于 HttpServlet 继承 GenericServlet 的关系，GenericServlet 类和 HttpServlet 类同时具有该方法。</p>
-<h3 id="作用"><a href="#作用" class="headerlink" title="作用:"></a>作用:</h3><blockquote>
-<ol>
-<li>获取全局的初始化参数</li>
-<li>共享资源(xxxAttribute)</li>
-<li>获取文件资源</li>
-<li>其他操作</li>
-</ol>
-</blockquote>
-<h3 id="获取-servletcontext"><a href="#获取-servletcontext" class="headerlink" title="获取 servletcontext"></a>获取 servletcontext</h3><p>方式1：了解</p>
-<blockquote>
-<p>getServletConfig().getServletContext()</p>
-</blockquote>
-<p>方式2：</p>
-<blockquote>
-<p>getServletContext()</p>
-</blockquote>
-<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><ol>
-<li>了解</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String <span class="title function_">getInitParameter</span><span class="params">(String key)</span><span class="comment">//通过名称获取指定的参数值</span></span><br><span class="line">Enumeration <span class="title function_">getInitParameterNames</span><span class="params">()</span><span class="comment">//获取所有的参数名称	</span></span><br></pre></td></tr></table></figure>
-
-<p>在根标签下有一个 <code>context-param</code> 子标签，用来存放初始化参数：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>encoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>utf-8<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li><p>xxxAttribute（set,get）</p>
-</li>
-<li></li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String <span class="title function_">getRealPath</span><span class="params">(String path)</span><span class="comment">//获取文件部署到tomcat上的真实路径(带tomcat路径)</span></span><br><span class="line"></span><br><span class="line">getRealPath(<span class="string">&quot;/&quot;</span>)<span class="comment">//D:\javaTools\apache-tomcat-7.0.52\webapps\day09\</span></span><br><span class="line"></span><br><span class="line">InputStream <span class="title function_">getResourceAsStream</span><span class="params">(String path)</span><span class="comment">//以流的形式返回一个文件</span></span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>获取文件的 mime 类型（大类型&#x2F;小类型）</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String <span class="title function_">getMimeType</span><span class="params">(String 文件名称)</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="域对象-★★★"><a href="#域对象-★★★" class="headerlink" title="域对象 ★★★"></a>域对象 ★★★</h3><p>servletcontext 可以被当成map集合。</p>
-<p>常用方法:</p>
-<blockquote>
-<p>xxxAttribute()</p>
-</blockquote>
-<p>servletcontext 创建和销毁：</p>
-<blockquote>
-<p>当项目启动的时候服务器为每一个 web 项目创建一个 servletcontext 对象。<br>当项目被移除的时候或者服务器关闭的时候 servletcontext 销毁。</p>
-</blockquote>
-<p>存放:</p>
-<blockquote>
-<p>共享的数据</p>
-</blockquote>
-<h2 id="获取文件的路径"><a href="#获取文件的路径" class="headerlink" title="获取文件的路径"></a>获取文件的路径</h2><p>通过类加载器获取文件：2.txt 放在 classes 目录下无论是 java 项目还是 web 项目都可以。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">类.class.getClassLoader().getResource(<span class="string">&quot;2.txt&quot;</span>).getPath();</span><br></pre></td></tr></table></figure>
+          <div align="center"><img src="http://image.renkaigis.com/javaweb/0100.png" title="Http & Servlet"></div>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/JavaWeb01-http-servlet.html#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1729,9 +1115,7 @@ HttpServlet:抽象类
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
-    <span class="author" itemprop="copyrightHolder">ture</span>
-  </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+    <span class="author" itemprop="copyrightHolder"><a href="https://renkaigis.cn" target="_blank">Kai Ren</a></span>
   </div>
 
     </div>
@@ -1757,14 +1141,18 @@ HttpServlet:抽象类
 
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js" integrity="sha256-tc4b48P1MPGS4PJXHRlChGCW1mEZy62jS/3JEsSHPzU=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdn.jsdelivr.net/npm/pdfobject@2.2.12/pdfobject.min.js","integrity":"sha256-g2xji1rlE3KsGVClvuxTbcR0Kn2+wtQADSff2Tbb4zA="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
 
 
 
 
+  <script src="/js/third-party/pace.js"></script>
 
 
   
@@ -1772,6 +1160,9 @@ HttpServlet:抽象类
 
 
 
+
+
+  <script type="text/javascript" src="/js/love.js"></script>
 
 </body>
 </html>

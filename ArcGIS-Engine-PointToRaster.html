@@ -28,18 +28,18 @@
 <meta property="og:site_name" content="秋月春风等闲度">
 <meta property="og:description" content="做项目遇到需要将矢量数据转换成栅格数据的问题，走了很多弯路，后来发现使用 GP 工具很轻松就解决了，记录一下。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://image.renkaigis.com/arcgis/PointToRaster1.png">
-<meta property="og:image" content="http://image.renkaigis.com/arcgis/PointToRaster2.png">
-<meta property="og:image" content="http://image.renkaigis.com/arcgis/PointToRaster3.png">
-<meta property="og:image" content="http://image.renkaigis.com/arcgis/PointToRaster4.png">
-<meta property="og:image" content="http://image.renkaigis.com/arcgis/PointToRaster5.png">
+<meta property="og:image" content="https://yoursite.cn/images/arcgis/PointToRaster1.png">
+<meta property="og:image" content="https://yoursite.cn/images/arcgis/PointToRaster2.png">
+<meta property="og:image" content="https://yoursite.cn/images/arcgis/PointToRaster3.png">
+<meta property="og:image" content="https://yoursite.cn/images/arcgis/PointToRaster4.png">
+<meta property="og:image" content="https://yoursite.cn/images/arcgis/PointToRaster5.png">
 <meta property="article:published_time" content="2018-03-21T09:02:30.000Z">
-<meta property="article:modified_time" content="2018-08-10T06:49:37.000Z">
+<meta property="article:modified_time" content="2023-12-08T04:08:39.506Z">
 <meta property="article:author" content="Kai Ren">
 <meta property="article:tag" content="ArcGIS">
 <meta property="article:tag" content="AE">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://image.renkaigis.com/arcgis/PointToRaster1.png">
+<meta name="twitter:image" content="https://yoursite.cn/images/arcgis/PointToRaster1.png">
 
 
 <link rel="canonical" href="https://yoursite.cn/ArcGIS-Engine-PointToRaster.html">
@@ -237,7 +237,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2018-08-10 14:49:37" itemprop="dateModified" datetime="2018-08-10T14:49:37+08:00">2018-08-10</time>
+      <time title="Modified: 2023-12-08 12:08:39" itemprop="dateModified" datetime="2023-12-08T12:08:39+08:00">2023-12-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -263,7 +263,7 @@
 
 <p>ArcGIS 软件中 <code>ArcToolbox</code> 中的工具几乎都可以使用 GP 工具来完成。矢量转栅格的工具主要在 <code>ArcToolbox --&gt; Conversion Tools --&gt; To Raster</code> 下，包括 <code>Feature to Raster</code>、<code>Point to Raster</code>、<code>Polygon to Raster</code> 和 <code>Polyline to Raster</code>。其中 <code>Feature to Raster</code> 与其他三种效果相同。</p>
 <p>ArcGIS 中 <code>Feature to Raster</code> 方法如下图所示：</p>
-<img src="http://image.renkaigis.com/arcgis/PointToRaster1.png">
+<img src="../../images/arcgis/PointToRaster1.png">
 
 <p>官方文档给出的工具语法如下：</p>
 <ul>
@@ -306,14 +306,14 @@
 <figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">toRaster_Click</span>(<span class="params"><span class="built_in">object</span> sender, EventArgs e</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    Geoprocessor gp = <span class="keyword">new</span> Geoprocessor();</span><br><span class="line">    gp.OverwriteOutput = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">int</span> pLayerId = <span class="number">-1</span>;</span><br><span class="line">    ILayer pLayer = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; axMapControl1.LayerCount; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        pLayer = axMapControl1.get_Layer(i);</span><br><span class="line">        <span class="comment">//if (pLayer is IFeatureLayer &amp;&amp; pLayer.Name == &quot;质点&quot;)</span></span><br><span class="line">        <span class="keyword">if</span> (pLayer <span class="keyword">is</span> IFeatureLayer)</span><br><span class="line">        &#123;</span><br><span class="line">            pLayerId = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (pLayerId == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        MessageBox.Show(<span class="string">&quot;找不到点图层，请重新加载&quot;</span>, <span class="string">&quot;提示&quot;</span>, MessageBoxButtons.OK, MessageBoxIcon.Error);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span></span><br><span class="line">    &#123;</span><br><span class="line">        ESRI.ArcGIS.ConversionTools.FeatureToRaster ptr = <span class="keyword">new</span> ESRI.ArcGIS.ConversionTools.FeatureToRaster();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获得点图层</span></span><br><span class="line">        IFeatureLayer pfeatureLayer = axMapControl1.get_Layer(pLayerId) <span class="keyword">as</span> IFeatureLayer;</span><br><span class="line">        IFeatureClass feaureClass = pfeatureLayer.FeatureClass;</span><br><span class="line"></span><br><span class="line">        ptr.in_features = pfeatureLayer;</span><br><span class="line">        <span class="built_in">string</span> filepath = <span class="string">@&quot;d:\gis\&quot;</span>;</span><br><span class="line">        ptr.out_raster = filepath + pfeatureLayer.Name + <span class="string">&quot;.tif&quot;</span>; <span class="comment">// 将转换结果保存为tif格式</span></span><br><span class="line">        ptr.field = <span class="string">&quot;id&quot;</span>; <span class="comment">// 设置根据那个字段进行转换</span></span><br><span class="line">        ptr.cell_size = <span class="number">64</span>; <span class="comment">// 设置转换后的栅格像元大小</span></span><br><span class="line">        gp.Execute(ptr, <span class="literal">null</span>); <span class="comment">// 执行 GP 工具</span></span><br><span class="line"></span><br><span class="line">        MessageBox.Show(<span class="string">&quot;转换成功！&quot;</span>, <span class="string">&quot;恭喜你！&quot;</span>, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 加载栅格</span></span><br><span class="line">        IWorkspaceFactory pWorkspaceFactory = <span class="keyword">new</span> RasterWorkspaceFactory();</span><br><span class="line">        IWorkspace pWorkspace = pWorkspaceFactory.OpenFromFile(filepath, <span class="number">0</span>);</span><br><span class="line">        IRasterWorkspace pRasterWorkspace = pWorkspace <span class="keyword">as</span> IRasterWorkspace;</span><br><span class="line">        IRasterDataset pRasterDataset = pRasterWorkspace.OpenRasterDataset(pfeatureLayer.Name + <span class="string">&quot;.tif&quot;</span>);</span><br><span class="line">        IRaster pRaster= pRasterDataset.CreateDefaultRaster();</span><br><span class="line">        IRasterLayer pRasterLayer = <span class="keyword">new</span> RasterLayerClass();</span><br><span class="line">        pRasterLayer.CreateFromRaster(pRaster);</span><br><span class="line">        ILayer layer = pRasterLayer <span class="keyword">as</span> ILayer;</span><br><span class="line">        axMapControl1.AddLayer(layer, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (Exception ex)</span><br><span class="line">    &#123;</span><br><span class="line">        MessageBox.Show(<span class="string">&quot;转换失败！&quot;</span>, <span class="string">&quot;很遗憾！&quot;</span>, MessageBoxButtons.OK, MessageBoxIcon.Error);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>运行结果：</strong></p>
-<img src="http://image.renkaigis.com/arcgis/PointToRaster2.png">
+<img src="../../images/arcgis/PointToRaster2.png">
 
-<img src="http://image.renkaigis.com/arcgis/PointToRaster3.png">
+<img src="../../images/arcgis/PointToRaster3.png">
 
 <p>经测试，该代码同样适用与 <code>面数据转换栅格</code>：</p>
-<img src="http://image.renkaigis.com/arcgis/PointToRaster4.png">
+<img src="../../images/arcgis/PointToRaster4.png">
 
-<img src="http://image.renkaigis.com/arcgis/PointToRaster5.png">
+<img src="../../images/arcgis/PointToRaster5.png">
     </div>
 
     
